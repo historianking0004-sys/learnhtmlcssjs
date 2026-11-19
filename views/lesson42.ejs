@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ===== SEO START ===== -->
+<title>Build Portfolio Website - Get Clients & Jobs - Lesson 42 | LearnHTMLCSSJS.com</title>
+<meta name="description" content="Learn to Build Portfolio Website - Lesson 42. Hero, about, skills, projects filter, testimonials, contact, CV download. Live portfolio demo. Free Course for Beginners.">
+<meta name="keywords" content="portfolio website html css js, build portfolio get clients, web developer portfolio, lesson 42, learn portfolio website">
+<meta name="author" content="LearnHTMLCSSJS.com">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://learnhtmlcssjs.com/lesson42">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Build Portfolio Website - Get Clients & Jobs - Lesson 42">
+<meta property="og:description" content="Learn Portfolio Website - Show your work, get clients and jobs. Live demo.">
+<meta property="og:url" content="https://learnhtmlcssjs.com/lesson42">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Course","name":"Learn HTML CSS JS - Free Course","description":"Learn HTML, CSS and JavaScript for beginners in simple English. 50 lessons from zero to web developer.","provider":{"@type":"Organization","name":"LearnHTMLCSSJS.com"}}
+</script>
+<!-- ===== SEO END ===== -->
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+  body{background:#f4f6f8;color:#222}
+  header{background:#0f172a;color:white;padding:20px;text-align:center;width:100%}
+  header a{color:#38bdf8;text-decoration:none;font-size:14px}
+  header a.disabled{color:#64748b;pointer-events:none}
+  .container{width:100%;max-width:100%;margin:0 auto;background:white;padding:30px 40px}
+  h1{font-size:28px;margin-bottom:10px;line-height:1.3}
+  h2{margin:20px 0 10px;color:#0f172a}
+  p{line-height:1.7;margin-bottom:12px}
+  .note{background:#eff6ff;border-left:5px solid #2563eb;padding:12px;border-radius:8px;margin:15px 0}
+  .code-box{background:#0f172a;color:#e2e8f0;padding:15px;border-radius:10px;overflow-x:auto;margin:10px 0}
+  .code-box code{font-family:monospace;font-size:15px;line-height:1.6}
+  .tag{color:#f472b6}.text{color:white}.attr{color:#facc15}.val{color:#86efac}
+  .btn{display:inline-block;background:#16a34a;color:white;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:bold;margin-top:10px;border:none;cursor:pointer;font-size:16px}
+  .btn-next{background:#2563eb}
+  .btn-prev{background:#64748b}
+  .btn-js{background:#f59e0b;color:white}
+  .nav{display:flex;justify-content:space-between;margin-top:25px}
+  .result{border:2px dashed #cbd5e1;padding:15px;border-radius:10px;margin-top:10px;background:#f8fafc}
+  .box{background:#e0f2fe;padding:10px;border-radius:8px;margin-top:10px;line-height:1.8}
+  .tabs{display:flex;gap:10px;margin-bottom:20px;position:sticky;top:0;background:white;padding:10px 0;z-index:10;border-bottom:2px solid #e2e8f0}
+  .tab-btn{flex:1;padding:14px;border:none;border-radius:10px;font-size:17px;font-weight:bold;cursor:pointer;background:#e2e8f0;color:#334155}
+  .tab-btn.active{background:#0f172a;color:white}
+  .tab-btn.test-active{background:#16a34a;color:white}
+  .tab-btn.disabled{opacity:0.5;pointer-events:none;cursor:not-allowed}
+  #lessonContent{display:block}
+  #testContent{display:none}
+  .test-box{border:2px solid #0f172a;border-radius:12px;padding:20px;background:#f8fafc}
+  .test-info{background:#fef3c7;padding:12px;border-radius:8px;margin-bottom:15px;line-height:1.7}
+  .question{background:white;padding:15px;border-radius:10px;margin-bottom:12px;border:1px solid #e2e8f0}
+  .question b{display:block;margin-bottom:8px}
+  .question label{display:block;padding:8px 10px;margin:4px 0;background:#f1f5f9;border-radius:7px;cursor:pointer}
+  .question label:hover{background:#e0f2fe}
+  .question input{margin-right:8px}
+  #scoreBox{display:none;padding:20px;border-radius:10px;text-align:center;margin-top:15px}
+  #scoreBox.pass{background:#dcfce7;border:2px solid #16a34a}
+  #scoreBox.fail{background:#fee2e2;border:2px solid #dc2626}
+  #scoreBox h3{font-size:26px;margin-bottom:5px}
+  #startScreen{text-align:center;padding:30px 10px}
+  #timerBar{display:none;position:sticky;top:60px;z-index:20;background:#dc2626;color:white;padding:12px 15px;border-radius:10px;font-weight:bold;font-size:18px;text-align:center;margin-bottom:15px}
+  #timerBar.warning{background:#ea580c}
+  #quizArea{display:none}
+  .lock-msg{background:#fee2e2;color:#991b1b;padding:10px;border-radius:8px;margin-bottom:12px;text-align:center;font-weight:bold;display:none}
+  table{width:100%;border-collapse:collapse;margin:10px 0;background:white}
+  th,td{border:1px solid #e2e8f0;padding:10px;text-align:left}
+  th{background:#0f172a;color:white}
+  .breadcrumb{font-size:13px;color:#94a3b8;margin-bottom:8px}
+  .breadcrumb a{color:#38bdf8;text-decoration:none}
+  .demo-card{background:white;border:1px solid #e2e8f0;border-radius:12px;padding:20px;text-align:center;margin-top:12px}
+  .demo-input{width:100%;padding:12px;border:2px solid #e2e8f0;border-radius:8px;font-size:15px;outline:none;margin:6px 0}
+  .demo-input:focus{border-color:#2563eb;box-shadow:0 0 0 3px #dbeafe}
+  .port{border:2px solid #0f172a;border-radius:14px;overflow:hidden;text-align:left;background:white}
+  .port-hero{background:linear-gradient(135deg,#0f172a,#2563eb);color:white;padding:28px 18px;text-align:center}
+  .port-avatar{width:90px;height:90px;border-radius:50%;background:#f59e0b;display:flex;align-items:center;justify-content:center;font-size:42px;margin:0 auto 10px;border:4px solid white}
+  .port-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:16px}
+  .port-card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:14px;text-align:center}
+  .skill-bar{height:8px;background:#e2e8f0;border-radius:10px;overflow:hidden;margin:6px 0 10px}
+  .skill-fill{height:100%;background:#16a34a}
+  .filter-btn{padding:8px 14px;border:1px solid #e2e8f0;background:white;border-radius:20px;cursor:pointer;font-weight:bold;margin:3px}
+  .filter-btn.active{background:#0f172a;color:white}
+  footer{background:#0f172a;color:#cbd5e1;padding:35px 30px}
+  footer h3{color:white;font-size:20px;margin-bottom:12px}
+  footer h4{color:white;font-size:16px;margin:20px 0 10px}
+  footer p{font-size:14px;line-height:1.7;color:#94a3b8}
+  footer a{color:#38bdf8;text-decoration:none;font-size:14px;line-height:2}
+  footer a:hover{color:white;text-decoration:underline}
+  .footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:25px;max-width:1100px;margin:0 auto}
+  .all-lessons{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:10px}
+  .all-lessons a{background:#1e293b;padding:8px 10px;border-radius:8px;text-align:center;display:block;color:#e2e8f0;font-weight:bold;line-height:1.4}
+  .all-lessons a:hover{background:#2563eb;color:white;text-decoration:none}
+  .all-lessons a.current{background:#16a34a;color:white}
+  .footer-bottom{text-align:center;border-top:1px solid #1e293b;margin-top:25px;padding-top:15px;font-size:13px;color:#64748b}
+  @media(max-width:700px){.footer-grid{grid-template-columns:1fr}.all-lessons{grid-template-columns:1fr 1fr}.container{padding:20px}.port-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="breadcrumb"><a href="/">Home</a> &gt; <a href="/lesson42">Projects & Career</a> &gt; Lesson 42 - Portfolio Website</p>
+  <p><a id="homeLink" href="/">← Back to Home</a> | Projects & Career - Lesson 42 / 50</p>
+  <h1>Lesson 42: Portfolio Website - Show Your Work, Get Clients</h1>
+  <p>Your Online CV That Works 24/7 | LearnHTMLCSSJS.com</p>
+</header>
+
+<div class="container">
+  <div class="tabs">
+    <button id="lessonTabBtn" class="tab-btn active" onclick="showLesson()">📖 Lesson</button>
+    <button id="testTabBtn" class="tab-btn" onclick="showTest()">📝 Test - 100 Marks</button>
+  </div>
+  <div id="lockMsg" class="lock-msg">🔒 Test is running! All tabs are locked until you submit the test or time ends.</div>
+
+  <div id="lessonContent">
+    <h2>1. What is a Portfolio?</h2>
+    <p><b>Portfolio = Your Online Shop Window.</b> Just like a shop shows its best products in the window to bring customers inside, your portfolio shows your best projects to bring clients and jobs to you.</p>
+    <p>When a client asks "Can you make a website?", you do NOT say "Yes, trust me". You send your portfolio link. Client sees your work, your skills, your happy customers, and hires you. Without portfolio, you are invisible. With portfolio, you are professional.</p>
+    <div class="note"><b>Rule:</b> Clients do NOT hire for what you SAY you can do. They hire for what you SHOW you already did. Even 3 small projects are enough to start - Calculator, To-Do, Weather App. Show them well.</div>
+    <h2>2. LIVE DEMO - Example Portfolio</h2>
+    <p>Try the project filter - All / Websites / Apps. This is exactly what YOUR portfolio should look like:</p>
+    <div class="demo-card">
+      <div class="port">
+        <div class="port-hero">
+          <div class="port-avatar">👨‍💻</div>
+          <h3 style="margin:0">Hi, I am Ali Ahmed 👋</h3>
+          <p style="margin:6px 0;opacity:.9">Web Developer | HTML CSS JS | I Build Websites That Sell</p>
+          <button class="btn btn-js" style="margin:4px" onclick="alert('In your portfolio, this opens your projects section.')">View My Work ↓</button>
+          <button class="btn" style="margin:4px" onclick="alert('In your portfolio, this opens WhatsApp / Contact form.')">Hire Me 💼</button>
+        </div>
+        <div style="padding:16px">
+          <h3 style="margin:0 0 8px;text-align:center">🛠️ My Skills</h3>
+          <p style="margin:0;font-size:14px">HTML - 95%</p><div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+          <p style="margin:0;font-size:14px">CSS - 90%</p><div class="skill-bar"><div class="skill-fill" style="width:90%;background:#2563eb"></div></div>
+          <p style="margin:0;font-size:14px">JavaScript - 85%</p><div class="skill-bar"><div class="skill-fill" style="width:85%;background:#f59e0b"></div></div>
+          <h3 style="text-align:center;margin:16px 0 8px">💼 My Projects - Click Filter</h3>
+          <div style="text-align:center">
+            <button class="filter-btn active" id="fAll" onclick="filterPort('all')">All</button>
+            <button class="filter-btn" id="fWeb" onclick="filterPort('web')">Websites</button>
+            <button class="filter-btn" id="fApp" onclick="filterPort('app')">Apps</button>
+          </div>
+          <div class="port-grid" id="portProjects"></div>
+          <div style="text-align:center;background:#f0fdf4;border-radius:10px;padding:12px">
+            <b>⭐ What Clients Say</b><br><span style="font-size:14px;color:#475569">"Ali made our shop website in 3 days. Sales doubled. Highly recommended!" - Ahmed, Lahore Shop Owner</span>
+          </div>
+          <div style="text-align:center;margin-top:12px"><button class="btn" onclick="alert('Your WhatsApp: +92 300 1234567 - Client will message you directly!')">📱 WhatsApp Me</button></div>
+        </div>
+      </div>
+    </div>
+    <h2>3. 6 Sections of a Great Portfolio</h2>
+    <table>
+      <tr><th>Section</th><th>What to Put</th><th>Mistake to Avoid</th></tr>
+      <tr><td>1. Hero</td><td>Your name, what you do, 2 buttons - View Work + Hire Me</td><td>Do not write long story here - Keep it 2 lines</td></tr>
+      <tr><td>2. About</td><td>2-3 lines - Who you are, what you build, where you are</td><td>Do not write "I am a hardworking..." - Show, do not tell</td></tr>
+      <tr><td>3. Skills</td><td>HTML, CSS, JS with % bars + tools you know</td><td>Do not claim 100% in everything - Be honest</td></tr>
+      <tr><td>4. Projects</td><td>6 best projects - Image, title, 1 line, Live link</td><td>Do not show 20 weak projects - Show 6 strong ones</td></tr>
+      <tr><td>5. Testimonials</td><td>2-3 happy client words - Name + work</td><td>Do not fake - Ask real clients / teachers for 1 line</td></tr>
+      <tr><td>6. Contact</td><td>WhatsApp button + Form + Email - Easy to reach you</td><td>Do not hide contact - Make it big and easy</td></tr>
+    </table>
+    <h2>4. Project Filter - JavaScript Logic</h2>
+    <div class="code-box"><code>
+<span class="text">let projects = [</span><br>
+&nbsp;&nbsp;<span class="text">{ title: "Shop Website", type: "web", emoji: "🛒" },</span><br>
+&nbsp;&nbsp;<span class="text">{ title: "Calculator", type: "app", emoji: "🧮" },</span><br>
+&nbsp;&nbsp;<span class="text">{ title: "Restaurant Website", type: "web", emoji: "🍕" },</span><br>
+&nbsp;&nbsp;<span class="text">{ title: "To-Do App", type: "app", emoji: "✅" }</span><br>
+<span class="text">];</span><br><br>
+<span class="text">function filterProjects(type) {</span><br>
+&nbsp;&nbsp;<span class="text">let html = "";</span><br>
+&nbsp;&nbsp;<span class="text">for (let p of projects) {</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">if (type === "all" || p.type === type) {</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">html += `&lt;div&gt;${p.emoji} ${p.title}&lt;/div&gt;`;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">}</span><br>
+&nbsp;&nbsp;<span class="text">}</span><br>
+&nbsp;&nbsp;<span class="text">document.getElementById("projects").innerHTML = html;</span><br>
+<span class="text">}</span>
+    </code></div>
+    <p><b>Logic:</b> If filter is "all", show everything. Else show only projects where <code>p.type === type</code>. Same logic you used in To-Do List filter (Lesson 36).</p>
+    <h2>5. What to Write in About - Copy This Template</h2>
+    <div class="code-box"><code>
+<span class="comment" style="color:#94a3b8">&lt;!-- Replace Ali with YOUR name, Lahore with YOUR city --&gt;</span><br>
+<span class="text">"Hi, I am [Your Name] - A Web Developer from [Your City].</span><br>
+<span class="text">I build fast, mobile-friendly websites for small businesses -</span><br>
+<span class="text">Shops, Schools, Restaurants, and Personal Brands.</span><br>
+<span class="text">I have completed 10+ projects in HTML, CSS and JavaScript.</span><br>
+<span class="text">My goal is simple: Your website should bring you more customers."</span>
+    </code></div>
+    <p><b>Why this works:</b> It says WHO, WHERE, WHAT, PROOF (10+ projects), and BENEFIT (more customers). Clients care about benefit, not about your life story.</p>
+    <h2>6. Complete Example - Portfolio Starter</h2>
+    <div class="code-box"><code>
+<span class="tag">&lt;!DOCTYPE html&gt;</span><br>
+<span class="tag">&lt;html&gt;</span><br>
+<span class="tag">&lt;head&gt;</span><span class="tag">&lt;title&gt;</span><span class="text">Ali Ahmed - Web Developer</span><span class="tag">&lt;/title&gt;</span><span class="tag">&lt;/head&gt;</span><br>
+<span class="tag">&lt;body&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;header&gt;</span><span class="text">Ali Ahmed | Web Developer</span> <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"#projects"</span><span class="tag">&gt;</span><span class="text">Projects</span><span class="tag">&lt;/a&gt;</span> <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"#contact"</span><span class="tag">&gt;</span><span class="text">Contact</span><span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/header&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;section&gt;</span><span class="tag">&lt;h1&gt;</span><span class="text">Hi, I am Ali - I Build Websites That Sell</span><span class="tag">&lt;/h1&gt;</span><span class="tag">&lt;p&gt;</span><span class="text">HTML CSS JS | 10+ Projects | Lahore</span><span class="tag">&lt;/p&gt;</span><span class="tag">&lt;button&gt;</span><span class="text">View My Work</span><span class="tag">&lt;/button&gt;</span><span class="tag">&lt;/section&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;section</span> <span class="attr">id</span>=<span class="val">"projects"</span><span class="tag">&gt;</span><span class="tag">&lt;h2&gt;</span><span class="text">My Projects</span><span class="tag">&lt;/h2&gt;</span><span class="tag">&lt;div&gt;</span><span class="text">Calculator - To-Do - Weather - Shop Website - Quiz - Portfolio</span><span class="tag">&lt;/div&gt;</span><span class="tag">&lt;/section&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;section</span> <span class="attr">id</span>=<span class="val">"contact"</span><span class="tag">&gt;</span><span class="tag">&lt;h2&gt;</span><span class="text">Hire Me</span><span class="tag">&lt;/h2&gt;</span><span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"https://wa.me/923001234567"</span><span class="tag">&gt;</span><span class="text">WhatsApp Me</span><span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/section&gt;</span><br>
+<span class="tag">&lt;/body&gt;</span> <span class="tag">&lt;/html&gt;</span>
+    </code></div>
+    <h2>7. Homework - Build YOUR Portfolio Today</h2>
+    <p>In Playground, build your real portfolio - Use your real name, real city, real projects:</p>
+    <p>1. Hero with your name + "I Build Websites That Sell" + 2 buttons<br>2. Skills with bars - HTML, CSS, JS + your % honestly<br>3. Projects - 6 projects from this course with filter All / Websites / Apps + Live links<br>4. Contact - WhatsApp button (wa.me/92...) + Form that shows "Thanks, I will reply soon"</p>
+    <p>After building, deploy it in Lesson 47 - Then send link to 5 people. That is how your first client comes.</p>
+    <div class="box"><b>Remember:</b> Portfolio = Online shop window | 6 Sections = Hero + About + Skills + Projects + Testimonials + Contact | Show 6 strong projects, not 20 weak ones | Filter = If type is all OR p.type === type, show it | About = Who + What + Proof + Benefit | Contact must be big and easy - WhatsApp button | Update portfolio every time you finish a new project</div>
+    <p><b>Next Step:</b> <a href="/lesson43">Lesson 43 - Landing Page</a> - Learn pages that sell one thing. High conversion, one button, one goal.</p>
+    <a id="playgroundLink" class="btn" href="/playground">▶ Try it Yourself - Playground</a><br><br>
+    <button class="btn btn-next" onclick="showTest()">Go to Test → 📝</button>
+    <div class="nav">
+      <a class="btn btn-prev" href="/lesson41">← Lesson 41</a>
+      <a id="nextLessonLink" class="btn btn-next" href="/lesson43">Next Lesson 43 →</a>
+    </div>
+  </div>
+
+  <div id="testContent">
+    <div class="test-box">
+      <!-- ===== GUEST BANNER - HTML, NOT JS ===== -->
+      <% if (!user) { %>
+      <div id="guestBanner" style="background:linear-gradient(135deg,#0f172a,#2563eb);color:white;padding:16px;border-radius:12px;margin-bottom:14px;text-align:center">
+        <h3 style="margin:0;font-size:18px">👋 Hi Guest! Try This Test FREE</h3>
+        <p style="margin:6px 0 0;color:#e2e8f0;font-size:14px">You can give this test without login. But your score will <b style="color:#facc15">NOT be saved</b> in Dashboard / Ranking.</p>
+        <p style="margin:8px 0 0"><a href="/signup" style="display:inline-block;background:#facc15;color:#0f172a;padding:10px 22px;border-radius:8px;font-weight:bold;text-decoration:none;font-size:14px">✨ Signup Free to Save Score →</a> <a href="/login" style="color:white;font-weight:bold;font-size:14px">Login →</a></p>
+      </div>
+      <% } else { %>
+      <div style="background:#dcfce7;color:#166534;padding:12px;border-radius:10px;margin-bottom:14px;text-align:center;font-weight:bold;font-size:14px">✅ Logged in as <b><%= user.username %></b> - Your score will be saved in Dashboard & Ranking</div>
+      <% } %>
+      <!-- ===== GUEST BANNER END ===== -->
+      <h2>📝 Lesson 42 Test - Check Your Learning</h2>
+      <div class="test-info"><b>Total Questions:</b> 10 &nbsp; | &nbsp; <b>Total Marks:</b> 100 &nbsp; | &nbsp; <b>Passing Marks:</b> 80 (80%) &nbsp; | &nbsp; <b>Time:</b> 3 Minutes<br>Each correct answer = 10 Marks. Once you start, all tabs will be locked until you submit.</div>
+      <div id="startScreen">
+        <h2>Ready for the Test?</h2>
+        <p>Click Start Paper to begin. You will get <b>3 Minutes</b> for 10 questions.<br>During the test, you cannot open Lesson or any other page.</p>
+        <button class="btn" style="font-size:20px;padding:14px 30px" onclick="startTest()">▶ Start Paper</button>
+      </div>
+      <div id="timerBar">⏰ Time Left: <span id="timerText">03:00</span></div>
+      <div id="quizArea">
+        <form id="quizForm">
+          <div class="question"><b>Q1. What is a Portfolio?</b><label><input type="radio" name="q1" value="a"> Online shop window - Shows your best work to get clients/jobs</label><label><input type="radio" name="q1" value="b"> A CV on paper only</label><label><input type="radio" name="q1" value="c"> A social media post</label><label><input type="radio" name="q1" value="d"> A certificate</label></div>
+          <div class="question"><b>Q2. What are the 6 sections of a portfolio?</b><label><input type="radio" name="q2" value="a"> Hero, About, Skills, Projects, Testimonials, Contact</label><label><input type="radio" name="q2" value="b"> Only Hero and Footer</label><label><input type="radio" name="q2" value="c"> Only Projects</label><label><input type="radio" name="q2" value="d"> Only Contact</label></div>
+          <div class="question"><b>Q3. How many projects should you show?</b><label><input type="radio" name="q3" value="a"> 6 strong projects, not 20 weak ones</label><label><input type="radio" name="q3" value="b"> 20 weak projects</label><label><input type="radio" name="q3" value="c"> 1 project</label><label><input type="radio" name="q3" value="d"> 0 projects</label></div>
+          <div class="question"><b>Q4. How does project filter work?</b><label><input type="radio" name="q4" value="a"> If type is "all" OR p.type === type, show it</label><label><input type="radio" name="q4" value="b"> Show all always</label><label><input type="radio" name="q4" value="c"> Hide all always</label><label><input type="radio" name="q4" value="d"> Show random</label></div>
+          <div class="question"><b>Q5. What should Hero have?</b><label><input type="radio" name="q5" value="a"> Name, what you do, View Work + Hire Me buttons</label><label><input type="radio" name="q5" value="b"> Long life story</label><label><input type="radio" name="q5" value="c"> Only footer</label><label><input type="radio" name="q5" value="d"> Only contact form</label></div>
+          <div class="question"><b>Q6. What should About have?</b><label><input type="radio" name="q6" value="a"> Who + What + Proof + Benefit - Short, 2-3 lines</label><label><input type="radio" name="q6" value="b"> 10 paragraphs of life story</label><label><input type="radio" name="q6" value="c"> Only name</label><label><input type="radio" name="q6" value="d"> Nothing</label></div>
+          <div class="question"><b>Q7. Why is Contact important?</b><label><input type="radio" name="q7" value="a"> So client can reach you easily - WhatsApp + Form</label><label><input type="radio" name="q7" value="b"> To hide your details</label><label><input type="radio" name="q7" value="c"> No reason</label><label><input type="radio" name="q7" value="d"> To make page long</label></div>
+          <div class="question"><b>Q8. What do clients hire for?</b><label><input type="radio" name="q8" value="a"> What you SHOW you already did - Proof, not promises</label><label><input type="radio" name="q8" value="b"> What you SAY you can do</label><label><input type="radio" name="q8" value="c"> Your age</label><label><input type="radio" name="q8" value="d"> Your city only</label></div>
+          <div class="question"><b>Q9. What should Skills section show?</b><label><input type="radio" name="q9" value="a"> Honest % bars - HTML, CSS, JS</label><label><input type="radio" name="q9" value="b"> 100% in everything</label><label><input type="radio" name="q9" value="c"> Nothing</label><label><input type="radio" name="q9" value="d"> Only name</label></div>
+          <div class="question"><b>Q10. When to update portfolio?</b><label><input type="radio" name="q10" value="a"> Every time you finish a new project</label><label><input type="radio" name="q10" value="b"> Never</label><label><input type="radio" name="q10" value="c"> Once a year</label><label><input type="radio" name="q10" value="d"> After 10 years</label></div>
+          <button type="button" class="btn" onclick="checkTest(false)">Submit Test - Check Result</button>
+          <button type="button" class="btn btn-next" onclick="resetTest()">Try Again</button>
+        </form>
+      </div>
+      <div id="scoreBox">
+        <h3 id="scoreText"></h3>
+        <p id="scoreMsg"></p>
+        <a id="nextBtn" class="btn" href="/lesson43" style="display:none">🎉 You Passed! Go to Lesson 43 →</a>
+        <br><br>
+        <button class="btn btn-next" onclick="showLesson()">← Back to Lesson (Unlocked)</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h3>LearnHTMLCSSJS.com</h3>
+      <p>Free HTML CSS JS course in simple English. Learn from zero to web developer with 50 lessons, tests, playground and ranking.</p>
+      <h4>Quick Links</h4>
+      <a href="/">🏠 Home</a><br>
+      <a href="/dashboard">📊 Dashboard</a><br>
+      <a href="/ranking">🏆 Ranking</a><br>
+      <a href="/playground">▶ Playground - Try Code</a><br>
+      <a href="/lesson1">📖 Start Lesson 1 - What is HTML?</a>
+    </div>
+    <div>
+      <h3>Next Lessons - Continue Learning</h3>
+      <a href="/lesson43">Lesson 43 - Landing Page</a><br>
+      <a href="/lesson44">Lesson 44 - Navbar & Footer</a><br>
+      <a href="/lesson45">Lesson 45 - Final Project</a><br>
+      <a href="/lesson46">Lesson 46 - SEO Basics</a><br>
+      <a href="/lesson47">Lesson 47 - Deploy Free</a>
+      <h4>Projects & Career (41-50)</h4>
+      <a href="/lesson48">Lesson 48 - Freelancing Guide</a>
+    </div>
+    <div>
+      <h3>Projects & Career (41-50)</h3>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a><br>
+      <a href="/lesson50">Lesson 50 - Final Exam & Certificate</a><br>
+      <h4>JavaScript Course (21-40)</h4>
+      <a href="/lesson41">Lesson 41 - Full Website</a><br>
+      <a href="/lesson42">Lesson 42 - Portfolio</a>
+    </div>
+  </div>
+  <div style="max-width:1100px;margin:25px auto 0;border-top:1px solid #1e293b;padding-top:20px">
+    <h3 style="text-align:center">📚 All 50 Lessons - Complete HTML CSS JS Course</h3>
+    <div class="all-lessons">
+      <a href="/lesson1">Lesson 1 - What is HTML?</a>
+      <a href="/lesson2">Lesson 2 - Headings & Paragraphs</a>
+      <a href="/lesson3">Lesson 3 - Text Formatting</a>
+      <a href="/lesson4">Lesson 4 - Links & Images</a>
+      <a href="/lesson5">Lesson 5 - Lists</a>
+      <a href="/lesson6">Lesson 6 - Tables</a>
+      <a href="/lesson7">Lesson 7 - Forms</a>
+      <a href="/lesson8">Lesson 8 - Div & Span</a>
+      <a href="/lesson9">Lesson 9 - Semantic HTML</a>
+      <a href="/lesson10">Lesson 10 - HTML Project</a>
+      <a href="/lesson11">Lesson 11 - What is CSS?</a>
+      <a href="/lesson12">Lesson 12 - Colors</a>
+      <a href="/lesson13">Lesson 13 - Text Styling</a>
+      <a href="/lesson14">Lesson 14 - Box Model</a>
+      <a href="/lesson15">Lesson 15 - Flexbox</a>
+      <a href="/lesson16">Lesson 16 - Grid</a>
+      <a href="/lesson17">Lesson 17 - Responsive</a>
+      <a href="/lesson18">Lesson 18 - Buttons</a>
+      <a href="/lesson19">Lesson 19 - Forms Styling</a>
+      <a href="/lesson20">Lesson 20 - CSS Project</a>
+      <a href="/lesson21">Lesson 21 - What is JS?</a>
+      <a href="/lesson22">Lesson 22 - Variables</a>
+      <a href="/lesson23">Lesson 23 - Data Types</a>
+      <a href="/lesson24">Lesson 24 - If-Else</a>
+      <a href="/lesson25">Lesson 25 - Loops</a>
+      <a href="/lesson26">Lesson 26 - Functions</a>
+      <a href="/lesson27">Lesson 27 - Arrays</a>
+      <a href="/lesson28">Lesson 28 - Objects</a>
+      <a href="/lesson29">Lesson 29 - Strings</a>
+      <a href="/lesson30">Lesson 30 - DOM</a>
+      <a href="/lesson31">Lesson 31 - Events</a>
+      <a href="/lesson32">Lesson 32 - Form Validation</a>
+      <a href="/lesson33">Lesson 33 - LocalStorage</a>
+      <a href="/lesson34">Lesson 34 - Timers</a>
+      <a href="/lesson35">Lesson 35 - Calculator</a>
+      <a href="/lesson36">Lesson 36 - To-Do List</a>
+      <a href="/lesson37">Lesson 37 - Quiz App</a>
+      <a href="/lesson38">Lesson 38 - Password Generator</a>
+      <a href="/lesson39">Lesson 39 - Weather App</a>
+      <a href="/lesson40">Lesson 40 - JS Revision</a>
+      <a href="/lesson41">Lesson 41 - Full Website</a>
+      <a href="/lesson42" class="current">Lesson 42 - Portfolio</a>
+      <a href="/lesson43">Lesson 43 - Landing Page</a>
+      <a href="/lesson44">Lesson 44 - Navbar</a>
+      <a href="/lesson45">Lesson 45 - Final Project</a>
+      <a href="/lesson46">Lesson 46 - SEO</a>
+      <a href="/lesson47">Lesson 47 - Deploy</a>
+      <a href="/lesson48">Lesson 48 - Freelancing</a>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a>
+      <a href="/lesson50">Lesson 50 - Final Exam</a>
+    </div>
+    <p style="text-align:center;margin-top:15px">You are learning <a href="/lesson42">Portfolio Website - Lesson 42</a> | Previous: <a href="/lesson41">Full Website Project - Lesson 41</a> | Next: <a href="/lesson43">Landing Page - Lesson 43</a> | <a href="/lesson50">Jump to Final Exam - Lesson 50</a></p>
+  </div>
+  <div class="footer-bottom">© 2026 LearnHTMLCSSJS.com - Free Course | <a href="/">Home</a> | <a href="/lesson42">Lesson 42</a> | <a href="/lesson50">Lesson 50</a> | Made for Beginners</div>
+</footer>
+
+<script>
+// ===== GUEST TEST HANDLER - Only inside <script> =====
+const IS_LOGGED_IN = <%= (typeof user !== 'undefined' && user) ? 'true' : 'false' %>;
+function saveTestResult(lessonName, score, testStatus, onSaved) {
+  if (!IS_LOGGED_IN) { if (onSaved) onSaved(null); return; }
+  fetch('/save-result', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ lesson: lessonName, score: score, status: testStatus }) })
+  .then(r => r.json())
+  .then(data => { if (onSaved) onSaved(data); })
+  .catch(() => { if (onSaved) onSaved(null); });
+}
+function showGuestSignupPopup(score) {
+  let wantSignup = confirm("🎉 You scored " + score + "/100!\n\nYour score is NOT saved because you are not logged in.\n\nClick OK to Signup FREE and Save Your Score in Dashboard & Ranking.\nClick Cancel to continue without saving.");
+  if (wantSignup) { window.location.href = "/signup"; }
+}
+// ===== GUEST HANDLER END =====
+let portProjects=[
+{title:"Shop Website",type:"web",emoji:"🛒",desc:"Online shop with cart"},
+{title:"Restaurant Website",type:"web",emoji:"🍕",desc:"Menu + order form"},
+{title:"School Website",type:"web",emoji:"🏫",desc:"Courses + admission"},
+{title:"Calculator",type:"app",emoji:"🧮",desc:"Full calculator"},
+{title:"To-Do App",type:"app",emoji:"✅",desc:"Save tasks"},
+{title:"Weather App",type:"app",emoji:"🌤️",desc:"Live weather API"}
+];
+function filterPort(type){document.getElementById('fAll').className="filter-btn"+(type==='all'?" active":"");document.getElementById('fWeb').className="filter-btn"+(type==='web'?" active":"");document.getElementById('fApp').className="filter-btn"+(type==='app'?" active":"");let html="";for(let p of portProjects){if(type==='all'||p.type===type){html+='<div class="port-card"><div style="font-size:32px">'+p.emoji+'</div><b>'+p.title+'</b><br><span style="font-size:13px;color:#64748b">'+p.desc+'</span><br><button class="btn" style="padding:6px 12px;font-size:13px;margin-top:6px" onclick="alert(\'Live demo of '+p.title+'\')">View Live →</button></div>';}}document.getElementById('portProjects').innerHTML=html;}
+filterPort('all');
+let testRunning=false;let timerInterval=null;let timeLeft=180;
+function showLesson(){if(testRunning){alert("🔒 Test is running! Please submit the test first. All tabs are locked.");return;}document.getElementById('lessonContent').style.display='block';document.getElementById('testContent').style.display='none';document.getElementById('lessonTabBtn').classList.add('active');document.getElementById('lessonTabBtn').classList.remove('test-active');document.getElementById('testTabBtn').classList.remove('active');document.getElementById('testTabBtn').classList.remove('test-active');window.scrollTo({top:0,behavior:'smooth'});}
+function showTest(){document.getElementById('lessonContent').style.display='none';document.getElementById('testContent').style.display='block';document.getElementById('testTabBtn').classList.add('active');document.getElementById('testTabBtn').classList.add('test-active');document.getElementById('lessonTabBtn').classList.remove('active');window.scrollTo({top:0,behavior:'smooth'});}
+function lockTabs(){testRunning=true;document.getElementById('lessonTabBtn').classList.add('disabled');document.getElementById('lockMsg').style.display='block';document.getElementById('homeLink').classList.add('disabled');document.getElementById('playgroundLink').style.pointerEvents='none';document.getElementById('playgroundLink').style.opacity='0.5';document.getElementById('nextLessonLink').style.pointerEvents='none';document.getElementById('nextLessonLink').style.opacity='0.5';}
+function unlockTabs(){testRunning=false;clearInterval(timerInterval);document.getElementById('lessonTabBtn').classList.remove('disabled');document.getElementById('lockMsg').style.display='none';document.getElementById('homeLink').classList.remove('disabled');document.getElementById('playgroundLink').style.pointerEvents='auto';document.getElementById('playgroundLink').style.opacity='1';document.getElementById('nextLessonLink').style.pointerEvents='auto';document.getElementById('nextLessonLink').style.opacity='1';document.getElementById('timerBar').style.display='none';}
+function startTest(){document.getElementById('startScreen').style.display='none';document.getElementById('quizArea').style.display='block';document.getElementById('timerBar').style.display='block';document.getElementById('scoreBox').style.display='none';lockTabs();timeLeft=180;updateTimer();timerInterval=setInterval(function(){timeLeft--;updateTimer();if(timeLeft<=0){clearInterval(timerInterval);alert("⏰ Time Up! Your test is auto-submitted.");checkTest(true);}},1000);}
+function updateTimer(){let m=Math.floor(timeLeft/60);let s=timeLeft%60;document.getElementById('timerText').innerText=(m<10?"0"+m:m)+":"+(s<10?"0"+s:s);if(timeLeft<=30){document.getElementById('timerBar').classList.add('warning');}}
+function checkTest(isAuto){
+  let answers={q1:'a',q2:'a',q3:'a',q4:'a',q5:'a',q6:'a',q7:'a',q8:'a',q9:'a',q10:'a'};
+  let score=0;let attempted=0;
+  for(let q in answers){let selected=document.querySelector('input[name="'+q+'"]:checked');if(selected){attempted++;if(selected.value===answers[q])score+=10;}}
+  if(!isAuto && attempted<10){alert("Please answer all 10 questions! You have answered only "+attempted+" questions.");return;}
+  unlockTabs();
+  let testStatus=score>=80?'Pass':'Fail';
+  saveTestResult('Lesson 42 - Portfolio Website', score, testStatus, function(data){
+    if (!IS_LOGGED_IN && score >= 80) {
+      setTimeout(() => showGuestSignupPopup(score), 500);
+    }
+  });
+  let box=document.getElementById('scoreBox');let scoreText=document.getElementById('scoreText');let scoreMsg=document.getElementById('scoreMsg');let nextBtn=document.getElementById('nextBtn');box.style.display='block';scoreText.innerText="Your Score: "+score+" / 100";
+  if(score>=80){box.className='pass';scoreMsg.innerText="🎉 Congratulations! You PASSED. You have learned Lesson 42. Now all tabs are unlocked.";nextBtn.style.display='inline-block';}
+  else{box.className='fail';scoreMsg.innerText="😔 You FAILED. Passing marks are 80. All tabs are now unlocked. Read the lesson again and try again.";nextBtn.style.display='none';}
+  box.scrollIntoView({behavior:'smooth'});
+}
+function resetTest(){clearInterval(timerInterval);testRunning=false;document.getElementById('quizForm').reset();document.getElementById('scoreBox').style.display='none';document.getElementById('quizArea').style.display='none';document.getElementById('startScreen').style.display='block';document.getElementById('timerBar').style.display='none';unlockTabs();}
+</script>
+</body>
+</html>

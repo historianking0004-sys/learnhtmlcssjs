@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ===== SEO START ===== -->
+<title>Forms Styling in CSS - Lesson 19 | LearnHTMLCSSJS.com</title>
+<meta name="description" content="Learn Forms Styling in CSS - Lesson 19. Learn input styling, focus, placeholder, label, textarea, select, checkbox, radio, form layout with examples. Free CSS Course for Beginners.">
+<meta name="keywords" content="css forms styling, input styling, focus css, placeholder, label styling, css lesson 19, learn css">
+<meta name="author" content="LearnHTMLCSSJS.com">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://learnhtmlcssjs.com/lesson19">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Forms Styling in CSS - Lesson 19">
+<meta property="og:description" content="Learn Forms Styling in CSS with input, focus, placeholder, label and form layout. Simple examples for beginners.">
+<meta property="og:url" content="https://learnhtmlcssjs.com/lesson19">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Course","name":"Learn HTML CSS JS - Free Course","description":"Learn HTML, CSS and JavaScript for beginners in simple English. 50 lessons from zero to web developer.","provider":{"@type":"Organization","name":"LearnHTMLCSSJS.com"}}
+</script>
+<!-- ===== SEO END ===== -->
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+  body{background:#f4f6f8;color:#222}
+  header{background:#0f172a;color:white;padding:20px;text-align:center;width:100%}
+  header a{color:#38bdf8;text-decoration:none;font-size:14px}
+  header a.disabled{color:#64748b;pointer-events:none}
+  .container{width:100%;max-width:100%;margin:0 auto;background:white;padding:30px 40px}
+  h1{font-size:28px;margin-bottom:10px;line-height:1.3}
+  h2{margin:20px 0 10px;color:#0f172a}
+  p{line-height:1.7;margin-bottom:12px}
+  .note{background:#eff6ff;border-left:5px solid #2563eb;padding:12px;border-radius:8px;margin:15px 0}
+  .code-box{background:#0f172a;color:#e2e8f0;padding:15px;border-radius:10px;overflow-x:auto;margin:10px 0}
+  .code-box code{font-family:monospace;font-size:15px;line-height:1.6}
+  .tag{color:#f472b6}.text{color:white}.attr{color:#facc15}.val{color:#86efac}
+  .btn{display:inline-block;background:#16a34a;color:white;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:bold;margin-top:10px;border:none;cursor:pointer;font-size:16px}
+  .btn-next{background:#2563eb}
+  .btn-prev{background:#64748b}
+  .nav{display:flex;justify-content:space-between;margin-top:25px}
+  .result{border:2px dashed #cbd5e1;padding:15px;border-radius:10px;margin-top:10px;background:#f8fafc}
+  .box{background:#e0f2fe;padding:10px;border-radius:8px;margin-top:10px;line-height:1.8}
+  .tabs{display:flex;gap:10px;margin-bottom:20px;position:sticky;top:0;background:white;padding:10px 0;z-index:10;border-bottom:2px solid #e2e8f0}
+  .tab-btn{flex:1;padding:14px;border:none;border-radius:10px;font-size:17px;font-weight:bold;cursor:pointer;background:#e2e8f0;color:#334155}
+  .tab-btn.active{background:#0f172a;color:white}
+  .tab-btn.test-active{background:#16a34a;color:white}
+  .tab-btn.disabled{opacity:0.5;pointer-events:none;cursor:not-allowed}
+  #lessonContent{display:block}
+  #testContent{display:none}
+  .test-box{border:2px solid #0f172a;border-radius:12px;padding:20px;background:#f8fafc}
+  .test-info{background:#fef3c7;padding:12px;border-radius:8px;margin-bottom:15px;line-height:1.7}
+  .question{background:white;padding:15px;border-radius:10px;margin-bottom:12px;border:1px solid #e2e8f0}
+  .question b{display:block;margin-bottom:8px}
+  .question label{display:block;padding:8px 10px;margin:4px 0;background:#f1f5f9;border-radius:7px;cursor:pointer}
+  .question label:hover{background:#e0f2fe}
+  .question input{margin-right:8px}
+  #scoreBox{display:none;padding:20px;border-radius:10px;text-align:center;margin-top:15px}
+  #scoreBox.pass{background:#dcfce7;border:2px solid #16a34a}
+  #scoreBox.fail{background:#fee2e2;border:2px solid #dc2626}
+  #scoreBox h3{font-size:26px;margin-bottom:5px}
+  #startScreen{text-align:center;padding:30px 10px}
+  #timerBar{display:none;position:sticky;top:60px;z-index:20;background:#dc2626;color:white;padding:12px 15px;border-radius:10px;font-weight:bold;font-size:18px;text-align:center;margin-bottom:15px}
+  #timerBar.warning{background:#ea580c}
+  #quizArea{display:none}
+  .lock-msg{background:#fee2e2;color:#991b1b;padding:10px;border-radius:8px;margin-bottom:12px;text-align:center;font-weight:bold;display:none}
+  table{width:100%;border-collapse:collapse;margin:10px 0;background:white}
+  th,td{border:1px solid #e2e8f0;padding:10px;text-align:left}
+  th{background:#0f172a;color:white}
+  .breadcrumb{font-size:13px;color:#94a3b8;margin-bottom:8px}
+  .breadcrumb a{color:#38bdf8;text-decoration:none}
+  .demo-label{display:block;font-weight:bold;margin:12px 0 5px;color:#0f172a}
+  .demo-input{width:100%;padding:12px;border:2px solid #e2e8f0;border-radius:8px;font-size:16px;outline:none;transition:0.3s}
+  .demo-input:focus{border-color:#2563eb;box-shadow:0 0 0 3px #dbeafe}
+  .demo-input::placeholder{color:#94a3b8}
+  .demo-textarea{width:100%;padding:12px;border:2px solid #e2e8f0;border-radius:8px;font-size:16px;outline:none;transition:0.3s;resize:vertical}
+  .demo-textarea:focus{border-color:#2563eb;box-shadow:0 0 0 3px #dbeafe}
+  .demo-select{width:100%;padding:12px;border:2px solid #e2e8f0;border-radius:8px;font-size:16px;outline:none;background:white}
+  .demo-select:focus{border-color:#2563eb}
+  footer{background:#0f172a;color:#cbd5e1;padding:35px 30px}
+  footer h3{color:white;font-size:20px;margin-bottom:12px}
+  footer h4{color:white;font-size:16px;margin:20px 0 10px}
+  footer p{font-size:14px;line-height:1.7;color:#94a3b8}
+  footer a{color:#38bdf8;text-decoration:none;font-size:14px;line-height:2}
+  footer a:hover{color:white;text-decoration:underline}
+  .footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:25px;max-width:1100px;margin:0 auto}
+  .all-lessons{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:10px}
+  .all-lessons a{background:#1e293b;padding:8px 10px;border-radius:8px;text-align:center;display:block;color:#e2e8f0;font-weight:bold;line-height:1.4}
+  .all-lessons a:hover{background:#2563eb;color:white;text-decoration:none}
+  .all-lessons a.current{background:#16a34a;color:white}
+  .footer-bottom{text-align:center;border-top:1px solid #1e293b;margin-top:25px;padding-top:15px;font-size:13px;color:#64748b}
+  @media(max-width:700px){.footer-grid{grid-template-columns:1fr}.all-lessons{grid-template-columns:1fr 1fr}.container{padding:20px}}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="breadcrumb"><a href="/">Home</a> &gt; <a href="/lesson19">CSS Course</a> &gt; Lesson 19 - Forms Styling</p>
+  <p><a id="homeLink" href="/">← Back to Home</a> | CSS Course - Lesson 19 / 50</p>
+  <h1>Lesson 19: Forms Styling in CSS</h1>
+  <p>Learn How to Style Inputs, Labels, Focus, Placeholder, Select & Beautiful Contact Forms | LearnHTMLCSSJS.com</p>
+</header>
+
+<div class="container">
+  <div class="tabs">
+    <button id="lessonTabBtn" class="tab-btn active" onclick="showLesson()">📖 Lesson</button>
+    <button id="testTabBtn" class="tab-btn" onclick="showTest()">📝 Test - 100 Marks</button>
+  </div>
+  <div id="lockMsg" class="lock-msg">🔒 Test is running! All tabs are locked until you submit the test or time ends.</div>
+
+  <div id="lessonContent">
+    <h2>1. Why Style Forms?</h2>
+    <p>Every website has a form - Login, Signup, Contact Us, Order Form, Search.</p>
+    <p>If your form looks plain, people will not fill it. If it looks clean and modern, people will trust your website.</p>
+    <div class="note"><b>Example:</b> Facebook Login form, Google Signup form, Daraz Checkout form - all are styled forms.</div>
+    <h2>2. Normal Form vs Styled Form</h2>
+    <div class="result"><b>Normal Form (No CSS - Ugly):</b><br><label style="display:block;margin:8px 0 3px">Name:</label><input type="text" placeholder="Enter name"><br><label style="display:block;margin:8px 0 3px">Email:</label><input type="email" placeholder="Enter email"><br><button style="margin-top:8px">Submit</button></div>
+    <div class="result" style="margin-top:12px"><b>Styled Form (With CSS - Beautiful):</b><label class="demo-label">Your Name:</label><input class="demo-input" type="text" placeholder="Enter your full name"><label class="demo-label">Email Address:</label><input class="demo-input" type="email" placeholder="example@gmail.com"><button class="btn" style="width:100%;margin-top:12px">Send Message →</button><p style="margin:8px 0 0;font-size:13px;color:#64748b">Click inside the input box - see the blue border + glow! That is :focus effect.</p></div>
+    <h2>3. Input Styling - Copy This Code</h2>
+    <div class="code-box"><code>
+<span class="tag">input</span> <span class="text">{</span><br>
+&nbsp;&nbsp;<span class="attr">width</span><span class="text">:</span> <span class="val">100%</span><span class="text">;</span> <span class="comment" style="color:#94a3b8">/* Full width */</span><br>
+&nbsp;&nbsp;<span class="attr">padding</span><span class="text">:</span> <span class="val">12px</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">border</span><span class="text">:</span> <span class="val">2px solid #e2e8f0</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">border-radius</span><span class="text">:</span> <span class="val">8px</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">font-size</span><span class="text">:</span> <span class="val">16px</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">outline</span><span class="text">:</span> <span class="val">none</span><span class="text">;</span> <span class="comment" style="color:#94a3b8">/* Remove default black border */</span><br>
+&nbsp;&nbsp;<span class="attr">transition</span><span class="text">:</span> <span class="val">0.3s</span><span class="text">;</span><br>
+<span class="text">}</span>
+    </code></div>
+    <h2>4. :focus - When User Clicks Input</h2>
+    <p><b>:focus</b> means "When user clicks inside this input, change its style." This is the most important form effect.</p>
+    <div class="code-box"><code>
+<span class="tag">input:focus</span> <span class="text">{</span><br>
+&nbsp;&nbsp;<span class="attr">border-color</span><span class="text">:</span> <span class="val">#2563eb</span><span class="text">;</span> <span class="comment" style="color:#94a3b8">/* Blue border on click */</span><br>
+&nbsp;&nbsp;<span class="attr">box-shadow</span><span class="text">:</span> <span class="val">0 0 0 3px #dbeafe</span><span class="text">;</span> <span class="comment" style="color:#94a3b8">/* Light blue glow */</span><br>
+<span class="text">}</span><br><br>
+<span class="comment" style="color:#94a3b8">/* Placeholder - Light grey hint text */</span><br>
+<span class="tag">input::placeholder</span> <span class="text">{</span><br>
+&nbsp;&nbsp;<span class="attr">color</span><span class="text">:</span> <span class="val">#94a3b8</span><span class="text">;</span><br>
+<span class="text">}</span>
+    </code></div>
+    <div class="result"><b>Result - Click Inside:</b><label class="demo-label">Try Me:</label><input class="demo-input" type="text" placeholder="Click me - border becomes blue + glow"></div>
+    <h2>5. Label Styling</h2>
+    <p><b>Label</b> is the text above the input - like "Your Name:", "Email:". Always style it bold and with space.</p>
+    <div class="code-box"><code>
+<span class="tag">label</span> <span class="text">{</span><br>
+&nbsp;&nbsp;<span class="attr">display</span><span class="text">:</span> <span class="val">block</span><span class="text">;</span> <span class="comment" style="color:#94a3b8">/* Label on its own line */</span><br>
+&nbsp;&nbsp;<span class="attr">font-weight</span><span class="text">:</span> <span class="val">bold</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">margin-bottom</span><span class="text">:</span> <span class="val">5px</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">color</span><span class="text">:</span> <span class="val">#0f172a</span><span class="text">;</span><br>
+<span class="text">}</span>
+    </code></div>
+    <h2>6. Textarea, Select, Checkbox & Radio</h2>
+    <div class="code-box"><code>
+<span class="comment" style="color:#94a3b8">/* Textarea - Big message box */</span><br>
+<span class="tag">textarea</span> <span class="text">{</span><br>
+&nbsp;&nbsp;<span class="attr">width</span><span class="text">:</span> <span class="val">100%</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">padding</span><span class="text">:</span> <span class="val">12px</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">border</span><span class="text">:</span> <span class="val">2px solid #e2e8f0</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">border-radius</span><span class="text">:</span> <span class="val">8px</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">resize</span><span class="text">:</span> <span class="val">vertical</span><span class="text">;</span> <span class="comment" style="color:#94a3b8">/* Only vertical resize */</span><br>
+<span class="text">}</span><br><br>
+<span class="comment" style="color:#94a3b8">/* Select - Dropdown */</span><br>
+<span class="tag">select</span> <span class="text">{</span><br>
+&nbsp;&nbsp;<span class="attr">width</span><span class="text">:</span> <span class="val">100%</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">padding</span><span class="text">:</span> <span class="val">12px</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">border</span><span class="text">:</span> <span class="val">2px solid #e2e8f0</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">border-radius</span><span class="text">:</span> <span class="val">8px</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">background</span><span class="text">:</span> <span class="val">white</span><span class="text">;</span><br>
+<span class="text">}</span><br><br>
+<span class="comment" style="color:#94a3b8">/* Checkbox & Radio - Bigger size */</span><br>
+<span class="tag">input[type="checkbox"]</span><span class="text">,</span> <span class="tag">input[type="radio"]</span> <span class="text">{</span><br>
+&nbsp;&nbsp;<span class="attr">width</span><span class="text">:</span> <span class="val">18px</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">height</span><span class="text">:</span> <span class="val">18px</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">accent-color</span><span class="text">:</span> <span class="val">#2563eb</span><span class="text">;</span> <span class="comment" style="color:#94a3b8">/* Blue tick */</span><br>
+<span class="text">}</span>
+    </code></div>
+    <div class="result"><b>Result - Try All:</b><label class="demo-label">Your Message:</label><textarea class="demo-textarea" rows="3" placeholder="Write your message here..."></textarea><label class="demo-label">Your City:</label><select class="demo-select"><option>Select City</option><option>Lahore</option><option>Karachi</option><option>Islamabad</option><option>Multan</option></select><p style="margin:12px 0 0"><label style="cursor:pointer"><input type="checkbox" checked style="width:18px;height:18px;accent-color:#2563eb"> I agree to terms</label></p><p style="margin:8px 0 0"><label style="cursor:pointer"><input type="radio" name="gender" checked style="width:18px;height:18px;accent-color:#2563eb"> Male</label> &nbsp; <label style="cursor:pointer"><input type="radio" name="gender" style="width:18px;height:18px;accent-color:#2563eb"> Female</label></p></div>
+    <h2>7. Form Layout - 2 Columns on Desktop, 1 Column on Mobile</h2>
+    <div class="code-box"><code>
+<span class="tag">.form-row</span> <span class="text">{</span><br>
+&nbsp;&nbsp;<span class="attr">display</span><span class="text">:</span> <span class="val">flex</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">gap</span><span class="text">:</span> <span class="val">15px</span><span class="text">;</span><br>
+<span class="text">}</span><br>
+<span class="tag">.form-group</span> <span class="text">{</span> <span class="attr">flex</span><span class="text">:</span> <span class="val">1</span><span class="text">;</span> <span class="text">}</span><br><br>
+<span class="tag">@media</span> <span class="text">(</span><span class="attr">max-width</span><span class="text">:</span> <span class="val">700px</span><span class="text">)</span> <span class="text">{</span><br>
+&nbsp;&nbsp;<span class="tag">.form-row</span> <span class="text">{</span> <span class="attr">flex-direction</span><span class="text">:</span> <span class="val">column</span><span class="text">;</span> <span class="text">}</span><br>
+<span class="text">}</span>
+    </code></div>
+    <div class="result"><b>Result - First Name + Last Name Side by Side:</b><div style="display:flex;gap:12px"><div style="flex:1"><label class="demo-label">First Name:</label><input class="demo-input" type="text" placeholder="Ali"></div><div style="flex:1"><label class="demo-label">Last Name:</label><input class="demo-input" type="text" placeholder="Khan"></div></div></div>
+    <h2>8. Full Example - Complete Contact Form</h2>
+    <div class="result"><div style="background:white;border:1px solid #e2e8f0;border-radius:12px;padding:20px;max-width:500px;margin:0 auto"><h3 style="text-align:center;margin:0">Contact Us</h3><p style="text-align:center;color:#64748b;margin:5px 0 10px">We will reply within 24 hours</p><label class="demo-label">Full Name:</label><input class="demo-input" type="text" placeholder="Enter your name"><label class="demo-label">Email:</label><input class="demo-input" type="email" placeholder="example@gmail.com"><label class="demo-label">Message:</label><textarea class="demo-textarea" rows="3" placeholder="Write your message..."></textarea><button class="btn" style="width:100%">Send Message →</button></div></div>
+    <h2>9. Homework - Practice for 2 Minutes</h2>
+    <p>In Playground, make this:</p>
+    <p>1. One <b>Contact Form</b> - Name input + Email input + Message textarea + Send button (full width)<br>2. Style <b>input:focus</b> - blue border + light blue glow<br>3. Style <b>label</b> - bold, block, margin-bottom 5px<br>4. Make <b>First Name + Last Name</b> side by side with flex</p>
+    <div class="box"><b>Remember:</b> input { width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 8px; outline: none; } | :focus = Style when clicked | box-shadow = Glow effect | ::placeholder = Hint text color | label { display: block; font-weight: bold; } | textarea { resize: vertical; } | accent-color = Checkbox / Radio color | Form Row = display: flex; gap: 15px;</div>
+    <p><b>Next Step:</b> After this lesson, go to <a href="/lesson20">Lesson 20 - CSS Project</a> to combine everything - Box Model + Flexbox + Grid + Buttons + Forms in one real project.</p>
+    <a id="playgroundLink" class="btn" href="/playground">▶ Try it Yourself - Playground</a><br><br>
+    <button class="btn btn-next" onclick="showTest()">Go to Test → 📝</button>
+    <div class="nav">
+      <a class="btn btn-prev" href="/lesson18">← Lesson 18</a>
+      <a id="nextLessonLink" class="btn btn-next" href="/lesson20">Next Lesson 20 →</a>
+    </div>
+  </div>
+
+  <div id="testContent">
+    <div class="test-box">
+      <!-- ===== GUEST BANNER - HTML, NOT JS ===== -->
+      <% if (!user) { %>
+      <div id="guestBanner" style="background:linear-gradient(135deg,#0f172a,#2563eb);color:white;padding:16px;border-radius:12px;margin-bottom:14px;text-align:center">
+        <h3 style="margin:0;font-size:18px">👋 Hi Guest! Try This Test FREE</h3>
+        <p style="margin:6px 0 0;color:#e2e8f0;font-size:14px">You can give this test without login. But your score will <b style="color:#facc15">NOT be saved</b> in Dashboard / Ranking.</p>
+        <p style="margin:8px 0 0"><a href="/signup" style="display:inline-block;background:#facc15;color:#0f172a;padding:10px 22px;border-radius:8px;font-weight:bold;text-decoration:none;font-size:14px">✨ Signup Free to Save Score →</a> <a href="/login" style="color:white;font-weight:bold;font-size:14px">Login →</a></p>
+      </div>
+      <% } else { %>
+      <div style="background:#dcfce7;color:#166534;padding:12px;border-radius:10px;margin-bottom:14px;text-align:center;font-weight:bold;font-size:14px">✅ Logged in as <b><%= user.username %></b> - Your score will be saved in Dashboard & Ranking</div>
+      <% } %>
+      <!-- ===== GUEST BANNER END ===== -->
+      <h2>📝 Lesson 19 Test - Check Your Learning</h2>
+      <div class="test-info"><b>Total Questions:</b> 10 &nbsp; | &nbsp; <b>Total Marks:</b> 100 &nbsp; | &nbsp; <b>Passing Marks:</b> 80 (80%) &nbsp; | &nbsp; <b>Time:</b> 3 Minutes<br>Each correct answer = 10 Marks. Once you start, all tabs will be locked until you submit.</div>
+      <div id="startScreen">
+        <h2>Ready for the Test?</h2>
+        <p>Click Start Paper to begin. You will get <b>3 Minutes</b> for 10 questions.<br>During the test, you cannot open Lesson or any other page.</p>
+        <button class="btn" style="font-size:20px;padding:14px 30px" onclick="startTest()">▶ Start Paper</button>
+      </div>
+      <div id="timerBar">⏰ Time Left: <span id="timerText">03:00</span></div>
+      <div id="quizArea">
+        <form id="quizForm">
+          <div class="question"><b>Q1. What does :focus mean?</b><label><input type="radio" name="q1" value="a"> Style when user clicks inside input</label><label><input type="radio" name="q1" value="b"> Style when page loads</label><label><input type="radio" name="q1" value="c"> Style when mouse hovers</label><label><input type="radio" name="q1" value="d"> Style always</label></div>
+          <div class="question"><b>Q2. Which property removes default black border on focus?</b><label><input type="radio" name="q2" value="a"> outline: none;</label><label><input type="radio" name="q2" value="b"> border: none;</label><label><input type="radio" name="q2" value="c"> focus: none;</label><label><input type="radio" name="q2" value="d"> shadow: none;</label></div>
+          <div class="question"><b>Q3. Which property creates Glow effect on focus?</b><label><input type="radio" name="q3" value="a"> box-shadow: 0 0 0 3px #dbeafe;</label><label><input type="radio" name="q3" value="b"> border: glow;</label><label><input type="radio" name="q3" value="c"> glow: blue;</label><label><input type="radio" name="q3" value="d"> shadow: glow;</label></div>
+          <div class="question"><b>Q4. How to style Placeholder text?</b><label><input type="radio" name="q4" value="a"> input::placeholder { color: #94a3b8; }</label><label><input type="radio" name="q4" value="b"> input:placeholder { color: grey; }</label><label><input type="radio" name="q4" value="c"> placeholder { color: grey; }</label><label><input type="radio" name="q4" value="d"> input:holder { color: grey; }</label></div>
+          <div class="question"><b>Q5. Label should be?</b><label><input type="radio" name="q5" value="a"> display: block; font-weight: bold;</label><label><input type="radio" name="q5" value="b"> display: none;</label><label><input type="radio" name="q5" value="c"> display: flex;</label><label><input type="radio" name="q5" value="d"> display: inline;</label></div>
+          <div class="question"><b>Q6. What should be width of input in a form?</b><label><input type="radio" name="q6" value="a"> width: 100%;</label><label><input type="radio" name="q6" value="b"> width: 50px;</label><label><input type="radio" name="q6" value="c"> width: 10%;</label><label><input type="radio" name="q6" value="d"> width: 0;</label></div>
+          <div class="question"><b>Q7. Which property changes Checkbox / Radio color?</b><label><input type="radio" name="q7" value="a"> accent-color: #2563eb;</label><label><input type="radio" name="q7" value="b"> color: blue;</label><label><input type="radio" name="q7" value="c"> background: blue;</label><label><input type="radio" name="q7" value="d"> tick-color: blue;</label></div>
+          <div class="question"><b>Q8. Textarea should have?</b><label><input type="radio" name="q8" value="a"> resize: vertical;</label><label><input type="radio" name="q8" value="b"> resize: none;</label><label><input type="radio" name="q8" value="c"> resize: horizontal;</label><label><input type="radio" name="q8" value="d"> resize: both;</label></div>
+          <div class="question"><b>Q9. How to make First Name + Last Name side by side?</b><label><input type="radio" name="q9" value="a"> display: flex; gap: 15px;</label><label><input type="radio" name="q9" value="b"> display: block;</label><label><input type="radio" name="q9" value="c"> display: grid;</label><label><input type="radio" name="q9" value="d"> display: none;</label></div>
+          <div class="question"><b>Q10. What is good padding for input?</b><label><input type="radio" name="q10" value="a"> padding: 12px;</label><label><input type="radio" name="q10" value="b"> padding: 0;</label><label><input type="radio" name="q10" value="c"> padding: 50px;</label><label><input type="radio" name="q10" value="d"> padding: 2px;</label></div>
+          <button type="button" class="btn" onclick="checkTest(false)">Submit Test - Check Result</button>
+          <button type="button" class="btn btn-next" onclick="resetTest()">Try Again</button>
+        </form>
+      </div>
+      <div id="scoreBox">
+        <h3 id="scoreText"></h3>
+        <p id="scoreMsg"></p>
+        <a id="nextBtn" class="btn" href="/lesson20" style="display:none">🎉 You Passed! Go to Lesson 20 →</a>
+        <br><br>
+        <button class="btn btn-next" onclick="showLesson()">← Back to Lesson (Unlocked)</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h3>LearnHTMLCSSJS.com</h3>
+      <p>Free HTML CSS JS course in simple English. Learn from zero to web developer with 50 lessons, tests, playground and ranking.</p>
+      <h4>Quick Links</h4>
+      <a href="/">🏠 Home</a><br>
+      <a href="/dashboard">📊 Dashboard</a><br>
+      <a href="/ranking">🏆 Ranking</a><br>
+      <a href="/playground">▶ Playground - Try Code</a><br>
+      <a href="/lesson1">📖 Start Lesson 1 - What is HTML?</a>
+    </div>
+    <div>
+      <h3>Next Lessons - Continue Learning</h3>
+      <a href="/lesson20">Lesson 20 - CSS Project</a>
+      <h4>CSS Course (11-20)</h4>
+      <a href="/lesson21">Lesson 21 - What is JavaScript?</a><br>
+      <a href="/lesson22">Lesson 22 - Variables</a><br>
+      <a href="/lesson23">Lesson 23 - Data Types & Operators</a><br>
+      <a href="/lesson24">Lesson 24 - If-Else</a><br>
+      <a href="/lesson25">Lesson 25 - Loops</a>
+    </div>
+    <div>
+      <h3>JavaScript Course (21-40)</h3>
+      <a href="/lesson21">Lesson 21 - What is JavaScript?</a><br>
+      <a href="/lesson22">Lesson 22 - Variables</a><br>
+      <a href="/lesson23">Lesson 23 - Data Types & Operators</a><br>
+      <a href="/lesson24">Lesson 24 - If-Else</a><br>
+      <a href="/lesson25">Lesson 25 - Loops</a><br>
+      <a href="/lesson26">Lesson 26 - Functions</a><br>
+      <a href="/lesson27">Lesson 27 - Arrays</a><br>
+      <a href="/lesson28">Lesson 28 - Objects</a><br>
+      <a href="/lesson29">Lesson 29 - String Methods</a><br>
+      <a href="/lesson30">Lesson 30 - DOM</a><br>
+      <h4>Projects & Career (41-50)</h4>
+      <a href="/lesson41">Lesson 41 - Full Website Project</a><br>
+      <a href="/lesson42">Lesson 42 - Portfolio Website</a><br>
+      <a href="/lesson43">Lesson 43 - Landing Page</a><br>
+      <a href="/lesson44">Lesson 44 - Navbar & Footer</a><br>
+      <a href="/lesson45">Lesson 45 - Final Project</a><br>
+      <a href="/lesson46">Lesson 46 - SEO Basics</a><br>
+      <a href="/lesson47">Lesson 47 - Deploy Free</a><br>
+      <a href="/lesson48">Lesson 48 - Freelancing Guide</a><br>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a><br>
+      <a href="/lesson50">Lesson 50 - Final Exam & Certificate</a>
+    </div>
+  </div>
+  <div style="max-width:1100px;margin:25px auto 0;border-top:1px solid #1e293b;padding-top:20px">
+    <h3 style="text-align:center">📚 All 50 Lessons - Complete HTML CSS JS Course</h3>
+    <div class="all-lessons">
+      <a href="/lesson1">Lesson 1 - What is HTML?</a>
+      <a href="/lesson2">Lesson 2 - Headings & Paragraphs</a>
+      <a href="/lesson3">Lesson 3 - Text Formatting</a>
+      <a href="/lesson4">Lesson 4 - Links & Images</a>
+      <a href="/lesson5">Lesson 5 - Lists</a>
+      <a href="/lesson6">Lesson 6 - Tables</a>
+      <a href="/lesson7">Lesson 7 - Forms</a>
+      <a href="/lesson8">Lesson 8 - Div & Span</a>
+      <a href="/lesson9">Lesson 9 - Semantic HTML</a>
+      <a href="/lesson10">Lesson 10 - HTML Project</a>
+      <a href="/lesson11">Lesson 11 - What is CSS?</a>
+      <a href="/lesson12">Lesson 12 - Colors</a>
+      <a href="/lesson13">Lesson 13 - Text Styling</a>
+      <a href="/lesson14">Lesson 14 - Box Model</a>
+      <a href="/lesson15">Lesson 15 - Flexbox</a>
+      <a href="/lesson16">Lesson 16 - Grid</a>
+      <a href="/lesson17">Lesson 17 - Responsive</a>
+      <a href="/lesson18">Lesson 18 - Buttons</a>
+      <a href="/lesson19" class="current">Lesson 19 - Forms Styling</a>
+      <a href="/lesson20">Lesson 20 - CSS Project</a>
+      <a href="/lesson21">Lesson 21 - What is JS?</a>
+      <a href="/lesson22">Lesson 22 - Variables</a>
+      <a href="/lesson23">Lesson 23 - Data Types</a>
+      <a href="/lesson24">Lesson 24 - If-Else</a>
+      <a href="/lesson25">Lesson 25 - Loops</a>
+      <a href="/lesson26">Lesson 26 - Functions</a>
+      <a href="/lesson27">Lesson 27 - Arrays</a>
+      <a href="/lesson28">Lesson 28 - Objects</a>
+      <a href="/lesson29">Lesson 29 - Strings</a>
+      <a href="/lesson30">Lesson 30 - DOM</a>
+      <a href="/lesson31">Lesson 31 - Events</a>
+      <a href="/lesson32">Lesson 32 - Form Validation</a>
+      <a href="/lesson33">Lesson 33 - LocalStorage</a>
+      <a href="/lesson34">Lesson 34 - Timers</a>
+      <a href="/lesson35">Lesson 35 - Calculator</a>
+      <a href="/lesson36">Lesson 36 - To-Do List</a>
+      <a href="/lesson37">Lesson 37 - Quiz App</a>
+      <a href="/lesson38">Lesson 38 - Password Generator</a>
+      <a href="/lesson39">Lesson 39 - Weather App</a>
+      <a href="/lesson40">Lesson 40 - JS Revision</a>
+      <a href="/lesson41">Lesson 41 - Full Website</a>
+      <a href="/lesson42">Lesson 42 - Portfolio</a>
+      <a href="/lesson43">Lesson 43 - Landing Page</a>
+      <a href="/lesson44">Lesson 44 - Navbar</a>
+      <a href="/lesson45">Lesson 45 - Final Project</a>
+      <a href="/lesson46">Lesson 46 - SEO</a>
+      <a href="/lesson47">Lesson 47 - Deploy</a>
+      <a href="/lesson48">Lesson 48 - Freelancing</a>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a>
+      <a href="/lesson50">Lesson 50 - Final Exam</a>
+    </div>
+    <p style="text-align:center;margin-top:15px">You are learning <a href="/lesson19">Forms Styling - Lesson 19</a> | Previous: <a href="/lesson18">Buttons & Links Styling - Lesson 18</a> | Next: <a href="/lesson20">CSS Project - Lesson 20</a> | <a href="/lesson50">Jump to Final Exam - Lesson 50</a></p>
+  </div>
+  <div class="footer-bottom">© 2026 LearnHTMLCSSJS.com - Free Course | <a href="/">Home</a> | <a href="/lesson19">Lesson 19</a> | <a href="/lesson50">Lesson 50</a> | Made for Beginners</div>
+</footer>
+
+<script>
+// ===== GUEST TEST HANDLER - Only inside <script> =====
+const IS_LOGGED_IN = <%= (typeof user !== 'undefined' && user) ? 'true' : 'false' %>;
+function saveTestResult(lessonName, score, testStatus, onSaved) {
+  if (!IS_LOGGED_IN) { if (onSaved) onSaved(null); return; }
+  fetch('/save-result', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ lesson: lessonName, score: score, status: testStatus }) })
+  .then(r => r.json())
+  .then(data => { if (onSaved) onSaved(data); })
+  .catch(() => { if (onSaved) onSaved(null); });
+}
+function showGuestSignupPopup(score) {
+  let wantSignup = confirm("🎉 You scored " + score + "/100!\n\nYour score is NOT saved because you are not logged in.\n\nClick OK to Signup FREE and Save Your Score in Dashboard & Ranking.\nClick Cancel to continue without saving.");
+  if (wantSignup) { window.location.href = "/signup"; }
+}
+// ===== GUEST HANDLER END =====
+let testRunning=false;let timerInterval=null;let timeLeft=180;
+function showLesson(){if(testRunning){alert("🔒 Test is running! Please submit the test first. All tabs are locked.");return;}document.getElementById('lessonContent').style.display='block';document.getElementById('testContent').style.display='none';document.getElementById('lessonTabBtn').classList.add('active');document.getElementById('lessonTabBtn').classList.remove('test-active');document.getElementById('testTabBtn').classList.remove('active');document.getElementById('testTabBtn').classList.remove('test-active');window.scrollTo({top:0,behavior:'smooth'});}
+function showTest(){document.getElementById('lessonContent').style.display='none';document.getElementById('testContent').style.display='block';document.getElementById('testTabBtn').classList.add('active');document.getElementById('testTabBtn').classList.add('test-active');document.getElementById('lessonTabBtn').classList.remove('active');window.scrollTo({top:0,behavior:'smooth'});}
+function lockTabs(){testRunning=true;document.getElementById('lessonTabBtn').classList.add('disabled');document.getElementById('lockMsg').style.display='block';document.getElementById('homeLink').classList.add('disabled');document.getElementById('playgroundLink').style.pointerEvents='none';document.getElementById('playgroundLink').style.opacity='0.5';document.getElementById('nextLessonLink').style.pointerEvents='none';document.getElementById('nextLessonLink').style.opacity='0.5';}
+function unlockTabs(){testRunning=false;clearInterval(timerInterval);document.getElementById('lessonTabBtn').classList.remove('disabled');document.getElementById('lockMsg').style.display='none';document.getElementById('homeLink').classList.remove('disabled');document.getElementById('playgroundLink').style.pointerEvents='auto';document.getElementById('playgroundLink').style.opacity='1';document.getElementById('nextLessonLink').style.pointerEvents='auto';document.getElementById('nextLessonLink').style.opacity='1';document.getElementById('timerBar').style.display='none';}
+function startTest(){document.getElementById('startScreen').style.display='none';document.getElementById('quizArea').style.display='block';document.getElementById('timerBar').style.display='block';document.getElementById('scoreBox').style.display='none';lockTabs();timeLeft=180;updateTimer();timerInterval=setInterval(function(){timeLeft--;updateTimer();if(timeLeft<=0){clearInterval(timerInterval);alert("⏰ Time Up! Your test is auto-submitted.");checkTest(true);}},1000);}
+function updateTimer(){let m=Math.floor(timeLeft/60);let s=timeLeft%60;document.getElementById('timerText').innerText=(m<10?"0"+m:m)+":"+(s<10?"0"+s:s);if(timeLeft<=30){document.getElementById('timerBar').classList.add('warning');}}
+function checkTest(isAuto){
+  let answers={q1:'a',q2:'a',q3:'a',q4:'a',q5:'a',q6:'a',q7:'a',q8:'a',q9:'a',q10:'a'};
+  let score=0;let attempted=0;
+  for(let q in answers){let selected=document.querySelector('input[name="'+q+'"]:checked');if(selected){attempted++;if(selected.value===answers[q])score+=10;}}
+  if(!isAuto && attempted<10){alert("Please answer all 10 questions! You have answered only "+attempted+" questions.");return;}
+  unlockTabs();
+  let testStatus=score>=80?'Pass':'Fail';
+  saveTestResult('Lesson 19 - Forms Styling', score, testStatus, function(data){
+    if (!IS_LOGGED_IN && score >= 80) {
+      setTimeout(() => showGuestSignupPopup(score), 500);
+    }
+  });
+  let box=document.getElementById('scoreBox');let scoreText=document.getElementById('scoreText');let scoreMsg=document.getElementById('scoreMsg');let nextBtn=document.getElementById('nextBtn');box.style.display='block';scoreText.innerText="Your Score: "+score+" / 100";
+  if(score>=80){box.className='pass';scoreMsg.innerText="🎉 Congratulations! You PASSED. You have learned Lesson 19. Now all tabs are unlocked.";nextBtn.style.display='inline-block';}
+  else{box.className='fail';scoreMsg.innerText="😔 You FAILED. Passing marks are 80. All tabs are now unlocked. Read the lesson again and try again.";nextBtn.style.display='none';}
+  box.scrollIntoView({behavior:'smooth'});
+}
+function resetTest(){clearInterval(timerInterval);testRunning=false;document.getElementById('quizForm').reset();document.getElementById('scoreBox').style.display='none';document.getElementById('quizArea').style.display='none';document.getElementById('startScreen').style.display='block';document.getElementById('timerBar').style.display='none';unlockTabs();}
+</script>
+</body>
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ===== SEO START ===== -->
+<title>Form Validation in JavaScript - Lesson 32 | LearnHTMLCSSJS.com</title>
+<meta name="description" content="Learn Form Validation in JavaScript - Lesson 32. Check name, email, password, phone, required, min length, pattern, real-time validation. Live signup form demo. Free Course for Beginners.">
+<meta name="keywords" content="javascript form validation, signup form validation, email password check, lesson 32, learn javascript validation">
+<meta name="author" content="LearnHTMLCSSJS.com">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://learnhtmlcssjs.com/lesson32">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Form Validation in JavaScript - Lesson 32">
+<meta property="og:description" content="Learn Form Validation - Check forms before sending. Name, email, password, phone with live signup demo.">
+<meta property="og:url" content="https://learnhtmlcssjs.com/lesson32">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Course","name":"Learn HTML CSS JS - Free Course","description":"Learn HTML, CSS and JavaScript for beginners in simple English. 50 lessons from zero to web developer.","provider":{"@type":"Organization","name":"LearnHTMLCSSJS.com"}}
+</script>
+<!-- ===== SEO END ===== -->
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+  body{background:#f4f6f8;color:#222}
+  header{background:#0f172a;color:white;padding:20px;text-align:center;width:100%}
+  header a{color:#38bdf8;text-decoration:none;font-size:14px}
+  header a.disabled{color:#64748b;pointer-events:none}
+  .container{width:100%;max-width:100%;margin:0 auto;background:white;padding:30px 40px}
+  h1{font-size:28px;margin-bottom:10px;line-height:1.3}
+  h2{margin:20px 0 10px;color:#0f172a}
+  p{line-height:1.7;margin-bottom:12px}
+  .note{background:#eff6ff;border-left:5px solid #2563eb;padding:12px;border-radius:8px;margin:15px 0}
+  .code-box{background:#0f172a;color:#e2e8f0;padding:15px;border-radius:10px;overflow-x:auto;margin:10px 0}
+  .code-box code{font-family:monospace;font-size:15px;line-height:1.6}
+  .tag{color:#f472b6}.text{color:white}.attr{color:#facc15}.val{color:#86efac}
+  .btn{display:inline-block;background:#16a34a;color:white;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:bold;margin-top:10px;border:none;cursor:pointer;font-size:16px}
+  .btn-next{background:#2563eb}
+  .btn-prev{background:#64748b}
+  .btn-js{background:#f59e0b;color:white}
+  .nav{display:flex;justify-content:space-between;margin-top:25px}
+  .result{border:2px dashed #cbd5e1;padding:15px;border-radius:10px;margin-top:10px;background:#f8fafc}
+  .box{background:#e0f2fe;padding:10px;border-radius:8px;margin-top:10px;line-height:1.8}
+  .tabs{display:flex;gap:10px;margin-bottom:20px;position:sticky;top:0;background:white;padding:10px 0;z-index:10;border-bottom:2px solid #e2e8f0}
+  .tab-btn{flex:1;padding:14px;border:none;border-radius:10px;font-size:17px;font-weight:bold;cursor:pointer;background:#e2e8f0;color:#334155}
+  .tab-btn.active{background:#0f172a;color:white}
+  .tab-btn.test-active{background:#16a34a;color:white}
+  .tab-btn.disabled{opacity:0.5;pointer-events:none;cursor:not-allowed}
+  #lessonContent{display:block}
+  #testContent{display:none}
+  .test-box{border:2px solid #0f172a;border-radius:12px;padding:20px;background:#f8fafc}
+  .test-info{background:#fef3c7;padding:12px;border-radius:8px;margin-bottom:15px;line-height:1.7}
+  .question{background:white;padding:15px;border-radius:10px;margin-bottom:12px;border:1px solid #e2e8f0}
+  .question b{display:block;margin-bottom:8px}
+  .question label{display:block;padding:8px 10px;margin:4px 0;background:#f1f5f9;border-radius:7px;cursor:pointer}
+  .question label:hover{background:#e0f2fe}
+  .question input{margin-right:8px}
+  #scoreBox{display:none;padding:20px;border-radius:10px;text-align:center;margin-top:15px}
+  #scoreBox.pass{background:#dcfce7;border:2px solid #16a34a}
+  #scoreBox.fail{background:#fee2e2;border:2px solid #dc2626}
+  #scoreBox h3{font-size:26px;margin-bottom:5px}
+  #startScreen{text-align:center;padding:30px 10px}
+  #timerBar{display:none;position:sticky;top:60px;z-index:20;background:#dc2626;color:white;padding:12px 15px;border-radius:10px;font-weight:bold;font-size:18px;text-align:center;margin-bottom:15px}
+  #timerBar.warning{background:#ea580c}
+  #quizArea{display:none}
+  .lock-msg{background:#fee2e2;color:#991b1b;padding:10px;border-radius:8px;margin-bottom:12px;text-align:center;font-weight:bold;display:none}
+  table{width:100%;border-collapse:collapse;margin:10px 0;background:white}
+  th,td{border:1px solid #e2e8f0;padding:10px;text-align:left}
+  th{background:#0f172a;color:white}
+  .breadcrumb{font-size:13px;color:#94a3b8;margin-bottom:8px}
+  .breadcrumb a{color:#38bdf8;text-decoration:none}
+  .demo-card{background:white;border:1px solid #e2e8f0;border-radius:12px;padding:20px;text-align:center;margin-top:12px}
+  .demo-input{width:100%;padding:12px;border:2px solid #e2e8f0;border-radius:8px;font-size:15px;outline:none;margin:6px 0}
+  .demo-input:focus{border-color:#2563eb;box-shadow:0 0 0 3px #dbeafe}
+  .demo-input.error{border-color:#dc2626;background:#fef2f2}
+  .demo-input.success{border-color:#16a34a;background:#f0fdf4}
+  .err{color:#dc2626;font-size:13px;text-align:left;display:block;min-height:18px}
+  .ok{color:#16a34a;font-size:13px;text-align:left;display:block;min-height:18px}
+  .strength{height:8px;background:#e2e8f0;border-radius:10px;overflow:hidden;margin:6px 0}
+  .strength-bar{height:100%;width:0%;transition:width .3s}
+  footer{background:#0f172a;color:#cbd5e1;padding:35px 30px}
+  footer h3{color:white;font-size:20px;margin-bottom:12px}
+  footer h4{color:white;font-size:16px;margin:20px 0 10px}
+  footer p{font-size:14px;line-height:1.7;color:#94a3b8}
+  footer a{color:#38bdf8;text-decoration:none;font-size:14px;line-height:2}
+  footer a:hover{color:white;text-decoration:underline}
+  .footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:25px;max-width:1100px;margin:0 auto}
+  .all-lessons{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:10px}
+  .all-lessons a{background:#1e293b;padding:8px 10px;border-radius:8px;text-align:center;display:block;color:#e2e8f0;font-weight:bold;line-height:1.4}
+  .all-lessons a:hover{background:#2563eb;color:white;text-decoration:none}
+  .all-lessons a.current{background:#16a34a;color:white}
+  .footer-bottom{text-align:center;border-top:1px solid #1e293b;margin-top:25px;padding-top:15px;font-size:13px;color:#64748b}
+  @media(max-width:700px){.footer-grid{grid-template-columns:1fr}.all-lessons{grid-template-columns:1fr 1fr}.container{padding:20px}}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="breadcrumb"><a href="/">Home</a> &gt; <a href="/lesson32">JavaScript Course</a> &gt; Lesson 32 - Form Validation</p>
+  <p><a id="homeLink" href="/">← Back to Home</a> | JavaScript Course - Lesson 32 / 50</p>
+  <h1>Lesson 32: Form Validation - Check Before Sending</h1>
+  <p>Name Empty? Email Valid? Password Strong? | LearnHTMLCSSJS.com</p>
+</header>
+
+<div class="container">
+  <div class="tabs">
+    <button id="lessonTabBtn" class="tab-btn active" onclick="showLesson()">📖 Lesson</button>
+    <button id="testTabBtn" class="tab-btn" onclick="showTest()">📝 Test - 100 Marks</button>
+  </div>
+  <div id="lockMsg" class="lock-msg">🔒 Test is running! All tabs are locked until you submit the test or time ends.</div>
+
+  <div id="lessonContent">
+    <h2>1. What is Form Validation?</h2>
+    <p><b>Form Validation = Checking the form before sending it.</b> Is the name empty? Is the email valid? Is the password too short? Do the two passwords match?</p>
+    <p>Without validation, users can send empty forms, wrong emails, or 1-letter passwords. With validation, you stop them and show a clear error message.</p>
+    <div class="note"><b>Real Life Example:</b> At an airport, security checks your ticket and ID before you board the plane. Form validation is the same - Check everything before you let the data go.</div>
+    <h2>2. LIVE DEMO - Signup Form With Validation</h2>
+    <p>Try to submit with empty fields, wrong email, short password. See errors live:</p>
+    <div class="demo-card">
+      <h3 id="formResult" style="margin:0">Create Your Account 📝</h3>
+      <input class="demo-input" id="vName" type="text" placeholder="Full Name - e.g. Ali Ahmed" oninput="validateName()">
+      <span class="err" id="nameErr"></span>
+      <input class="demo-input" id="vEmail" type="text" placeholder="Email - e.g. ali@gmail.com" oninput="validateEmail()">
+      <span class="err" id="emailErr"></span>
+      <input class="demo-input" id="vPass" type="password" placeholder="Password - Min 6 characters" oninput="validatePass()">
+      <div class="strength"><div class="strength-bar" id="passBar"></div></div>
+      <span class="err" id="passErr"></span>
+      <input class="demo-input" id="vConfirm" type="password" placeholder="Confirm Password - Same as above" oninput="validateConfirm()">
+      <span class="err" id="confirmErr"></span>
+      <button class="btn btn-js" style="width:100%" onclick="submitForm()">Create Account ✅</button>
+      <button class="btn" onclick="resetForm()">Reset ↺</button>
+    </div>
+    <h2>3. Common Checks - Full Table</h2>
+    <table>
+      <tr><th>Check</th><th>Code</th><th>Example</th></tr>
+      <tr><td>Empty?</td><td>value === "" or value.trim() === ""</td><td>If name is empty, show "Name is required"</td></tr>
+      <tr><td>Too Short?</td><td>value.length &lt; 6</td><td>Password must be at least 6 characters</td></tr>
+      <tr><td>Too Long?</td><td>value.length &gt; 20</td><td>Username must be less than 20 characters</td></tr>
+      <tr><td>Has @ ?</td><td>email.includes("@") && email.includes(".")</td><td>Email must have @ and .</td></tr>
+      <tr><td>Passwords Match?</td><td>pass === confirmPass</td><td>Both passwords must be same</td></tr>
+      <tr><td>Only Numbers?</td><td>!isNaN(value)</td><td>Phone must be numbers only</td></tr>
+      <tr><td>Is Number?</td><td>age &gt;= 18</td><td>Age must be 18 or more</td></tr>
+    </table>
+    <h2>4. Basic Validation - Name Check</h2>
+    <div class="code-box"><code>
+<span class="text">function checkName() {</span><br>
+&nbsp;&nbsp;<span class="text">let name = document.getElementById("name").value.trim();</span><br><br>
+&nbsp;&nbsp;<span class="text">if (name === "") {</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">document.getElementById("nameErr").innerText = "❌ Name is required!";</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">return false; // Stop - Do not submit</span><br>
+&nbsp;&nbsp;<span class="text">}</span><br>
+&nbsp;&nbsp;<span class="text">if (name.length < 3) {</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">document.getElementById("nameErr").innerText = "❌ Name must be at least 3 letters!";</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">return false;</span><br>
+&nbsp;&nbsp;<span class="text">}</span><br>
+&nbsp;&nbsp;<span class="text">document.getElementById("nameErr").innerText = "✅ Good!";</span><br>
+&nbsp;&nbsp;<span class="text">return true; // OK - Can submit</span><br>
+<span class="text">}</span>
+    </code></div>
+    <h2>5. Email Validation</h2>
+    <div class="code-box"><code>
+<span class="text">function checkEmail() {</span><br>
+&nbsp;&nbsp;<span class="text">let email = document.getElementById("email").value.trim();</span><br><br>
+&nbsp;&nbsp;<span class="text">if (email === "") {</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">return "Email is required!";</span><br>
+&nbsp;&nbsp;<span class="text">}</span><br>
+&nbsp;&nbsp;<span class="text">if (!email.includes("@") || !email.includes(".")) {</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">return "Invalid Email! Must have @ and .";</span><br>
+&nbsp;&nbsp;<span class="text">}</span><br>
+&nbsp;&nbsp;<span class="text">if (email.indexOf("@") > email.lastIndexOf(".")) {</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">return "Invalid! . must come after @";</span><br>
+&nbsp;&nbsp;<span class="text">}</span><br>
+&nbsp;&nbsp;<span class="text">return "Valid Email!";</span><br>
+<span class="text">}</span>
+    </code></div>
+    <p><b>Example:</b> <code>ali@gmail.com</code> ✅ - Has @ and . , . is after @.<br><code>aligmail.com</code> ❌ - No @.<br><code>ali@gmailcom</code> ❌ - No .</p>
+    <h2>6. Password Validation + Strength</h2>
+    <div class="code-box"><code>
+<span class="text">function checkPassword() {</span><br>
+&nbsp;&nbsp;<span class="text">let pass = document.getElementById("pass").value;</span><br><br>
+&nbsp;&nbsp;<span class="text">if (pass.length < 6) { return "Password too short! Min 6 characters."; }</span><br>
+&nbsp;&nbsp;<span class="text">if (pass.length >= 6 && pass.length < 10) { return "Medium Password"; }</span><br>
+&nbsp;&nbsp;<span class="text">if (pass.length >= 10) { return "Strong Password!"; }</span><br>
+<span class="text">}</span><br><br>
+<span class="comment" style="color:#94a3b8">// Confirm Password - Must match</span><br>
+<span class="text">let pass = document.getElementById("pass").value;</span><br>
+<span class="text">let confirm = document.getElementById("confirm").value;</span><br>
+<span class="text">if (pass !== confirm) {</span><br>
+&nbsp;&nbsp;<span class="text">alert("Passwords do not match!");</span><br>
+<span class="text">}</span>
+    </code></div>
+    <h2>7. Complete Example - Full Form Check on Submit</h2>
+    <div class="code-box"><code>
+<span class="tag">&lt;form</span> <span class="attr">onsubmit</span>=<span class="val">"return validateForm()"</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;input</span> <span class="attr">id</span>=<span class="val">"name"</span> <span class="attr">placeholder</span>=<span class="val">"Name"</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;input</span> <span class="attr">id</span>=<span class="val">"email"</span> <span class="attr">placeholder</span>=<span class="val">"Email"</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;button&gt;</span><span class="text">Submit</span><span class="tag">&lt;/button&gt;</span><br>
+<span class="tag">&lt;/form&gt;</span><br><br>
+<span class="tag">&lt;script&gt;</span><br>
+<span class="text">function validateForm() {</span><br>
+&nbsp;&nbsp;<span class="text">let name = document.getElementById("name").value.trim();</span><br>
+&nbsp;&nbsp;<span class="text">let email = document.getElementById("email").value.trim();</span><br><br>
+&nbsp;&nbsp;<span class="text">if (name === "") { alert("Name is required!"); return false; }</span><br>
+&nbsp;&nbsp;<span class="text">if (!email.includes("@")) { alert("Invalid Email!"); return false; }</span><br><br>
+&nbsp;&nbsp;<span class="text">alert("Form Submitted Successfully!");</span><br>
+&nbsp;&nbsp;<span class="text">return true; // Allow submit</span><br>
+<span class="text">}</span><br>
+<span class="tag">&lt;/script&gt;</span>
+    </code></div>
+    <div class="note"><b>Key Trick:</b> In <code>onsubmit="return validateForm()"</code>, if the function returns <b>false</b>, the form will NOT submit. If it returns <b>true</b>, the form WILL submit. This is how you stop a bad form.</div>
+    <h2>8. Common Mistakes</h2>
+    <p>1. <b>Forgetting trim():</b> User types only spaces "   " - Without trim(), your code thinks it is not empty. Always use <code>.trim()</code>.<br>2. <b>Forgetting return false:</b> You show the error, but the form still submits. Always return false on error.<br>3. <b>Checking only on submit:</b> Best practice is to check on <code>oninput</code> (live) + on submit (final check). Users get instant feedback.</p>
+    <h2>9. Homework</h2>
+    <p>In Playground, build this:</p>
+    <p>1. Login form - Email + Password. If email has no @, show error. If password length &lt; 6, show error<br>2. Signup form - Name, Email, Password, Confirm Password. All 4 checks like demo<br>3. Phone check - Input must be 11 digits and numbers only. Hint: <code>phone.length === 11 && !isNaN(phone)</code></p>
+    <div class="box"><b>Remember:</b> Validation = Check before sending | Empty = value.trim() === "" | Email = Must have @ and . , . after @ | Password = Min 6, check length | Match = pass === confirmPass | return false = Stop submit | return true = Allow submit | oninput = Live check, onsubmit = Final check | Always use trim() to remove spaces</div>
+    <p><b>Next Step:</b> <a href="/lesson33">Lesson 33 - LocalStorage</a> - Learn how to save data in the browser. Even after refresh, data stays.</p>
+    <a id="playgroundLink" class="btn" href="/playground">▶ Try it Yourself - Playground</a><br><br>
+    <button class="btn btn-next" onclick="showTest()">Go to Test → 📝</button>
+    <div class="nav">
+      <a class="btn btn-prev" href="/lesson31">← Lesson 31</a>
+      <a id="nextLessonLink" class="btn btn-next" href="/lesson33">Next Lesson 33 →</a>
+    </div>
+  </div>
+
+  <div id="testContent">
+    <div class="test-box">
+      <!-- ===== GUEST BANNER - HTML, NOT JS ===== -->
+      <% if (!user) { %>
+      <div id="guestBanner" style="background:linear-gradient(135deg,#0f172a,#2563eb);color:white;padding:16px;border-radius:12px;margin-bottom:14px;text-align:center">
+        <h3 style="margin:0;font-size:18px">👋 Hi Guest! Try This Test FREE</h3>
+        <p style="margin:6px 0 0;color:#e2e8f0;font-size:14px">You can give this test without login. But your score will <b style="color:#facc15">NOT be saved</b> in Dashboard / Ranking.</p>
+        <p style="margin:8px 0 0"><a href="/signup" style="display:inline-block;background:#facc15;color:#0f172a;padding:10px 22px;border-radius:8px;font-weight:bold;text-decoration:none;font-size:14px">✨ Signup Free to Save Score →</a> <a href="/login" style="color:white;font-weight:bold;font-size:14px">Login →</a></p>
+      </div>
+      <% } else { %>
+      <div style="background:#dcfce7;color:#166534;padding:12px;border-radius:10px;margin-bottom:14px;text-align:center;font-weight:bold;font-size:14px">✅ Logged in as <b><%= user.username %></b> - Your score will be saved in Dashboard & Ranking</div>
+      <% } %>
+      <!-- ===== GUEST BANNER END ===== -->
+      <h2>📝 Lesson 32 Test - Check Your Learning</h2>
+      <div class="test-info"><b>Total Questions:</b> 10 &nbsp; | &nbsp; <b>Total Marks:</b> 100 &nbsp; | &nbsp; <b>Passing Marks:</b> 80 (80%) &nbsp; | &nbsp; <b>Time:</b> 3 Minutes<br>Each correct answer = 10 Marks. Once you start, all tabs will be locked until you submit.</div>
+      <div id="startScreen">
+        <h2>Ready for the Test?</h2>
+        <p>Click Start Paper to begin. You will get <b>3 Minutes</b> for 10 questions.<br>During the test, you cannot open Lesson or any other page.</p>
+        <button class="btn" style="font-size:20px;padding:14px 30px" onclick="startTest()">▶ Start Paper</button>
+      </div>
+      <div id="timerBar">⏰ Time Left: <span id="timerText">03:00</span></div>
+      <div id="quizArea">
+        <form id="quizForm">
+          <div class="question"><b>Q1. What is Form Validation?</b><label><input type="radio" name="q1" value="a"> Checking form before sending - Name, email, password</label><label><input type="radio" name="q1" value="b"> Adding color to form</label><label><input type="radio" name="q1" value="c"> Adding image to form</label><label><input type="radio" name="q1" value="d"> Deleting form</label></div>
+          <div class="question"><b>Q2. How to check if name is empty?</b><label><input type="radio" name="q2" value="a"> name.trim() === ""</label><label><input type="radio" name="q2" value="b"> name === 0</label><label><input type="radio" name="q2" value="c"> name.length === 100</label><label><input type="radio" name="q2" value="d"> name === null only</label></div>
+          <div class="question"><b>Q3. Valid email must have?</b><label><input type="radio" name="q3" value="a"> @ and . , . after @</label><label><input type="radio" name="q3" value="b"> Only @</label><label><input type="radio" name="q3" value="c"> Only .</label><label><input type="radio" name="q3" value="d"> Nothing</label></div>
+          <div class="question"><b>Q4. How to check passwords match?</b><label><input type="radio" name="q4" value="a"> pass === confirmPass</label><label><input type="radio" name="q4" value="b"> pass = confirmPass</label><label><input type="radio" name="q4" value="c"> pass > confirmPass</label><label><input type="radio" name="q4" value="d"> pass + confirmPass</label></div>
+          <div class="question"><b>Q5. What does return false do in onsubmit?</b><label><input type="radio" name="q5" value="a"> Stops form from submitting</label><label><input type="radio" name="q5" value="b"> Submits form</label><label><input type="radio" name="q5" value="c"> Deletes form</label><label><input type="radio" name="q5" value="d"> Nothing</label></div>
+          <div class="question"><b>Q6. What does return true do in onsubmit?</b><label><input type="radio" name="q6" value="a"> Allows form to submit</label><label><input type="radio" name="q6" value="b"> Stops form</label><label><input type="radio" name="q6" value="c"> Deletes form</label><label><input type="radio" name="q6" value="d"> Nothing</label></div>
+          <div class="question"><b>Q7. Why use trim()?</b><label><input type="radio" name="q7" value="a"> To remove spaces - So "   " is treated as empty</label><label><input type="radio" name="q7" value="b"> To add color</label><label><input type="radio" name="q7" value="c"> To make uppercase</label><label><input type="radio" name="q7" value="d"> To delete input</label></div>
+          <div class="question"><b>Q8. Password length is 4. What should happen if min is 6?</b><label><input type="radio" name="q8" value="a"> Show error - Too short</label><label><input type="radio" name="q8" value="b"> Accept it</label><label><input type="radio" name="q8" value="c"> Show success</label><label><input type="radio" name="q8" value="d"> Nothing</label></div>
+          <div class="question"><b>Q9. Which is a valid email?</b><label><input type="radio" name="q9" value="a"> ali@gmail.com</label><label><input type="radio" name="q9" value="b"> aligmail.com</label><label><input type="radio" name="q9" value="c"> ali@gmailcom</label><label><input type="radio" name="q9" value="d"> ali@.com</label></div>
+          <div class="question"><b>Q10. Best practice for validation?</b><label><input type="radio" name="q10" value="a"> Live check on oninput + Final check on onsubmit</label><label><input type="radio" name="q10" value="b"> Only on submit</label><label><input type="radio" name="q10" value="c"> No check at all</label><label><input type="radio" name="q10" value="d"> Only on page load</label></div>
+          <button type="button" class="btn" onclick="checkTest(false)">Submit Test - Check Result</button>
+          <button type="button" class="btn btn-next" onclick="resetTest()">Try Again</button>
+        </form>
+      </div>
+      <div id="scoreBox">
+        <h3 id="scoreText"></h3>
+        <p id="scoreMsg"></p>
+        <a id="nextBtn" class="btn" href="/lesson33" style="display:none">🎉 You Passed! Go to Lesson 33 →</a>
+        <br><br>
+        <button class="btn btn-next" onclick="showLesson()">← Back to Lesson (Unlocked)</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h3>LearnHTMLCSSJS.com</h3>
+      <p>Free HTML CSS JS course in simple English. Learn from zero to web developer with 50 lessons, tests, playground and ranking.</p>
+      <h4>Quick Links</h4>
+      <a href="/">🏠 Home</a><br>
+      <a href="/dashboard">📊 Dashboard</a><br>
+      <a href="/ranking">🏆 Ranking</a><br>
+      <a href="/playground">▶ Playground - Try Code</a><br>
+      <a href="/lesson1">📖 Start Lesson 1 - What is HTML?</a>
+    </div>
+    <div>
+      <h3>Next Lessons - Continue Learning</h3>
+      <a href="/lesson33">Lesson 33 - LocalStorage</a><br>
+      <a href="/lesson34">Lesson 34 - Timers</a><br>
+      <a href="/lesson35">Lesson 35 - Calculator</a><br>
+      <a href="/lesson36">Lesson 36 - To-Do List</a><br>
+      <a href="/lesson37">Lesson 37 - Quiz App</a>
+      <h4>JavaScript Course (21-40)</h4>
+      <a href="/lesson38">Lesson 38 - Password Generator</a>
+    </div>
+    <div>
+      <h3>JavaScript Course (21-40)</h3>
+      <a href="/lesson39">Lesson 39 - Weather App</a><br>
+      <a href="/lesson40">Lesson 40 - JS Revision</a><br>
+      <h4>Projects & Career (41-50)</h4>
+      <a href="/lesson41">Lesson 41 - Full Website Project</a><br>
+      <a href="/lesson42">Lesson 42 - Portfolio Website</a><br>
+      <a href="/lesson43">Lesson 43 - Landing Page</a><br>
+      <a href="/lesson44">Lesson 44 - Navbar & Footer</a><br>
+      <a href="/lesson45">Lesson 45 - Final Project</a><br>
+      <a href="/lesson46">Lesson 46 - SEO Basics</a><br>
+      <a href="/lesson47">Lesson 47 - Deploy Free</a><br>
+      <a href="/lesson48">Lesson 48 - Freelancing Guide</a><br>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a><br>
+      <a href="/lesson50">Lesson 50 - Final Exam & Certificate</a>
+    </div>
+  </div>
+  <div style="max-width:1100px;margin:25px auto 0;border-top:1px solid #1e293b;padding-top:20px">
+    <h3 style="text-align:center">📚 All 50 Lessons - Complete HTML CSS JS Course</h3>
+    <div class="all-lessons">
+      <a href="/lesson1">Lesson 1 - What is HTML?</a>
+      <a href="/lesson2">Lesson 2 - Headings & Paragraphs</a>
+      <a href="/lesson3">Lesson 3 - Text Formatting</a>
+      <a href="/lesson4">Lesson 4 - Links & Images</a>
+      <a href="/lesson5">Lesson 5 - Lists</a>
+      <a href="/lesson6">Lesson 6 - Tables</a>
+      <a href="/lesson7">Lesson 7 - Forms</a>
+      <a href="/lesson8">Lesson 8 - Div & Span</a>
+      <a href="/lesson9">Lesson 9 - Semantic HTML</a>
+      <a href="/lesson10">Lesson 10 - HTML Project</a>
+      <a href="/lesson11">Lesson 11 - What is CSS?</a>
+      <a href="/lesson12">Lesson 12 - Colors</a>
+      <a href="/lesson13">Lesson 13 - Text Styling</a>
+      <a href="/lesson14">Lesson 14 - Box Model</a>
+      <a href="/lesson15">Lesson 15 - Flexbox</a>
+      <a href="/lesson16">Lesson 16 - Grid</a>
+      <a href="/lesson17">Lesson 17 - Responsive</a>
+      <a href="/lesson18">Lesson 18 - Buttons</a>
+      <a href="/lesson19">Lesson 19 - Forms Styling</a>
+      <a href="/lesson20">Lesson 20 - CSS Project</a>
+      <a href="/lesson21">Lesson 21 - What is JS?</a>
+      <a href="/lesson22">Lesson 22 - Variables</a>
+      <a href="/lesson23">Lesson 23 - Data Types</a>
+      <a href="/lesson24">Lesson 24 - If-Else</a>
+      <a href="/lesson25">Lesson 25 - Loops</a>
+      <a href="/lesson26">Lesson 26 - Functions</a>
+      <a href="/lesson27">Lesson 27 - Arrays</a>
+      <a href="/lesson28">Lesson 28 - Objects</a>
+      <a href="/lesson29">Lesson 29 - Strings</a>
+      <a href="/lesson30">Lesson 30 - DOM</a>
+      <a href="/lesson31">Lesson 31 - Events</a>
+      <a href="/lesson32" class="current">Lesson 32 - Form Validation</a>
+      <a href="/lesson33">Lesson 33 - LocalStorage</a>
+      <a href="/lesson34">Lesson 34 - Timers</a>
+      <a href="/lesson35">Lesson 35 - Calculator</a>
+      <a href="/lesson36">Lesson 36 - To-Do List</a>
+      <a href="/lesson37">Lesson 37 - Quiz App</a>
+      <a href="/lesson38">Lesson 38 - Password Generator</a>
+      <a href="/lesson39">Lesson 39 - Weather App</a>
+      <a href="/lesson40">Lesson 40 - JS Revision</a>
+      <a href="/lesson41">Lesson 41 - Full Website</a>
+      <a href="/lesson42">Lesson 42 - Portfolio</a>
+      <a href="/lesson43">Lesson 43 - Landing Page</a>
+      <a href="/lesson44">Lesson 44 - Navbar</a>
+      <a href="/lesson45">Lesson 45 - Final Project</a>
+      <a href="/lesson46">Lesson 46 - SEO</a>
+      <a href="/lesson47">Lesson 47 - Deploy</a>
+      <a href="/lesson48">Lesson 48 - Freelancing</a>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a>
+      <a href="/lesson50">Lesson 50 - Final Exam</a>
+    </div>
+    <p style="text-align:center;margin-top:15px">You are learning <a href="/lesson32">Form Validation - Lesson 32</a> | Previous: <a href="/lesson31">Events - Lesson 31</a> | Next: <a href="/lesson33">LocalStorage - Lesson 33</a> | <a href="/lesson50">Jump to Final Exam - Lesson 50</a></p>
+  </div>
+  <div class="footer-bottom">© 2026 LearnHTMLCSSJS.com - Free Course | <a href="/">Home</a> | <a href="/lesson32">Lesson 32</a> | <a href="/lesson50">Lesson 50</a> | Made for Beginners</div>
+</footer>
+
+<script>
+// ===== GUEST TEST HANDLER - Only inside <script> =====
+const IS_LOGGED_IN = <%= (typeof user !== 'undefined' && user) ? 'true' : 'false' %>;
+function saveTestResult(lessonName, score, testStatus, onSaved) {
+  if (!IS_LOGGED_IN) { if (onSaved) onSaved(null); return; }
+  fetch('/save-result', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ lesson: lessonName, score: score, status: testStatus }) })
+  .then(r => r.json())
+  .then(data => { if (onSaved) onSaved(data); })
+  .catch(() => { if (onSaved) onSaved(null); });
+}
+function showGuestSignupPopup(score) {
+  let wantSignup = confirm("🎉 You scored " + score + "/100!\n\nYour score is NOT saved because you are not logged in.\n\nClick OK to Signup FREE and Save Your Score in Dashboard & Ranking.\nClick Cancel to continue without saving.");
+  if (wantSignup) { window.location.href = "/signup"; }
+}
+// ===== GUEST HANDLER END =====
+function setState(inputId,errId,msg,isOk){let inp=document.getElementById(inputId);let e=document.getElementById(errId);e.innerText=msg;e.className=isOk?"ok":"err";inp.className="demo-input "+(isOk?"success":"error");return isOk;}
+function validateName(){let v=document.getElementById('vName').value.trim();if(v==="")return setState('vName','nameErr',"❌ Name is required!",false);if(v.length<3)return setState('vName','nameErr',"❌ Name must be at least 3 letters!",false);return setState('vName','nameErr',"✅ Good name!",true);}
+function validateEmail(){let v=document.getElementById('vEmail').value.trim();if(v==="")return setState('vEmail','emailErr',"❌ Email is required!",false);if(!v.includes("@")||!v.includes("."))return setState('vEmail','emailErr',"❌ Invalid Email! Must have @ and .",false);if(v.indexOf("@")>v.lastIndexOf("."))return setState('vEmail','emailErr',"❌ Invalid! . must come after @",false);return setState('vEmail','emailErr',"✅ Valid email!",true);}
+function validatePass(){let v=document.getElementById('vPass').value;let bar=document.getElementById('passBar');if(v.length===0){bar.style.width="0%";return setState('vPass','passErr',"❌ Password is required!",false);}if(v.length<6){bar.style.width="30%";bar.style.background="#dc2626";return setState('vPass','passErr',"❌ Too short! Min 6 characters.",false);}if(v.length<10){bar.style.width="65%";bar.style.background="#f59e0b";return setState('vPass','passErr',"⚠️ Medium password - Try 10+ for strong.",true);}bar.style.width="100%";bar.style.background="#16a34a";return setState('vPass','passErr',"✅ Strong password!",true);}
+function validateConfirm(){let p=document.getElementById('vPass').value;let c=document.getElementById('vConfirm').value;if(c==="")return setState('vConfirm','confirmErr',"❌ Please confirm password!",false);if(p!==c)return setState('vConfirm','confirmErr',"❌ Passwords do not match!",false);return setState('vConfirm','confirmErr',"✅ Passwords match!",true);}
+function submitForm(){let a=validateName();let b=validateEmail();let c=validatePass();let d=validateConfirm();if(a&&b&&c&&d){document.getElementById('formResult').innerText="🎉 Account Created! Welcome, "+document.getElementById('vName').value.trim()+"!";alert("Success! Form Submitted!");}else{document.getElementById('formResult').innerText="❌ Please fix errors above!";}}
+function resetForm(){["vName","vEmail","vPass","vConfirm"].forEach(id=>{document.getElementById(id).value="";document.getElementById(id).className="demo-input";});["nameErr","emailErr","passErr","confirmErr"].forEach(id=>{document.getElementById(id).innerText="";});document.getElementById('passBar').style.width="0%";document.getElementById('formResult').innerText="Create Your Account 📝";}
+let testRunning=false;let timerInterval=null;let timeLeft=180;
+function showLesson(){if(testRunning){alert("🔒 Test is running! Please submit the test first. All tabs are locked.");return;}document.getElementById('lessonContent').style.display='block';document.getElementById('testContent').style.display='none';document.getElementById('lessonTabBtn').classList.add('active');document.getElementById('lessonTabBtn').classList.remove('test-active');document.getElementById('testTabBtn').classList.remove('active');document.getElementById('testTabBtn').classList.remove('test-active');window.scrollTo({top:0,behavior:'smooth'});}
+function showTest(){document.getElementById('lessonContent').style.display='none';document.getElementById('testContent').style.display='block';document.getElementById('testTabBtn').classList.add('active');document.getElementById('testTabBtn').classList.add('test-active');document.getElementById('lessonTabBtn').classList.remove('active');window.scrollTo({top:0,behavior:'smooth'});}
+function lockTabs(){testRunning=true;document.getElementById('lessonTabBtn').classList.add('disabled');document.getElementById('lockMsg').style.display='block';document.getElementById('homeLink').classList.add('disabled');document.getElementById('playgroundLink').style.pointerEvents='none';document.getElementById('playgroundLink').style.opacity='0.5';document.getElementById('nextLessonLink').style.pointerEvents='none';document.getElementById('nextLessonLink').style.opacity='0.5';}
+function unlockTabs(){testRunning=false;clearInterval(timerInterval);document.getElementById('lessonTabBtn').classList.remove('disabled');document.getElementById('lockMsg').style.display='none';document.getElementById('homeLink').classList.remove('disabled');document.getElementById('playgroundLink').style.pointerEvents='auto';document.getElementById('playgroundLink').style.opacity='1';document.getElementById('nextLessonLink').style.pointerEvents='auto';document.getElementById('nextLessonLink').style.opacity='1';document.getElementById('timerBar').style.display='none';}
+function startTest(){document.getElementById('startScreen').style.display='none';document.getElementById('quizArea').style.display='block';document.getElementById('timerBar').style.display='block';document.getElementById('scoreBox').style.display='none';lockTabs();timeLeft=180;updateTimer();timerInterval=setInterval(function(){timeLeft--;updateTimer();if(timeLeft<=0){clearInterval(timerInterval);alert("⏰ Time Up! Your test is auto-submitted.");checkTest(true);}},1000);}
+function updateTimer(){let m=Math.floor(timeLeft/60);let s=timeLeft%60;document.getElementById('timerText').innerText=(m<10?"0"+m:m)+":"+(s<10?"0"+s:s);if(timeLeft<=30){document.getElementById('timerBar').classList.add('warning');}}
+function checkTest(isAuto){
+  let answers={q1:'a',q2:'a',q3:'a',q4:'a',q5:'a',q6:'a',q7:'a',q8:'a',q9:'a',q10:'a'};
+  let score=0;let attempted=0;
+  for(let q in answers){let selected=document.querySelector('input[name="'+q+'"]:checked');if(selected){attempted++;if(selected.value===answers[q])score+=10;}}
+  if(!isAuto && attempted<10){alert("Please answer all 10 questions! You have answered only "+attempted+" questions.");return;}
+  unlockTabs();
+  let testStatus=score>=80?'Pass':'Fail';
+  saveTestResult('Lesson 32 - Form Validation', score, testStatus, function(data){
+    if (!IS_LOGGED_IN && score >= 80) {
+      setTimeout(() => showGuestSignupPopup(score), 500);
+    }
+  });
+  let box=document.getElementById('scoreBox');let scoreText=document.getElementById('scoreText');let scoreMsg=document.getElementById('scoreMsg');let nextBtn=document.getElementById('nextBtn');box.style.display='block';scoreText.innerText="Your Score: "+score+" / 100";
+  if(score>=80){box.className='pass';scoreMsg.innerText="🎉 Congratulations! You PASSED. You have learned Lesson 32. Now all tabs are unlocked.";nextBtn.style.display='inline-block';}
+  else{box.className='fail';scoreMsg.innerText="😔 You FAILED. Passing marks are 80. All tabs are now unlocked. Read the lesson again and try again.";nextBtn.style.display='none';}
+  box.scrollIntoView({behavior:'smooth'});
+}
+function resetTest(){clearInterval(timerInterval);testRunning=false;document.getElementById('quizForm').reset();document.getElementById('scoreBox').style.display='none';document.getElementById('quizArea').style.display='none';document.getElementById('startScreen').style.display='block';document.getElementById('timerBar').style.display='none';unlockTabs();}
+</script>
+</body>
+</html>

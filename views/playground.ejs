@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Playground - Try HTML CSS JS Live</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+  body{background:#0f172a;color:white;width:100%}
+  header{background:#0f172a;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;border-bottom:1px solid #334155;width:100%}
+  header h1{font-size:22px}
+  header h1 span{color:#38bdf8}
+  header a{color:#38bdf8;text-decoration:none;font-size:14px}
+  .top-bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .btn{border:none;padding:9px 16px;border-radius:7px;font-weight:bold;cursor:pointer;font-size:14px}
+  .btn-run{background:#16a34a;color:white}
+  .btn-clear{background:#dc2626;color:white}
+  .btn-copy{background:#2563eb;color:white}
+  .btn-sample{background:#f59e0b;color:white}
+  .main{display:flex;width:100%;height:calc(100vh - 62px)}
+  .editors{width:50%;display:flex;flex-direction:column;background:#1e293b;padding:10px;gap:10px}
+  .editor-box{flex:1;display:flex;flex-direction:column;background:#0f172a;border-radius:10px;overflow:hidden}
+  .editor-box label{padding:8px 12px;font-size:13px;font-weight:bold}
+  .label-html{background:#f97316}
+  .label-css{background:#2563eb}
+  .label-js{background:#eab308;color:black}
+  textarea{flex:1;width:100%;background:#0f172a;color:#e2e8f0;border:none;outline:none;padding:12px;font-family:monospace;font-size:14px;line-height:1.6;resize:none}
+  .preview-wrap{width:50%;display:flex;flex-direction:column;background:white}
+  .preview-head{background:#f1f5f9;color:#0f172a;padding:10px 12px;font-weight:bold;font-size:14px;display:flex;justify-content:space-between}
+  iframe{flex:1;width:100%;border:none;background:white}
+  @media(max-width:768px){
+    .main{flex-direction:column;height:auto}
+    .editors{width:100%;height:600px}
+    .preview-wrap{width:100%;height:400px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Learn HTML CSS <span>&lt;/&gt; Playground</span></h1>
+  <div class="top-bar">
+    <a href="/">← Home</a>
+    <a href="/lesson1">Lesson 1</a>
+    <button class="btn btn-sample" onclick="loadSample()">Load Sample</button>
+    <button class="btn btn-copy" onclick="copyCode()">Copy Code</button>
+    <button class="btn btn-clear" onclick="clearAll()">Clear</button>
+    <button class="btn btn-run" onclick="run()">▶ Run</button>
+  </div>
+</header>
+
+<div class="main">
+  <div class="editors">
+    <div class="editor-box">
+      <label class="label-html">HTML</label>
+      <textarea id="htmlCode" oninput="run()"><h1>Hello World!</h1>
+<p>This is my first website.</p>
+<button onclick="sayHi()">Click Me</button></textarea>
+    </div>
+    <div class="editor-box">
+      <label class="label-css">CSS</label>
+      <textarea id="cssCode" oninput="run()">h1{color:#2563eb;text-align:center}
+p{text-align:center;font-size:18px}
+button{background:#16a34a;color:white;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;display:block;margin:20px auto}</textarea>
+    </div>
+    <div class="editor-box">
+      <label class="label-js">JAVASCRIPT</label>
+      <textarea id="jsCode" oninput="run()">function sayHi(){
+  alert("Hello! You clicked the button");
+}</textarea>
+    </div>
+  </div>
+
+  <div class="preview-wrap">
+    <div class="preview-head">Live Result <span>Auto updates as you type</span></div>
+    <iframe id="output"></iframe>
+  </div>
+</div>
+
+<script>
+function run(){
+  let html = document.getElementById('htmlCode').value;
+  let css = document.getElementById('cssCode').value;
+  let js = document.getElementById('jsCode').value;
+  let output = document.getElementById('output');
+  let doc = output.contentDocument || output.contentWindow.document;
+  // FIX: script tag ko tor ke likha hai taake EJS error na de
+  let s1 = '<scr' + 'ipt>';
+  let s2 = '</scr' + 'ipt>';
+  let st1 = '<sty' + 'le>';
+  let st2 = '</sty' + 'le>';
+  doc.open();
+  doc.write(html + st1 + css + st2 + s1 + js + s2);
+  doc.close();
+}
+function clearAll(){
+  document.getElementById('htmlCode').value = "";
+  document.getElementById('cssCode').value = "";
+  document.getElementById('jsCode').value = "";
+  run();
+}
+function copyCode(){
+  let all = document.getElementById('htmlCode').value;
+  navigator.clipboard.writeText(all);
+  alert("Code Copied!");
+}
+function loadSample(){
+  document.getElementById('htmlCode').value = "<h1>My Profile Card</h1>\n<div class='card'>\n  <h2>Ali Khan</h2>\n  <p>I am learning HTML & CSS</p>\n</div>";
+  document.getElementById('cssCode').value = "body{font-family:Arial;text-align:center;background:#f1f5f9}\n.card{background:white;padding:20px;border-radius:12px;max-width:300px;margin:20px auto}";
+  document.getElementById('jsCode').value = "function sayHi(){\n  alert('Thanks!');\n}";
+  run();
+}
+run();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ===== SEO START ===== -->
+<title>Arrays in JavaScript - List of Values - Lesson 27 | LearnHTMLCSSJS.com</title>
+<meta name="description" content="Learn Arrays in JavaScript - Lesson 27. What is an array, index, length, push, pop, shift, unshift, loop through array. Live shopping list demo. Free Course for Beginners.">
+<meta name="keywords" content="javascript arrays, array methods, push pop, array index, lesson 27, learn javascript arrays">
+<meta name="author" content="LearnHTMLCSSJS.com">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://learnhtmlcssjs.com/lesson27">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Arrays in JavaScript - List of Values - Lesson 27">
+<meta property="og:description" content="Learn Arrays - Store many values in one variable. Index, push, pop, loop with live shopping list demo.">
+<meta property="og:url" content="https://learnhtmlcssjs.com/lesson27">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Course","name":"Learn HTML CSS JS - Free Course","description":"Learn HTML, CSS and JavaScript for beginners in simple English. 50 lessons from zero to web developer.","provider":{"@type":"Organization","name":"LearnHTMLCSSJS.com"}}
+</script>
+<!-- ===== SEO END ===== -->
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+  body{background:#f4f6f8;color:#222}
+  header{background:#0f172a;color:white;padding:20px;text-align:center;width:100%}
+  header a{color:#38bdf8;text-decoration:none;font-size:14px}
+  header a.disabled{color:#64748b;pointer-events:none}
+  .container{width:100%;max-width:100%;margin:0 auto;background:white;padding:30px 40px}
+  h1{font-size:28px;margin-bottom:10px;line-height:1.3}
+  h2{margin:20px 0 10px;color:#0f172a}
+  p{line-height:1.7;margin-bottom:12px}
+  .note{background:#eff6ff;border-left:5px solid #2563eb;padding:12px;border-radius:8px;margin:15px 0}
+  .code-box{background:#0f172a;color:#e2e8f0;padding:15px;border-radius:10px;overflow-x:auto;margin:10px 0}
+  .code-box code{font-family:monospace;font-size:15px;line-height:1.6}
+  .tag{color:#f472b6}.text{color:white}.attr{color:#facc15}.val{color:#86efac}
+  .btn{display:inline-block;background:#16a34a;color:white;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:bold;margin-top:10px;border:none;cursor:pointer;font-size:16px}
+  .btn-next{background:#2563eb}
+  .btn-prev{background:#64748b}
+  .btn-js{background:#f59e0b;color:white}
+  .nav{display:flex;justify-content:space-between;margin-top:25px}
+  .result{border:2px dashed #cbd5e1;padding:15px;border-radius:10px;margin-top:10px;background:#f8fafc}
+  .box{background:#e0f2fe;padding:10px;border-radius:8px;margin-top:10px;line-height:1.8}
+  .tabs{display:flex;gap:10px;margin-bottom:20px;position:sticky;top:0;background:white;padding:10px 0;z-index:10;border-bottom:2px solid #e2e8f0}
+  .tab-btn{flex:1;padding:14px;border:none;border-radius:10px;font-size:17px;font-weight:bold;cursor:pointer;background:#e2e8f0;color:#334155}
+  .tab-btn.active{background:#0f172a;color:white}
+  .tab-btn.test-active{background:#16a34a;color:white}
+  .tab-btn.disabled{opacity:0.5;pointer-events:none;cursor:not-allowed}
+  #lessonContent{display:block}
+  #testContent{display:none}
+  .test-box{border:2px solid #0f172a;border-radius:12px;padding:20px;background:#f8fafc}
+  .test-info{background:#fef3c7;padding:12px;border-radius:8px;margin-bottom:15px;line-height:1.7}
+  .question{background:white;padding:15px;border-radius:10px;margin-bottom:12px;border:1px solid #e2e8f0}
+  .question b{display:block;margin-bottom:8px}
+  .question label{display:block;padding:8px 10px;margin:4px 0;background:#f1f5f9;border-radius:7px;cursor:pointer}
+  .question label:hover{background:#e0f2fe}
+  .question input{margin-right:8px}
+  #scoreBox{display:none;padding:20px;border-radius:10px;text-align:center;margin-top:15px}
+  #scoreBox.pass{background:#dcfce7;border:2px solid #16a34a}
+  #scoreBox.fail{background:#fee2e2;border:2px solid #dc2626}
+  #scoreBox h3{font-size:26px;margin-bottom:5px}
+  #startScreen{text-align:center;padding:30px 10px}
+  #timerBar{display:none;position:sticky;top:60px;z-index:20;background:#dc2626;color:white;padding:12px 15px;border-radius:10px;font-weight:bold;font-size:18px;text-align:center;margin-bottom:15px}
+  #timerBar.warning{background:#ea580c}
+  #quizArea{display:none}
+  .lock-msg{background:#fee2e2;color:#991b1b;padding:10px;border-radius:8px;margin-bottom:12px;text-align:center;font-weight:bold;display:none}
+  table{width:100%;border-collapse:collapse;margin:10px 0;background:white}
+  th,td{border:1px solid #e2e8f0;padding:10px;text-align:left}
+  th{background:#0f172a;color:white}
+  .breadcrumb{font-size:13px;color:#94a3b8;margin-bottom:8px}
+  .breadcrumb a{color:#38bdf8;text-decoration:none}
+  .demo-card{background:white;border:1px solid #e2e8f0;border-radius:12px;padding:20px;text-align:center;margin-top:12px}
+  .demo-input{width:100%;padding:12px;border:2px solid #e2e8f0;border-radius:8px;font-size:15px;outline:none;margin:6px 0}
+  .demo-input:focus{border-color:#2563eb;box-shadow:0 0 0 3px #dbeafe}
+  .pill{display:inline-block;background:#e0f2fe;color:#0f172a;padding:6px 12px;border-radius:20px;margin:3px;font-weight:bold}
+  footer{background:#0f172a;color:#cbd5e1;padding:35px 30px}
+  footer h3{color:white;font-size:20px;margin-bottom:12px}
+  footer h4{color:white;font-size:16px;margin:20px 0 10px}
+  footer p{font-size:14px;line-height:1.7;color:#94a3b8}
+  footer a{color:#38bdf8;text-decoration:none;font-size:14px;line-height:2}
+  footer a:hover{color:white;text-decoration:underline}
+  .footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:25px;max-width:1100px;margin:0 auto}
+  .all-lessons{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:10px}
+  .all-lessons a{background:#1e293b;padding:8px 10px;border-radius:8px;text-align:center;display:block;color:#e2e8f0;font-weight:bold;line-height:1.4}
+  .all-lessons a:hover{background:#2563eb;color:white;text-decoration:none}
+  .all-lessons a.current{background:#16a34a;color:white}
+  .footer-bottom{text-align:center;border-top:1px solid #1e293b;margin-top:25px;padding-top:15px;font-size:13px;color:#64748b}
+  @media(max-width:700px){.footer-grid{grid-template-columns:1fr}.all-lessons{grid-template-columns:1fr 1fr}.container{padding:20px}}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="breadcrumb"><a href="/">Home</a> &gt; <a href="/lesson27">JavaScript Course</a> &gt; Lesson 27 - Arrays</p>
+  <p><a id="homeLink" href="/">← Back to Home</a> | JavaScript Course - Lesson 27 / 50</p>
+  <h1>Lesson 27: Arrays - Store Many Values in One Variable</h1>
+  <p>List of Names, Prices, Students | LearnHTMLCSSJS.com</p>
+</header>
+
+<div class="container">
+  <div class="tabs">
+    <button id="lessonTabBtn" class="tab-btn active" onclick="showLesson()">📖 Lesson</button>
+    <button id="testTabBtn" class="tab-btn" onclick="showTest()">📝 Test - 100 Marks</button>
+  </div>
+  <div id="lockMsg" class="lock-msg">🔒 Test is running! All tabs are locked until you submit the test or time ends.</div>
+
+  <div id="lessonContent">
+    <h2>1. What is an Array?</h2>
+    <p><b>Array = A List.</b> One variable that stores many values together in order.</p>
+    <p>Example: You have 100 students. Without an array, you need 100 variables - student1, student2, student3... With an array, you need only 1 variable - <code>students</code>.</p>
+    <div class="note"><b>Real Life Example:</b> A shopping list, a class attendance list, a playlist of songs. All of these are arrays - a list of items in one place.</div>
+    <h2>2. LIVE DEMO - Shopping List</h2>
+    <p>Add items, remove items. This is an array:</p>
+    <div class="demo-card">
+      <h3 style="margin:0">🛒 My Shopping List</h3>
+      <p id="demoList" style="margin:12px 0">Loading list...</p>
+      <p style="color:#64748b">Total Items: <b id="demoCount">0</b></p>
+      <input class="demo-input" id="itemInput" type="text" placeholder="Type item - e.g. Milk">
+      <button class="btn btn-js" onclick="addItem()">Add Item ➕</button>
+      <button class="btn btn-next" onclick="removeItem()">Remove Last ➖</button>
+      <button class="btn" onclick="resetDemo()">Reset ↺</button>
+    </div>
+    <h2>3. How to Create an Array?</h2>
+    <div class="code-box"><code>
+<span class="text">let fruits = ["Apple", "Banana", "Mango"];</span><br>
+<span class="text">let marks = [85, 90, 78, 92];</span><br>
+<span class="text">let mixed = ["Ali", 20, true]; // Array can hold different types</span><br>
+<span class="text">let empty = []; // Empty array</span>
+    </code></div>
+    <p>Array uses <b>square brackets [ ]</b>. Values are separated by <b>comma ,</b>.</p>
+    <h2>4. Index - Position Number</h2>
+    <p>Every item in an array has a position number called <b>Index</b>. Index always starts from <b>0</b>, not 1.</p>
+    <table>
+      <tr><th>Index</th><th>0</th><th>1</th><th>2</th></tr>
+      <tr><td>Value</td><td>"Apple"</td><td>"Banana"</td><td>"Mango"</td></tr>
+    </table>
+    <div class="code-box"><code>
+<span class="text">let fruits = ["Apple", "Banana", "Mango"];</span><br><br>
+<span class="text">console.log(fruits[0]); // "Apple" - First item</span><br>
+<span class="text">console.log(fruits[1]); // "Banana"</span><br>
+<span class="text">console.log(fruits[2]); // "Mango" - Last item</span><br>
+<span class="text">console.log(fruits[3]); // undefined - No item at 3</span><br><br>
+<span class="text">fruits[1] = "Orange"; // Change Banana to Orange</span><br>
+<span class="text">console.log(fruits); // ["Apple", "Orange", "Mango"]</span>
+    </code></div>
+    <div class="note"><b>Biggest Beginner Mistake:</b> People think first item is at index 1. It is at index 0. So last item is always at <code>length - 1</code>.</div>
+    <h2>5. length - How Many Items?</h2>
+    <div class="code-box"><code>
+<span class="text">let fruits = ["Apple", "Banana", "Mango"];</span><br>
+<span class="text">console.log(fruits.length); // 3</span><br><br>
+<span class="text">console.log(fruits[fruits.length - 1]); // "Mango" - Last item trick</span>
+    </code></div>
+    <h2>6. Array Methods - Add / Remove</h2>
+    <table>
+      <tr><th>Method</th><th>What It Does</th><th>Example</th><th>Result</th></tr>
+      <tr><td><b>push()</b></td><td>Add at END</td><td>fruits.push("Grapes")</td><td>["Apple","Banana","Mango","Grapes"]</td></tr>
+      <tr><td><b>pop()</b></td><td>Remove from END</td><td>fruits.pop()</td><td>Removes "Grapes"</td></tr>
+      <tr><td><b>unshift()</b></td><td>Add at START</td><td>fruits.unshift("Kiwi")</td><td>["Kiwi","Apple",...]</td></tr>
+      <tr><td><b>shift()</b></td><td>Remove from START</td><td>fruits.shift()</td><td>Removes "Kiwi"</td></tr>
+      <tr><td><b>includes()</b></td><td>Check if exists?</td><td>fruits.includes("Apple")</td><td>true / false</td></tr>
+      <tr><td><b>indexOf()</b></td><td>Find position</td><td>fruits.indexOf("Mango")</td><td>2</td></tr>
+    </table>
+    <div class="code-box"><code>
+<span class="text">let fruits = ["Apple", "Banana"];</span><br>
+<span class="text">fruits.push("Mango"); // ["Apple", "Banana", "Mango"]</span><br>
+<span class="text">fruits.pop(); // ["Apple", "Banana"] - Mango removed</span><br>
+<span class="text">fruits.unshift("Kiwi"); // ["Kiwi", "Apple", "Banana"]</span><br>
+<span class="text">fruits.shift(); // ["Apple", "Banana"] - Kiwi removed</span>
+    </code></div>
+    <h2>7. Loop Through Array - Show All Items</h2>
+    <p>Loop + Array are best friends. Loop runs through all items one by one.</p>
+    <div class="code-box"><code>
+<span class="text">let fruits = ["Apple", "Banana", "Mango"];</span><br><br>
+<span class="text">for (let i = 0; i < fruits.length; i++) {</span><br>
+&nbsp;&nbsp;<span class="text">console.log(i + " - " + fruits[i]);</span><br>
+<span class="text">}</span><br><br>
+<span class="comment" style="color:#94a3b8">// Output: 0 - Apple, 1 - Banana, 2 - Mango</span>
+    </code></div>
+    <p><b>Remember:</b> Loop starts from <code>i = 0</code> for arrays, because index starts from 0. Loop runs while <code>i &lt; length</code>, not <code>i &lt;= length</code>.</p>
+    <h2>8. Complete Example - Student List</h2>
+    <div class="code-box"><code>
+<span class="tag">&lt;!DOCTYPE html&gt;</span><br>
+<span class="tag">&lt;html&gt;</span><br>
+<span class="tag">&lt;body&gt;</span><br><br>
+&nbsp;&nbsp;<span class="tag">&lt;h1</span> <span class="attr">id</span>=<span class="val">"list"</span><span class="tag">&gt;</span><span class="text">Students</span><span class="tag">&lt;/h1&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;input</span> <span class="attr">id</span>=<span class="val">"name"</span> <span class="attr">type</span>=<span class="val">"text"</span> <span class="attr">placeholder</span>=<span class="val">"Student Name"</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;button</span> <span class="attr">onclick</span>=<span class="val">"addStudent()"</span><span class="tag">&gt;</span><span class="text">Add Student</span><span class="tag">&lt;/button&gt;</span><br><br>
+&nbsp;&nbsp;<span class="tag">&lt;script&gt;</span><br>
+&nbsp;&nbsp;<span class="text">let students = ["Ali", "Sara"];</span><br><br>
+&nbsp;&nbsp;<span class="text">function showStudents() {</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">let html = "";</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">for (let i = 0; i < students.length; i++) {</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">html = html + (i + 1) + ". " + students[i] + "&lt;br&gt;";</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">}</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">document.getElementById("list").innerHTML = html;</span><br>
+&nbsp;&nbsp;<span class="text">}</span><br><br>
+&nbsp;&nbsp;<span class="text">function addStudent() {</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">let n = document.getElementById("name").value;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">if (n !== "") { students.push(n); showStudents(); }</span><br>
+&nbsp;&nbsp;<span class="text">}</span><br><br>
+&nbsp;&nbsp;<span class="text">showStudents(); // Show on page load</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;/script&gt;</span><br>
+<span class="tag">&lt;/body&gt;</span><br>
+<span class="tag">&lt;/html&gt;</span>
+    </code></div>
+    <h2>9. Homework</h2>
+    <p>In Playground, build this:</p>
+    <p>1. Array <code>let prices = [100, 200, 300]</code> - Use loop to show total of all prices<br>2. Array of 5 friends names - Use loop to show all names on page<br>3. Shopping list like demo - Input + Add button with push(), Remove button with pop()</p>
+    <div class="box"><b>Remember:</b> Array = List in [ ] | Index starts from 0 | length = How many items | Last item = array[length - 1] | push() = Add at end | pop() = Remove from end | unshift() = Add at start | shift() = Remove from start | Loop for array: for (let i = 0; i < array.length; i++)</div>
+    <p><b>Next Step:</b> <a href="/lesson28">Lesson 28 - Objects</a> - Learn how to store one person with name, age, city together. Array is a list, Object is a profile.</p>
+    <a id="playgroundLink" class="btn" href="/playground">▶ Try it Yourself - Playground</a><br><br>
+    <button class="btn btn-next" onclick="showTest()">Go to Test → 📝</button>
+    <div class="nav">
+      <a class="btn btn-prev" href="/lesson26">← Lesson 26</a>
+      <a id="nextLessonLink" class="btn btn-next" href="/lesson28">Next Lesson 28 →</a>
+    </div>
+  </div>
+
+  <div id="testContent">
+    <div class="test-box">
+      <!-- ===== GUEST BANNER - HTML, NOT JS ===== -->
+      <% if (!user) { %>
+      <div id="guestBanner" style="background:linear-gradient(135deg,#0f172a,#2563eb);color:white;padding:16px;border-radius:12px;margin-bottom:14px;text-align:center">
+        <h3 style="margin:0;font-size:18px">👋 Hi Guest! Try This Test FREE</h3>
+        <p style="margin:6px 0 0;color:#e2e8f0;font-size:14px">You can give this test without login. But your score will <b style="color:#facc15">NOT be saved</b> in Dashboard / Ranking.</p>
+        <p style="margin:8px 0 0"><a href="/signup" style="display:inline-block;background:#facc15;color:#0f172a;padding:10px 22px;border-radius:8px;font-weight:bold;text-decoration:none;font-size:14px">✨ Signup Free to Save Score →</a> <a href="/login" style="color:white;font-weight:bold;font-size:14px">Login →</a></p>
+      </div>
+      <% } else { %>
+      <div style="background:#dcfce7;color:#166534;padding:12px;border-radius:10px;margin-bottom:14px;text-align:center;font-weight:bold;font-size:14px">✅ Logged in as <b><%= user.username %></b> - Your score will be saved in Dashboard & Ranking</div>
+      <% } %>
+      <!-- ===== GUEST BANNER END ===== -->
+      <h2>📝 Lesson 27 Test - Check Your Learning</h2>
+      <div class="test-info"><b>Total Questions:</b> 10 &nbsp; | &nbsp; <b>Total Marks:</b> 100 &nbsp; | &nbsp; <b>Passing Marks:</b> 80 (80%) &nbsp; | &nbsp; <b>Time:</b> 3 Minutes<br>Each correct answer = 10 Marks. Once you start, all tabs will be locked until you submit.</div>
+      <div id="startScreen">
+        <h2>Ready for the Test?</h2>
+        <p>Click Start Paper to begin. You will get <b>3 Minutes</b> for 10 questions.<br>During the test, you cannot open Lesson or any other page.</p>
+        <button class="btn" style="font-size:20px;padding:14px 30px" onclick="startTest()">▶ Start Paper</button>
+      </div>
+      <div id="timerBar">⏰ Time Left: <span id="timerText">03:00</span></div>
+      <div id="quizArea">
+        <form id="quizForm">
+          <div class="question"><b>Q1. What is an Array?</b><label><input type="radio" name="q1" value="a"> A list - One variable, many values</label><label><input type="radio" name="q1" value="b"> One value only</label><label><input type="radio" name="q1" value="c"> A color</label><label><input type="radio" name="q1" value="d"> An image</label></div>
+          <div class="question"><b>Q2. Correct array syntax?</b><label><input type="radio" name="q2" value="a"> let fruits = ["Apple", "Banana", "Mango"];</label><label><input type="radio" name="q2" value="b"> let fruits = "Apple", "Banana";</label><label><input type="radio" name="q2" value="c"> let fruits = (Apple, Banana);</label><label><input type="radio" name="q2" value="d"> let fruits = {Apple, Banana};</label></div>
+          <div class="question"><b>Q3. What is fruits[0] if fruits = ["Apple", "Banana", "Mango"]?</b><label><input type="radio" name="q3" value="a"> "Apple"</label><label><input type="radio" name="q3" value="b"> "Banana"</label><label><input type="radio" name="q3" value="c"> "Mango"</label><label><input type="radio" name="q3" value="d"> undefined</label></div>
+          <div class="question"><b>Q4. Index starts from?</b><label><input type="radio" name="q4" value="a"> 0</label><label><input type="radio" name="q4" value="b"> 1</label><label><input type="radio" name="q4" value="c"> -1</label><label><input type="radio" name="q4" value="d"> 10</label></div>
+          <div class="question"><b>Q5. What does push() do?</b><label><input type="radio" name="q5" value="a"> Add at END</label><label><input type="radio" name="q5" value="b"> Remove from END</label><label><input type="radio" name="q5" value="c"> Add at START</label><label><input type="radio" name="q5" value="d"> Remove from START</label></div>
+          <div class="question"><b>Q6. What does pop() do?</b><label><input type="radio" name="q6" value="a"> Remove from END</label><label><input type="radio" name="q6" value="b"> Add at END</label><label><input type="radio" name="q6" value="c"> Add at START</label><label><input type="radio" name="q6" value="d"> Remove from START</label></div>
+          <div class="question"><b>Q7. What is length of ["Apple", "Banana", "Mango"]?</b><label><input type="radio" name="q7" value="a"> 3</label><label><input type="radio" name="q7" value="b"> 2</label><label><input type="radio" name="q7" value="c"> 4</label><label><input type="radio" name="q7" value="d"> 0</label></div>
+          <div class="question"><b>Q8. How to get last item?</b><label><input type="radio" name="q8" value="a"> fruits[fruits.length - 1]</label><label><input type="radio" name="q8" value="b"> fruits[0]</label><label><input type="radio" name="q8" value="c"> fruits[length]</label><label><input type="radio" name="q8" value="d"> fruits[1]</label></div>
+          <div class="question"><b>Q9. Correct loop for array?</b><label><input type="radio" name="q9" value="a"> for (let i = 0; i < fruits.length; i++)</label><label><input type="radio" name="q9" value="b"> for (let i = 1; i <= fruits.length; i++)</label><label><input type="radio" name="q9" value="c"> for (let i = 0; i <= fruits.length; i++)</label><label><input type="radio" name="q9" value="d"> for (let i = 1; i < fruits.length; i++)</label></div>
+          <div class="question"><b>Q10. What does unshift() do?</b><label><input type="radio" name="q10" value="a"> Add at START</label><label><input type="radio" name="q10" value="b"> Add at END</label><label><input type="radio" name="q10" value="c"> Remove from END</label><label><input type="radio" name="q10" value="d"> Remove from START</label></div>
+          <button type="button" class="btn" onclick="checkTest(false)">Submit Test - Check Result</button>
+          <button type="button" class="btn btn-next" onclick="resetTest()">Try Again</button>
+        </form>
+      </div>
+      <div id="scoreBox">
+        <h3 id="scoreText"></h3>
+        <p id="scoreMsg"></p>
+        <a id="nextBtn" class="btn" href="/lesson28" style="display:none">🎉 You Passed! Go to Lesson 28 →</a>
+        <br><br>
+        <button class="btn btn-next" onclick="showLesson()">← Back to Lesson (Unlocked)</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h3>LearnHTMLCSSJS.com</h3>
+      <p>Free HTML CSS JS course in simple English. Learn from zero to web developer with 50 lessons, tests, playground and ranking.</p>
+      <h4>Quick Links</h4>
+      <a href="/">🏠 Home</a><br>
+      <a href="/dashboard">📊 Dashboard</a><br>
+      <a href="/ranking">🏆 Ranking</a><br>
+      <a href="/playground">▶ Playground - Try Code</a><br>
+      <a href="/lesson1">📖 Start Lesson 1 - What is HTML?</a>
+    </div>
+    <div>
+      <h3>Next Lessons - Continue Learning</h3>
+      <a href="/lesson28">Lesson 28 - Objects</a><br>
+      <a href="/lesson29">Lesson 29 - String Methods</a><br>
+      <a href="/lesson30">Lesson 30 - DOM</a><br>
+      <a href="/lesson31">Lesson 31 - Events</a><br>
+      <a href="/lesson32">Lesson 32 - Form Validation</a>
+      <h4>JavaScript Course (21-40)</h4>
+      <a href="/lesson33">Lesson 33 - LocalStorage</a>
+    </div>
+    <div>
+      <h3>JavaScript Course (21-40)</h3>
+      <a href="/lesson34">Lesson 34 - Timers</a><br>
+      <a href="/lesson35">Lesson 35 - Calculator</a><br>
+      <h4>Projects & Career (41-50)</h4>
+      <a href="/lesson41">Lesson 41 - Full Website Project</a><br>
+      <a href="/lesson42">Lesson 42 - Portfolio Website</a><br>
+      <a href="/lesson43">Lesson 43 - Landing Page</a><br>
+      <a href="/lesson44">Lesson 44 - Navbar & Footer</a><br>
+      <a href="/lesson45">Lesson 45 - Final Project</a><br>
+      <a href="/lesson46">Lesson 46 - SEO Basics</a><br>
+      <a href="/lesson47">Lesson 47 - Deploy Free</a><br>
+      <a href="/lesson48">Lesson 48 - Freelancing Guide</a><br>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a><br>
+      <a href="/lesson50">Lesson 50 - Final Exam & Certificate</a>
+    </div>
+  </div>
+  <div style="max-width:1100px;margin:25px auto 0;border-top:1px solid #1e293b;padding-top:20px">
+    <h3 style="text-align:center">📚 All 50 Lessons - Complete HTML CSS JS Course</h3>
+    <div class="all-lessons">
+      <a href="/lesson1">Lesson 1 - What is HTML?</a>
+      <a href="/lesson2">Lesson 2 - Headings & Paragraphs</a>
+      <a href="/lesson3">Lesson 3 - Text Formatting</a>
+      <a href="/lesson4">Lesson 4 - Links & Images</a>
+      <a href="/lesson5">Lesson 5 - Lists</a>
+      <a href="/lesson6">Lesson 6 - Tables</a>
+      <a href="/lesson7">Lesson 7 - Forms</a>
+      <a href="/lesson8">Lesson 8 - Div & Span</a>
+      <a href="/lesson9">Lesson 9 - Semantic HTML</a>
+      <a href="/lesson10">Lesson 10 - HTML Project</a>
+      <a href="/lesson11">Lesson 11 - What is CSS?</a>
+      <a href="/lesson12">Lesson 12 - Colors</a>
+      <a href="/lesson13">Lesson 13 - Text Styling</a>
+      <a href="/lesson14">Lesson 14 - Box Model</a>
+      <a href="/lesson15">Lesson 15 - Flexbox</a>
+      <a href="/lesson16">Lesson 16 - Grid</a>
+      <a href="/lesson17">Lesson 17 - Responsive</a>
+      <a href="/lesson18">Lesson 18 - Buttons</a>
+      <a href="/lesson19">Lesson 19 - Forms Styling</a>
+      <a href="/lesson20">Lesson 20 - CSS Project</a>
+      <a href="/lesson21">Lesson 21 - What is JS?</a>
+      <a href="/lesson22">Lesson 22 - Variables</a>
+      <a href="/lesson23">Lesson 23 - Data Types</a>
+      <a href="/lesson24">Lesson 24 - If-Else</a>
+      <a href="/lesson25">Lesson 25 - Loops</a>
+      <a href="/lesson26">Lesson 26 - Functions</a>
+      <a href="/lesson27" class="current">Lesson 27 - Arrays</a>
+      <a href="/lesson28">Lesson 28 - Objects</a>
+      <a href="/lesson29">Lesson 29 - Strings</a>
+      <a href="/lesson30">Lesson 30 - DOM</a>
+      <a href="/lesson31">Lesson 31 - Events</a>
+      <a href="/lesson32">Lesson 32 - Form Validation</a>
+      <a href="/lesson33">Lesson 33 - LocalStorage</a>
+      <a href="/lesson34">Lesson 34 - Timers</a>
+      <a href="/lesson35">Lesson 35 - Calculator</a>
+      <a href="/lesson36">Lesson 36 - To-Do List</a>
+      <a href="/lesson37">Lesson 37 - Quiz App</a>
+      <a href="/lesson38">Lesson 38 - Password Generator</a>
+      <a href="/lesson39">Lesson 39 - Weather App</a>
+      <a href="/lesson40">Lesson 40 - JS Revision</a>
+      <a href="/lesson41">Lesson 41 - Full Website</a>
+      <a href="/lesson42">Lesson 42 - Portfolio</a>
+      <a href="/lesson43">Lesson 43 - Landing Page</a>
+      <a href="/lesson44">Lesson 44 - Navbar</a>
+      <a href="/lesson45">Lesson 45 - Final Project</a>
+      <a href="/lesson46">Lesson 46 - SEO</a>
+      <a href="/lesson47">Lesson 47 - Deploy</a>
+      <a href="/lesson48">Lesson 48 - Freelancing</a>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a>
+      <a href="/lesson50">Lesson 50 - Final Exam</a>
+    </div>
+    <p style="text-align:center;margin-top:15px">You are learning <a href="/lesson27">Arrays - Lesson 27</a> | Previous: <a href="/lesson26">Functions - Lesson 26</a> | Next: <a href="/lesson28">Objects - Lesson 28</a> | <a href="/lesson50">Jump to Final Exam - Lesson 50</a></p>
+  </div>
+  <div class="footer-bottom">© 2026 LearnHTMLCSSJS.com - Free Course | <a href="/">Home</a> | <a href="/lesson27">Lesson 27</a> | <a href="/lesson50">Lesson 50</a> | Made for Beginners</div>
+</footer>
+
+<script>
+// ===== GUEST TEST HANDLER - Only inside <script> =====
+const IS_LOGGED_IN = <%= (typeof user !== 'undefined' && user) ? 'true' : 'false' %>;
+function saveTestResult(lessonName, score, testStatus, onSaved) {
+  if (!IS_LOGGED_IN) { if (onSaved) onSaved(null); return; }
+  fetch('/save-result', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ lesson: lessonName, score: score, status: testStatus }) })
+  .then(r => r.json())
+  .then(data => { if (onSaved) onSaved(data); })
+  .catch(() => { if (onSaved) onSaved(null); });
+}
+function showGuestSignupPopup(score) {
+  let wantSignup = confirm("🎉 You scored " + score + "/100!\n\nYour score is NOT saved because you are not logged in.\n\nClick OK to Signup FREE and Save Your Score in Dashboard & Ranking.\nClick Cancel to continue without saving.");
+  if (wantSignup) { window.location.href = "/signup"; }
+}
+// ===== GUEST HANDLER END =====
+let shopList=["Apple","Banana","Mango"];
+function renderList(){let html="";for(let i=0;i<shopList.length;i++){html+='<span class="pill">'+(i+1)+". "+shopList[i]+'</span> ';}document.getElementById('demoList').innerHTML=html;document.getElementById('demoCount').innerText=shopList.length;}
+function addItem(){let v=document.getElementById('itemInput').value.trim();if(!v){alert("Please type an item first!");return;}shopList.push(v);document.getElementById('itemInput').value="";renderList();}
+function removeItem(){if(shopList.length===0){alert("List is already empty!");return;}shopList.pop();renderList();}
+function resetDemo(){shopList=["Apple","Banana","Mango"];document.getElementById('itemInput').value="";renderList();}
+renderList();
+let testRunning=false;let timerInterval=null;let timeLeft=180;
+function showLesson(){if(testRunning){alert("🔒 Test is running! Please submit the test first. All tabs are locked.");return;}document.getElementById('lessonContent').style.display='block';document.getElementById('testContent').style.display='none';document.getElementById('lessonTabBtn').classList.add('active');document.getElementById('lessonTabBtn').classList.remove('test-active');document.getElementById('testTabBtn').classList.remove('active');document.getElementById('testTabBtn').classList.remove('test-active');window.scrollTo({top:0,behavior:'smooth'});}
+function showTest(){document.getElementById('lessonContent').style.display='none';document.getElementById('testContent').style.display='block';document.getElementById('testTabBtn').classList.add('active');document.getElementById('testTabBtn').classList.add('test-active');document.getElementById('lessonTabBtn').classList.remove('active');window.scrollTo({top:0,behavior:'smooth'});}
+function lockTabs(){testRunning=true;document.getElementById('lessonTabBtn').classList.add('disabled');document.getElementById('lockMsg').style.display='block';document.getElementById('homeLink').classList.add('disabled');document.getElementById('playgroundLink').style.pointerEvents='none';document.getElementById('playgroundLink').style.opacity='0.5';document.getElementById('nextLessonLink').style.pointerEvents='none';document.getElementById('nextLessonLink').style.opacity='0.5';}
+function unlockTabs(){testRunning=false;clearInterval(timerInterval);document.getElementById('lessonTabBtn').classList.remove('disabled');document.getElementById('lockMsg').style.display='none';document.getElementById('homeLink').classList.remove('disabled');document.getElementById('playgroundLink').style.pointerEvents='auto';document.getElementById('playgroundLink').style.opacity='1';document.getElementById('nextLessonLink').style.pointerEvents='auto';document.getElementById('nextLessonLink').style.opacity='1';document.getElementById('timerBar').style.display='none';}
+function startTest(){document.getElementById('startScreen').style.display='none';document.getElementById('quizArea').style.display='block';document.getElementById('timerBar').style.display='block';document.getElementById('scoreBox').style.display='none';lockTabs();timeLeft=180;updateTimer();timerInterval=setInterval(function(){timeLeft--;updateTimer();if(timeLeft<=0){clearInterval(timerInterval);alert("⏰ Time Up! Your test is auto-submitted.");checkTest(true);}},1000);}
+function updateTimer(){let m=Math.floor(timeLeft/60);let s=timeLeft%60;document.getElementById('timerText').innerText=(m<10?"0"+m:m)+":"+(s<10?"0"+s:s);if(timeLeft<=30){document.getElementById('timerBar').classList.add('warning');}}
+function checkTest(isAuto){
+  let answers={q1:'a',q2:'a',q3:'a',q4:'a',q5:'a',q6:'a',q7:'a',q8:'a',q9:'a',q10:'a'};
+  let score=0;let attempted=0;
+  for(let q in answers){let selected=document.querySelector('input[name="'+q+'"]:checked');if(selected){attempted++;if(selected.value===answers[q])score+=10;}}
+  if(!isAuto && attempted<10){alert("Please answer all 10 questions! You have answered only "+attempted+" questions.");return;}
+  unlockTabs();
+  let testStatus=score>=80?'Pass':'Fail';
+  saveTestResult('Lesson 27 - Arrays', score, testStatus, function(data){
+    if (!IS_LOGGED_IN && score >= 80) {
+      setTimeout(() => showGuestSignupPopup(score), 500);
+    }
+  });
+  let box=document.getElementById('scoreBox');let scoreText=document.getElementById('scoreText');let scoreMsg=document.getElementById('scoreMsg');let nextBtn=document.getElementById('nextBtn');box.style.display='block';scoreText.innerText="Your Score: "+score+" / 100";
+  if(score>=80){box.className='pass';scoreMsg.innerText="🎉 Congratulations! You PASSED. You have learned Lesson 27. Now all tabs are unlocked.";nextBtn.style.display='inline-block';}
+  else{box.className='fail';scoreMsg.innerText="😔 You FAILED. Passing marks are 80. All tabs are now unlocked. Read the lesson again and try again.";nextBtn.style.display='none';}
+  box.scrollIntoView({behavior:'smooth'});
+}
+function resetTest(){clearInterval(timerInterval);testRunning=false;document.getElementById('quizForm').reset();document.getElementById('scoreBox').style.display='none';document.getElementById('quizArea').style.display='none';document.getElementById('startScreen').style.display='block';document.getElementById('timerBar').style.display='none';unlockTabs();}
+</script>
+</body>
+</html>

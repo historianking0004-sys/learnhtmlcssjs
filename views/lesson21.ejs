@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ===== SEO START ===== -->
+<title>What is JavaScript? - Lesson 21 | LearnHTMLCSSJS.com</title>
+<meta name="description" content="Learn What is JavaScript - Lesson 21. What is JS, why we use it, how JS works with HTML + CSS, first JS program, alert, console.log, document.write, innerHTML. Free Course for Beginners.">
+<meta name="keywords" content="what is javascript, javascript for beginners, learn javascript, js lesson 21, javascript introduction, learn js">
+<meta name="author" content="LearnHTMLCSSJS.com">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://learnhtmlcssjs.com/lesson21">
+<meta property="og:type" content="article">
+<meta property="og:title" content="What is JavaScript? - Lesson 21">
+<meta property="og:description" content="Learn What is JavaScript, why we use it, and write your first JS program. alert, console.log, innerHTML with live demo.">
+<meta property="og:url" content="https://learnhtmlcssjs.com/lesson21">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Course","name":"Learn HTML CSS JS - Free Course","description":"Learn HTML, CSS and JavaScript for beginners in simple English. 50 lessons from zero to web developer.","provider":{"@type":"Organization","name":"LearnHTMLCSSJS.com"}}
+</script>
+<!-- ===== SEO END ===== -->
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+  body{background:#f4f6f8;color:#222}
+  header{background:#0f172a;color:white;padding:20px;text-align:center;width:100%}
+  header a{color:#38bdf8;text-decoration:none;font-size:14px}
+  header a.disabled{color:#64748b;pointer-events:none}
+  .container{width:100%;max-width:100%;margin:0 auto;background:white;padding:30px 40px}
+  h1{font-size:28px;margin-bottom:10px;line-height:1.3}
+  h2{margin:20px 0 10px;color:#0f172a}
+  p{line-height:1.7;margin-bottom:12px}
+  .note{background:#eff6ff;border-left:5px solid #2563eb;padding:12px;border-radius:8px;margin:15px 0}
+  .code-box{background:#0f172a;color:#e2e8f0;padding:15px;border-radius:10px;overflow-x:auto;margin:10px 0}
+  .code-box code{font-family:monospace;font-size:15px;line-height:1.6}
+  .tag{color:#f472b6}.text{color:white}.attr{color:#facc15}.val{color:#86efac}
+  .btn{display:inline-block;background:#16a34a;color:white;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:bold;margin-top:10px;border:none;cursor:pointer;font-size:16px}
+  .btn-next{background:#2563eb}
+  .btn-prev{background:#64748b}
+  .btn-js{background:#f59e0b;color:white}
+  .nav{display:flex;justify-content:space-between;margin-top:25px}
+  .result{border:2px dashed #cbd5e1;padding:15px;border-radius:10px;margin-top:10px;background:#f8fafc}
+  .box{background:#e0f2fe;padding:10px;border-radius:8px;margin-top:10px;line-height:1.8}
+  .tabs{display:flex;gap:10px;margin-bottom:20px;position:sticky;top:0;background:white;padding:10px 0;z-index:10;border-bottom:2px solid #e2e8f0}
+  .tab-btn{flex:1;padding:14px;border:none;border-radius:10px;font-size:17px;font-weight:bold;cursor:pointer;background:#e2e8f0;color:#334155}
+  .tab-btn.active{background:#0f172a;color:white}
+  .tab-btn.test-active{background:#16a34a;color:white}
+  .tab-btn.disabled{opacity:0.5;pointer-events:none;cursor:not-allowed}
+  #lessonContent{display:block}
+  #testContent{display:none}
+  .test-box{border:2px solid #0f172a;border-radius:12px;padding:20px;background:#f8fafc}
+  .test-info{background:#fef3c7;padding:12px;border-radius:8px;margin-bottom:15px;line-height:1.7}
+  .question{background:white;padding:15px;border-radius:10px;margin-bottom:12px;border:1px solid #e2e8f0}
+  .question b{display:block;margin-bottom:8px}
+  .question label{display:block;padding:8px 10px;margin:4px 0;background:#f1f5f9;border-radius:7px;cursor:pointer}
+  .question label:hover{background:#e0f2fe}
+  .question input{margin-right:8px}
+  #scoreBox{display:none;padding:20px;border-radius:10px;text-align:center;margin-top:15px}
+  #scoreBox.pass{background:#dcfce7;border:2px solid #16a34a}
+  #scoreBox.fail{background:#fee2e2;border:2px solid #dc2626}
+  #scoreBox h3{font-size:26px;margin-bottom:5px}
+  #startScreen{text-align:center;padding:30px 10px}
+  #timerBar{display:none;position:sticky;top:60px;z-index:20;background:#dc2626;color:white;padding:12px 15px;border-radius:10px;font-weight:bold;font-size:18px;text-align:center;margin-bottom:15px}
+  #timerBar.warning{background:#ea580c}
+  #quizArea{display:none}
+  .lock-msg{background:#fee2e2;color:#991b1b;padding:10px;border-radius:8px;margin-bottom:12px;text-align:center;font-weight:bold;display:none}
+  table{width:100%;border-collapse:collapse;margin:10px 0;background:white}
+  th,td{border:1px solid #e2e8f0;padding:10px;text-align:left}
+  th{background:#0f172a;color:white}
+  .breadcrumb{font-size:13px;color:#94a3b8;margin-bottom:8px}
+  .breadcrumb a{color:#38bdf8;text-decoration:none}
+  .demo-card{background:white;border:1px solid #e2e8f0;border-radius:12px;padding:20px;text-align:center;margin-top:12px}
+  .demo-input{width:100%;padding:12px;border:2px solid #e2e8f0;border-radius:8px;font-size:15px;outline:none;margin:6px 0}
+  .demo-input:focus{border-color:#2563eb;box-shadow:0 0 0 3px #dbeafe}
+  footer{background:#0f172a;color:#cbd5e1;padding:35px 30px}
+  footer h3{color:white;font-size:20px;margin-bottom:12px}
+  footer h4{color:white;font-size:16px;margin:20px 0 10px}
+  footer p{font-size:14px;line-height:1.7;color:#94a3b8}
+  footer a{color:#38bdf8;text-decoration:none;font-size:14px;line-height:2}
+  footer a:hover{color:white;text-decoration:underline}
+  .footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:25px;max-width:1100px;margin:0 auto}
+  .all-lessons{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:10px}
+  .all-lessons a{background:#1e293b;padding:8px 10px;border-radius:8px;text-align:center;display:block;color:#e2e8f0;font-weight:bold;line-height:1.4}
+  .all-lessons a:hover{background:#2563eb;color:white;text-decoration:none}
+  .all-lessons a.current{background:#16a34a;color:white}
+  .footer-bottom{text-align:center;border-top:1px solid #1e293b;margin-top:25px;padding-top:15px;font-size:13px;color:#64748b}
+  @media(max-width:700px){.footer-grid{grid-template-columns:1fr}.all-lessons{grid-template-columns:1fr 1fr}.container{padding:20px}}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="breadcrumb"><a href="/">Home</a> &gt; <a href="/lesson21">JavaScript Course</a> &gt; Lesson 21 - What is JavaScript?</p>
+  <p><a id="homeLink" href="/">← Back to Home</a> | JavaScript Course - Lesson 21 / 50</p>
+  <h1>Lesson 21: What is JavaScript?</h1>
+  <p>Make Your Website Alive - Button Click, Alert, Counter | LearnHTMLCSSJS.com</p>
+</header>
+
+<div class="container">
+  <div class="tabs">
+    <button id="lessonTabBtn" class="tab-btn active" onclick="showLesson()">📖 Lesson</button>
+    <button id="testTabBtn" class="tab-btn" onclick="showTest()">📝 Test - 100 Marks</button>
+  </div>
+  <div id="lockMsg" class="lock-msg">🔒 Test is running! All tabs are locked until you submit the test or time ends.</div>
+
+  <div id="lessonContent">
+    <h2>1. What is JavaScript?</h2>
+    <p><b>JavaScript (JS)</b> is a programming language that makes a website <b>interactive and alive</b>.</p>
+    <p>HTML = Structure (Skeleton)<br>CSS = Design (Beauty / Style)<br><b>JavaScript = Brain / Action (Movement)</b></p>
+    <div class="note"><b>Simple Example:</b> HTML shows a button. CSS makes that button beautiful. <b>JavaScript makes that button work</b> - click it and an alert appears, a counter increases, or a form is checked.</div>
+    <h2>2. LIVE DEMO - Try JavaScript Now</h2>
+    <p>Click the buttons below. All of this is JavaScript:</p>
+    <div class="demo-card">
+      <h3 id="demoText" style="margin:0">Hello! I am a Website.</h3>
+      <p id="demoCount" style="color:#64748b;margin:8px 0">You clicked 0 times</p>
+      <button class="btn btn-js" onclick="changeText()">Click Me - Change Text 👆</button>
+      <button class="btn btn-next" onclick="showAlert()">Show Alert 🔔</button>
+      <button class="btn" onclick="resetDemo()">Reset ↺</button>
+      <p style="margin-top:10px;font-size:13px;color:#64748b">Open Browser Console (F12) and see the console.log message too.</p>
+    </div>
+    <h2>3. Where Does JavaScript Run?</h2>
+    <table>
+      <tr><th>Place</th><th>Example</th></tr>
+      <tr><td>Browser</td><td>Chrome, Firefox - Button click, Form check, Slider</td></tr>
+      <tr><td>Website</td><td>Facebook Like, YouTube Play, Amazon Cart</td></tr>
+      <tr><td>Mobile App</td><td>React Native apps</td></tr>
+      <tr><td>Server</td><td>Node.js - Backend (later)</td></tr>
+    </table>
+    <p><b>For now, we will use JS only in the Browser.</b> No installation is needed. The browser already understands JS.</p>
+    <h2>4. How to Add JavaScript? - 3 Ways</h2>
+    <p><b>Way 1 - Inside HTML (Best for Beginners):</b></p>
+    <div class="code-box"><code>
+<span class="tag">&lt;script&gt;</span><br>
+&nbsp;&nbsp;<span class="text">alert("Hello World");</span><br>
+<span class="tag">&lt;/script&gt;</span>
+    </code></div>
+    <p><b>Way 2 - In Head:</b> Write the &lt;script&gt; tag inside &lt;head&gt;.<br><b>Way 3 - Separate File:</b> &lt;script src="script.js"&gt;&lt;/script&gt; - This is used in big projects.</p>
+    <div class="note"><b>Rule:</b> Always place the &lt;script&gt; tag <b>just before &lt;/body&gt;</b>, so that HTML loads first, and then JS runs.</div>
+    <h2>5. Your First 4 JavaScript Commands</h2>
+    <p><b>1. alert() - Popup Message</b></p>
+    <div class="code-box"><code><span class="text">alert("Welcome to My Website!");</span></code></div>
+    <div class="result"><b>Result:</b> A popup will appear in the browser - "Welcome to My Website!"</div>
+    <p><b>2. console.log() - For Developer (F12)</b></p>
+    <div class="code-box"><code><span class="text">console.log("Hello - This is for developer");</span></code></div>
+    <p>The user cannot see this. The developer opens F12 &gt; Console to see it. It is used for debugging.</p>
+    <p><b>3. document.write() - Write on Page</b></p>
+    <div class="code-box"><code><span class="text">document.write("Hello World");</span></code></div>
+    <p><b>4. innerHTML - Change Text on Page (Most Important)</b></p>
+    <div class="code-box"><code>
+<span class="tag">&lt;h1</span> <span class="attr">id</span>=<span class="val">"myText"</span><span class="tag">&gt;</span><span class="text">Hello</span><span class="tag">&lt;/h1&gt;</span><br>
+<span class="tag">&lt;button</span> <span class="attr">onclick</span>=<span class="val">"change()"</span><span class="tag">&gt;</span><span class="text">Click Me</span><span class="tag">&lt;/button&gt;</span><br><br>
+<span class="tag">&lt;script&gt;</span><br>
+<span class="text">function change() {</span><br>
+&nbsp;&nbsp;<span class="text">document.getElementById("myText").innerHTML = "You Clicked Me!";</span><br>
+<span class="text">}</span><br>
+<span class="tag">&lt;/script&gt;</span>
+    </code></div>
+    <p><b>Understand this:</b> <code style="background:#e2e8f0;padding:2px 6px;border-radius:4px">getElementById("myText")</code> = Find the element whose id is myText.<br><code style="background:#e2e8f0;padding:2px 6px;border-radius:4px">innerHTML = "..."</code> = Change the text inside that element.</p>
+    <h2>6. onclick - Button + JavaScript</h2>
+    <p><b>onclick</b> means - "When clicked, run this function".</p>
+    <div class="code-box"><code>
+<span class="tag">&lt;button</span> <span class="attr">onclick</span>=<span class="val">"sayHello()"</span><span class="tag">&gt;</span><span class="text">Click Me</span><span class="tag">&lt;/button&gt;</span><br><br>
+<span class="tag">&lt;script&gt;</span><br>
+<span class="text">function sayHello() {</span><br>
+&nbsp;&nbsp;<span class="text">alert("Hello! You clicked the button.");</span><br>
+<span class="text">}</span><br>
+<span class="tag">&lt;/script&gt;</span>
+    </code></div>
+    <h2>7. Complete Example - Copy and Try in Playground</h2>
+    <div class="code-box"><code>
+<span class="tag">&lt;!DOCTYPE html&gt;</span><br>
+<span class="tag">&lt;html&gt;</span><br>
+<span class="tag">&lt;body&gt;</span><br><br>
+&nbsp;&nbsp;<span class="tag">&lt;h1</span> <span class="attr">id</span>=<span class="val">"title"</span><span class="tag">&gt;</span><span class="text">My First JS Website</span><span class="tag">&lt;/h1&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;button</span> <span class="attr">onclick</span>=<span class="val">"changeText()"</span><span class="tag">&gt;</span><span class="text">Change Text</span><span class="tag">&lt;/button&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;button</span> <span class="attr">onclick</span>=<span class="val">"showAlert()"</span><span class="tag">&gt;</span><span class="text">Show Alert</span><span class="tag">&lt;/button&gt;</span><br><br>
+&nbsp;&nbsp;<span class="tag">&lt;script&gt;</span><br>
+&nbsp;&nbsp;<span class="text">function changeText() {</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">document.getElementById("title").innerHTML = "JavaScript is Amazing!";</span><br>
+&nbsp;&nbsp;<span class="text">}</span><br>
+&nbsp;&nbsp;<span class="text">function showAlert() {</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">alert("Hello! You are learning JavaScript.");</span><br>
+&nbsp;&nbsp;<span class="text">}</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;/script&gt;</span><br>
+<span class="tag">&lt;/body&gt;</span><br>
+<span class="tag">&lt;/html&gt;</span>
+    </code></div>
+    <h2>8. Common Mistakes - Beginners</h2>
+    <p>1. <b>Spelling:</b> <code>alert</code> is correct, <code>alret</code> is wrong - JS is very strict about spelling.<br>2. <b>Quotes:</b> <code>"Hello"</code> or <code>'Hello'</code> - both work, but opening and closing quotes must be the same.<br>3. <b>Semicolon:</b> Put <code>;</code> at the end of every line.<br>4. <b>Capital Letter:</b> In <code>getElementById</code>, B, I, D are capital - <code>getelementbyid</code> will not work.<br>5. <b>id Must Match:</b> If HTML has <code>id="title"</code>, then JS must also use <code>"title"</code>.</p>
+    <h2>9. Homework</h2>
+    <p>In Playground, build this:</p>
+    <p>1. One <b>h1</b> - "Hello, I am [Your Name]"<br>2. One button - "Change Name" - on click, the name should change<br>3. One button - "Show Alert" - on click, an alert should show "Welcome!"<br>4. Write <b>console.log("I am learning JS")</b> and see it in F12 Console</p>
+    <div class="box"><b>Remember:</b> HTML = Structure | CSS = Design | JS = Action | alert() = Popup | console.log() = Developer message | innerHTML = Change text on page | onclick = On click, run function | getElementById = Find element by id | &lt;script&gt; tag just before &lt;/body&gt;</div>
+    <p><b>Next Step:</b> <a href="/lesson22">Lesson 22 - Variables</a> - Learn how to store data - let, const, var.</p>
+    <a id="playgroundLink" class="btn" href="/playground">▶ Try it Yourself - Playground</a><br><br>
+    <button class="btn btn-next" onclick="showTest()">Go to Test → 📝</button>
+    <div class="nav">
+      <a class="btn btn-prev" href="/lesson20">← Lesson 20</a>
+      <a id="nextLessonLink" class="btn btn-next" href="/lesson22">Next Lesson 22 →</a>
+    </div>
+  </div>
+
+  <div id="testContent">
+    <div class="test-box">
+      <!-- ===== GUEST BANNER - HTML, NOT JS ===== -->
+      <% if (!user) { %>
+      <div id="guestBanner" style="background:linear-gradient(135deg,#0f172a,#2563eb);color:white;padding:16px;border-radius:12px;margin-bottom:14px;text-align:center">
+        <h3 style="margin:0;font-size:18px">👋 Hi Guest! Try This Test FREE</h3>
+        <p style="margin:6px 0 0;color:#e2e8f0;font-size:14px">You can give this test without login. But your score will <b style="color:#facc15">NOT be saved</b> in Dashboard / Ranking.</p>
+        <p style="margin:8px 0 0"><a href="/signup" style="display:inline-block;background:#facc15;color:#0f172a;padding:10px 22px;border-radius:8px;font-weight:bold;text-decoration:none;font-size:14px">✨ Signup Free to Save Score →</a> <a href="/login" style="color:white;font-weight:bold;font-size:14px">Login →</a></p>
+      </div>
+      <% } else { %>
+      <div style="background:#dcfce7;color:#166534;padding:12px;border-radius:10px;margin-bottom:14px;text-align:center;font-weight:bold;font-size:14px">✅ Logged in as <b><%= user.username %></b> - Your score will be saved in Dashboard & Ranking</div>
+      <% } %>
+      <!-- ===== GUEST BANNER END ===== -->
+      <h2>📝 Lesson 21 Test - Check Your Learning</h2>
+      <div class="test-info"><b>Total Questions:</b> 10 &nbsp; | &nbsp; <b>Total Marks:</b> 100 &nbsp; | &nbsp; <b>Passing Marks:</b> 80 (80%) &nbsp; | &nbsp; <b>Time:</b> 3 Minutes<br>Each correct answer = 10 Marks. Once you start, all tabs will be locked until you submit.</div>
+      <div id="startScreen">
+        <h2>Ready for the Test?</h2>
+        <p>Click Start Paper to begin. You will get <b>3 Minutes</b> for 10 questions.<br>During the test, you cannot open Lesson or any other page.</p>
+        <button class="btn" style="font-size:20px;padding:14px 30px" onclick="startTest()">▶ Start Paper</button>
+      </div>
+      <div id="timerBar">⏰ Time Left: <span id="timerText">03:00</span></div>
+      <div id="quizArea">
+        <form id="quizForm">
+          <div class="question"><b>Q1. What does JavaScript do?</b><label><input type="radio" name="q1" value="a"> Makes website interactive / alive</label><label><input type="radio" name="q1" value="b"> Only makes website colorful</label><label><input type="radio" name="q1" value="c"> Only adds images</label><label><input type="radio" name="q1" value="d"> Only adds text</label></div>
+          <div class="question"><b>Q2. HTML, CSS, JS - Correct order?</b><label><input type="radio" name="q2" value="a"> HTML = Structure, CSS = Design, JS = Action</label><label><input type="radio" name="q2" value="b"> HTML = Design, CSS = Action, JS = Structure</label><label><input type="radio" name="q2" value="c"> All are same</label><label><input type="radio" name="q2" value="d"> HTML = Action only</label></div>
+          <div class="question"><b>Q3. Which shows a popup message?</b><label><input type="radio" name="q3" value="a"> alert("Hello")</label><label><input type="radio" name="q3" value="b"> console.log("Hello")</label><label><input type="radio" name="q3" value="c"> innerHTML</label><label><input type="radio" name="q3" value="d"> getElementById</label></div>
+          <div class="question"><b>Q4. console.log() is used for?</b><label><input type="radio" name="q4" value="a"> Developer message in Console (F12)</label><label><input type="radio" name="q4" value="b"> Popup for user</label><label><input type="radio" name="q4" value="c"> Change text on page</label><label><input type="radio" name="q4" value="d"> Add image</label></div>
+          <div class="question"><b>Q5. Which changes text on page?</b><label><input type="radio" name="q5" value="a"> document.getElementById("title").innerHTML = "New Text";</label><label><input type="radio" name="q5" value="b"> alert("New Text")</label><label><input type="radio" name="q5" value="c"> console.log("New Text")</label><label><input type="radio" name="q5" value="d"> document.write only</label></div>
+          <div class="question"><b>Q6. onclick means?</b><label><input type="radio" name="q6" value="a"> When clicked, run this function</label><label><input type="radio" name="q6" value="b"> When page loads</label><label><input type="radio" name="q6" value="c"> When mouse moves</label><label><input type="radio" name="q6" value="d"> Never runs</label></div>
+          <div class="question"><b>Q7. Where should &lt;script&gt; tag be placed?</b><label><input type="radio" name="q7" value="a"> Just before &lt;/body&gt;</label><label><input type="radio" name="q7" value="b"> Inside &lt;title&gt;</label><label><input type="radio" name="q7" value="c"> Outside &lt;html&gt;</label><label><input type="radio" name="q7" value="d"> Inside &lt;h1&gt;</label></div>
+          <div class="question"><b>Q8. Correct spelling for getting element by id?</b><label><input type="radio" name="q8" value="a"> getElementById</label><label><input type="radio" name="q8" value="b"> getelementbyid</label><label><input type="radio" name="q8" value="c"> GetElementByID</label><label><input type="radio" name="q8" value="d"> get-element-by-id</label></div>
+          <div class="question"><b>Q9. What is a function in JS?</b><label><input type="radio" name="q9" value="a"> A block of code that runs when called</label><label><input type="radio" name="q9" value="b"> A color</label><label><input type="radio" name="q9" value="c"> An image tag</label><label><input type="radio" name="q9" value="d"> A heading</label></div>
+          <div class="question"><b>Q10. Which is correct JS code?</b><label><input type="radio" name="q10" value="a"> function sayHello() { alert("Hello"); }</label><label><input type="radio" name="q10" value="b"> function sayHello( alert Hello )</label><label><input type="radio" name="q10" value="c"> &lt;alert&gt;Hello&lt;/alert&gt;</label><label><input type="radio" name="q10" value="d"> alert = Hello;</label></div>
+          <button type="button" class="btn" onclick="checkTest(false)">Submit Test - Check Result</button>
+          <button type="button" class="btn btn-next" onclick="resetTest()">Try Again</button>
+        </form>
+      </div>
+      <div id="scoreBox">
+        <h3 id="scoreText"></h3>
+        <p id="scoreMsg"></p>
+        <a id="nextBtn" class="btn" href="/lesson22" style="display:none">🎉 You Passed! Go to Lesson 22 →</a>
+        <br><br>
+        <button class="btn btn-next" onclick="showLesson()">← Back to Lesson (Unlocked)</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h3>LearnHTMLCSSJS.com</h3>
+      <p>Free HTML CSS JS course in simple English. Learn from zero to web developer with 50 lessons, tests, playground and ranking.</p>
+      <h4>Quick Links</h4>
+      <a href="/">🏠 Home</a><br>
+      <a href="/dashboard">📊 Dashboard</a><br>
+      <a href="/ranking">🏆 Ranking</a><br>
+      <a href="/playground">▶ Playground - Try Code</a><br>
+      <a href="/lesson1">📖 Start Lesson 1 - What is HTML?</a>
+    </div>
+    <div>
+      <h3>Next Lessons - Continue Learning</h3>
+      <a href="/lesson22">Lesson 22 - Variables</a><br>
+      <a href="/lesson23">Lesson 23 - Data Types & Operators</a><br>
+      <a href="/lesson24">Lesson 24 - If-Else</a><br>
+      <a href="/lesson25">Lesson 25 - Loops</a><br>
+      <a href="/lesson26">Lesson 26 - Functions</a>
+      <h4>JavaScript Course (21-40)</h4>
+      <a href="/lesson27">Lesson 27 - Arrays</a><br>
+      <a href="/lesson28">Lesson 28 - Objects</a><br>
+      <a href="/lesson29">Lesson 29 - String Methods</a><br>
+      <a href="/lesson30">Lesson 30 - DOM</a>
+    </div>
+    <div>
+      <h3>JavaScript Course (21-40)</h3>
+      <a href="/lesson31">Lesson 31 - Events</a><br>
+      <a href="/lesson32">Lesson 32 - Form Validation</a><br>
+      <a href="/lesson33">Lesson 33 - LocalStorage</a><br>
+      <a href="/lesson34">Lesson 34 - Timers</a><br>
+      <a href="/lesson35">Lesson 35 - Calculator</a><br>
+      <h4>Projects & Career (41-50)</h4>
+      <a href="/lesson41">Lesson 41 - Full Website Project</a><br>
+      <a href="/lesson42">Lesson 42 - Portfolio Website</a><br>
+      <a href="/lesson43">Lesson 43 - Landing Page</a><br>
+      <a href="/lesson44">Lesson 44 - Navbar & Footer</a><br>
+      <a href="/lesson45">Lesson 45 - Final Project</a><br>
+      <a href="/lesson46">Lesson 46 - SEO Basics</a><br>
+      <a href="/lesson47">Lesson 47 - Deploy Free</a><br>
+      <a href="/lesson48">Lesson 48 - Freelancing Guide</a><br>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a><br>
+      <a href="/lesson50">Lesson 50 - Final Exam & Certificate</a>
+    </div>
+  </div>
+  <div style="max-width:1100px;margin:25px auto 0;border-top:1px solid #1e293b;padding-top:20px">
+    <h3 style="text-align:center">📚 All 50 Lessons - Complete HTML CSS JS Course</h3>
+    <div class="all-lessons">
+      <a href="/lesson1">Lesson 1 - What is HTML?</a>
+      <a href="/lesson2">Lesson 2 - Headings & Paragraphs</a>
+      <a href="/lesson3">Lesson 3 - Text Formatting</a>
+      <a href="/lesson4">Lesson 4 - Links & Images</a>
+      <a href="/lesson5">Lesson 5 - Lists</a>
+      <a href="/lesson6">Lesson 6 - Tables</a>
+      <a href="/lesson7">Lesson 7 - Forms</a>
+      <a href="/lesson8">Lesson 8 - Div & Span</a>
+      <a href="/lesson9">Lesson 9 - Semantic HTML</a>
+      <a href="/lesson10">Lesson 10 - HTML Project</a>
+      <a href="/lesson11">Lesson 11 - What is CSS?</a>
+      <a href="/lesson12">Lesson 12 - Colors</a>
+      <a href="/lesson13">Lesson 13 - Text Styling</a>
+      <a href="/lesson14">Lesson 14 - Box Model</a>
+      <a href="/lesson15">Lesson 15 - Flexbox</a>
+      <a href="/lesson16">Lesson 16 - Grid</a>
+      <a href="/lesson17">Lesson 17 - Responsive</a>
+      <a href="/lesson18">Lesson 18 - Buttons</a>
+      <a href="/lesson19">Lesson 19 - Forms Styling</a>
+      <a href="/lesson20">Lesson 20 - CSS Project</a>
+      <a href="/lesson21" class="current">Lesson 21 - What is JS?</a>
+      <a href="/lesson22">Lesson 22 - Variables</a>
+      <a href="/lesson23">Lesson 23 - Data Types</a>
+      <a href="/lesson24">Lesson 24 - If-Else</a>
+      <a href="/lesson25">Lesson 25 - Loops</a>
+      <a href="/lesson26">Lesson 26 - Functions</a>
+      <a href="/lesson27">Lesson 27 - Arrays</a>
+      <a href="/lesson28">Lesson 28 - Objects</a>
+      <a href="/lesson29">Lesson 29 - Strings</a>
+      <a href="/lesson30">Lesson 30 - DOM</a>
+      <a href="/lesson31">Lesson 31 - Events</a>
+      <a href="/lesson32">Lesson 32 - Form Validation</a>
+      <a href="/lesson33">Lesson 33 - LocalStorage</a>
+      <a href="/lesson34">Lesson 34 - Timers</a>
+      <a href="/lesson35">Lesson 35 - Calculator</a>
+      <a href="/lesson36">Lesson 36 - To-Do List</a>
+      <a href="/lesson37">Lesson 37 - Quiz App</a>
+      <a href="/lesson38">Lesson 38 - Password Generator</a>
+      <a href="/lesson39">Lesson 39 - Weather App</a>
+      <a href="/lesson40">Lesson 40 - JS Revision</a>
+      <a href="/lesson41">Lesson 41 - Full Website</a>
+      <a href="/lesson42">Lesson 42 - Portfolio</a>
+      <a href="/lesson43">Lesson 43 - Landing Page</a>
+      <a href="/lesson44">Lesson 44 - Navbar</a>
+      <a href="/lesson45">Lesson 45 - Final Project</a>
+      <a href="/lesson46">Lesson 46 - SEO</a>
+      <a href="/lesson47">Lesson 47 - Deploy</a>
+      <a href="/lesson48">Lesson 48 - Freelancing</a>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a>
+      <a href="/lesson50">Lesson 50 - Final Exam</a>
+    </div>
+    <p style="text-align:center;margin-top:15px">You are learning <a href="/lesson21">What is JavaScript? - Lesson 21</a> | Previous: <a href="/lesson20">CSS Project - Lesson 20</a> | Next: <a href="/lesson22">Variables - Lesson 22</a> | <a href="/lesson50">Jump to Final Exam - Lesson 50</a></p>
+  </div>
+  <div class="footer-bottom">© 2026 LearnHTMLCSSJS.com - Free Course | <a href="/">Home</a> | <a href="/lesson21">Lesson 21</a> | <a href="/lesson50">Lesson 50</a> | Made for Beginners</div>
+</footer>
+
+<script>
+// ===== GUEST TEST HANDLER - Only inside <script> =====
+const IS_LOGGED_IN = <%= (typeof user !== 'undefined' && user) ? 'true' : 'false' %>;
+function saveTestResult(lessonName, score, testStatus, onSaved) {
+  if (!IS_LOGGED_IN) { if (onSaved) onSaved(null); return; }
+  fetch('/save-result', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ lesson: lessonName, score: score, status: testStatus }) })
+  .then(r => r.json())
+  .then(data => { if (onSaved) onSaved(data); })
+  .catch(() => { if (onSaved) onSaved(null); });
+}
+function showGuestSignupPopup(score) {
+  let wantSignup = confirm("🎉 You scored " + score + "/100!\n\nYour score is NOT saved because you are not logged in.\n\nClick OK to Signup FREE and Save Your Score in Dashboard & Ranking.\nClick Cancel to continue without saving.");
+  if (wantSignup) { window.location.href = "/signup"; }
+}
+// ===== GUEST HANDLER END =====
+let clickCount=0;
+function changeText(){clickCount++;document.getElementById('demoText').innerText="🎉 JavaScript is Working! You Clicked Me!";document.getElementById('demoCount').innerText="You clicked "+clickCount+" times";console.log("Button clicked "+clickCount+" times");}
+function showAlert(){alert("Hello! This is JavaScript alert. You are learning JS!");}
+function resetDemo(){clickCount=0;document.getElementById('demoText').innerText="Hello! I am a Website.";document.getElementById('demoCount').innerText="You clicked 0 times";}
+let testRunning=false;let timerInterval=null;let timeLeft=180;
+function showLesson(){if(testRunning){alert("🔒 Test is running! Please submit the test first. All tabs are locked.");return;}document.getElementById('lessonContent').style.display='block';document.getElementById('testContent').style.display='none';document.getElementById('lessonTabBtn').classList.add('active');document.getElementById('lessonTabBtn').classList.remove('test-active');document.getElementById('testTabBtn').classList.remove('active');document.getElementById('testTabBtn').classList.remove('test-active');window.scrollTo({top:0,behavior:'smooth'});}
+function showTest(){document.getElementById('lessonContent').style.display='none';document.getElementById('testContent').style.display='block';document.getElementById('testTabBtn').classList.add('active');document.getElementById('testTabBtn').classList.add('test-active');document.getElementById('lessonTabBtn').classList.remove('active');window.scrollTo({top:0,behavior:'smooth'});}
+function lockTabs(){testRunning=true;document.getElementById('lessonTabBtn').classList.add('disabled');document.getElementById('lockMsg').style.display='block';document.getElementById('homeLink').classList.add('disabled');document.getElementById('playgroundLink').style.pointerEvents='none';document.getElementById('playgroundLink').style.opacity='0.5';document.getElementById('nextLessonLink').style.pointerEvents='none';document.getElementById('nextLessonLink').style.opacity='0.5';}
+function unlockTabs(){testRunning=false;clearInterval(timerInterval);document.getElementById('lessonTabBtn').classList.remove('disabled');document.getElementById('lockMsg').style.display='none';document.getElementById('homeLink').classList.remove('disabled');document.getElementById('playgroundLink').style.pointerEvents='auto';document.getElementById('playgroundLink').style.opacity='1';document.getElementById('nextLessonLink').style.pointerEvents='auto';document.getElementById('nextLessonLink').style.opacity='1';document.getElementById('timerBar').style.display='none';}
+function startTest(){document.getElementById('startScreen').style.display='none';document.getElementById('quizArea').style.display='block';document.getElementById('timerBar').style.display='block';document.getElementById('scoreBox').style.display='none';lockTabs();timeLeft=180;updateTimer();timerInterval=setInterval(function(){timeLeft--;updateTimer();if(timeLeft<=0){clearInterval(timerInterval);alert("⏰ Time Up! Your test is auto-submitted.");checkTest(true);}},1000);}
+function updateTimer(){let m=Math.floor(timeLeft/60);let s=timeLeft%60;document.getElementById('timerText').innerText=(m<10?"0"+m:m)+":"+(s<10?"0"+s:s);if(timeLeft<=30){document.getElementById('timerBar').classList.add('warning');}}
+function checkTest(isAuto){
+  let answers={q1:'a',q2:'a',q3:'a',q4:'a',q5:'a',q6:'a',q7:'a',q8:'a',q9:'a',q10:'a'};
+  let score=0;let attempted=0;
+  for(let q in answers){let selected=document.querySelector('input[name="'+q+'"]:checked');if(selected){attempted++;if(selected.value===answers[q])score+=10;}}
+  if(!isAuto && attempted<10){alert("Please answer all 10 questions! You have answered only "+attempted+" questions.");return;}
+  unlockTabs();
+  let testStatus=score>=80?'Pass':'Fail';
+  saveTestResult('Lesson 21 - What is JavaScript?', score, testStatus, function(data){
+    if (!IS_LOGGED_IN && score >= 80) {
+      setTimeout(() => showGuestSignupPopup(score), 500);
+    }
+  });
+  let box=document.getElementById('scoreBox');let scoreText=document.getElementById('scoreText');let scoreMsg=document.getElementById('scoreMsg');let nextBtn=document.getElementById('nextBtn');box.style.display='block';scoreText.innerText="Your Score: "+score+" / 100";
+  if(score>=80){box.className='pass';scoreMsg.innerText="🎉 Congratulations! You PASSED. You have learned Lesson 21. Now all tabs are unlocked.";nextBtn.style.display='inline-block';}
+  else{box.className='fail';scoreMsg.innerText="😔 You FAILED. Passing marks are 80. All tabs are now unlocked. Read the lesson again and try again.";nextBtn.style.display='none';}
+  box.scrollIntoView({behavior:'smooth'});
+}
+function resetTest(){clearInterval(timerInterval);testRunning=false;document.getElementById('quizForm').reset();document.getElementById('scoreBox').style.display='none';document.getElementById('quizArea').style.display='none';document.getElementById('startScreen').style.display='block';document.getElementById('timerBar').style.display='none';unlockTabs();}
+</script>
+</body>
+</html>

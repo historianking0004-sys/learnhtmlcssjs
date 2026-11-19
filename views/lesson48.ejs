@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ===== SEO START ===== -->
+<title>Freelancing Guide - Get First Client & Earn Money - Lesson 48 | LearnHTMLCSSJS.com</title>
+<meta name="description" content="Learn Freelancing Guide - Lesson 48. How to get first client, pricing, Fiverr, Upwork, WhatsApp, proposals, contracts, payment. Live price calculator demo. Free Course for Beginners.">
+<meta name="keywords" content="freelancing guide beginners, how to get first client, fiverr upwork, web developer pricing, lesson 48, learn freelancing">
+<meta name="author" content="LearnHTMLCSSJS.com">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://learnhtmlcssjs.com/lesson48">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Freelancing Guide - Get First Client & Earn Money - Lesson 48">
+<meta property="og:description" content="Learn Freelancing - Get first client, price your work, earn money. Live price calculator.">
+<meta property="og:url" content="https://learnhtmlcssjs.com/lesson48">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Course","name":"Learn HTML CSS JS - Free Course","description":"Learn HTML, CSS and JavaScript for beginners in simple English. 50 lessons from zero to web developer.","provider":{"@type":"Organization","name":"LearnHTMLCSSJS.com"}}
+</script>
+<!-- ===== SEO END ===== -->
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+  body{background:#f4f6f8;color:#222}
+  header{background:#0f172a;color:white;padding:20px;text-align:center;width:100%}
+  header a{color:#38bdf8;text-decoration:none;font-size:14px}
+  header a.disabled{color:#64748b;pointer-events:none}
+  .container{width:100%;max-width:100%;margin:0 auto;background:white;padding:30px 40px}
+  h1{font-size:28px;margin-bottom:10px;line-height:1.3}
+  h2{margin:20px 0 10px;color:#0f172a}
+  p{line-height:1.7;margin-bottom:12px}
+  .note{background:#eff6ff;border-left:5px solid #2563eb;padding:12px;border-radius:8px;margin:15px 0}
+  .code-box{background:#0f172a;color:#e2e8f0;padding:15px;border-radius:10px;overflow-x:auto;margin:10px 0}
+  .code-box code{font-family:monospace;font-size:15px;line-height:1.6}
+  .tag{color:#f472b6}.text{color:white}.attr{color:#facc15}.val{color:#86efac}
+  .btn{display:inline-block;background:#16a34a;color:white;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:bold;margin-top:10px;border:none;cursor:pointer;font-size:16px}
+  .btn-next{background:#2563eb}
+  .btn-prev{background:#64748b}
+  .btn-js{background:#f59e0b;color:white}
+  .nav{display:flex;justify-content:space-between;margin-top:25px}
+  .result{border:2px dashed #cbd5e1;padding:15px;border-radius:10px;margin-top:10px;background:#f8fafc}
+  .box{background:#e0f2fe;padding:10px;border-radius:8px;margin-top:10px;line-height:1.8}
+  .tabs{display:flex;gap:10px;margin-bottom:20px;position:sticky;top:0;background:white;padding:10px 0;z-index:10;border-bottom:2px solid #e2e8f0}
+  .tab-btn{flex:1;padding:14px;border:none;border-radius:10px;font-size:17px;font-weight:bold;cursor:pointer;background:#e2e8f0;color:#334155}
+  .tab-btn.active{background:#0f172a;color:white}
+  .tab-btn.test-active{background:#16a34a;color:white}
+  .tab-btn.disabled{opacity:0.5;pointer-events:none;cursor:not-allowed}
+  #lessonContent{display:block}
+  #testContent{display:none}
+  .test-box{border:2px solid #0f172a;border-radius:12px;padding:20px;background:#f8fafc}
+  .test-info{background:#fef3c7;padding:12px;border-radius:8px;margin-bottom:15px;line-height:1.7}
+  .question{background:white;padding:15px;border-radius:10px;margin-bottom:12px;border:1px solid #e2e8f0}
+  .question b{display:block;margin-bottom:8px}
+  .question label{display:block;padding:8px 10px;margin:4px 0;background:#f1f5f9;border-radius:7px;cursor:pointer}
+  .question label:hover{background:#e0f2fe}
+  .question input{margin-right:8px}
+  #scoreBox{display:none;padding:20px;border-radius:10px;text-align:center;margin-top:15px}
+  #scoreBox.pass{background:#dcfce7;border:2px solid #16a34a}
+  #scoreBox.fail{background:#fee2e2;border:2px solid #dc2626}
+  #scoreBox h3{font-size:26px;margin-bottom:5px}
+  #startScreen{text-align:center;padding:30px 10px}
+  #timerBar{display:none;position:sticky;top:60px;z-index:20;background:#dc2626;color:white;padding:12px 15px;border-radius:10px;font-weight:bold;font-size:18px;text-align:center;margin-bottom:15px}
+  #timerBar.warning{background:#ea580c}
+  #quizArea{display:none}
+  .lock-msg{background:#fee2e2;color:#991b1b;padding:10px;border-radius:8px;margin-bottom:12px;text-align:center;font-weight:bold;display:none}
+  table{width:100%;border-collapse:collapse;margin:10px 0;background:white}
+  th,td{border:1px solid #e2e8f0;padding:10px;text-align:left}
+  th{background:#0f172a;color:white}
+  .breadcrumb{font-size:13px;color:#94a3b8;margin-bottom:8px}
+  .breadcrumb a{color:#38bdf8;text-decoration:none}
+  .demo-card{background:white;border:1px solid #e2e8f0;border-radius:12px;padding:20px;text-align:center;margin-top:12px}
+  .demo-input{width:100%;padding:12px;border:2px solid #e2e8f0;border-radius:8px;font-size:15px;outline:none;margin:6px 0}
+  .demo-input:focus{border-color:#2563eb;box-shadow:0 0 0 3px #dbeafe}
+  .calc-wrap{max-width:560px;margin:0 auto;background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:18px;text-align:left}
+  .calc-result{background:#0f172a;color:white;border-radius:10px;padding:16px;text-align:center;margin-top:12px}
+  .calc-result b{font-size:28px;color:#facc15}
+  select.demo-input{background:white}
+  footer{background:#0f172a;color:#cbd5e1;padding:35px 30px}
+  footer h3{color:white;font-size:20px;margin-bottom:12px}
+  footer h4{color:white;font-size:16px;margin:20px 0 10px}
+  footer p{font-size:14px;line-height:1.7;color:#94a3b8}
+  footer a{color:#38bdf8;text-decoration:none;font-size:14px;line-height:2}
+  footer a:hover{color:white;text-decoration:underline}
+  .footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:25px;max-width:1100px;margin:0 auto}
+  .all-lessons{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:10px}
+  .all-lessons a{background:#1e293b;padding:8px 10px;border-radius:8px;text-align:center;display:block;color:#e2e8f0;font-weight:bold;line-height:1.4}
+  .all-lessons a:hover{background:#2563eb;color:white;text-decoration:none}
+  .all-lessons a.current{background:#16a34a;color:white}
+  .footer-bottom{text-align:center;border-top:1px solid #1e293b;margin-top:25px;padding-top:15px;font-size:13px;color:#64748b}
+  @media(max-width:700px){.footer-grid{grid-template-columns:1fr}.all-lessons{grid-template-columns:1fr 1fr}.container{padding:20px}}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="breadcrumb"><a href="/">Home</a> &gt; <a href="/lesson48">Projects & Career</a> &gt; Lesson 48 - Freelancing Guide</p>
+  <p><a id="homeLink" href="/">← Back to Home</a> | Projects & Career - Lesson 48 / 50</p>
+  <h1>Lesson 48: Freelancing Guide - Get Your First Client & Earn Money</h1>
+  <p>Price, Proposal, Payment - No Experience Needed | LearnHTMLCSSJS.com</p>
+</header>
+
+<div class="container">
+  <div class="tabs">
+    <button id="lessonTabBtn" class="tab-btn active" onclick="showLesson()">📖 Lesson</button>
+    <button id="testTabBtn" class="tab-btn" onclick="showTest()">📝 Test - 100 Marks</button>
+  </div>
+  <div id="lockMsg" class="lock-msg">🔒 Test is running! All tabs are locked until you submit the test or time ends.</div>
+
+  <div id="lessonContent">
+    <h2>1. What is Freelancing?</h2>
+    <p><b>Freelancing = You are your own boss. You find clients, you build websites, client pays you.</b> No office, no boss, no fixed salary. You work from home, from your phone, from anywhere.</p>
+    <p>Example: A shop owner in Lahore needs a website. He pays you Rs. 20,000. You build it in 4 days from home. You keep Rs. 20,000. Do 2 websites a month = Rs. 40,000. Do 4 websites = Rs. 80,000. Your skill is now your income.</p>
+    <div class="note"><b>Truth:</b> Your first client will NOT come from Fiverr. It will come from someone you KNOW - Friend, family, local shop, teacher. Start local, then go global. 90% of beginners fail because they wait for clients. Winners GO and ASK.</div>
+    <h2>2. LIVE DEMO - Price Calculator - What to Charge?</h2>
+    <p>Select website type and pages. See fair price + advance + delivery time:</p>
+    <div class="demo-card">
+      <div class="calc-wrap">
+        <h3 style="text-align:center;margin:0">💰 Price Calculator - Try It</h3>
+        <label style="font-size:13px;font-weight:bold">Website Type</label>
+        <select class="demo-input" id="calcType" onchange="calcPrice()">
+          <option value="landing">Landing Page - 1 Page</option>
+          <option value="portfolio">Portfolio - 1 Page</option>
+          <option value="business">Business Website - 5 Pages</option>
+          <option value="shop">Online Shop - With Cart</option>
+          <option value="school">School Website - With Forms</option>
+        </select>
+        <label style="font-size:13px;font-weight:bold">Your Experience</label>
+        <select class="demo-input" id="calcExp" onchange="calcPrice()">
+          <option value="new">New - 0 to 3 Projects</option>
+          <option value="some">Some - 4 to 10 Projects</option>
+          <option value="pro">Pro - 10+ Projects</option>
+        </select>
+        <label style="font-size:13px;font-weight:bold">Urgent? (Client needs in 2 days)</label>
+        <select class="demo-input" id="calcUrgent" onchange="calcPrice()">
+          <option value="no">No - Normal 5-7 Days</option>
+          <option value="yes">Yes - Urgent in 2 Days (+30%)</option>
+        </select>
+        <div class="calc-result"><p style="margin:0;color:#cbd5e1">Charge This Price</p><b id="calcPrice">Rs. 8,000</b><p id="calcDetail" style="margin:8px 0 0;color:#e2e8f0;font-size:14px">Advance: Rs. 4,000 | Delivery: 3 Days</p><p style="font-size:12px;color:#94a3b8;margin:6px 0 0">Take 50% advance BEFORE starting. Never start without advance.</p></div>
+        <button class="btn" style="width:100%" onclick="calcPrice()">Calculate Again 💰</button>
+      </div>
+    </div>
+    <h2>3. Price List - Beginner to Pro</h2>
+    <table>
+      <tr><th>Website</th><th>Beginner (0-3 Projects)</th><th>Some (4-10 Projects)</th><th>Pro (10+ Projects)</th></tr>
+      <tr><td>Landing Page</td><td>Rs. 5,000 - 8,000</td><td>Rs. 10,000 - 15,000</td><td>Rs. 20,000 - 40,000</td></tr>
+      <tr><td>Portfolio</td><td>Rs. 5,000 - 8,000</td><td>Rs. 10,000 - 12,000</td><td>Rs. 15,000 - 25,000</td></tr>
+      <tr><td>Business Website (5 Pages)</td><td>Rs. 10,000 - 15,000</td><td>Rs. 20,000 - 30,000</td><td>Rs. 40,000 - 80,000</td></tr>
+      <tr><td>Online Shop (Cart)</td><td>Rs. 15,000 - 20,000</td><td>Rs. 25,000 - 40,000</td><td>Rs. 50,000 - 100,000</td></tr>
+      <tr><td>School Website</td><td>Rs. 12,000 - 18,000</td><td>Rs. 20,000 - 35,000</td><td>Rs. 40,000 - 70,000</td></tr>
+    </table>
+    <p><b>Rule:</b> Never work FREE "for exposure". Even first client - Charge Rs. 3,000-5,000. Free work = Client does not respect it. Paid work = Client takes you seriously.</p>
+    <h2>4. Where to Find Clients - 5 Ways</h2>
+    <p>1. <b>People You Know (Best for First Client):</b> Tell 20 people - "I build websites. If any shop needs one, I will make it for Rs. 8,000." - Friends, family, teachers, neighbours.<br>2. <b>Local Shops - Walk In:</b> Visit 10 shops in your area. Show your portfolio on phone. Say: "Your shop has no website. I can make one in 4 days for Rs. 10,000. Here is my work." - 1 out of 10 will say yes.<br>3. <b>WhatsApp Status + Facebook:</b> Post your portfolio link every week. "I Build Websites - Starting Rs. 8,000 - WhatsApp Me" - People share it.<br>4. <b>Fiverr / Upwork (Later):</b> After 3-5 local projects, make Fiverr gig. You now have reviews + portfolio to show. New account with no portfolio = No orders.<br>5. <b>Facebook Groups:</b> Join "Business in Lahore", "Shop Owners Pakistan" groups. Help people, answer questions, then offer service. Do NOT spam.</p>
+    <h2>5. Proposal Message - Copy This (WhatsApp / Fiverr)</h2>
+    <div class="code-box"><code>
+<span class="text">Hi [Shop Name], I saw your shop on Facebook - Very nice products! 👋</span><br><br>
+<span class="text">I am [Your Name], a Web Developer from [Your City].</span><br>
+<span class="text">I noticed your shop does not have a website yet.</span><br>
+<span class="text">I can build you a beautiful website in 4 days -</span><br>
+<span class="text">With your products, prices, WhatsApp order button, and Google Maps.</span><br><br>
+<span class="text">Here is my work: [Your Portfolio Link]</span><br>
+<span class="text">Price: Rs. 10,000 - 50% advance, 50% after delivery.</span><br><br>
+<span class="text">Can I show you a free demo for your shop? No cost to see demo.</span><br>
+<span class="text">Thanks! [Your Name] - WhatsApp: [Your Number]</span>
+    </code></div>
+    <p><b>Why this works:</b> Personal (shop name) + Problem (no website) + Solution (4 days) + Proof (portfolio link) + Price clear + Low risk (free demo). Do NOT send "Hi, I am developer, hire me" - That gets ignored.</p>
+    <h2>6. Payment Rules - Protect Yourself</h2>
+    <p><b>50% Advance - 50% After Delivery.</b> Never start without advance. Never deliver full website without final payment.</p>
+    <p>1. Client agrees → Take 50% advance on JazzCash / Easypaisa / Bank<br>2. Build website → Show demo on YOUR link (your Netlify link, not theirs)<br>3. Client approves → Take remaining 50% → Then transfer / give code<br>4. Write everything on WhatsApp - Price, pages, delivery date, what is included. WhatsApp chat = Your proof.</p>
+    <div class="note"><b>Red Flags - Say NO:</b> "Make it first, I will pay later" - NO. "I will pay after I get customers" - NO. "Make 3 designs, I will pick one" - NO, 1 design + 2 revisions. "My budget is Rs. 500" - NO, your time is worth more.</div>
+    <h2>7. Homework - Get Your First Client This Week</h2>
+    <p>1. Post on WhatsApp Status: "I Build Websites - Starting Rs. 8,000 - See My Work: [Your Portfolio Link] - WhatsApp Me"<br>2. Visit 5 local shops - Show portfolio on phone - Give your proposal<br>3. Message 10 people you know - "I build websites now, if anyone needs one, tell me"<br>4. Make Fiverr account AFTER you have 3 projects - Not before</p>
+    <div class="box"><b>Remember:</b> Freelancing = You are your own boss | First client = Someone you know / Local shop, NOT Fiverr | Price = Beginner Landing Rs. 5,000-8,000, Shop Rs. 15,000-20,000 | Payment = 50% advance, 50% after delivery | Proposal = Personal + Problem + Solution + Proof + Price + Free demo | Never work free | Write everything on WhatsApp | Visit 10 shops = 1 client</div>
+    <p><b>Next Step:</b> <a href="/lesson49">Lesson 49 - Interview Questions</a> - 30 most asked questions + answers. Get a job in a company too.</p>
+    <a id="playgroundLink" class="btn" href="/playground">▶ Try it Yourself - Playground</a><br><br>
+    <button class="btn btn-next" onclick="showTest()">Go to Test → 📝</button>
+    <div class="nav">
+      <a class="btn btn-prev" href="/lesson47">← Lesson 47</a>
+      <a id="nextLessonLink" class="btn btn-next" href="/lesson49">Next Lesson 49 →</a>
+    </div>
+  </div>
+
+  <div id="testContent">
+    <div class="test-box">
+      <!-- ===== GUEST BANNER - HTML, NOT JS ===== -->
+      <% if (!user) { %>
+      <div id="guestBanner" style="background:linear-gradient(135deg,#0f172a,#2563eb);color:white;padding:16px;border-radius:12px;margin-bottom:14px;text-align:center">
+        <h3 style="margin:0;font-size:18px">👋 Hi Guest! Try This Test FREE</h3>
+        <p style="margin:6px 0 0;color:#e2e8f0;font-size:14px">You can give this test without login. But your score will <b style="color:#facc15">NOT be saved</b> in Dashboard / Ranking.</p>
+        <p style="margin:8px 0 0"><a href="/signup" style="display:inline-block;background:#facc15;color:#0f172a;padding:10px 22px;border-radius:8px;font-weight:bold;text-decoration:none;font-size:14px">✨ Signup Free to Save Score →</a> <a href="/login" style="color:white;font-weight:bold;font-size:14px">Login →</a></p>
+      </div>
+      <% } else { %>
+      <div style="background:#dcfce7;color:#166534;padding:12px;border-radius:10px;margin-bottom:14px;text-align:center;font-weight:bold;font-size:14px">✅ Logged in as <b><%= user.username %></b> - Your score will be saved in Dashboard & Ranking</div>
+      <% } %>
+      <!-- ===== GUEST BANNER END ===== -->
+      <h2>📝 Lesson 48 Test - Check Your Learning</h2>
+      <div class="test-info"><b>Total Questions:</b> 10 &nbsp; | &nbsp; <b>Total Marks:</b> 100 &nbsp; | &nbsp; <b>Passing Marks:</b> 80 (80%) &nbsp; | &nbsp; <b>Time:</b> 3 Minutes<br>Each correct answer = 10 Marks. Once you start, all tabs will be locked until you submit.</div>
+      <div id="startScreen">
+        <h2>Ready for the Test?</h2>
+        <p>Click Start Paper to begin. You will get <b>3 Minutes</b> for 10 questions.<br>During the test, you cannot open Lesson or any other page.</p>
+        <button class="btn" style="font-size:20px;padding:14px 30px" onclick="startTest()">▶ Start Paper</button>
+      </div>
+      <div id="timerBar">⏰ Time Left: <span id="timerText">03:00</span></div>
+      <div id="quizArea">
+        <form id="quizForm">
+          <div class="question"><b>Q1. What is freelancing?</b><label><input type="radio" name="q1" value="a"> You are your own boss - Find clients, build websites, get paid</label><label><input type="radio" name="q1" value="b"> Fixed office job</label><label><input type="radio" name="q1" value="c"> Work for free</label><label><input type="radio" name="q1" value="d"> No work</label></div>
+          <div class="question"><b>Q2. Where will your first client come from?</b><label><input type="radio" name="q2" value="a"> Someone you know / Local shop - Not Fiverr</label><label><input type="radio" name="q2" value="b"> Fiverr with no portfolio</label><label><input type="radio" name="q2" value="c"> Waiting at home</label><label><input type="radio" name="q2" value="d"> No one</label></div>
+          <div class="question"><b>Q3. Beginner price for Landing Page?</b><label><input type="radio" name="q3" value="a"> Rs. 5,000 - 8,000</label><label><input type="radio" name="q3" value="b"> Rs. 500</label><label><input type="radio" name="q3" value="c"> Free</label><label><input type="radio" name="q3" value="d"> Rs. 100,000</label></div>
+          <div class="question"><b>Q4. Beginner price for Online Shop with Cart?</b><label><input type="radio" name="q4" value="a"> Rs. 15,000 - 20,000</label><label><input type="radio" name="q4" value="b"> Rs. 500</label><label><input type="radio" name="q4" value="c"> Free</label><label><input type="radio" name="q4" value="d"> Rs. 2,000</label></div>
+          <div class="question"><b>Q5. Payment rule?</b><label><input type="radio" name="q5" value="a"> 50% advance BEFORE starting, 50% after delivery</label><label><input type="radio" name="q5" value="b"> 100% after delivery</label><label><input type="radio" name="q5" value="c"> Work free, pay later</label><label><input type="radio" name="q5" value="d"> No payment</label></div>
+          <div class="question"><b>Q6. What should good proposal have?</b><label><input type="radio" name="q6" value="a"> Personal + Problem + Solution + Proof + Price + Free demo</label><label><input type="radio" name="q6" value="b"> Only "Hi, hire me"</label><label><input type="radio" name="q6" value="c"> Only price</label><label><input type="radio" name="q6" value="d"> Only name</label></div>
+          <div class="question"><b>Q7. When to make Fiverr account?</b><label><input type="radio" name="q7" value="a"> After 3-5 local projects - With portfolio + reviews</label><label><input type="radio" name="q7" value="b"> Day 1 with no portfolio</label><label><input type="radio" name="q7" value="c"> Never</label><label><input type="radio" name="q7" value="d"> After 10 years</label></div>
+          <div class="question"><b>Q8. How many shops to visit for 1 client?</b><label><input type="radio" name="q8" value="a"> Visit 10 shops = 1 client - Keep going</label><label><input type="radio" name="q8" value="b"> Visit 1 shop = 10 clients</label><label><input type="radio" name="q8" value="c"> Visit 0 shops</label><label><input type="radio" name="q8" value="d"> Visit 100 shops = 0 clients</label></div>
+          <div class="question"><b>Q9. Red flag - Say NO to?</b><label><input type="radio" name="q9" value="a"> "Make it first, I will pay later"</label><label><input type="radio" name="q9" value="b"> "I will pay 50% advance"</label><label><input type="radio" name="q9" value="c"> "Here is my shop details"</label><label><input type="radio" name="q9" value="d"> "I like your work"</label></div>
+          <div class="question"><b>Q10. Why write everything on WhatsApp?</b><label><input type="radio" name="q10" value="a"> WhatsApp chat = Your proof - Price, pages, date</label><label><input type="radio" name="q10" value="b"> To waste time</label><label><input type="radio" name="q10" value="c"> No reason</label><label><input type="radio" name="q10" value="d"> To delete later</label></div>
+          <button type="button" class="btn" onclick="checkTest(false)">Submit Test - Check Result</button>
+          <button type="button" class="btn btn-next" onclick="resetTest()">Try Again</button>
+        </form>
+      </div>
+      <div id="scoreBox">
+        <h3 id="scoreText"></h3>
+        <p id="scoreMsg"></p>
+        <a id="nextBtn" class="btn" href="/lesson49" style="display:none">🎉 You Passed! Go to Lesson 49 →</a>
+        <br><br>
+        <button class="btn btn-next" onclick="showLesson()">← Back to Lesson (Unlocked)</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h3>LearnHTMLCSSJS.com</h3>
+      <p>Free HTML CSS JS course in simple English. Learn from zero to web developer with 50 lessons, tests, playground and ranking.</p>
+      <h4>Quick Links</h4>
+      <a href="/">🏠 Home</a><br>
+      <a href="/dashboard">📊 Dashboard</a><br>
+      <a href="/ranking">🏆 Ranking</a><br>
+      <a href="/playground">▶ Playground - Try Code</a><br>
+      <a href="/lesson1">📖 Start Lesson 1 - What is HTML?</a>
+    </div>
+    <div>
+      <h3>Next Lessons - Continue Learning</h3>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a><br>
+      <a href="/lesson50">Lesson 50 - Final Exam</a><br>
+      <a href="/lesson49">Lesson 49 - Interview</a>
+      <h4>Projects & Career (41-50)</h4>
+      <a href="/lesson50">Lesson 50 - Final Exam</a>
+    </div>
+    <div>
+      <h3>Projects & Career (41-50)</h3>
+      <a href="/lesson50">Lesson 50 - Final Exam & Certificate</a><br>
+      <h4>JavaScript Course (21-40)</h4>
+      <a href="/lesson47">Lesson 47 - Deploy</a><br>
+      <a href="/lesson48">Lesson 48 - Freelancing</a>
+    </div>
+  </div>
+  <div style="max-width:1100px;margin:25px auto 0;border-top:1px solid #1e293b;padding-top:20px">
+    <h3 style="text-align:center">📚 All 50 Lessons - Complete HTML CSS JS Course</h3>
+    <div class="all-lessons">
+      <a href="/lesson1">Lesson 1 - What is HTML?</a>
+      <a href="/lesson2">Lesson 2 - Headings & Paragraphs</a>
+      <a href="/lesson3">Lesson 3 - Text Formatting</a>
+      <a href="/lesson4">Lesson 4 - Links & Images</a>
+      <a href="/lesson5">Lesson 5 - Lists</a>
+      <a href="/lesson6">Lesson 6 - Tables</a>
+      <a href="/lesson7">Lesson 7 - Forms</a>
+      <a href="/lesson8">Lesson 8 - Div & Span</a>
+      <a href="/lesson9">Lesson 9 - Semantic HTML</a>
+      <a href="/lesson10">Lesson 10 - HTML Project</a>
+      <a href="/lesson11">Lesson 11 - What is CSS?</a>
+      <a href="/lesson12">Lesson 12 - Colors</a>
+      <a href="/lesson13">Lesson 13 - Text Styling</a>
+      <a href="/lesson14">Lesson 14 - Box Model</a>
+      <a href="/lesson15">Lesson 15 - Flexbox</a>
+      <a href="/lesson16">Lesson 16 - Grid</a>
+      <a href="/lesson17">Lesson 17 - Responsive</a>
+      <a href="/lesson18">Lesson 18 - Buttons</a>
+      <a href="/lesson19">Lesson 19 - Forms Styling</a>
+      <a href="/lesson20">Lesson 20 - CSS Project</a>
+      <a href="/lesson21">Lesson 21 - What is JS?</a>
+      <a href="/lesson22">Lesson 22 - Variables</a>
+      <a href="/lesson23">Lesson 23 - Data Types</a>
+      <a href="/lesson24">Lesson 24 - If-Else</a>
+      <a href="/lesson25">Lesson 25 - Loops</a>
+      <a href="/lesson26">Lesson 26 - Functions</a>
+      <a href="/lesson27">Lesson 27 - Arrays</a>
+      <a href="/lesson28">Lesson 28 - Objects</a>
+      <a href="/lesson29">Lesson 29 - Strings</a>
+      <a href="/lesson30">Lesson 30 - DOM</a>
+      <a href="/lesson31">Lesson 31 - Events</a>
+      <a href="/lesson32">Lesson 32 - Form Validation</a>
+      <a href="/lesson33">Lesson 33 - LocalStorage</a>
+      <a href="/lesson34">Lesson 34 - Timers</a>
+      <a href="/lesson35">Lesson 35 - Calculator</a>
+      <a href="/lesson36">Lesson 36 - To-Do List</a>
+      <a href="/lesson37">Lesson 37 - Quiz App</a>
+      <a href="/lesson38">Lesson 38 - Password Generator</a>
+      <a href="/lesson39">Lesson 39 - Weather App</a>
+      <a href="/lesson40">Lesson 40 - JS Revision</a>
+      <a href="/lesson41">Lesson 41 - Full Website</a>
+      <a href="/lesson42">Lesson 42 - Portfolio</a>
+      <a href="/lesson43">Lesson 43 - Landing Page</a>
+      <a href="/lesson44">Lesson 44 - Navbar</a>
+      <a href="/lesson45">Lesson 45 - Final Project</a>
+      <a href="/lesson46">Lesson 46 - SEO</a>
+      <a href="/lesson47">Lesson 47 - Deploy</a>
+      <a href="/lesson48" class="current">Lesson 48 - Freelancing</a>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a>
+      <a href="/lesson50">Lesson 50 - Final Exam</a>
+    </div>
+    <p style="text-align:center;margin-top:15px">You are learning <a href="/lesson48">Freelancing Guide - Lesson 48</a> | Previous: <a href="/lesson47">Deploy Free - Lesson 47</a> | Next: <a href="/lesson49">Interview Qs - Lesson 49</a> | <a href="/lesson50">Jump to Final Exam - Lesson 50</a></p>
+  </div>
+  <div class="footer-bottom">© 2026 LearnHTMLCSSJS.com - Free Course | <a href="/">Home</a> | <a href="/lesson48">Lesson 48</a> | <a href="/lesson50">Lesson 50</a> | Made for Beginners</div>
+</footer>
+
+<script>
+// ===== GUEST TEST HANDLER - Only inside <script> =====
+const IS_LOGGED_IN = <%= (typeof user !== 'undefined' && user) ? 'true' : 'false' %>;
+function saveTestResult(lessonName, score, testStatus, onSaved) {
+  if (!IS_LOGGED_IN) { if (onSaved) onSaved(null); return; }
+  fetch('/save-result', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ lesson: lessonName, score: score, status: testStatus }) })
+  .then(r => r.json())
+  .then(data => { if (onSaved) onSaved(data); })
+  .catch(() => { if (onSaved) onSaved(null); });
+}
+function showGuestSignupPopup(score) {
+  let wantSignup = confirm("🎉 You scored " + score + "/100!\n\nYour score is NOT saved because you are not logged in.\n\nClick OK to Signup FREE and Save Your Score in Dashboard & Ranking.\nClick Cancel to continue without saving.");
+  if (wantSignup) { window.location.href = "/signup"; }
+}
+// ===== GUEST HANDLER END =====
+function calcPrice(){let type=document.getElementById('calcType').value;let exp=document.getElementById('calcExp').value;let urgent=document.getElementById('calcUrgent').value;let base={landing:8000,portfolio:8000,business:15000,shop:20000,school:18000};let mult={new:1,some:1.8,pro:3};let days={landing:3,portfolio:3,business:5,shop:6,school:6};let price=Math.round(base[type]*mult[exp]);if(urgent==='yes'){price=Math.round(price*1.3);}let advance=Math.round(price/2);document.getElementById('calcPrice').innerText="Rs. "+price.toLocaleString();document.getElementById('calcDetail').innerText="Advance: Rs. "+advance.toLocaleString()+" | Delivery: "+days[type]+" Days"+(urgent==='yes'?" | Urgent +30%":"");}
+calcPrice();
+let testRunning=false;let timerInterval=null;let timeLeft=180;
+function showLesson(){if(testRunning){alert("🔒 Test is running! Please submit the test first. All tabs are locked.");return;}document.getElementById('lessonContent').style.display='block';document.getElementById('testContent').style.display='none';document.getElementById('lessonTabBtn').classList.add('active');document.getElementById('lessonTabBtn').classList.remove('test-active');document.getElementById('testTabBtn').classList.remove('active');document.getElementById('testTabBtn').classList.remove('test-active');window.scrollTo({top:0,behavior:'smooth'});}
+function showTest(){document.getElementById('lessonContent').style.display='none';document.getElementById('testContent').style.display='block';document.getElementById('testTabBtn').classList.add('active');document.getElementById('testTabBtn').classList.add('test-active');document.getElementById('lessonTabBtn').classList.remove('active');window.scrollTo({top:0,behavior:'smooth'});}
+function lockTabs(){testRunning=true;document.getElementById('lessonTabBtn').classList.add('disabled');document.getElementById('lockMsg').style.display='block';document.getElementById('homeLink').classList.add('disabled');document.getElementById('playgroundLink').style.pointerEvents='none';document.getElementById('playgroundLink').style.opacity='0.5';document.getElementById('nextLessonLink').style.pointerEvents='none';document.getElementById('nextLessonLink').style.opacity='0.5';}
+function unlockTabs(){testRunning=false;clearInterval(timerInterval);document.getElementById('lessonTabBtn').classList.remove('disabled');document.getElementById('lockMsg').style.display='none';document.getElementById('homeLink').classList.remove('disabled');document.getElementById('playgroundLink').style.pointerEvents='auto';document.getElementById('playgroundLink').style.opacity='1';document.getElementById('nextLessonLink').style.pointerEvents='auto';document.getElementById('nextLessonLink').style.opacity='1';document.getElementById('timerBar').style.display='none';}
+function startTest(){document.getElementById('startScreen').style.display='none';document.getElementById('quizArea').style.display='block';document.getElementById('timerBar').style.display='block';document.getElementById('scoreBox').style.display='none';lockTabs();timeLeft=180;updateTimer();timerInterval=setInterval(function(){timeLeft--;updateTimer();if(timeLeft<=0){clearInterval(timerInterval);alert("⏰ Time Up! Your test is auto-submitted.");checkTest(true);}},1000);}
+function updateTimer(){let m=Math.floor(timeLeft/60);let s=timeLeft%60;document.getElementById('timerText').innerText=(m<10?"0"+m:m)+":"+(s<10?"0"+s:s);if(timeLeft<=30){document.getElementById('timerBar').classList.add('warning');}}
+function checkTest(isAuto){
+  let answers={q1:'a',q2:'a',q3:'a',q4:'a',q5:'a',q6:'a',q7:'a',q8:'a',q9:'a',q10:'a'};
+  let score=0;let attempted=0;
+  for(let q in answers){let selected=document.querySelector('input[name="'+q+'"]:checked');if(selected){attempted++;if(selected.value===answers[q])score+=10;}}
+  if(!isAuto && attempted<10){alert("Please answer all 10 questions! You have answered only "+attempted+" questions.");return;}
+  unlockTabs();
+  let testStatus=score>=80?'Pass':'Fail';
+  saveTestResult('Lesson 48 - Freelancing Guide', score, testStatus, function(data){
+    if (!IS_LOGGED_IN && score >= 80) {
+      setTimeout(() => showGuestSignupPopup(score), 500);
+    }
+  });
+  let box=document.getElementById('scoreBox');let scoreText=document.getElementById('scoreText');let scoreMsg=document.getElementById('scoreMsg');let nextBtn=document.getElementById('nextBtn');box.style.display='block';scoreText.innerText="Your Score: "+score+" / 100";
+  if(score>=80){box.className='pass';scoreMsg.innerText="🎉 Congratulations! You PASSED. You have learned Lesson 48. Now all tabs are unlocked.";nextBtn.style.display='inline-block';}
+  else{box.className='fail';scoreMsg.innerText="😔 You FAILED. Passing marks are 80. All tabs are now unlocked. Read the lesson again and try again.";nextBtn.style.display='none';}
+  box.scrollIntoView({behavior:'smooth'});
+}
+function resetTest(){clearInterval(timerInterval);testRunning=false;document.getElementById('quizForm').reset();document.getElementById('scoreBox').style.display='none';document.getElementById('quizArea').style.display='none';document.getElementById('startScreen').style.display='block';document.getElementById('timerBar').style.display='none';unlockTabs();}
+</script>
+</body>
+</html>

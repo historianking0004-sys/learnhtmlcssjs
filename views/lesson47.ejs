@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ===== SEO START ===== -->
+<title>Deploy Website Free - Put Your Website Live on Internet - Lesson 47 | LearnHTMLCSSJS.com</title>
+<meta name="description" content="Learn to Deploy Website Free - Lesson 47. Netlify, Vercel, GitHub Pages. Free hosting, free domain, free HTTPS. Step by step deploy in 5 minutes. Live deploy checklist demo. Free Course for Beginners.">
+<meta name="keywords" content="deploy website free, netlify deploy, vercel deploy, github pages, free hosting, lesson 47, learn deploy website">
+<meta name="author" content="LearnHTMLCSSJS.com">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://learnhtmlcssjs.com/lesson47">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deploy Website Free - Put Your Website Live on Internet - Lesson 47">
+<meta property="og:description" content="Learn Deploy Free - Put your website LIVE in 5 minutes. Free hosting, domain, HTTPS.">
+<meta property="og:url" content="https://learnhtmlcssjs.com/lesson47">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Course","name":"Learn HTML CSS JS - Free Course","description":"Learn HTML, CSS and JavaScript for beginners in simple English. 50 lessons from zero to web developer.","provider":{"@type":"Organization","name":"LearnHTMLCSSJS.com"}}
+</script>
+<!-- ===== SEO END ===== -->
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+  body{background:#f4f6f8;color:#222}
+  header{background:#0f172a;color:white;padding:20px;text-align:center;width:100%}
+  header a{color:#38bdf8;text-decoration:none;font-size:14px}
+  header a.disabled{color:#64748b;pointer-events:none}
+  .container{width:100%;max-width:100%;margin:0 auto;background:white;padding:30px 40px}
+  h1{font-size:28px;margin-bottom:10px;line-height:1.3}
+  h2{margin:20px 0 10px;color:#0f172a}
+  p{line-height:1.7;margin-bottom:12px}
+  .note{background:#eff6ff;border-left:5px solid #2563eb;padding:12px;border-radius:8px;margin:15px 0}
+  .code-box{background:#0f172a;color:#e2e8f0;padding:15px;border-radius:10px;overflow-x:auto;margin:10px 0}
+  .code-box code{font-family:monospace;font-size:15px;line-height:1.6}
+  .tag{color:#f472b6}.text{color:white}.attr{color:#facc15}.val{color:#86efac}
+  .btn{display:inline-block;background:#16a34a;color:white;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:bold;margin-top:10px;border:none;cursor:pointer;font-size:16px}
+  .btn-next{background:#2563eb}
+  .btn-prev{background:#64748b}
+  .btn-js{background:#f59e0b;color:white}
+  .nav{display:flex;justify-content:space-between;margin-top:25px}
+  .result{border:2px dashed #cbd5e1;padding:15px;border-radius:10px;margin-top:10px;background:#f8fafc}
+  .box{background:#e0f2fe;padding:10px;border-radius:8px;margin-top:10px;line-height:1.8}
+  .tabs{display:flex;gap:10px;margin-bottom:20px;position:sticky;top:0;background:white;padding:10px 0;z-index:10;border-bottom:2px solid #e2e8f0}
+  .tab-btn{flex:1;padding:14px;border:none;border-radius:10px;font-size:17px;font-weight:bold;cursor:pointer;background:#e2e8f0;color:#334155}
+  .tab-btn.active{background:#0f172a;color:white}
+  .tab-btn.test-active{background:#16a34a;color:white}
+  .tab-btn.disabled{opacity:0.5;pointer-events:none;cursor:not-allowed}
+  #lessonContent{display:block}
+  #testContent{display:none}
+  .test-box{border:2px solid #0f172a;border-radius:12px;padding:20px;background:#f8fafc}
+  .test-info{background:#fef3c7;padding:12px;border-radius:8px;margin-bottom:15px;line-height:1.7}
+  .question{background:white;padding:15px;border-radius:10px;margin-bottom:12px;border:1px solid #e2e8f0}
+  .question b{display:block;margin-bottom:8px}
+  .question label{display:block;padding:8px 10px;margin:4px 0;background:#f1f5f9;border-radius:7px;cursor:pointer}
+  .question label:hover{background:#e0f2fe}
+  .question input{margin-right:8px}
+  #scoreBox{display:none;padding:20px;border-radius:10px;text-align:center;margin-top:15px}
+  #scoreBox.pass{background:#dcfce7;border:2px solid #16a34a}
+  #scoreBox.fail{background:#fee2e2;border:2px solid #dc2626}
+  #scoreBox h3{font-size:26px;margin-bottom:5px}
+  #startScreen{text-align:center;padding:30px 10px}
+  #timerBar{display:none;position:sticky;top:60px;z-index:20;background:#dc2626;color:white;padding:12px 15px;border-radius:10px;font-weight:bold;font-size:18px;text-align:center;margin-bottom:15px}
+  #timerBar.warning{background:#ea580c}
+  #quizArea{display:none}
+  .lock-msg{background:#fee2e2;color:#991b1b;padding:10px;border-radius:8px;margin-bottom:12px;text-align:center;font-weight:bold;display:none}
+  table{width:100%;border-collapse:collapse;margin:10px 0;background:white}
+  th,td{border:1px solid #e2e8f0;padding:10px;text-align:left}
+  th{background:#0f172a;color:white}
+  .breadcrumb{font-size:13px;color:#94a3b8;margin-bottom:8px}
+  .breadcrumb a{color:#38bdf8;text-decoration:none}
+  .demo-card{background:white;border:1px solid #e2e8f0;border-radius:12px;padding:20px;text-align:center;margin-top:12px}
+  .demo-input{width:100%;padding:12px;border:2px solid #e2e8f0;border-radius:8px;font-size:15px;outline:none;margin:6px 0}
+  .demo-input:focus{border-color:#2563eb;box-shadow:0 0 0 3px #dbeafe}
+  .deploy-wrap{max-width:560px;margin:0 auto;background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:18px;text-align:left}
+  .deploy-step{display:flex;gap:12px;align-items:flex-start;background:white;border:1px solid #e2e8f0;border-radius:10px;padding:12px;margin:8px 0}
+  .deploy-step.done{background:#f0fdf4;border-color:#bbf7d0}
+  .deploy-num{width:32px;height:32px;border-radius:50%;background:#e2e8f0;display:flex;align-items:center;justify-content:center;font-weight:bold;flex-shrink:0}
+  .deploy-step.done .deploy-num{background:#16a34a;color:white}
+  .progress{height:12px;background:#e2e8f0;border-radius:10px;overflow:hidden;margin:10px 0}
+  .progress-bar{height:100%;background:#16a34a;width:0%;transition:width .3s}
+  footer{background:#0f172a;color:#cbd5e1;padding:35px 30px}
+  footer h3{color:white;font-size:20px;margin-bottom:12px}
+  footer h4{color:white;font-size:16px;margin:20px 0 10px}
+  footer p{font-size:14px;line-height:1.7;color:#94a3b8}
+  footer a{color:#38bdf8;text-decoration:none;font-size:14px;line-height:2}
+  footer a:hover{color:white;text-decoration:underline}
+  .footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:25px;max-width:1100px;margin:0 auto}
+  .all-lessons{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:10px}
+  .all-lessons a{background:#1e293b;padding:8px 10px;border-radius:8px;text-align:center;display:block;color:#e2e8f0;font-weight:bold;line-height:1.4}
+  .all-lessons a:hover{background:#2563eb;color:white;text-decoration:none}
+  .all-lessons a.current{background:#16a34a;color:white}
+  .footer-bottom{text-align:center;border-top:1px solid #1e293b;margin-top:25px;padding-top:15px;font-size:13px;color:#64748b}
+  @media(max-width:700px){.footer-grid{grid-template-columns:1fr}.all-lessons{grid-template-columns:1fr 1fr}.container{padding:20px}}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="breadcrumb"><a href="/">Home</a> &gt; <a href="/lesson47">Projects & Career</a> &gt; Lesson 47 - Deploy Free</p>
+  <p><a id="homeLink" href="/">← Back to Home</a> | Projects & Career - Lesson 47 / 50</p>
+  <h1>Lesson 47: Deploy Free - Put Your Website LIVE on Internet</h1>
+  <p>Free Hosting, Free Domain, Free HTTPS - In 5 Minutes | LearnHTMLCSSJS.com</p>
+</header>
+
+<div class="container">
+  <div class="tabs">
+    <button id="lessonTabBtn" class="tab-btn active" onclick="showLesson()">📖 Lesson</button>
+    <button id="testTabBtn" class="tab-btn" onclick="showTest()">📝 Test - 100 Marks</button>
+  </div>
+  <div id="lockMsg" class="lock-msg">🔒 Test is running! All tabs are locked until you submit the test or time ends.</div>
+
+  <div id="lessonContent">
+    <h2>1. What is Deploy?</h2>
+    <p><b>Deploy = Put your website on the internet so anyone in the world can open it.</b></p>
+    <p>Until now, your website only lives on YOUR computer. Only you can see it. When you deploy, you upload it to a server - A computer that is always ON - And you get a link like <b>https://ali-portfolio.netlify.app</b>. You can send that link to anyone - Client, friend, company. They open it on their phone and see your website.</p>
+    <div class="note"><b>Good News:</b> For HTML CSS JS websites, deploy is 100% FREE. No credit card, no payment. Netlify, Vercel, GitHub Pages - All free. You will deploy today in 5 minutes.</div>
+    <h2>2. LIVE DEMO - Deploy Checklist - Tick As You Go</h2>
+    <p>Follow these steps in real life. Tick each box here to track your progress:</p>
+    <div class="demo-card">
+      <div class="deploy-wrap">
+        <h3 style="text-align:center;margin:0">🚀 Deploy Checklist - <span id="deployPct">0%</span> Done</h3>
+        <div class="progress"><div class="progress-bar" id="deployBar"></div></div>
+        <div class="deploy-step" id="step1"><div class="deploy-num">1</div><div><b>Save your file as index.html</b><br><span style="font-size:13px;color:#64748b">Your main file MUST be named index.html - Not mywebsite.html</span><br><button class="btn" style="padding:6px 12px;font-size:13px" onclick="toggleStep(1)">Mark Done ✅</button></div></div>
+        <div class="deploy-step" id="step2"><div class="deploy-num">2</div><div><b>Put all files in ONE folder</b><br><span style="font-size:13px;color:#64748b">Folder: my-website / index.html + images + style.css</span><br><button class="btn" style="padding:6px 12px;font-size:13px" onclick="toggleStep(2)">Mark Done ✅</button></div></div>
+        <div class="deploy-step" id="step3"><div class="deploy-num">3</div><div><b>Go to netlify.com - Sign up free</b><br><span style="font-size:13px;color:#64748b">Use Google / GitHub to sign up - No card needed</span><br><button class="btn" style="padding:6px 12px;font-size:13px" onclick="toggleStep(3)">Mark Done ✅</button></div></div>
+        <div class="deploy-step" id="step4"><div class="deploy-num">4</div><div><b>Drag & Drop your folder</b><br><span style="font-size:13px;color:#64748b">Netlify dashboard → Drag folder → Wait 30 seconds</span><br><button class="btn" style="padding:6px 12px;font-size:13px" onclick="toggleStep(4)">Mark Done ✅</button></div></div>
+        <div class="deploy-step" id="step5"><div class="deploy-num">5</div><div><b>Copy your live link + Test on phone</b><br><span style="font-size:13px;color:#64748b">Open link on mobile, check all buttons, share with friends!</span><br><button class="btn" style="padding:6px 12px;font-size:13px" onclick="toggleStep(5)">Mark Done ✅</button></div></div>
+        <p id="deployMsg" style="text-align:center;font-weight:bold;color:#16a34a"></p>
+      </div>
+    </div>
+    <h2>3. 3 Free Ways to Deploy - Which One?</h2>
+    <table>
+      <tr><th>Platform</th><th>How?</th><th>Best For</th></tr>
+      <tr><td><b>Netlify Drop</b> ⭐ Easiest</td><td>Go to app.netlify.com/drop - Drag folder - Done</td><td>Beginners - No account setup, 30 seconds</td></tr>
+      <tr><td><b>Vercel</b></td><td>Go to vercel.com - Import from GitHub or drag</td><td>Fast, professional - Many companies use it</td></tr>
+      <tr><td><b>GitHub Pages</b></td><td>Push code to GitHub → Settings → Pages → Deploy</td><td>Learn Git + Show code to companies</td></tr>
+    </table>
+    <div class="note"><b>Start with Netlify Drop.</b> No Git, no command, no setup. Just drag your folder. When you learn Git, move to GitHub Pages + Vercel. All 3 give free HTTPS - Your link starts with https://</div>
+    <h2>4. Step by Step - Netlify Drop (Easiest)</h2>
+    <p>1. Open your computer - Make a folder named <code>my-website</code><br>2. Inside folder, save your website as <code>index.html</code> - If you have images, put them in same folder<br>3. Open browser - Go to <b>app.netlify.com/drop</b><br>4. Drag your <code>my-website</code> folder onto the page - Drop it<br>5. Wait 30 seconds - Netlify gives you a link like <code>https://amazing-site-123.netlify.app</code><br>6. Click link - Your website is LIVE! Open on phone to test<br>7. Change name - Site settings → Change site name → <code>ali-portfolio</code> → New link: <code>https://ali-portfolio.netlify.app</code></p>
+    <h2>5. Folder Structure - Must Be Correct</h2>
+    <div class="code-box"><code>
+<span class="comment" style="color:#94a3b8">✅ CORRECT - index.html at top, images in same folder</span><br>
+<span class="text">my-website /</span><br>
+<span class="text">├── index.html &lt;!-- Main file - MUST be this name --&gt;</span><br>
+<span class="text">├── style.css &lt;!-- If you have separate CSS --&gt;</span><br>
+<span class="text">├── script.js &lt;!-- If you have separate JS --&gt;</span><br>
+<span class="text">└── biryani.jpg &lt;!-- Images in same folder --&gt;</span><br><br>
+<span class="comment" style="color:#94a3b8">❌ WRONG - index.html inside another folder</span><br>
+<span class="text">my-website /</span><br>
+<span class="text">└── my-website /</span><br>
+<span class="text">&nbsp;&nbsp;&nbsp;&nbsp;└── index.html &lt;!-- Netlify cannot find it - Shows blank --&gt;</span><br><br>
+<span class="comment" style="color:#94a3b8">❌ WRONG - Main file named wrong</span><br>
+<span class="text">my-website /</span><br>
+<span class="text">└── mywebsite.html &lt;!-- Must be index.html, not any other name --&gt;</span>
+    </code></div>
+    <h2>6. After Deploy - Update Your Website</h2>
+    <p>Website is not one-time. You will update it many times - New project, new price, fix mistake.</p>
+    <p><b>Netlify Drop:</b> Fix file on computer → Drag folder again → Same link updates in 30 seconds.<br><b>GitHub Pages:</b> Fix file → Push to GitHub → Site updates automatically in 1 minute.<br><b>Tip:</b> Always test on phone after update. 80% of your visitors are on phone.</p>
+    <h2>7. Domain - Free vs Paid</h2>
+    <table>
+      <tr><th>Type</th><th>Example</th><th>Price</th><th>When?</th></tr>
+      <tr><td>Free Subdomain</td><td>ali-portfolio.netlify.app</td><td>Free</td><td>Start - Portfolio, practice, first clients</td></tr>
+      <tr><td>Custom Domain</td><td>aliwebstudio.com</td><td>Rs. 2,000-3,000 / year</td><td>When you get paying clients - Looks professional</td></tr>
+    </table>
+    <p>Buy custom domain later from Namecheap / GoDaddy. Connect to Netlify in 10 minutes - Netlify → Domain settings → Add custom domain. For now, free link is perfect.</p>
+    <h2>8. Homework - Deploy 2 Websites TODAY</h2>
+    <p>Do not just read. Deploy now:</p>
+    <p>1. <b>Your Portfolio (Lesson 42)</b> - Deploy on Netlify - Link like ali-portfolio.netlify.app - Send to 5 friends<br>2. <b>Your Final Project (Lesson 45)</b> - Deploy second site - Send to 1 shop owner - Ask "Would you pay for this?"<br>3. Add both links to your WhatsApp bio + Facebook bio - Now anyone can see your work</p>
+    <div class="box"><b>Remember:</b> Deploy = Upload to server, get live link | Main file MUST be index.html | One folder - index.html + images + CSS + JS together | Netlify Drop = Drag folder, 30 seconds, free | After update, drag again | Free link = name.netlify.app | Custom domain later - Rs. 2,000/year | Always test on phone after deploy</div>
+    <p><b>Next Step:</b> <a href="/lesson48">Lesson 48 - Freelancing Guide</a> - How to get your first client, price your work, and earn money.</p>
+    <a id="playgroundLink" class="btn" href="/playground">▶ Try it Yourself - Playground</a><br><br>
+    <button class="btn btn-next" onclick="showTest()">Go to Test → 📝</button>
+    <div class="nav">
+      <a class="btn btn-prev" href="/lesson46">← Lesson 46</a>
+      <a id="nextLessonLink" class="btn btn-next" href="/lesson48">Next Lesson 48 →</a>
+    </div>
+  </div>
+
+  <div id="testContent">
+    <div class="test-box">
+      <!-- ===== GUEST BANNER - HTML, NOT JS ===== -->
+      <% if (!user) { %>
+      <div id="guestBanner" style="background:linear-gradient(135deg,#0f172a,#2563eb);color:white;padding:16px;border-radius:12px;margin-bottom:14px;text-align:center">
+        <h3 style="margin:0;font-size:18px">👋 Hi Guest! Try This Test FREE</h3>
+        <p style="margin:6px 0 0;color:#e2e8f0;font-size:14px">You can give this test without login. But your score will <b style="color:#facc15">NOT be saved</b> in Dashboard / Ranking.</p>
+        <p style="margin:8px 0 0"><a href="/signup" style="display:inline-block;background:#facc15;color:#0f172a;padding:10px 22px;border-radius:8px;font-weight:bold;text-decoration:none;font-size:14px">✨ Signup Free to Save Score →</a> <a href="/login" style="color:white;font-weight:bold;font-size:14px">Login →</a></p>
+      </div>
+      <% } else { %>
+      <div style="background:#dcfce7;color:#166534;padding:12px;border-radius:10px;margin-bottom:14px;text-align:center;font-weight:bold;font-size:14px">✅ Logged in as <b><%= user.username %></b> - Your score will be saved in Dashboard & Ranking</div>
+      <% } %>
+      <!-- ===== GUEST BANNER END ===== -->
+      <h2>📝 Lesson 47 Test - Check Your Learning</h2>
+      <div class="test-info"><b>Total Questions:</b> 10 &nbsp; | &nbsp; <b>Total Marks:</b> 100 &nbsp; | &nbsp; <b>Passing Marks:</b> 80 (80%) &nbsp; | &nbsp; <b>Time:</b> 3 Minutes<br>Each correct answer = 10 Marks. Once you start, all tabs will be locked until you submit.</div>
+      <div id="startScreen">
+        <h2>Ready for the Test?</h2>
+        <p>Click Start Paper to begin. You will get <b>3 Minutes</b> for 10 questions.<br>During the test, you cannot open Lesson or any other page.</p>
+        <button class="btn" style="font-size:20px;padding:14px 30px" onclick="startTest()">▶ Start Paper</button>
+      </div>
+      <div id="timerBar">⏰ Time Left: <span id="timerText">03:00</span></div>
+      <div id="quizArea">
+        <form id="quizForm">
+          <div class="question"><b>Q1. What is Deploy?</b><label><input type="radio" name="q1" value="a"> Put website on internet - Upload to server, get live link</label><label><input type="radio" name="q1" value="b"> Save file on computer only</label><label><input type="radio" name="q1" value="c"> Delete website</label><label><input type="radio" name="q1" value="d"> Make website slow</label></div>
+          <div class="question"><b>Q2. What must main file be named?</b><label><input type="radio" name="q2" value="a"> index.html</label><label><input type="radio" name="q2" value="b"> mywebsite.html</label><label><input type="radio" name="q2" value="c"> home.html</label><label><input type="radio" name="q2" value="d"> main.html</label></div>
+          <div class="question"><b>Q3. Easiest free deploy method?</b><label><input type="radio" name="q3" value="a"> Netlify Drop - Drag folder, done in 30 seconds</label><label><input type="radio" name="q3" value="b"> Buy expensive server</label><label><input type="radio" name="q3" value="c"> Email files to friend</label><label><input type="radio" name="q3" value="d"> Print website</label></div>
+          <div class="question"><b>Q4. Where to go for Netlify Drop?</b><label><input type="radio" name="q4" value="a"> app.netlify.com/drop</label><label><input type="radio" name="q4" value="b"> google.com</label><label><input type="radio" name="q4" value="c"> facebook.com</label><label><input type="radio" name="q4" value="d"> youtube.com</label></div>
+          <div class="question"><b>Q5. Correct folder structure?</b><label><input type="radio" name="q5" value="a"> my-website / index.html + images + CSS together</label><label><input type="radio" name="q5" value="b"> my-website / my-website / index.html</label><label><input type="radio" name="q5" value="c"> index.html in Downloads only</label><label><input type="radio" name="q5" value="d"> No folder, loose files</label></div>
+          <div class="question"><b>Q6. How much does deploy cost for HTML CSS JS?</b><label><input type="radio" name="q6" value="a"> Free - No card needed</label><label><input type="radio" name="q6" value="b"> Rs. 10,000 / month</label><label><input type="radio" name="q6" value="c"> Rs. 5,000 / month</label><label><input type="radio" name="q6" value="d"> $100 / month</label></div>
+          <div class="question"><b>Q7. How to update deployed site on Netlify Drop?</b><label><input type="radio" name="q7" value="a"> Fix file, drag folder again, same link updates</label><label><input type="radio" name="q7" value="b"> Cannot update, make new site</label><label><input type="radio" name="q7" value="c"> Delete site</label><label><input type="radio" name="q7" value="d"> Email Netlify</label></div>
+          <div class="question"><b>Q8. What is free subdomain example?</b><label><input type="radio" name="q8" value="a"> ali-portfolio.netlify.app</label><label><input type="radio" name="q8" value="b"> aliwebstudio.com</label><label><input type="radio" name="q8" value="c"> google.com</label><label><input type="radio" name="q8" value="d"> facebook.com/ali</label></div>
+          <div class="question"><b>Q9. What to test after deploy?</b><label><input type="radio" name="q9" value="a"> Open link on phone, check all buttons, mobile view</label><label><input type="radio" name="q9" value="b"> Nothing - Assume it works</label><label><input type="radio" name="q9" value="c"> Only desktop</label><label><input type="radio" name="q9" value="d"> Only title</label></div>
+          <div class="question"><b>Q10. When to buy custom domain?</b><label><input type="radio" name="q10" value="a"> When you get paying clients - Looks professional</label><label><input type="radio" name="q10" value="b"> Day 1, before learning</label><label><input type="radio" name="q10" value="c"> Never</label><label><input type="radio" name="q10" value="d"> After 10 years</label></div>
+          <button type="button" class="btn" onclick="checkTest(false)">Submit Test - Check Result</button>
+          <button type="button" class="btn btn-next" onclick="resetTest()">Try Again</button>
+        </form>
+      </div>
+      <div id="scoreBox">
+        <h3 id="scoreText"></h3>
+        <p id="scoreMsg"></p>
+        <a id="nextBtn" class="btn" href="/lesson48" style="display:none">🎉 You Passed! Go to Lesson 48 →</a>
+        <br><br>
+        <button class="btn btn-next" onclick="showLesson()">← Back to Lesson (Unlocked)</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h3>LearnHTMLCSSJS.com</h3>
+      <p>Free HTML CSS JS course in simple English. Learn from zero to web developer with 50 lessons, tests, playground and ranking.</p>
+      <h4>Quick Links</h4>
+      <a href="/">🏠 Home</a><br>
+      <a href="/dashboard">📊 Dashboard</a><br>
+      <a href="/ranking">🏆 Ranking</a><br>
+      <a href="/playground">▶ Playground - Try Code</a><br>
+      <a href="/lesson1">📖 Start Lesson 1 - What is HTML?</a>
+    </div>
+    <div>
+      <h3>Next Lessons - Continue Learning</h3>
+      <a href="/lesson48">Lesson 48 - Freelancing Guide</a><br>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a><br>
+      <a href="/lesson50">Lesson 50 - Final Exam</a><br>
+      <a href="/lesson48">Lesson 48 - Freelancing</a>
+      <h4>Projects & Career (41-50)</h4>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a>
+    </div>
+    <div>
+      <h3>Projects & Career (41-50)</h3>
+      <a href="/lesson50">Lesson 50 - Final Exam & Certificate</a><br>
+      <h4>JavaScript Course (21-40)</h4>
+      <a href="/lesson46">Lesson 46 - SEO</a><br>
+      <a href="/lesson47">Lesson 47 - Deploy</a>
+    </div>
+  </div>
+  <div style="max-width:1100px;margin:25px auto 0;border-top:1px solid #1e293b;padding-top:20px">
+    <h3 style="text-align:center">📚 All 50 Lessons - Complete HTML CSS JS Course</h3>
+    <div class="all-lessons">
+      <a href="/lesson1">Lesson 1 - What is HTML?</a>
+      <a href="/lesson2">Lesson 2 - Headings & Paragraphs</a>
+      <a href="/lesson3">Lesson 3 - Text Formatting</a>
+      <a href="/lesson4">Lesson 4 - Links & Images</a>
+      <a href="/lesson5">Lesson 5 - Lists</a>
+      <a href="/lesson6">Lesson 6 - Tables</a>
+      <a href="/lesson7">Lesson 7 - Forms</a>
+      <a href="/lesson8">Lesson 8 - Div & Span</a>
+      <a href="/lesson9">Lesson 9 - Semantic HTML</a>
+      <a href="/lesson10">Lesson 10 - HTML Project</a>
+      <a href="/lesson11">Lesson 11 - What is CSS?</a>
+      <a href="/lesson12">Lesson 12 - Colors</a>
+      <a href="/lesson13">Lesson 13 - Text Styling</a>
+      <a href="/lesson14">Lesson 14 - Box Model</a>
+      <a href="/lesson15">Lesson 15 - Flexbox</a>
+      <a href="/lesson16">Lesson 16 - Grid</a>
+      <a href="/lesson17">Lesson 17 - Responsive</a>
+      <a href="/lesson18">Lesson 18 - Buttons</a>
+      <a href="/lesson19">Lesson 19 - Forms Styling</a>
+      <a href="/lesson20">Lesson 20 - CSS Project</a>
+      <a href="/lesson21">Lesson 21 - What is JS?</a>
+      <a href="/lesson22">Lesson 22 - Variables</a>
+      <a href="/lesson23">Lesson 23 - Data Types</a>
+      <a href="/lesson24">Lesson 24 - If-Else</a>
+      <a href="/lesson25">Lesson 25 - Loops</a>
+      <a href="/lesson26">Lesson 26 - Functions</a>
+      <a href="/lesson27">Lesson 27 - Arrays</a>
+      <a href="/lesson28">Lesson 28 - Objects</a>
+      <a href="/lesson29">Lesson 29 - Strings</a>
+      <a href="/lesson30">Lesson 30 - DOM</a>
+      <a href="/lesson31">Lesson 31 - Events</a>
+      <a href="/lesson32">Lesson 32 - Form Validation</a>
+      <a href="/lesson33">Lesson 33 - LocalStorage</a>
+      <a href="/lesson34">Lesson 34 - Timers</a>
+      <a href="/lesson35">Lesson 35 - Calculator</a>
+      <a href="/lesson36">Lesson 36 - To-Do List</a>
+      <a href="/lesson37">Lesson 37 - Quiz App</a>
+      <a href="/lesson38">Lesson 38 - Password Generator</a>
+      <a href="/lesson39">Lesson 39 - Weather App</a>
+      <a href="/lesson40">Lesson 40 - JS Revision</a>
+      <a href="/lesson41">Lesson 41 - Full Website</a>
+      <a href="/lesson42">Lesson 42 - Portfolio</a>
+      <a href="/lesson43">Lesson 43 - Landing Page</a>
+      <a href="/lesson44">Lesson 44 - Navbar</a>
+      <a href="/lesson45">Lesson 45 - Final Project</a>
+      <a href="/lesson46">Lesson 46 - SEO</a>
+      <a href="/lesson47" class="current">Lesson 47 - Deploy</a>
+      <a href="/lesson48">Lesson 48 - Freelancing</a>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a>
+      <a href="/lesson50">Lesson 50 - Final Exam</a>
+    </div>
+    <p style="text-align:center;margin-top:15px">You are learning <a href="/lesson47">Deploy Free - Lesson 47</a> | Previous: <a href="/lesson46">SEO Basics - Lesson 46</a> | Next: <a href="/lesson48">Freelancing Guide - Lesson 48</a> | <a href="/lesson50">Jump to Final Exam - Lesson 50</a></p>
+  </div>
+  <div class="footer-bottom">© 2026 LearnHTMLCSSJS.com - Free Course | <a href="/">Home</a> | <a href="/lesson47">Lesson 47</a> | <a href="/lesson50">Lesson 50</a> | Made for Beginners</div>
+</footer>
+
+<script>
+// ===== GUEST TEST HANDLER - Only inside <script> =====
+const IS_LOGGED_IN = <%= (typeof user !== 'undefined' && user) ? 'true' : 'false' %>;
+function saveTestResult(lessonName, score, testStatus, onSaved) {
+  if (!IS_LOGGED_IN) { if (onSaved) onSaved(null); return; }
+  fetch('/save-result', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ lesson: lessonName, score: score, status: testStatus }) })
+  .then(r => r.json())
+  .then(data => { if (onSaved) onSaved(data); })
+  .catch(() => { if (onSaved) onSaved(null); });
+}
+function showGuestSignupPopup(score) {
+  let wantSignup = confirm("🎉 You scored " + score + "/100!\n\nYour score is NOT saved because you are not logged in.\n\nClick OK to Signup FREE and Save Your Score in Dashboard & Ranking.\nClick Cancel to continue without saving.");
+  if (wantSignup) { window.location.href = "/signup"; }
+}
+// ===== GUEST HANDLER END =====
+let deployDone={1:false,2:false,3:false,4:false,5:false};
+function toggleStep(n){deployDone[n]=!deployDone[n];let el=document.getElementById('step'+n);if(deployDone[n]){el.classList.add('done');}else{el.classList.remove('done');}let done=Object.values(deployDone).filter(v=>v).length;let pct=Math.round(done/5*100);document.getElementById('deployBar').style.width=pct+"%";document.getElementById('deployPct').innerText=pct+"%";if(pct===100){document.getElementById('deployMsg').innerText="🎉 Congratulations! Your website is LIVE! Share your link now!";}else{document.getElementById('deployMsg').innerText="";}}
+let testRunning=false;let timerInterval=null;let timeLeft=180;
+function showLesson(){if(testRunning){alert("🔒 Test is running! Please submit the test first. All tabs are locked.");return;}document.getElementById('lessonContent').style.display='block';document.getElementById('testContent').style.display='none';document.getElementById('lessonTabBtn').classList.add('active');document.getElementById('lessonTabBtn').classList.remove('test-active');document.getElementById('testTabBtn').classList.remove('active');document.getElementById('testTabBtn').classList.remove('test-active');window.scrollTo({top:0,behavior:'smooth'});}
+function showTest(){document.getElementById('lessonContent').style.display='none';document.getElementById('testContent').style.display='block';document.getElementById('testTabBtn').classList.add('active');document.getElementById('testTabBtn').classList.add('test-active');document.getElementById('lessonTabBtn').classList.remove('active');window.scrollTo({top:0,behavior:'smooth'});}
+function lockTabs(){testRunning=true;document.getElementById('lessonTabBtn').classList.add('disabled');document.getElementById('lockMsg').style.display='block';document.getElementById('homeLink').classList.add('disabled');document.getElementById('playgroundLink').style.pointerEvents='none';document.getElementById('playgroundLink').style.opacity='0.5';document.getElementById('nextLessonLink').style.pointerEvents='none';document.getElementById('nextLessonLink').style.opacity='0.5';}
+function unlockTabs(){testRunning=false;clearInterval(timerInterval);document.getElementById('lessonTabBtn').classList.remove('disabled');document.getElementById('lockMsg').style.display='none';document.getElementById('homeLink').classList.remove('disabled');document.getElementById('playgroundLink').style.pointerEvents='auto';document.getElementById('playgroundLink').style.opacity='1';document.getElementById('nextLessonLink').style.pointerEvents='auto';document.getElementById('nextLessonLink').style.opacity='1';document.getElementById('timerBar').style.display='none';}
+function startTest(){document.getElementById('startScreen').style.display='none';document.getElementById('quizArea').style.display='block';document.getElementById('timerBar').style.display='block';document.getElementById('scoreBox').style.display='none';lockTabs();timeLeft=180;updateTimer();timerInterval=setInterval(function(){timeLeft--;updateTimer();if(timeLeft<=0){clearInterval(timerInterval);alert("⏰ Time Up! Your test is auto-submitted.");checkTest(true);}},1000);}
+function updateTimer(){let m=Math.floor(timeLeft/60);let s=timeLeft%60;document.getElementById('timerText').innerText=(m<10?"0"+m:m)+":"+(s<10?"0"+s:s);if(timeLeft<=30){document.getElementById('timerBar').classList.add('warning');}}
+function checkTest(isAuto){
+  let answers={q1:'a',q2:'a',q3:'a',q4:'a',q5:'a',q6:'a',q7:'a',q8:'a',q9:'a',q10:'a'};
+  let score=0;let attempted=0;
+  for(let q in answers){let selected=document.querySelector('input[name="'+q+'"]:checked');if(selected){attempted++;if(selected.value===answers[q])score+=10;}}
+  if(!isAuto && attempted<10){alert("Please answer all 10 questions! You have answered only "+attempted+" questions.");return;}
+  unlockTabs();
+  let testStatus=score>=80?'Pass':'Fail';
+  saveTestResult('Lesson 47 - Deploy Free', score, testStatus, function(data){
+    if (!IS_LOGGED_IN && score >= 80) {
+      setTimeout(() => showGuestSignupPopup(score), 500);
+    }
+  });
+  let box=document.getElementById('scoreBox');let scoreText=document.getElementById('scoreText');let scoreMsg=document.getElementById('scoreMsg');let nextBtn=document.getElementById('nextBtn');box.style.display='block';scoreText.innerText="Your Score: "+score+" / 100";
+  if(score>=80){box.className='pass';scoreMsg.innerText="🎉 Congratulations! You PASSED. You have learned Lesson 47. Now all tabs are unlocked.";nextBtn.style.display='inline-block';}
+  else{box.className='fail';scoreMsg.innerText="😔 You FAILED. Passing marks are 80. All tabs are now unlocked. Read the lesson again and try again.";nextBtn.style.display='none';}
+  box.scrollIntoView({behavior:'smooth'});
+}
+function resetTest(){clearInterval(timerInterval);testRunning=false;document.getElementById('quizForm').reset();document.getElementById('scoreBox').style.display='none';document.getElementById('quizArea').style.display='none';document.getElementById('startScreen').style.display='block';document.getElementById('timerBar').style.display='none';unlockTabs();}
+</script>
+</body>
+</html>

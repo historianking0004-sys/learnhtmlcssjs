@@ -1,0 +1,287 @@
+*{
+    margin: 0%;
+    padding: .5%;
+    font-family:public sans;
+}
+body{
+    
+    width: 100%;
+    background: white;
+}
+.earth{
+    position: absolute;
+    top: 5%;
+    width: 10%;
+    height: 12%;
+    border-radius: 50%;
+    background-image: url('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat-x;
+    filter: brightness(1.6) saturate(1.3) contrast(.8);
+    box-shadow: inset -5px -5px 15px rgba(0,0,0,0.25), /* Pehle 0.7 tha, ab 0.25 kar diya */
+                inset 5px 5px 15px rgba(255,255,255,0.3), /* Upar se roshni */
+                0 0 25px rgba(80,160,255,0.9), /* Bahar blue glow */
+                0 0 50px rgba(255,255,255,0.4); /* White chamak */
+    animation: rotateEarth 20s linear infinite;
+    cursor: grab;
+    touch-action: none;
+}
+
+@keyframes rotateEarth{
+    from{ background-position: 0 0; }
+    to{ background-position: 400px 0; }
+}
+.main-navbar{
+    margin-top: 0;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    padding: 6px;
+    background: #0f172a;
+    isolation: isolate;
+    z-index: 1;
+}
+
+/* ⚡ ELECTRIC MOVING BORDER */
+.main-navbar::before{
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 22px;
+    background: conic-gradient(
+        from 0deg,
+        transparent 0%,
+        #00e5ff 8%,
+        #2563eb 15%,
+        #a855f7 22%,
+        transparent 30%,
+        transparent 50%,
+        #00e5ff 58%,
+        #facc15 65%,
+        #a855f7 72%,
+        transparent 80%,
+        transparent 100%
+    );
+    animation: electric-spin 2.5s linear infinite;
+    z-index: -2;
+}
+
+/* Inner black background taake sirf border nazar aaye */
+.main-navbar::after{
+    content: "";
+    position: absolute;
+    inset: 3px;
+    background: #0f172a;
+    border-radius: 17px;
+    z-index: -1;
+}
+
+/* Glow effect */
+.main-navbar{
+    box-shadow: 0 0 18px rgba(0,229,255,.6),
+                0 0 35px rgba(168,85,247,.5),
+                0 0 55px rgba(37,99,235,.4);
+}
+
+@keyframes electric-spin{
+    0%{ transform: rotate(0deg); }
+    100%{ transform: rotate(360deg); }
+}
+
+/* Buttons ke upar aaye taake click ho */
+.main-navbar .nav-btn{
+    position: relative;
+    z-index: 2;
+    background: transparent;
+    color: white;
+    border: none;
+}
+
+/* ===== SIMPLE GREEN SMOKE - LEFT TO RIGHT ===== */
+.main-navbar::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -30%; /* start left se */
+    width: 70%;
+    height: 100%;
+    
+    background: linear-gradient(90deg, transparent, #22c55e, #4ade80, transparent);
+    opacity: 0.5;
+    filter: blur(8px);
+    animation: smokeMove 6s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes smokeMove{
+    0%{
+        left: -30%;
+        opacity: 0;
+    }
+    20%{ opacity: 0.6; }
+    80%{ opacity: 0.6; }
+    100%{
+        left: 100%;
+        opacity: 0;
+    }
+}
+
+.my-dashboard{
+    text-decoration: none;
+    color: white;
+    background-color: black;
+    border-radius: 10px;
+    padding: 5px;
+}
+.registration-box{
+    position: absolute;
+    right: 2%;
+    top:10%;
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+}
+.reg-btn{
+    height: 60px;
+    width: 100px;
+  background: none;
+  border: none;
+  font-size: 25px;
+  font-weight: bold;
+  
+}
+.reg-btn:hover{
+    transform: scale(1.2);
+}
+.nav-btn{
+    background: none;
+    border: none;
+    color: black;
+    font-size: 30px;
+      font-weight: bolder;
+}
+.nav-btn:hover{
+    background-color: black;
+    color: white;
+    transform: scale(1.1);
+    transition: .5s;
+  
+}
+.nav-btn:active{
+    background-color: #f02121;
+}
+.box{
+    display: none;
+}
+.box.show{
+    display: block;
+}
+.about{
+    display: none;
+}
+.about.show2{
+    display: block;
+}
+.dashboard-container{
+    display: grid;
+    grid-template:500px/20% 60% 20% ;
+    gap:10px;
+    
+}
+.inline{
+    display: inline;
+}
+.js{
+    text-align:center; margin:0; cursor:pointer;
+}
+.html{
+    cursor: pointer;
+}
+.html:hover{
+    transform: scale(1.2);
+    transition: .5s;
+}
+.html-lessons-box ,.css-lessons-box ,.career-lessons-box,.js-lessons-box{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap:60px;
+}
+.tab{
+    background: #f021215d;
+    border-radius: 10px;  
+    box-shadow: 1px 3px 3px;
+}
+.tab1{
+    transform: skewY(2deg);
+}
+.tab2{
+    position: relative;
+    top: 8px;
+    overflow: auto; 
+    background: #f021215d;
+    border-radius: 5px; 
+    padding: 15px;
+   
+ 
+}
+.tab2::-webkit-scrollbar{
+    width: 10px;
+    height: 10px;
+}
+
+.tab2::-webkit-scrollbar-thumb{
+    background: #f02121;
+    border-radius: 50px;
+    border: 2px solid #ffffff;
+}
+
+.tab2::-webkit-scrollbar-thumb:hover{
+    background: #b31212;
+}
+.tab3{
+    transform: skewY(-2deg);
+    overflow: scroll;
+    width: 100%;
+}
+.tab1,.tab3{
+    padding: 3%;
+}
+.tab1{
+    display: flex;
+    flex-direction: column;
+    gap:2%;
+}
+.tab1-content ,.ranking{
+    text-decoration: none;
+    background: white;
+    border-radius: 4px;
+    color: black;
+
+}
+.code{
+    background: #03df54;
+    text-align: center;
+    font-weight: bold;
+    font-style: italic;
+    padding: 10px;
+    margin: 5px;
+    font-size: 20px;
+}
+  footer{background:#0f172a;color:#cbd5e1;padding:35px 30px;margin-top:0}
+  footer h3{color:white;font-size:20px;margin-bottom:12px}
+  footer h4{color:white;font-size:16px;margin:20px 0 10px}
+  footer p{font-size:14px;line-height:1.7;color:#94a3b8}
+  footer a{color:#38bdf8;text-decoration:none;font-size:14px;line-height:2}
+  footer a:hover{color:white;text-decoration:underline}
+  .footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:25px;max-width:1100px;margin:0 auto}
+  .all-lessons{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:10px}
+  .all-lessons a{background:#1e293b;padding:8px 10px;border-radius:8px;text-align:center;display:block;color:#e2e8f0;font-weight:bold}
+  .all-lessons a:hover{background:#2563eb;color:white;text-decoration:none}
+  .all-lessons a.current{background:#16a34a;color:white}
+  .footer-bottom{text-align:center;border-top:1px solid #1e293b;margin-top:25px;padding-top:15px;font-size:13px;color:#64748b}
+  @media(max-width:700px){.footer-grid{grid-template-columns:1fr}.all-lessons{grid-template-columns:1fr 1fr}}

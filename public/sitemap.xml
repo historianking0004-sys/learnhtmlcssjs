@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- ===== MAIN PAGES ===== -->
+  <url><loc>https://learnhtmlcssjs.com/</loc><lastmod>2026-11-18</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/about</loc><lastmod>2026-11-18</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/contact</loc><lastmod>2026-11-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/faq</loc><lastmod>2026-11-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/privacy-policy</loc><lastmod>2026-11-18</lastmod><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/terms</loc><lastmod>2026-11-18</lastmod><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/playground</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/ranking</loc><lastmod>2026-11-18</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/dashboard</loc><lastmod>2026-11-18</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/login</loc><lastmod>2026-11-18</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/signup</loc><lastmod>2026-11-18</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+  <!-- ===== HTML (1-10) ===== -->
+  <url><loc>https://learnhtmlcssjs.com/lesson1</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson2</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson3</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson4</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson5</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson6</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson7</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson8</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson9</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson10</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+
+  <!-- ===== CSS (11-20) ===== -->
+  <url><loc>https://learnhtmlcssjs.com/lesson11</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson12</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson13</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson14</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson15</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson16</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson17</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson18</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson19</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson20</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+
+  <!-- ===== JAVASCRIPT (21-40) ===== -->
+  <url><loc>https://learnhtmlcssjs.com/lesson21</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson22</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson23</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson24</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson25</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson26</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson27</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson28</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson29</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson30</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson31</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson32</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson33</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson34</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson35</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson36</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson37</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson38</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson39</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson40</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+
+  <!-- ===== PROJECTS & CAREER (41-50) ===== -->
+  <url><loc>https://learnhtmlcssjs.com/lesson41</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson42</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson43</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson44</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson45</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson46</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson47</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson48</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson49</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://learnhtmlcssjs.com/lesson50</loc><lastmod>2026-11-18</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+
+</urlset>

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ===== SEO START ===== -->
+<title>CSS Project - Product Cards Website - Lesson 20 | LearnHTMLCSSJS.com</title>
+<meta name="description" content="Learn CSS Project - Lesson 20. Build a complete Product Cards Website with Navbar, Hero, Cards, Form, Footer using HTML + CSS. Box Model, Flexbox, Grid, Buttons, Forms in one real project. Free Course for Beginners.">
+<meta name="keywords" content="css project, product cards website, html css project, flexbox project, grid project, css lesson 20, learn css">
+<meta name="author" content="LearnHTMLCSSJS.com">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://learnhtmlcssjs.com/lesson20">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS Project - Product Cards Website - Lesson 20">
+<meta property="og:description" content="Build a complete Product Cards Website with HTML + CSS. Navbar, Hero, Cards, Form, Footer in one real project.">
+<meta property="og:url" content="https://learnhtmlcssjs.com/lesson20">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Course","name":"Learn HTML CSS JS - Free Course","description":"Learn HTML, CSS and JavaScript for beginners in simple English. 50 lessons from zero to web developer.","provider":{"@type":"Organization","name":"LearnHTMLCSSJS.com"}}
+</script>
+<!-- ===== SEO END ===== -->
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+  body{background:#f4f6f8;color:#222}
+  header{background:#0f172a;color:white;padding:20px;text-align:center;width:100%}
+  header a{color:#38bdf8;text-decoration:none;font-size:14px}
+  header a.disabled{color:#64748b;pointer-events:none}
+  .container{width:100%;max-width:100%;margin:0 auto;background:white;padding:30px 40px}
+  h1{font-size:28px;margin-bottom:10px;line-height:1.3}
+  h2{margin:20px 0 10px;color:#0f172a}
+  p{line-height:1.7;margin-bottom:12px}
+  .note{background:#eff6ff;border-left:5px solid #2563eb;padding:12px;border-radius:8px;margin:15px 0}
+  .code-box{background:#0f172a;color:#e2e8f0;padding:15px;border-radius:10px;overflow-x:auto;margin:10px 0}
+  .code-box code{font-family:monospace;font-size:15px;line-height:1.6}
+  .tag{color:#f472b6}.text{color:white}.attr{color:#facc15}.val{color:#86efac}
+  .btn{display:inline-block;background:#16a34a;color:white;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:bold;margin-top:10px;border:none;cursor:pointer;font-size:16px}
+  .btn-next{background:#2563eb}
+  .btn-prev{background:#64748b}
+  .nav{display:flex;justify-content:space-between;margin-top:25px}
+  .result{border:2px dashed #cbd5e1;padding:15px;border-radius:10px;margin-top:10px;background:#f8fafc}
+  .box{background:#e0f2fe;padding:10px;border-radius:8px;margin-top:10px;line-height:1.8}
+  .tabs{display:flex;gap:10px;margin-bottom:20px;position:sticky;top:0;background:white;padding:10px 0;z-index:10;border-bottom:2px solid #e2e8f0}
+  .tab-btn{flex:1;padding:14px;border:none;border-radius:10px;font-size:17px;font-weight:bold;cursor:pointer;background:#e2e8f0;color:#334155}
+  .tab-btn.active{background:#0f172a;color:white}
+  .tab-btn.test-active{background:#16a34a;color:white}
+  .tab-btn.disabled{opacity:0.5;pointer-events:none;cursor:not-allowed}
+  #lessonContent{display:block}
+  #testContent{display:none}
+  .test-box{border:2px solid #0f172a;border-radius:12px;padding:20px;background:#f8fafc}
+  .test-info{background:#fef3c7;padding:12px;border-radius:8px;margin-bottom:15px;line-height:1.7}
+  .question{background:white;padding:15px;border-radius:10px;margin-bottom:12px;border:1px solid #e2e8f0}
+  .question b{display:block;margin-bottom:8px}
+  .question label{display:block;padding:8px 10px;margin:4px 0;background:#f1f5f9;border-radius:7px;cursor:pointer}
+  .question label:hover{background:#e0f2fe}
+  .question input{margin-right:8px}
+  #scoreBox{display:none;padding:20px;border-radius:10px;text-align:center;margin-top:15px}
+  #scoreBox.pass{background:#dcfce7;border:2px solid #16a34a}
+  #scoreBox.fail{background:#fee2e2;border:2px solid #dc2626}
+  #scoreBox h3{font-size:26px;margin-bottom:5px}
+  #startScreen{text-align:center;padding:30px 10px}
+  #timerBar{display:none;position:sticky;top:60px;z-index:20;background:#dc2626;color:white;padding:12px 15px;border-radius:10px;font-weight:bold;font-size:18px;text-align:center;margin-bottom:15px}
+  #timerBar.warning{background:#ea580c}
+  #quizArea{display:none}
+  .lock-msg{background:#fee2e2;color:#991b1b;padding:10px;border-radius:8px;margin-bottom:12px;text-align:center;font-weight:bold;display:none}
+  table{width:100%;border-collapse:collapse;margin:10px 0;background:white}
+  th,td{border:1px solid #e2e8f0;padding:10px;text-align:left}
+  th{background:#0f172a;color:white}
+  .breadcrumb{font-size:13px;color:#94a3b8;margin-bottom:8px}
+  .breadcrumb a{color:#38bdf8;text-decoration:none}
+  .demo-nav{display:flex;justify-content:space-between;align-items:center;background:#0f172a;color:white;padding:12px 15px;border-radius:8px}
+  .demo-nav a{color:white;text-decoration:none;font-size:14px}
+  .demo-hero{background:linear-gradient(90deg,#2563eb,#16a34a);color:white;padding:30px 20px;border-radius:12px;text-align:center;margin-top:12px}
+  .demo-cards{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+  .demo-card{flex:1;min-width:180px;background:white;border:1px solid #e2e8f0;border-radius:12px;padding:15px;text-align:center}
+  .demo-card-img{font-size:40px;margin-bottom:8px}
+  .demo-card-btn{background:#2563eb;color:white;padding:10px 20px;border:none;border-radius:8px;font-weight:bold;cursor:pointer;transition:0.3s;width:100%}
+  .demo-card-btn:hover{background:#1d4ed8}
+  .demo-input{width:100%;padding:12px;border:2px solid #e2e8f0;border-radius:8px;font-size:15px;outline:none;margin:6px 0}
+  .demo-input:focus{border-color:#2563eb;box-shadow:0 0 0 3px #dbeafe}
+  footer{background:#0f172a;color:#cbd5e1;padding:35px 30px}
+  footer h3{color:white;font-size:20px;margin-bottom:12px}
+  footer h4{color:white;font-size:16px;margin:20px 0 10px}
+  footer p{font-size:14px;line-height:1.7;color:#94a3b8}
+  footer a{color:#38bdf8;text-decoration:none;font-size:14px;line-height:2}
+  footer a:hover{color:white;text-decoration:underline}
+  .footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:25px;max-width:1100px;margin:0 auto}
+  .all-lessons{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:10px}
+  .all-lessons a{background:#1e293b;padding:8px 10px;border-radius:8px;text-align:center;display:block;color:#e2e8f0;font-weight:bold;line-height:1.4}
+  .all-lessons a:hover{background:#2563eb;color:white;text-decoration:none}
+  .all-lessons a.current{background:#16a34a;color:white}
+  .footer-bottom{text-align:center;border-top:1px solid #1e293b;margin-top:25px;padding-top:15px;font-size:13px;color:#64748b}
+  @media(max-width:700px){.footer-grid{grid-template-columns:1fr}.all-lessons{grid-template-columns:1fr 1fr}.container{padding:20px}.demo-cards{flex-direction:column}.demo-nav{flex-direction:column;gap:8px;text-align:center}}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="breadcrumb"><a href="/">Home</a> &gt; <a href="/lesson20">CSS Course</a> &gt; Lesson 20 - CSS Project</p>
+  <p><a id="homeLink" href="/">← Back to Home</a> | CSS Course - Lesson 20 / 50</p>
+  <h1>Lesson 20: CSS Project - Product Cards Website</h1>
+  <p>Build a Complete Real Website - Navbar + Hero + Product Cards + Contact Form + Footer | LearnHTMLCSSJS.com</p>
+</header>
+
+<div class="container">
+  <div class="tabs">
+    <button id="lessonTabBtn" class="tab-btn active" onclick="showLesson()">📖 Lesson</button>
+    <button id="testTabBtn" class="tab-btn" onclick="showTest()">📝 Test - 100 Marks</button>
+  </div>
+  <div id="lockMsg" class="lock-msg">🔒 Test is running! All tabs are locked until you submit the test or time ends.</div>
+
+  <div id="lessonContent">
+    <h2>1. What Are We Building Today?</h2>
+    <p>Today we will combine <b>everything</b> you learned in Lesson 11 to 19 in <b>ONE real project</b>:</p>
+    <p>✅ Navbar - Flexbox + space-between<br>✅ Hero Section - Gradient + Text Styling<br>✅ Product Cards - Flexbox + Box Model + Buttons<br>✅ Contact Form - Input + Focus + Label<br>✅ Footer - Simple Dark Footer<br>✅ Responsive - Works on Mobile + Desktop</p>
+    <div class="note"><b>This project is your Portfolio Project.</b> After making it, you can show it to clients and say "I made this website with HTML + CSS." This is how freelancing starts.</div>
+    <h2>2. LIVE DEMO - See Your Final Project</h2>
+    <p>This is exactly what you will build. Scroll and see all sections:</p>
+    <div class="result" style="padding:0;border:none;background:transparent">
+      <div class="demo-nav"><b>🛍️ MyShop</b><span><a href="#">Home</a> &nbsp; <a href="#">Products</a> &nbsp; <a href="#">Contact</a></span></div>
+      <div class="demo-hero"><h2 style="color:white;margin:0;font-size:30px">Welcome to MyShop</h2><p style="margin:8px 0">Best Products - Best Prices - Free Delivery</p><button style="background:white;color:#2563eb;padding:12px 25px;border:none;border-radius:8px;font-weight:bold;cursor:pointer">Shop Now →</button></div>
+      <div class="demo-cards">
+        <div class="demo-card"><div class="demo-card-img">👕</div><h3 style="margin:0">T-Shirt</h3><p style="color:#64748b;margin:6px 0">Premium Cotton T-Shirt</p><p style="font-weight:bold;font-size:20px;color:#2563eb;margin:0">Rs. 999</p><button class="demo-card-btn" style="margin-top:10px">Buy Now</button></div>
+        <div class="demo-card"><div class="demo-card-img">👟</div><h3 style="margin:0">Shoes</h3><p style="color:#64748b;margin:6px 0">Running Shoes - Comfortable</p><p style="font-weight:bold;font-size:20px;color:#2563eb;margin:0">Rs. 2,499</p><button class="demo-card-btn" style="margin-top:10px">Buy Now</button></div>
+        <div class="demo-card"><div class="demo-card-img">⌚</div><h3 style="margin:0">Watch</h3><p style="color:#64748b;margin:6px 0">Smart Watch - Latest Model</p><p style="font-weight:bold;font-size:20px;color:#2563eb;margin:0">Rs. 4,999</p><button class="demo-card-btn" style="margin-top:10px">Buy Now</button></div>
+      </div>
+      <div style="background:white;border:1px solid #e2e8f0;border-radius:12px;padding:20px;margin-top:12px"><h3 style="text-align:center;margin:0">Contact Us</h3><input class="demo-input" type="text" placeholder="Your Name"><input class="demo-input" type="email" placeholder="Your Email"><button class="btn" style="width:100%">Send Message →</button></div>
+      <div style="background:#0f172a;color:white;padding:15px;border-radius:8px;text-align:center;margin-top:12px">© 2026 MyShop - Made by Ali Khan</div>
+    </div>
+    <h2>3. Project Plan - 5 Sections</h2>
+    <table>
+      <tr><th>Section</th><th>What You Will Use</th><th>Lesson</th></tr>
+      <tr><td>1. Navbar</td><td>display: flex; justify-content: space-between;</td><td>Lesson 15</td></tr>
+      <tr><td>2. Hero</td><td>background: gradient; text-align: center;</td><td>Lesson 12 + 13</td></tr>
+      <tr><td>3. Product Cards</td><td>Box Model + Flexbox + Buttons + Hover</td><td>Lesson 14 + 15 + 18</td></tr>
+      <tr><td>4. Contact Form</td><td>input, label, :focus, placeholder</td><td>Lesson 19</td></tr>
+      <tr><td>5. Footer</td><td>background: dark; text-align: center;</td><td>Lesson 12</td></tr>
+      <tr><td>6. Responsive</td><td>@media (max-width: 700px)</td><td>Lesson 17</td></tr>
+    </table>
+    <h2>4. STEP 1 - HTML Structure</h2>
+    <div class="code-box"><code>
+<span class="tag">&lt;!DOCTYPE html&gt;</span><br>
+<span class="tag">&lt;html&gt;</span><br>
+<span class="tag">&lt;head&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="val">"viewport"</span> <span class="attr">content</span>=<span class="val">"width=device-width, initial-scale=1.0"</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;title&gt;</span><span class="text">MyShop - Best Products</span><span class="tag">&lt;/title&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;style&gt;</span> <span class="comment" style="color:#94a3b8">/* All CSS here - Step 2 */</span> <span class="tag">&lt;/style&gt;</span><br>
+<span class="tag">&lt;/head&gt;</span><br>
+<span class="tag">&lt;body&gt;</span><br><br>
+&nbsp;&nbsp;<span class="comment" style="color:#94a3b8">&lt;!-- 1. NAVBAR --&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="val">"navbar"</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;b&gt;</span><span class="text">MyShop</span><span class="tag">&lt;/b&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;div&gt;</span><span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"#"</span><span class="tag">&gt;</span><span class="text">Home</span><span class="tag">&lt;/a&gt;</span> <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"#"</span><span class="tag">&gt;</span><span class="text">Products</span><span class="tag">&lt;/a&gt;</span> <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"#"</span><span class="tag">&gt;</span><span class="text">Contact</span><span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/div&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;/div&gt;</span><br><br>
+&nbsp;&nbsp;<span class="comment" style="color:#94a3b8">&lt;!-- 2. HERO --&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="val">"hero"</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;h1&gt;</span><span class="text">Welcome to MyShop</span><span class="tag">&lt;/h1&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;p&gt;</span><span class="text">Best Products - Best Prices - Free Delivery</span><span class="tag">&lt;/p&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="val">"btn-white"</span><span class="tag">&gt;</span><span class="text">Shop Now</span><span class="tag">&lt;/button&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;/div&gt;</span><br><br>
+&nbsp;&nbsp;<span class="comment" style="color:#94a3b8">&lt;!-- 3. PRODUCT CARDS --&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="val">"cards"</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="val">"card"</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;h3&gt;</span><span class="text">T-Shirt</span><span class="tag">&lt;/h3&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;p&gt;</span><span class="text">Premium Cotton</span><span class="tag">&lt;/p&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;b&gt;</span><span class="text">Rs. 999</span><span class="tag">&lt;/b&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;button&gt;</span><span class="text">Buy Now</span><span class="tag">&lt;/button&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/div&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment" style="color:#94a3b8">&lt;!-- Copy card 2 more times for Shoes & Watch --&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;/div&gt;</span><br><br>
+&nbsp;&nbsp;<span class="comment" style="color:#94a3b8">&lt;!-- 4. CONTACT FORM --&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="val">"contact"</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;h2&gt;</span><span class="text">Contact Us</span><span class="tag">&lt;/h2&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="val">"text"</span> <span class="attr">placeholder</span>=<span class="val">"Your Name"</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="val">"email"</span> <span class="attr">placeholder</span>=<span class="val">"Your Email"</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;button&gt;</span><span class="text">Send Message</span><span class="tag">&lt;/button&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;/div&gt;</span><br><br>
+&nbsp;&nbsp;<span class="comment" style="color:#94a3b8">&lt;!-- 5. FOOTER --&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="val">"footer"</span><span class="tag">&gt;</span><span class="text">© 2026 MyShop</span><span class="tag">&lt;/div&gt;</span><br>
+<span class="tag">&lt;/body&gt;</span><br>
+<span class="tag">&lt;/html&gt;</span>
+    </code></div>
+    <h2>5. STEP 2 - Full CSS (Copy All)</h2>
+    <div class="code-box"><code>
+<span class="comment" style="color:#94a3b8">/* ===== RESET ===== */</span><br>
+<span class="tag">*</span> <span class="text">{</span> <span class="attr">margin</span><span class="text">:</span> <span class="val">0</span><span class="text">;</span> <span class="attr">padding</span><span class="text">:</span> <span class="val">0</span><span class="text">;</span> <span class="attr">box-sizing</span><span class="text">:</span> <span class="val">border-box</span><span class="text">;</span> <span class="attr">font-family</span><span class="text">:</span> <span class="val">Arial, sans-serif</span><span class="text">;</span> <span class="text">}</span><br>
+<span class="tag">body</span> <span class="text">{</span> <span class="attr">background</span><span class="text">:</span> <span class="val">#f4f6f8</span><span class="text">;</span> <span class="attr">padding</span><span class="text">:</span> <span class="val">15px</span><span class="text">;</span> <span class="text">}</span><br><br>
+<span class="comment" style="color:#94a3b8">/* ===== 1. NAVBAR ===== */</span><br>
+<span class="tag">.navbar</span> <span class="text">{</span><br>
+&nbsp;&nbsp;<span class="attr">display</span><span class="text">:</span> <span class="val">flex</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">justify-content</span><span class="text">:</span> <span class="val">space-between</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">align-items</span><span class="text">:</span> <span class="val">center</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">background</span><span class="text">:</span> <span class="val">#0f172a</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">color</span><span class="text">:</span> <span class="val">white</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">padding</span><span class="text">:</span> <span class="val">15px 20px</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">border-radius</span><span class="text">:</span> <span class="val">10px</span><span class="text">;</span><br>
+<span class="text">}</span><br>
+<span class="tag">.navbar a</span> <span class="text">{</span> <span class="attr">color</span><span class="text">:</span> <span class="val">white</span><span class="text">;</span> <span class="attr">text-decoration</span><span class="text">:</span> <span class="val">none</span><span class="text">;</span> <span class="attr">margin-left</span><span class="text">:</span> <span class="val">15px</span><span class="text">;</span> <span class="text">}</span><br>
+<span class="tag">.navbar a:hover</span> <span class="text">{</span> <span class="attr">color</span><span class="text">:</span> <span class="val">#38bdf8</span><span class="text">;</span> <span class="text">}</span><br><br>
+<span class="comment" style="color:#94a3b8">/* ===== 2. HERO ===== */</span><br>
+<span class="tag">.hero</span> <span class="text">{</span><br>
+&nbsp;&nbsp;<span class="attr">background</span><span class="text">:</span> <span class="val">linear-gradient(90deg, #2563eb, #16a34a)</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">color</span><span class="text">:</span> <span class="val">white</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">text-align</span><span class="text">:</span> <span class="val">center</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">padding</span><span class="text">:</span> <span class="val">40px 20px</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">border-radius</span><span class="text">:</span> <span class="val">12px</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">margin-top</span><span class="text">:</span> <span class="val">15px</span><span class="text">;</span><br>
+<span class="text">}</span><br>
+<span class="tag">.hero h1</span> <span class="text">{</span> <span class="attr">font-size</span><span class="text">:</span> <span class="val">32px</span><span class="text">;</span> <span class="text">}</span><br>
+<span class="tag">.hero p</span> <span class="text">{</span> <span class="attr">margin</span><span class="text">:</span> <span class="val">10px 0</span><span class="text">;</span> <span class="text">}</span><br>
+<span class="tag">.btn-white</span> <span class="text">{</span> <span class="attr">background</span><span class="text">:</span> <span class="val">white</span><span class="text">;</span> <span class="attr">color</span><span class="text">:</span> <span class="val">#2563eb</span><span class="text">;</span> <span class="attr">padding</span><span class="text">:</span> <span class="val">12px 25px</span><span class="text">;</span> <span class="attr">border</span><span class="text">:</span> <span class="val">none</span><span class="text">;</span> <span class="attr">border-radius</span><span class="text">:</span> <span class="val">8px</span><span class="text">;</span> <span class="attr">font-weight</span><span class="text">:</span> <span class="val">bold</span><span class="text">;</span> <span class="attr">cursor</span><span class="text">:</span> <span class="val">pointer</span><span class="text">;</span> <span class="text">}</span><br><br>
+<span class="comment" style="color:#94a3b8">/* ===== 3. CARDS ===== */</span><br>
+<span class="tag">.cards</span> <span class="text">{</span> <span class="attr">display</span><span class="text">:</span> <span class="val">flex</span><span class="text">;</span> <span class="attr">gap</span><span class="text">:</span> <span class="val">15px</span><span class="text">;</span> <span class="attr">margin-top</span><span class="text">:</span> <span class="val">15px</span><span class="text">;</span> <span class="text">}</span><br>
+<span class="tag">.card</span> <span class="text">{</span> <span class="attr">flex</span><span class="text">:</span> <span class="val">1</span><span class="text">;</span> <span class="attr">background</span><span class="text">:</span> <span class="val">white</span><span class="text">;</span> <span class="attr">padding</span><span class="text">:</span> <span class="val">20px</span><span class="text">;</span> <span class="attr">border-radius</span><span class="text">:</span> <span class="val">12px</span><span class="text">;</span> <span class="attr">text-align</span><span class="text">:</span> <span class="val">center</span><span class="text">;</span> <span class="attr">border</span><span class="text">:</span> <span class="val">1px solid #e2e8f0</span><span class="text">;</span> <span class="attr">transition</span><span class="text">:</span> <span class="val">0.3s</span><span class="text">;</span> <span class="text">}</span><br>
+<span class="tag">.card:hover</span> <span class="text">{</span> <span class="attr">transform</span><span class="text">:</span> <span class="val">translateY(-5px)</span><span class="text">;</span> <span class="attr">box-shadow</span><span class="text">:</span> <span class="val">0 10px 20px rgba(0,0,0,0.1)</span><span class="text">;</span> <span class="text">}</span><br>
+<span class="tag">.card button</span> <span class="text">{</span> <span class="attr">background</span><span class="text">:</span> <span class="val">#2563eb</span><span class="text">;</span> <span class="attr">color</span><span class="text">:</span> <span class="val">white</span><span class="text">;</span> <span class="attr">padding</span><span class="text">:</span> <span class="val">10px 20px</span><span class="text">;</span> <span class="attr">border</span><span class="text">:</span> <span class="val">none</span><span class="text">;</span> <span class="attr">border-radius</span><span class="text">:</span> <span class="val">8px</span><span class="text">;</span> <span class="attr">cursor</span><span class="text">:</span> <span class="val">pointer</span><span class="text">;</span> <span class="attr">width</span><span class="text">:</span> <span class="val">100%</span><span class="text">;</span> <span class="attr">margin-top</span><span class="text">:</span> <span class="val">10px</span><span class="text">;</span> <span class="text">}</span><br><br>
+<span class="comment" style="color:#94a3b8">/* ===== 4. CONTACT + 5. FOOTER ===== */</span><br>
+<span class="tag">.contact</span> <span class="text">{</span> <span class="attr">background</span><span class="text">:</span> <span class="val">white</span><span class="text">;</span> <span class="attr">padding</span><span class="text">:</span> <span class="val">20px</span><span class="text">;</span> <span class="attr">border-radius</span><span class="text">:</span> <span class="val">12px</span><span class="text">;</span> <span class="attr">margin-top</span><span class="text">:</span> <span class="val">15px</span><span class="text">;</span> <span class="text">}</span><br>
+<span class="tag">.contact input</span> <span class="text">{</span> <span class="attr">width</span><span class="text">:</span> <span class="val">100%</span><span class="text">;</span> <span class="attr">padding</span><span class="text">:</span> <span class="val">12px</span><span class="text">;</span> <span class="attr">border</span><span class="text">:</span> <span class="val">2px solid #e2e8f0</span><span class="text">;</span> <span class="attr">border-radius</span><span class="text">:</span> <span class="val">8px</span><span class="text">;</span> <span class="attr">margin</span><span class="text">:</span> <span class="val">8px 0</span><span class="text">;</span> <span class="attr">outline</span><span class="text">:</span> <span class="val">none</span><span class="text">;</span> <span class="text">}</span><br>
+<span class="tag">.contact input:focus</span> <span class="text">{</span> <span class="attr">border-color</span><span class="text">:</span> <span class="val">#2563eb</span><span class="text">;</span> <span class="text">}</span><br>
+<span class="tag">.footer</span> <span class="text">{</span> <span class="attr">background</span><span class="text">:</span> <span class="val">#0f172a</span><span class="text">;</span> <span class="attr">color</span><span class="text">:</span> <span class="val">white</span><span class="text">;</span> <span class="attr">text-align</span><span class="text">:</span> <span class="val">center</span><span class="text">;</span> <span class="attr">padding</span><span class="text">:</span> <span class="val">15px</span><span class="text">;</span> <span class="attr">border-radius</span><span class="text">:</span> <span class="val">10px</span><span class="text">;</span> <span class="attr">margin-top</span><span class="text">:</span> <span class="val">15px</span><span class="text">;</span> <span class="text">}</span><br><br>
+<span class="comment" style="color:#94a3b8">/* ===== 6. RESPONSIVE ===== */</span><br>
+<span class="tag">@media</span> <span class="text">(</span><span class="attr">max-width</span><span class="text">:</span> <span class="val">700px</span><span class="text">)</span> <span class="text">{</span><br>
+&nbsp;&nbsp;<span class="tag">.cards</span> <span class="text">{</span> <span class="attr">flex-direction</span><span class="text">:</span> <span class="val">column</span><span class="text">;</span> <span class="text">}</span><br>
+&nbsp;&nbsp;<span class="tag">.navbar</span> <span class="text">{</span> <span class="attr">flex-direction</span><span class="text">:</span> <span class="val">column</span><span class="text">;</span> <span class="attr">gap</span><span class="text">:</span> <span class="val">10px</span><span class="text">;</span> <span class="text">}</span><br>
+&nbsp;&nbsp;<span class="tag">.hero h1</span> <span class="text">{</span> <span class="attr">font-size</span><span class="text">:</span> <span class="val">24px</span><span class="text">;</span> <span class="text">}</span><br>
+<span class="text">}</span>
+    </code></div>
+    <h2>6. Pro Tips - Make It Even Better</h2>
+    <p>1. <b>Card Hover:</b> .card:hover { transform: translateY(-5px); } - Card lifts up on hover. Try it in demo above.<br>2. <b>Image:</b> Add &lt;img&gt; inside card with width: 100%; border-radius: 8px;<br>3. <b>Badge:</b> Add "50% OFF" badge with background: #dc2626; color: white; padding: 5px 10px; border-radius: 20px;<br>4. <b>Price:</b> Show old price with text-decoration: line-through; + new price in blue.</p>
+    <h2>7. Homework - Build Your Own Shop</h2>
+    <p>In Playground, build this full project:</p>
+    <p>1. Change shop name to <b>YOUR name</b> - e.g. "Ali's Shop"<br>2. Change 3 products to <b>your favourite products</b> - e.g. Mobile, Laptop, Headphones<br>3. Change prices to <b>your prices</b><br>4. Add <b>one more card</b> - total 4 cards<br>5. Test on <b>Mobile</b> - open on your phone, cards should stack</p>
+    <div class="box"><b>Remember:</b> This project uses ALL CSS - Colors (L12) + Text (L13) + Box Model (L14) + Flexbox (L15) + Grid (L16) + Responsive (L17) + Buttons (L18) + Forms (L19) | Structure = Navbar + Hero + Cards + Contact + Footer | Responsive = @media (max-width: 700px) | Card Hover = translateY(-5px) + box-shadow</div>
+    <p><b>Next Step:</b> After this lesson, go to <a href="/lesson21">Lesson 21 - What is JavaScript?</a> to start JavaScript - make your website interactive.</p>
+    <a id="playgroundLink" class="btn" href="/playground">▶ Try it Yourself - Playground</a><br><br>
+    <button class="btn btn-next" onclick="showTest()">Go to Test → 📝</button>
+    <div class="nav">
+      <a class="btn btn-prev" href="/lesson19">← Lesson 19</a>
+      <a id="nextLessonLink" class="btn btn-next" href="/lesson21">Next Lesson 21 →</a>
+    </div>
+  </div>
+
+  <div id="testContent">
+    <div class="test-box">
+      <!-- ===== GUEST BANNER - HTML, NOT JS ===== -->
+      <% if (!user) { %>
+      <div id="guestBanner" style="background:linear-gradient(135deg,#0f172a,#2563eb);color:white;padding:16px;border-radius:12px;margin-bottom:14px;text-align:center">
+        <h3 style="margin:0;font-size:18px">👋 Hi Guest! Try This Test FREE</h3>
+        <p style="margin:6px 0 0;color:#e2e8f0;font-size:14px">You can give this test without login. But your score will <b style="color:#facc15">NOT be saved</b> in Dashboard / Ranking.</p>
+        <p style="margin:8px 0 0"><a href="/signup" style="display:inline-block;background:#facc15;color:#0f172a;padding:10px 22px;border-radius:8px;font-weight:bold;text-decoration:none;font-size:14px">✨ Signup Free to Save Score →</a> <a href="/login" style="color:white;font-weight:bold;font-size:14px">Login →</a></p>
+      </div>
+      <% } else { %>
+      <div style="background:#dcfce7;color:#166534;padding:12px;border-radius:10px;margin-bottom:14px;text-align:center;font-weight:bold;font-size:14px">✅ Logged in as <b><%= user.username %></b> - Your score will be saved in Dashboard & Ranking</div>
+      <% } %>
+      <!-- ===== GUEST BANNER END ===== -->
+      <h2>📝 Lesson 20 Test - Check Your Learning</h2>
+      <div class="test-info"><b>Total Questions:</b> 10 &nbsp; | &nbsp; <b>Total Marks:</b> 100 &nbsp; | &nbsp; <b>Passing Marks:</b> 80 (80%) &nbsp; | &nbsp; <b>Time:</b> 3 Minutes<br>Each correct answer = 10 Marks. Once you start, all tabs will be locked until you submit.</div>
+      <div id="startScreen">
+        <h2>Ready for the Test?</h2>
+        <p>Click Start Paper to begin. You will get <b>3 Minutes</b> for 10 questions.<br>During the test, you cannot open Lesson or any other page.</p>
+        <button class="btn" style="font-size:20px;padding:14px 30px" onclick="startTest()">▶ Start Paper</button>
+      </div>
+      <div id="timerBar">⏰ Time Left: <span id="timerText">03:00</span></div>
+      <div id="quizArea">
+        <form id="quizForm">
+          <div class="question"><b>Q1. In this project, Navbar uses?</b><label><input type="radio" name="q1" value="a"> display: flex; justify-content: space-between;</label><label><input type="radio" name="q1" value="b"> display: grid;</label><label><input type="radio" name="q1" value="c"> display: block;</label><label><input type="radio" name="q1" value="d"> display: none;</label></div>
+          <div class="question"><b>Q2. Hero section uses?</b><label><input type="radio" name="q2" value="a"> background: linear-gradient(90deg, blue, green);</label><label><input type="radio" name="q2" value="b"> background: red only</label><label><input type="radio" name="q2" value="c"> No background</label><label><input type="radio" name="q2" value="d"> background: black only</label></div>
+          <div class="question"><b>Q3. Product Cards use?</b><label><input type="radio" name="q3" value="a"> display: flex; gap: 15px; + flex: 1;</label><label><input type="radio" name="q3" value="b"> display: block only</label><label><input type="radio" name="q3" value="c"> No CSS</label><label><input type="radio" name="q3" value="d"> display: table;</label></div>
+          <div class="question"><b>Q4. Card Hover effect in project?</b><label><input type="radio" name="q4" value="a"> transform: translateY(-5px); + box-shadow</label><label><input type="radio" name="q4" value="b"> color: red only</label><label><input type="radio" name="q4" value="c"> No hover</label><label><input type="radio" name="q4" value="d"> display: none;</label></div>
+          <div class="question"><b>Q5. Contact Input Focus uses?</b><label><input type="radio" name="q5" value="a"> border-color: #2563eb;</label><label><input type="radio" name="q5" value="b"> border: none;</label><label><input type="radio" name="q5" value="c"> color: red;</label><label><input type="radio" name="q5" value="d"> background: red;</label></div>
+          <div class="question"><b>Q6. On Mobile, Cards become?</b><label><input type="radio" name="q6" value="a"> flex-direction: column; - Stacked</label><label><input type="radio" name="q6" value="b"> Still side by side</label><label><input type="radio" name="q6" value="c"> Hidden</label><label><input type="radio" name="q6" value="d"> 10 columns</label></div>
+          <div class="question"><b>Q7. Which property makes Card Equal Width?</b><label><input type="radio" name="q7" value="a"> flex: 1;</label><label><input type="radio" name="q7" value="b"> gap: 1;</label><label><input type="radio" name="q7" value="c"> width: 1;</label><label><input type="radio" name="q7" value="d"> flex: 0;</label></div>
+          <div class="question"><b>Q8. What should be at top of every CSS file?</b><label><input type="radio" name="q8" value="a"> * { margin: 0; padding: 0; box-sizing: border-box; }</label><label><input type="radio" name="q8" value="b"> body { color: red; }</label><label><input type="radio" name="q8" value="c"> Nothing</label><label><input type="radio" name="q8" value="d"> h1 { color: red; }</label></div>
+          <div class="question"><b>Q9. How many sections in this project?</b><label><input type="radio" name="q9" value="a"> 5 - Navbar + Hero + Cards + Contact + Footer</label><label><input type="radio" name="q9" value="b"> 1 only</label><label><input type="radio" name="q9" value="c"> 2 only</label><label><input type="radio" name="q9" value="d"> 10 sections</label></div>
+          <div class="question"><b>Q10. Which makes Button Full Width inside Card?</b><label><input type="radio" name="q10" value="a"> width: 100%;</label><label><input type="radio" name="q10" value="b"> width: 50px;</label><label><input type="radio" name="q10" value="c"> width: 10%;</label><label><input type="radio" name="q10" value="d"> width: 0;</label></div>
+          <button type="button" class="btn" onclick="checkTest(false)">Submit Test - Check Result</button>
+          <button type="button" class="btn btn-next" onclick="resetTest()">Try Again</button>
+        </form>
+      </div>
+      <div id="scoreBox">
+        <h3 id="scoreText"></h3>
+        <p id="scoreMsg"></p>
+        <a id="nextBtn" class="btn" href="/lesson21" style="display:none">🎉 You Passed! Go to Lesson 21 →</a>
+        <br><br>
+        <button class="btn btn-next" onclick="showLesson()">← Back to Lesson (Unlocked)</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h3>LearnHTMLCSSJS.com</h3>
+      <p>Free HTML CSS JS course in simple English. Learn from zero to web developer with 50 lessons, tests, playground and ranking.</p>
+      <h4>Quick Links</h4>
+      <a href="/">🏠 Home</a><br>
+      <a href="/dashboard">📊 Dashboard</a><br>
+      <a href="/ranking">🏆 Ranking</a><br>
+      <a href="/playground">▶ Playground - Try Code</a><br>
+      <a href="/lesson1">📖 Start Lesson 1 - What is HTML?</a>
+    </div>
+    <div>
+      <h3>Next Lessons - Continue Learning</h3>
+      <a href="/lesson21">Lesson 21 - What is JavaScript?</a><br>
+      <a href="/lesson22">Lesson 22 - Variables</a><br>
+      <a href="/lesson23">Lesson 23 - Data Types & Operators</a><br>
+      <a href="/lesson24">Lesson 24 - If-Else</a><br>
+      <a href="/lesson25">Lesson 25 - Loops</a>
+      <h4>CSS Course (11-20)</h4>
+      <a href="/lesson26">Lesson 26 - Functions</a><br>
+      <a href="/lesson27">Lesson 27 - Arrays</a><br>
+      <a href="/lesson28">Lesson 28 - Objects</a><br>
+      <a href="/lesson29">Lesson 29 - String Methods</a><br>
+      <a href="/lesson30">Lesson 30 - DOM</a>
+    </div>
+    <div>
+      <h3>JavaScript Course (21-40)</h3>
+      <a href="/lesson21">Lesson 21 - What is JavaScript?</a><br>
+      <a href="/lesson22">Lesson 22 - Variables</a><br>
+      <a href="/lesson23">Lesson 23 - Data Types & Operators</a><br>
+      <a href="/lesson24">Lesson 24 - If-Else</a><br>
+      <a href="/lesson25">Lesson 25 - Loops</a><br>
+      <a href="/lesson26">Lesson 26 - Functions</a><br>
+      <a href="/lesson27">Lesson 27 - Arrays</a><br>
+      <a href="/lesson28">Lesson 28 - Objects</a><br>
+      <a href="/lesson29">Lesson 29 - String Methods</a><br>
+      <a href="/lesson30">Lesson 30 - DOM</a><br>
+      <h4>Projects & Career (41-50)</h4>
+      <a href="/lesson41">Lesson 41 - Full Website Project</a><br>
+      <a href="/lesson42">Lesson 42 - Portfolio Website</a><br>
+      <a href="/lesson43">Lesson 43 - Landing Page</a><br>
+      <a href="/lesson44">Lesson 44 - Navbar & Footer</a><br>
+      <a href="/lesson45">Lesson 45 - Final Project</a><br>
+      <a href="/lesson46">Lesson 46 - SEO Basics</a><br>
+      <a href="/lesson47">Lesson 47 - Deploy Free</a><br>
+      <a href="/lesson48">Lesson 48 - Freelancing Guide</a><br>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a><br>
+      <a href="/lesson50">Lesson 50 - Final Exam & Certificate</a>
+    </div>
+  </div>
+  <div style="max-width:1100px;margin:25px auto 0;border-top:1px solid #1e293b;padding-top:20px">
+    <h3 style="text-align:center">📚 All 50 Lessons - Complete HTML CSS JS Course</h3>
+    <div class="all-lessons">
+      <a href="/lesson1">Lesson 1 - What is HTML?</a>
+      <a href="/lesson2">Lesson 2 - Headings & Paragraphs</a>
+      <a href="/lesson3">Lesson 3 - Text Formatting</a>
+      <a href="/lesson4">Lesson 4 - Links & Images</a>
+      <a href="/lesson5">Lesson 5 - Lists</a>
+      <a href="/lesson6">Lesson 6 - Tables</a>
+      <a href="/lesson7">Lesson 7 - Forms</a>
+      <a href="/lesson8">Lesson 8 - Div & Span</a>
+      <a href="/lesson9">Lesson 9 - Semantic HTML</a>
+      <a href="/lesson10">Lesson 10 - HTML Project</a>
+      <a href="/lesson11">Lesson 11 - What is CSS?</a>
+      <a href="/lesson12">Lesson 12 - Colors</a>
+      <a href="/lesson13">Lesson 13 - Text Styling</a>
+      <a href="/lesson14">Lesson 14 - Box Model</a>
+      <a href="/lesson15">Lesson 15 - Flexbox</a>
+      <a href="/lesson16">Lesson 16 - Grid</a>
+      <a href="/lesson17">Lesson 17 - Responsive</a>
+      <a href="/lesson18">Lesson 18 - Buttons</a>
+      <a href="/lesson19">Lesson 19 - Forms Styling</a>
+      <a href="/lesson20" class="current">Lesson 20 - CSS Project</a>
+      <a href="/lesson21">Lesson 21 - What is JS?</a>
+      <a href="/lesson22">Lesson 22 - Variables</a>
+      <a href="/lesson23">Lesson 23 - Data Types</a>
+      <a href="/lesson24">Lesson 24 - If-Else</a>
+      <a href="/lesson25">Lesson 25 - Loops</a>
+      <a href="/lesson26">Lesson 26 - Functions</a>
+      <a href="/lesson27">Lesson 27 - Arrays</a>
+      <a href="/lesson28">Lesson 28 - Objects</a>
+      <a href="/lesson29">Lesson 29 - Strings</a>
+      <a href="/lesson30">Lesson 30 - DOM</a>
+      <a href="/lesson31">Lesson 31 - Events</a>
+      <a href="/lesson32">Lesson 32 - Form Validation</a>
+      <a href="/lesson33">Lesson 33 - LocalStorage</a>
+      <a href="/lesson34">Lesson 34 - Timers</a>
+      <a href="/lesson35">Lesson 35 - Calculator</a>
+      <a href="/lesson36">Lesson 36 - To-Do List</a>
+      <a href="/lesson37">Lesson 37 - Quiz App</a>
+      <a href="/lesson38">Lesson 38 - Password Generator</a>
+      <a href="/lesson39">Lesson 39 - Weather App</a>
+      <a href="/lesson40">Lesson 40 - JS Revision</a>
+      <a href="/lesson41">Lesson 41 - Full Website</a>
+      <a href="/lesson42">Lesson 42 - Portfolio</a>
+      <a href="/lesson43">Lesson 43 - Landing Page</a>
+      <a href="/lesson44">Lesson 44 - Navbar</a>
+      <a href="/lesson45">Lesson 45 - Final Project</a>
+      <a href="/lesson46">Lesson 46 - SEO</a>
+      <a href="/lesson47">Lesson 47 - Deploy</a>
+      <a href="/lesson48">Lesson 48 - Freelancing</a>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a>
+      <a href="/lesson50">Lesson 50 - Final Exam</a>
+    </div>
+    <p style="text-align:center;margin-top:15px">You are learning <a href="/lesson20">CSS Project - Lesson 20</a> | Previous: <a href="/lesson19">Forms Styling - Lesson 19</a> | Next: <a href="/lesson21">What is JavaScript? - Lesson 21</a> | <a href="/lesson50">Jump to Final Exam - Lesson 50</a></p>
+  </div>
+  <div class="footer-bottom">© 2026 LearnHTMLCSSJS.com - Free Course | <a href="/">Home</a> | <a href="/lesson20">Lesson 20</a> | <a href="/lesson50">Lesson 50</a> | Made for Beginners</div>
+</footer>
+
+<script>
+// ===== GUEST TEST HANDLER - Only inside <script> =====
+const IS_LOGGED_IN = <%= (typeof user !== 'undefined' && user) ? 'true' : 'false' %>;
+function saveTestResult(lessonName, score, testStatus, onSaved) {
+  if (!IS_LOGGED_IN) { if (onSaved) onSaved(null); return; }
+  fetch('/save-result', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ lesson: lessonName, score: score, status: testStatus }) })
+  .then(r => r.json())
+  .then(data => { if (onSaved) onSaved(data); })
+  .catch(() => { if (onSaved) onSaved(null); });
+}
+function showGuestSignupPopup(score) {
+  let wantSignup = confirm("🎉 You scored " + score + "/100!\n\nYour score is NOT saved because you are not logged in.\n\nClick OK to Signup FREE and Save Your Score in Dashboard & Ranking.\nClick Cancel to continue without saving.");
+  if (wantSignup) { window.location.href = "/signup"; }
+}
+// ===== GUEST HANDLER END =====
+let testRunning=false;let timerInterval=null;let timeLeft=180;
+function showLesson(){if(testRunning){alert("🔒 Test is running! Please submit the test first. All tabs are locked.");return;}document.getElementById('lessonContent').style.display='block';document.getElementById('testContent').style.display='none';document.getElementById('lessonTabBtn').classList.add('active');document.getElementById('lessonTabBtn').classList.remove('test-active');document.getElementById('testTabBtn').classList.remove('active');document.getElementById('testTabBtn').classList.remove('test-active');window.scrollTo({top:0,behavior:'smooth'});}
+function showTest(){document.getElementById('lessonContent').style.display='none';document.getElementById('testContent').style.display='block';document.getElementById('testTabBtn').classList.add('active');document.getElementById('testTabBtn').classList.add('test-active');document.getElementById('lessonTabBtn').classList.remove('active');window.scrollTo({top:0,behavior:'smooth'});}
+function lockTabs(){testRunning=true;document.getElementById('lessonTabBtn').classList.add('disabled');document.getElementById('lockMsg').style.display='block';document.getElementById('homeLink').classList.add('disabled');document.getElementById('playgroundLink').style.pointerEvents='none';document.getElementById('playgroundLink').style.opacity='0.5';document.getElementById('nextLessonLink').style.pointerEvents='none';document.getElementById('nextLessonLink').style.opacity='0.5';}
+function unlockTabs(){testRunning=false;clearInterval(timerInterval);document.getElementById('lessonTabBtn').classList.remove('disabled');document.getElementById('lockMsg').style.display='none';document.getElementById('homeLink').classList.remove('disabled');document.getElementById('playgroundLink').style.pointerEvents='auto';document.getElementById('playgroundLink').style.opacity='1';document.getElementById('nextLessonLink').style.pointerEvents='auto';document.getElementById('nextLessonLink').style.opacity='1';document.getElementById('timerBar').style.display='none';}
+function startTest(){document.getElementById('startScreen').style.display='none';document.getElementById('quizArea').style.display='block';document.getElementById('timerBar').style.display='block';document.getElementById('scoreBox').style.display='none';lockTabs();timeLeft=180;updateTimer();timerInterval=setInterval(function(){timeLeft--;updateTimer();if(timeLeft<=0){clearInterval(timerInterval);alert("⏰ Time Up! Your test is auto-submitted.");checkTest(true);}},1000);}
+function updateTimer(){let m=Math.floor(timeLeft/60);let s=timeLeft%60;document.getElementById('timerText').innerText=(m<10?"0"+m:m)+":"+(s<10?"0"+s:s);if(timeLeft<=30){document.getElementById('timerBar').classList.add('warning');}}
+function checkTest(isAuto){
+  let answers={q1:'a',q2:'a',q3:'a',q4:'a',q5:'a',q6:'a',q7:'a',q8:'a',q9:'a',q10:'a'};
+  let score=0;let attempted=0;
+  for(let q in answers){let selected=document.querySelector('input[name="'+q+'"]:checked');if(selected){attempted++;if(selected.value===answers[q])score+=10;}}
+  if(!isAuto && attempted<10){alert("Please answer all 10 questions! You have answered only "+attempted+" questions.");return;}
+  unlockTabs();
+  let testStatus=score>=80?'Pass':'Fail';
+  saveTestResult('Lesson 20 - CSS Project', score, testStatus, function(data){
+    if (!IS_LOGGED_IN && score >= 80) {
+      setTimeout(() => showGuestSignupPopup(score), 500);
+    }
+  });
+  let box=document.getElementById('scoreBox');let scoreText=document.getElementById('scoreText');let scoreMsg=document.getElementById('scoreMsg');let nextBtn=document.getElementById('nextBtn');box.style.display='block';scoreText.innerText="Your Score: "+score+" / 100";
+  if(score>=80){box.className='pass';scoreMsg.innerText="🎉 Congratulations! You PASSED. You have learned Lesson 20. Now all tabs are unlocked.";nextBtn.style.display='inline-block';}
+  else{box.className='fail';scoreMsg.innerText="😔 You FAILED. Passing marks are 80. All tabs are now unlocked. Read the lesson again and try again.";nextBtn.style.display='none';}
+  box.scrollIntoView({behavior:'smooth'});
+}
+function resetTest(){clearInterval(timerInterval);testRunning=false;document.getElementById('quizForm').reset();document.getElementById('scoreBox').style.display='none';document.getElementById('quizArea').style.display='none';document.getElementById('startScreen').style.display='block';document.getElementById('timerBar').style.display='none';unlockTabs();}
+</script>
+</body>
+</html>

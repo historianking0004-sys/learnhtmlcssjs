@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verify Certificate | LearnHTMLCSSJS.com</title>
+<meta name="description" content="Verify a LearnHTMLCSSJS.com certificate. Enter Certificate ID to check if it is real and valid.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://learnhtmlcssjs.com/verify">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+  body{background:#f4f6f8;color:#222}
+  header{background:#0f172a;color:white;padding:24px 20px;text-align:center}
+  header a{color:#38bdf8;text-decoration:none;font-size:14px}
+  .container{max-width:620px;margin:0 auto;padding:24px 16px}
+  .card{background:white;border-radius:14px;padding:26px 22px;box-shadow:0 4px 18px rgba(0,0,0,.06);text-align:center}
+  .card h2{font-size:24px;margin-bottom:6px}
+  .card p{color:#64748b;line-height:1.7;font-size:14.5px}
+  .search-box{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+  .search-box input{flex:1;min-width:200px;padding:13px;border:2px solid #e2e8f0;border-radius:10px;font-size:15px;outline:none;text-transform:uppercase}
+  .search-box input:focus{border-color:#2563eb}
+  .btn{background:#2563eb;color:white;padding:13px 24px;border:none;border-radius:10px;font-weight:bold;font-size:15px;cursor:pointer;text-decoration:none;display:inline-block}
+  .btn-green{background:#16a34a}
+  .btn-gold{background:#f59e0b;color:#0f172a}
+  .error{background:#fee2e2;color:#991b1b;padding:13px;border-radius:10px;margin-top:16px;font-weight:bold;font-size:14px}
+  .success-box{border:6px double #f59e0b;border-radius:16px;padding:28px 20px;background:linear-gradient(180deg,#fffbeb,#fff);margin-top:18px}
+  .success-box .badge{font-size:42px}
+  .success-box h3{font-size:22px;margin:8px 0 4px}
+  .success-box .name{font-size:28px;font-weight:900;color:#2563eb;margin:8px 0}
+  .detail{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;text-align:left}
+  .detail div{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:12px;font-size:14px}
+  .detail div b{display:block;color:#64748b;font-size:12px;margin-bottom:2px}
+  .verified{margin-top:14px;background:#dcfce7;color:#166534;padding:10px;border-radius:10px;font-weight:bold;font-size:14px}
+  .how{background:white;border-radius:14px;padding:20px;margin-top:16px;box-shadow:0 4px 18px rgba(0,0,0,.04);text-align:left}
+  .how h3{margin-bottom:8px}
+  .how ol{padding-left:20px;line-height:1.8;color:#475569;font-size:14.5px}
+  footer{background:#0f172a;color:#94a3b8;padding:20px;text-align:center;font-size:13px;margin-top:20px}
+  footer a{color:#38bdf8;text-decoration:none}
+  @media(max-width:500px){.detail{grid-template-columns:1fr}.search-box{flex-direction:column}.search-box .btn{width:100%}}
+</style>
+</head>
+<body>
+<header>
+  <p><a href="/">← Back to Home</a></p>
+  <h1 style="margin-top:8px">🔍 Verify Certificate</h1>
+  <p style="color:#cbd5e1;margin-top:6px">Check if a LearnHTMLCSSJS.com certificate is real and valid.</p>
+</header>
+
+<div class="container">
+  <div class="card">
+    <h2>Enter Certificate ID</h2>
+    <p>Certificate ID is written on the certificate. Example: <b style="color:#0f172a">LHCSJS-A1B2C3-95</b></p>
+    <form class="search-box" method="POST" action="/verify">
+      <input type="text" name="certificateId" placeholder="e.g. LHCSJS-XXXXXX-95" required>
+      <button class="btn" type="submit">Verify →</button>
+    </form>
+    <% if (error) { %><div class="error">❌ <%= error %></div><% } %>
+    <% if (searched && !result && !error) { %><div class="error">❌ Certificate not found.</div><% } %>
+  </div>
+
+  <% if (result) { %>
+    <div class="success-box">
+      <div class="badge">🎓</div>
+      <p style="letter-spacing:3px;color:#92400e;font-weight:bold;font-size:12px">LEARNHTMLCSSJS.COM</p>
+      <h3>Certificate Verified ✅</h3>
+      <p style="color:#64748b">This certificate is authentic and issued by LearnHTMLCSSJS.com</p>
+      <div class="name"><%= result.username %></div>
+      <p>Has successfully completed the <b>Complete HTML, CSS &amp; JavaScript Course</b><br>50 Lessons - From Zero to Web Developer</p>
+      <div class="detail">
+        <div><b>Certificate ID</b><%= result.certificateId %></div>
+        <div><b>Final Exam Score</b><%= result.score %> / 100</div>
+        <div><b>Issue Date</b><%= result.date ? new Date(result.date).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}) : '-' %></div>
+        <div><b>Lessons Passed</b><%= result.passedLessons %> / 49 + Final Exam</div>
+      </div>
+      <div class="verified">✅ Verified - This is a Real Certificate from LearnHTMLCSSJS.com</div>
+      <div style="margin-top:14px">
+        <a href="/" class="btn btn-green">Start Learning Free →</a>
+        <a href="/ranking" class="btn" style="margin-left:8px">View Ranking</a>
+      </div>
+    </div>
+  <% } %>
+
+  <div class="how">
+    <h3>How to Verify?</h3>
+    <ol>
+      <li>Ask the student for their Certificate ID (written at bottom of certificate).</li>
+      <li>Enter it above and click Verify.</li>
+      <li>If certificate is real, you will see name, score and issue date.</li>
+      <li>If it shows "Not Found", the certificate is fake or ID is wrong.</li>
+    </ol>
+    <p style="margin-top:10px;color:#64748b;font-size:13.5px">For Employers: You can also directly open <b>learnhtmlcssjs.com/verify/LHCSJS-XXXXXX-95</b> to check any certificate.</p>
+  </div>
+</div>
+
+<footer>© 2026 LearnHTMLCSSJS.com | <a href="/">Home</a> | <a href="/lesson1">Start Learning</a> | <a href="/ranking">Ranking</a></footer>
+</body>
+</html>

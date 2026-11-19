@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ===== SEO START ===== -->
+<title>Build Quiz App in JavaScript - Lesson 37 | LearnHTMLCSSJS.com</title>
+<meta name="description" content="Learn to Build Quiz App in JavaScript - Lesson 37. Questions array, options, score, timer, progress bar, result screen, restart. Live working quiz demo. Free Course for Beginners.">
+<meta name="keywords" content="javascript quiz app project, build quiz app, questions score timer, lesson 37, learn javascript project">
+<meta name="author" content="LearnHTMLCSSJS.com">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://learnhtmlcssjs.com/lesson37">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Build Quiz App in JavaScript - Lesson 37">
+<meta property="og:description" content="Learn Quiz App - Build a real quiz. Questions, timer, score, result with live demo.">
+<meta property="og:url" content="https://learnhtmlcssjs.com/lesson37">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Course","name":"Learn HTML CSS JS - Free Course","description":"Learn HTML, CSS and JavaScript for beginners in simple English. 50 lessons from zero to web developer.","provider":{"@type":"Organization","name":"LearnHTMLCSSJS.com"}}
+</script>
+<!-- ===== SEO END ===== -->
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+  body{background:#f4f6f8;color:#222}
+  header{background:#0f172a;color:white;padding:20px;text-align:center;width:100%}
+  header a{color:#38bdf8;text-decoration:none;font-size:14px}
+  header a.disabled{color:#64748b;pointer-events:none}
+  .container{width:100%;max-width:100%;margin:0 auto;background:white;padding:30px 40px}
+  h1{font-size:28px;margin-bottom:10px;line-height:1.3}
+  h2{margin:20px 0 10px;color:#0f172a}
+  p{line-height:1.7;margin-bottom:12px}
+  .note{background:#eff6ff;border-left:5px solid #2563eb;padding:12px;border-radius:8px;margin:15px 0}
+  .code-box{background:#0f172a;color:#e2e8f0;padding:15px;border-radius:10px;overflow-x:auto;margin:10px 0}
+  .code-box code{font-family:monospace;font-size:15px;line-height:1.6}
+  .tag{color:#f472b6}.text{color:white}.attr{color:#facc15}.val{color:#86efac}
+  .btn{display:inline-block;background:#16a34a;color:white;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:bold;margin-top:10px;border:none;cursor:pointer;font-size:16px}
+  .btn-next{background:#2563eb}
+  .btn-prev{background:#64748b}
+  .btn-js{background:#f59e0b;color:white}
+  .nav{display:flex;justify-content:space-between;margin-top:25px}
+  .result{border:2px dashed #cbd5e1;padding:15px;border-radius:10px;margin-top:10px;background:#f8fafc}
+  .box{background:#e0f2fe;padding:10px;border-radius:8px;margin-top:10px;line-height:1.8}
+  .tabs{display:flex;gap:10px;margin-bottom:20px;position:sticky;top:0;background:white;padding:10px 0;z-index:10;border-bottom:2px solid #e2e8f0}
+  .tab-btn{flex:1;padding:14px;border:none;border-radius:10px;font-size:17px;font-weight:bold;cursor:pointer;background:#e2e8f0;color:#334155}
+  .tab-btn.active{background:#0f172a;color:white}
+  .tab-btn.test-active{background:#16a34a;color:white}
+  .tab-btn.disabled{opacity:0.5;pointer-events:none;cursor:not-allowed}
+  #lessonContent{display:block}
+  #testContent{display:none}
+  .test-box{border:2px solid #0f172a;border-radius:12px;padding:20px;background:#f8fafc}
+  .test-info{background:#fef3c7;padding:12px;border-radius:8px;margin-bottom:15px;line-height:1.7}
+  .question{background:white;padding:15px;border-radius:10px;margin-bottom:12px;border:1px solid #e2e8f0}
+  .question b{display:block;margin-bottom:8px}
+  .question label{display:block;padding:8px 10px;margin:4px 0;background:#f1f5f9;border-radius:7px;cursor:pointer}
+  .question label:hover{background:#e0f2fe}
+  .question input{margin-right:8px}
+  #scoreBox{display:none;padding:20px;border-radius:10px;text-align:center;margin-top:15px}
+  #scoreBox.pass{background:#dcfce7;border:2px solid #16a34a}
+  #scoreBox.fail{background:#fee2e2;border:2px solid #dc2626}
+  #scoreBox h3{font-size:26px;margin-bottom:5px}
+  #startScreen{text-align:center;padding:30px 10px}
+  #timerBar{display:none;position:sticky;top:60px;z-index:20;background:#dc2626;color:white;padding:12px 15px;border-radius:10px;font-weight:bold;font-size:18px;text-align:center;margin-bottom:15px}
+  #timerBar.warning{background:#ea580c}
+  #quizArea{display:none}
+  .lock-msg{background:#fee2e2;color:#991b1b;padding:10px;border-radius:8px;margin-bottom:12px;text-align:center;font-weight:bold;display:none}
+  table{width:100%;border-collapse:collapse;margin:10px 0;background:white}
+  th,td{border:1px solid #e2e8f0;padding:10px;text-align:left}
+  th{background:#0f172a;color:white}
+  .breadcrumb{font-size:13px;color:#94a3b8;margin-bottom:8px}
+  .breadcrumb a{color:#38bdf8;text-decoration:none}
+  .demo-card{background:white;border:1px solid #e2e8f0;border-radius:12px;padding:20px;text-align:center;margin-top:12px}
+  .demo-input{width:100%;padding:12px;border:2px solid #e2e8f0;border-radius:8px;font-size:15px;outline:none;margin:6px 0}
+  .demo-input:focus{border-color:#2563eb;box-shadow:0 0 0 3px #dbeafe}
+  .quiz-wrap{max-width:520px;margin:0 auto;background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:18px;text-align:left}
+  .quiz-progress{height:10px;background:#e2e8f0;border-radius:10px;overflow:hidden;margin:8px 0}
+  .quiz-progress-bar{height:100%;background:#2563eb;width:0%;transition:width .3s}
+  .quiz-opt{display:block;width:100%;text-align:left;padding:12px;background:white;border:2px solid #e2e8f0;border-radius:10px;margin:7px 0;cursor:pointer;font-size:15px}
+  .quiz-opt:hover{border-color:#2563eb;background:#eff6ff}
+  .quiz-opt.correct{background:#dcfce7;border-color:#16a34a}
+  .quiz-opt.wrong{background:#fee2e2;border-color:#dc2626}
+  .quiz-opt:disabled{cursor:not-allowed;opacity:.9}
+  footer{background:#0f172a;color:#cbd5e1;padding:35px 30px}
+  footer h3{color:white;font-size:20px;margin-bottom:12px}
+  footer h4{color:white;font-size:16px;margin:20px 0 10px}
+  footer p{font-size:14px;line-height:1.7;color:#94a3b8}
+  footer a{color:#38bdf8;text-decoration:none;font-size:14px;line-height:2}
+  footer a:hover{color:white;text-decoration:underline}
+  .footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:25px;max-width:1100px;margin:0 auto}
+  .all-lessons{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:10px}
+  .all-lessons a{background:#1e293b;padding:8px 10px;border-radius:8px;text-align:center;display:block;color:#e2e8f0;font-weight:bold;line-height:1.4}
+  .all-lessons a:hover{background:#2563eb;color:white;text-decoration:none}
+  .all-lessons a.current{background:#16a34a;color:white}
+  .footer-bottom{text-align:center;border-top:1px solid #1e293b;margin-top:25px;padding-top:15px;font-size:13px;color:#64748b}
+  @media(max-width:700px){.footer-grid{grid-template-columns:1fr}.all-lessons{grid-template-columns:1fr 1fr}.container{padding:20px}}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="breadcrumb"><a href="/">Home</a> &gt; <a href="/lesson37">JavaScript Course</a> &gt; Lesson 37 - Quiz App</p>
+  <p><a id="homeLink" href="/">← Back to Home</a> | JavaScript Course - Lesson 37 / 50</p>
+  <h1>Lesson 37: Quiz App - Questions, Timer & Score</h1>
+  <p>Build a Real Quiz Like This Website | LearnHTMLCSSJS.com</p>
+</header>
+
+<div class="container">
+  <div class="tabs">
+    <button id="lessonTabBtn" class="tab-btn active" onclick="showLesson()">📖 Lesson</button>
+    <button id="testTabBtn" class="tab-btn" onclick="showTest()">📝 Test - 100 Marks</button>
+  </div>
+  <div id="lockMsg" class="lock-msg">🔒 Test is running! All tabs are locked until you submit the test or time ends.</div>
+
+  <div id="lessonContent">
+    <h2>1. What Will We Build?</h2>
+    <p>Today we build a <b>real Quiz App</b> - Just like the tests on this website. It shows one question at a time, 4 options, a timer, a progress bar, instant correct/wrong feedback, and a final result screen with score.</p>
+    <p>This project uses: <b>Array of Objects</b> for questions, <b>Variables</b> for current question and score, <b>Functions</b> for show, check, next, <b>DOM</b> to update screen, <b>Timer</b> for countdown, <b>If-Else</b> to check answers.</p>
+    <div class="note"><b>How It Works - 3 Variables Control Everything:</b> <code>current = 0</code> - Which question are we on? <code>score = 0</code> - How many correct? <code>questions = [...]</code> - All questions data. Show question[current], check answer, current++, show next. When current reaches end, show result.</div>
+    <h2>2. LIVE DEMO - Try Your Quiz App</h2>
+    <p>Play the full quiz - 5 questions, 60 seconds, instant feedback:</p>
+    <div class="demo-card">
+      <div class="quiz-wrap">
+        <div id="demoStart" style="text-align:center">
+          <h3 style="margin:0">🧠 HTML CSS JS Quiz</h3>
+          <p style="color:#64748b">5 Questions | 60 Seconds | Instant Result</p>
+          <button class="btn btn-js" onclick="startDemoQuiz()">Start Quiz ▶️</button>
+        </div>
+        <div id="demoQuiz" style="display:none">
+          <div style="display:flex;justify-content:space-between;font-size:13px;color:#64748b"><span id="demoQCount">Question 1 / 5</span><span>⏰ <b id="demoTimer">60</b> sec</span></div>
+          <div class="quiz-progress"><div class="quiz-progress-bar" id="demoProgress"></div></div>
+          <h3 id="demoQText" style="margin:8px 0">Question?</h3>
+          <div id="demoOptions"></div>
+          <p id="demoFeedback" style="font-weight:bold;min-height:22px"></p>
+          <button class="btn btn-next" id="demoNextBtn" style="display:none;width:100%" onclick="demoNext()">Next Question →</button>
+        </div>
+        <div id="demoResult" style="display:none;text-align:center">
+          <h3 id="demoResultText" style="margin:0">Result</h3>
+          <p id="demoResultMsg" style="color:#64748b"></p>
+          <button class="btn" onclick="startDemoQuiz()">Play Again ↺</button>
+        </div>
+      </div>
+    </div>
+    <h2>3. Step 1 - Data - Array of Question Objects</h2>
+    <div class="code-box"><code>
+<span class="text">let questions = [</span><br>
+&nbsp;&nbsp;<span class="text">{</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">question: "What does HTML stand for?",</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">options: ["Hyper Text Markup Language", "High Tech Modern Language", "Home Tool Markup Language", "Hyperlink Text Mode Language"],</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">answer: 0 // Correct option index - First option</span><br>
+&nbsp;&nbsp;<span class="text">},</span><br>
+&nbsp;&nbsp;<span class="text">{</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">question: "Which tag makes a heading?",</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">options: ["&lt;p&gt;", "&lt;h1&gt;", "&lt;div&gt;", "&lt;span&gt;"],</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">answer: 1</span><br>
+&nbsp;&nbsp;<span class="text">}</span><br>
+<span class="text">];</span>
+    </code></div>
+    <p>Each question is an object with 3 keys: <code>question</code> = Text, <code>options</code> = Array of 4 answers, <code>answer</code> = Index of correct option (0, 1, 2, or 3).</p>
+    <h2>4. Step 2 - showQuestion() - Show One Question</h2>
+    <div class="code-box"><code>
+<span class="text">let current = 0; // Question number</span><br>
+<span class="text">let score = 0; // Correct answers</span><br><br>
+<span class="text">function showQuestion() {</span><br>
+&nbsp;&nbsp;<span class="text">let q = questions[current];</span><br>
+&nbsp;&nbsp;<span class="text">document.getElementById("qText").innerText = q.question;</span><br>
+&nbsp;&nbsp;<span class="text">let html = "";</span><br>
+&nbsp;&nbsp;<span class="text">for (let i = 0; i < q.options.length; i++) {</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">html += `&lt;button onclick="checkAnswer(${i})"&gt;${q.options[i]}&lt;/button&gt;`;</span><br>
+&nbsp;&nbsp;<span class="text">}</span><br>
+&nbsp;&nbsp;<span class="text">document.getElementById("options").innerHTML = html;</span><br>
+&nbsp;&nbsp;<span class="text">document.getElementById("count").innerText = "Question " + (current + 1) + " / " + questions.length;</span><br>
+<span class="text">}</span>
+    </code></div>
+    <h2>5. Step 3 - checkAnswer() - Correct or Wrong?</h2>
+    <div class="code-box"><code>
+<span class="text">function checkAnswer(selected) {</span><br>
+&nbsp;&nbsp;<span class="text">let q = questions[current];</span><br>
+&nbsp;&nbsp;<span class="text">let buttons = document.querySelectorAll(".opt");</span><br><br>
+&nbsp;&nbsp;<span class="text">if (selected === q.answer) {</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">score++; // Correct - Add 1</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">buttons[selected].style.backgroundColor = "green";</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">document.getElementById("feedback").innerText = "✅ Correct!";</span><br>
+&nbsp;&nbsp;<span class="text">} else {</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">buttons[selected].style.backgroundColor = "red";</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">buttons[q.answer].style.backgroundColor = "green"; // Show correct one</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">document.getElementById("feedback").innerText = "❌ Wrong! Correct is: " + q.options[q.answer];</span><br>
+&nbsp;&nbsp;<span class="text">}</span><br><br>
+&nbsp;&nbsp;<span class="comment" style="color:#94a3b8">// Disable all buttons - User cannot change answer</span><br>
+&nbsp;&nbsp;<span class="text">buttons.forEach(b => b.disabled = true);</span><br>
+&nbsp;&nbsp;<span class="text">document.getElementById("nextBtn").style.display = "block";</span><br>
+<span class="text">}</span>
+    </code></div>
+    <h2>6. Step 4 - nextQuestion() + Timer + Result</h2>
+    <div class="code-box"><code>
+<span class="text">function nextQuestion() {</span><br>
+&nbsp;&nbsp;<span class="text">current++; // Go to next question</span><br>
+&nbsp;&nbsp;<span class="text">if (current < questions.length) {</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">showQuestion(); // More questions left</span><br>
+&nbsp;&nbsp;<span class="text">} else {</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">showResult(); // No more questions</span><br>
+&nbsp;&nbsp;<span class="text">}</span><br>
+<span class="text">}</span><br><br>
+<span class="text">function showResult() {</span><br>
+&nbsp;&nbsp;<span class="text">document.getElementById("quiz").style.display = "none";</span><br>
+&nbsp;&nbsp;<span class="text">document.getElementById("result").style.display = "block";</span><br>
+&nbsp;&nbsp;<span class="text">document.getElementById("result").innerText = "Your Score: " + score + " / " + questions.length;</span><br>
+<span class="text">}</span><br><br>
+<span class="comment" style="color:#94a3b8">// Timer - 60 seconds for full quiz</span><br>
+<span class="text">let timeLeft = 60;</span><br>
+<span class="text">let timer = setInterval(function() {</span><br>
+&nbsp;&nbsp;<span class="text">timeLeft--;</span><br>
+&nbsp;&nbsp;<span class="text">document.getElementById("timer").innerText = timeLeft;</span><br>
+&nbsp;&nbsp;<span class="text">if (timeLeft <= 0) { clearInterval(timer); showResult(); }</span><br>
+<span class="text">}, 1000);</span>
+    </code></div>
+    <h2>7. Complete Example - Mini Quiz in One File</h2>
+    <div class="code-box"><code>
+<span class="tag">&lt;!DOCTYPE html&gt;</span><br>
+<span class="tag">&lt;html&gt;</span><br>
+<span class="tag">&lt;body&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;h2</span> <span class="attr">id</span>=<span class="val">"qText"</span><span class="tag">&gt;</span><span class="tag">&lt;/h2&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;div</span> <span class="attr">id</span>=<span class="val">"options"</span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;button</span> <span class="attr">onclick</span>=<span class="val">"nextQuestion()"</span><span class="tag">&gt;</span><span class="text">Next</span><span class="tag">&lt;/button&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;script&gt;</span><br>
+&nbsp;&nbsp;<span class="text">let questions = [</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">{ question: "2 + 2 = ?", options: ["3", "4", "5", "6"], answer: 1 },</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">{ question: "Capital of Pakistan?", options: ["Lahore", "Karachi", "Islamabad", "Peshawar"], answer: 2 }</span><br>
+&nbsp;&nbsp;<span class="text">];</span><br>
+&nbsp;&nbsp;<span class="text">let current = 0, score = 0;</span><br>
+&nbsp;&nbsp;<span class="text">function showQuestion() { let q = questions[current]; document.getElementById("qText").innerText = q.question; let h = ""; for (let i = 0; i < 4; i++) { h += "&lt;button onclick='checkAnswer(" + i + ")'&gt;" + q.options[i] + "&lt;/button&gt;&lt;br&gt;"; } document.getElementById("options").innerHTML = h; }</span><br>
+&nbsp;&nbsp;<span class="text">function checkAnswer(s) { if (s === questions[current].answer) { score++; alert("Correct!"); } else { alert("Wrong!"); } }</span><br>
+&nbsp;&nbsp;<span class="text">function nextQuestion() { current++; if (current < questions.length) showQuestion(); else alert("Done! Score: " + score + "/" + questions.length); }</span><br>
+&nbsp;&nbsp;<span class="text">showQuestion();</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;/script&gt;</span><br>
+<span class="tag">&lt;/body&gt;</span> <span class="tag">&lt;/html&gt;</span>
+    </code></div>
+    <h2>8. Homework - Make It Better</h2>
+    <p>In Playground, add these to your Quiz:</p>
+    <p>1. 10 Questions on any topic - HTML, Math, GK - With 4 options each<br>2. Timer per question - 15 seconds per question, auto-next when time ends<br>3. High Score - Save best score in LocalStorage, show "Best Score: X" on start screen</p>
+    <div class="box"><b>Remember:</b> Questions = Array of objects { question, options[4], answer: index } | current = Which question now | score = How many correct | showQuestion() = Show current question + options | checkAnswer(selected) = Compare selected === answer | Disable buttons after answer | nextQuestion() = current++ , if end show result | Timer = setInterval, at 0 show result | Progress = (current / total) * 100</div>
+    <p><b>Next Step:</b> <a href="/lesson38">Lesson 38 - Password Generator</a> - Build a tool that creates strong random passwords.</p>
+    <a id="playgroundLink" class="btn" href="/playground">▶ Try it Yourself - Playground</a><br><br>
+    <button class="btn btn-next" onclick="showTest()">Go to Test → 📝</button>
+    <div class="nav">
+      <a class="btn btn-prev" href="/lesson36">← Lesson 36</a>
+      <a id="nextLessonLink" class="btn btn-next" href="/lesson38">Next Lesson 38 →</a>
+    </div>
+  </div>
+
+  <div id="testContent">
+    <div class="test-box">
+      <!-- ===== GUEST BANNER - HTML, NOT JS ===== -->
+      <% if (!user) { %>
+      <div id="guestBanner" style="background:linear-gradient(135deg,#0f172a,#2563eb);color:white;padding:16px;border-radius:12px;margin-bottom:14px;text-align:center">
+        <h3 style="margin:0;font-size:18px">👋 Hi Guest! Try This Test FREE</h3>
+        <p style="margin:6px 0 0;color:#e2e8f0;font-size:14px">You can give this test without login. But your score will <b style="color:#facc15">NOT be saved</b> in Dashboard / Ranking.</p>
+        <p style="margin:8px 0 0"><a href="/signup" style="display:inline-block;background:#facc15;color:#0f172a;padding:10px 22px;border-radius:8px;font-weight:bold;text-decoration:none;font-size:14px">✨ Signup Free to Save Score →</a> <a href="/login" style="color:white;font-weight:bold;font-size:14px">Login →</a></p>
+      </div>
+      <% } else { %>
+      <div style="background:#dcfce7;color:#166534;padding:12px;border-radius:10px;margin-bottom:14px;text-align:center;font-weight:bold;font-size:14px">✅ Logged in as <b><%= user.username %></b> - Your score will be saved in Dashboard & Ranking</div>
+      <% } %>
+      <!-- ===== GUEST BANNER END ===== -->
+      <h2>📝 Lesson 37 Test - Check Your Learning</h2>
+      <div class="test-info"><b>Total Questions:</b> 10 &nbsp; | &nbsp; <b>Total Marks:</b> 100 &nbsp; | &nbsp; <b>Passing Marks:</b> 80 (80%) &nbsp; | &nbsp; <b>Time:</b> 3 Minutes<br>Each correct answer = 10 Marks. Once you start, all tabs will be locked until you submit.</div>
+      <div id="startScreen">
+        <h2>Ready for the Test?</h2>
+        <p>Click Start Paper to begin. You will get <b>3 Minutes</b> for 10 questions.<br>During the test, you cannot open Lesson or any other page.</p>
+        <button class="btn" style="font-size:20px;padding:14px 30px" onclick="startTest()">▶ Start Paper</button>
+      </div>
+      <div id="timerBar">⏰ Time Left: <span id="timerText">03:00</span></div>
+      <div id="quizArea">
+        <form id="quizForm">
+          <div class="question"><b>Q1. How are quiz questions stored?</b><label><input type="radio" name="q1" value="a"> Array of Objects - { question, options, answer }</label><label><input type="radio" name="q1" value="b"> Only strings</label><label><input type="radio" name="q1" value="c"> Only numbers</label><label><input type="radio" name="q1" value="d"> Only HTML</label></div>
+          <div class="question"><b>Q2. What does answer: 1 mean?</b><label><input type="radio" name="q2" value="a"> Second option (index 1) is correct</label><label><input type="radio" name="q2" value="b"> First option is correct</label><label><input type="radio" name="q2" value="c"> 1 mark</label><label><input type="radio" name="q2" value="d"> 1 question</label></div>
+          <div class="question"><b>Q3. What does current variable track?</b><label><input type="radio" name="q3" value="a"> Which question are we on now</label><label><input type="radio" name="q3" value="b"> Score</label><label><input type="radio" name="q3" value="c"> Time</label><label><input type="radio" name="q3" value="d"> Total questions</label></div>
+          <div class="question"><b>Q4. How to check if answer is correct?</b><label><input type="radio" name="q4" value="a"> selected === questions[current].answer</label><label><input type="radio" name="q4" value="b"> selected = questions[current].answer</label><label><input type="radio" name="q4" value="c"> selected > answer</label><label><input type="radio" name="q4" value="d"> selected + answer</label></div>
+          <div class="question"><b>Q5. Why disable buttons after answering?</b><label><input type="radio" name="q5" value="a"> So user cannot change answer</label><label><input type="radio" name="q5" value="b"> To add color</label><label><input type="radio" name="q5" value="c"> To make faster</label><label><input type="radio" name="q5" value="d"> No reason</label></div>
+          <div class="question"><b>Q6. What does nextQuestion() do?</b><label><input type="radio" name="q6" value="a"> current++ , if more questions show next, else show result</label><label><input type="radio" name="q6" value="b"> Restarts quiz</label><label><input type="radio" name="q6" value="c"> Deletes question</label><label><input type="radio" name="q6" value="d"> Adds score</label></div>
+          <div class="question"><b>Q7. When does quiz end?</b><label><input type="radio" name="q7" value="a"> When current reaches questions.length OR timer ends</label><label><input type="radio" name="q7" value="b"> After first question</label><label><input type="radio" name="q7" value="c"> Never</label><label><input type="radio" name="q7" value="d"> After 1 second</label></div>
+          <div class="question"><b>Q8. How to calculate progress %?</b><label><input type="radio" name="q8" value="a"> (current / total) * 100</label><label><input type="radio" name="q8" value="b"> current + total</label><label><input type="radio" name="q8" value="c"> current - total</label><label><input type="radio" name="q8" value="d"> current * total</label></div>
+          <div class="question"><b>Q9. What happens on correct answer?</b><label><input type="radio" name="q9" value="a"> score++ and button turns green</label><label><input type="radio" name="q9" value="b"> score--</label><label><input type="radio" name="q9" value="c"> Nothing</label><label><input type="radio" name="q9" value="d"> Quiz ends</label></div>
+          <div class="question"><b>Q10. What happens on wrong answer?</b><label><input type="radio" name="q10" value="a"> Selected turns red, correct one turns green</label><label><input type="radio" name="q10" value="b"> Both turn green</label><label><input type="radio" name="q10" value="c"> Nothing</label><label><input type="radio" name="q10" value="d"> Quiz restarts</label></div>
+          <button type="button" class="btn" onclick="checkTest(false)">Submit Test - Check Result</button>
+          <button type="button" class="btn btn-next" onclick="resetTest()">Try Again</button>
+        </form>
+      </div>
+      <div id="scoreBox">
+        <h3 id="scoreText"></h3>
+        <p id="scoreMsg"></p>
+        <a id="nextBtn" class="btn" href="/lesson38" style="display:none">🎉 You Passed! Go to Lesson 38 →</a>
+        <br><br>
+        <button class="btn btn-next" onclick="showLesson()">← Back to Lesson (Unlocked)</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h3>LearnHTMLCSSJS.com</h3>
+      <p>Free HTML CSS JS course in simple English. Learn from zero to web developer with 50 lessons, tests, playground and ranking.</p>
+      <h4>Quick Links</h4>
+      <a href="/">🏠 Home</a><br>
+      <a href="/dashboard">📊 Dashboard</a><br>
+      <a href="/ranking">🏆 Ranking</a><br>
+      <a href="/playground">▶ Playground - Try Code</a><br>
+      <a href="/lesson1">📖 Start Lesson 1 - What is HTML?</a>
+    </div>
+    <div>
+      <h3>Next Lessons - Continue Learning</h3>
+      <a href="/lesson38">Lesson 38 - Password Generator</a><br>
+      <a href="/lesson39">Lesson 39 - Weather App</a><br>
+      <a href="/lesson40">Lesson 40 - JS Revision</a><br>
+      <a href="/lesson41">Lesson 41 - Full Website Project</a><br>
+      <a href="/lesson42">Lesson 42 - Portfolio Website</a>
+      <h4>JavaScript Course (21-40)</h4>
+      <a href="/lesson43">Lesson 43 - Landing Page</a>
+    </div>
+    <div>
+      <h3>JavaScript Course (21-40)</h3>
+      <a href="/lesson40">Lesson 40 - JS Revision</a><br>
+      <h4>Projects & Career (41-50)</h4>
+      <a href="/lesson41">Lesson 41 - Full Website Project</a><br>
+      <a href="/lesson42">Lesson 42 - Portfolio Website</a><br>
+      <a href="/lesson43">Lesson 43 - Landing Page</a><br>
+      <a href="/lesson44">Lesson 44 - Navbar & Footer</a><br>
+      <a href="/lesson45">Lesson 45 - Final Project</a><br>
+      <a href="/lesson46">Lesson 46 - SEO Basics</a><br>
+      <a href="/lesson47">Lesson 47 - Deploy Free</a><br>
+      <a href="/lesson48">Lesson 48 - Freelancing Guide</a><br>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a><br>
+      <a href="/lesson50">Lesson 50 - Final Exam & Certificate</a>
+    </div>
+  </div>
+  <div style="max-width:1100px;margin:25px auto 0;border-top:1px solid #1e293b;padding-top:20px">
+    <h3 style="text-align:center">📚 All 50 Lessons - Complete HTML CSS JS Course</h3>
+    <div class="all-lessons">
+      <a href="/lesson1">Lesson 1 - What is HTML?</a>
+      <a href="/lesson2">Lesson 2 - Headings & Paragraphs</a>
+      <a href="/lesson3">Lesson 3 - Text Formatting</a>
+      <a href="/lesson4">Lesson 4 - Links & Images</a>
+      <a href="/lesson5">Lesson 5 - Lists</a>
+      <a href="/lesson6">Lesson 6 - Tables</a>
+      <a href="/lesson7">Lesson 7 - Forms</a>
+      <a href="/lesson8">Lesson 8 - Div & Span</a>
+      <a href="/lesson9">Lesson 9 - Semantic HTML</a>
+      <a href="/lesson10">Lesson 10 - HTML Project</a>
+      <a href="/lesson11">Lesson 11 - What is CSS?</a>
+      <a href="/lesson12">Lesson 12 - Colors</a>
+      <a href="/lesson13">Lesson 13 - Text Styling</a>
+      <a href="/lesson14">Lesson 14 - Box Model</a>
+      <a href="/lesson15">Lesson 15 - Flexbox</a>
+      <a href="/lesson16">Lesson 16 - Grid</a>
+      <a href="/lesson17">Lesson 17 - Responsive</a>
+      <a href="/lesson18">Lesson 18 - Buttons</a>
+      <a href="/lesson19">Lesson 19 - Forms Styling</a>
+      <a href="/lesson20">Lesson 20 - CSS Project</a>
+      <a href="/lesson21">Lesson 21 - What is JS?</a>
+      <a href="/lesson22">Lesson 22 - Variables</a>
+      <a href="/lesson23">Lesson 23 - Data Types</a>
+      <a href="/lesson24">Lesson 24 - If-Else</a>
+      <a href="/lesson25">Lesson 25 - Loops</a>
+      <a href="/lesson26">Lesson 26 - Functions</a>
+      <a href="/lesson27">Lesson 27 - Arrays</a>
+      <a href="/lesson28">Lesson 28 - Objects</a>
+      <a href="/lesson29">Lesson 29 - Strings</a>
+      <a href="/lesson30">Lesson 30 - DOM</a>
+      <a href="/lesson31">Lesson 31 - Events</a>
+      <a href="/lesson32">Lesson 32 - Form Validation</a>
+      <a href="/lesson33">Lesson 33 - LocalStorage</a>
+      <a href="/lesson34">Lesson 34 - Timers</a>
+      <a href="/lesson35">Lesson 35 - Calculator</a>
+      <a href="/lesson36">Lesson 36 - To-Do List</a>
+      <a href="/lesson37" class="current">Lesson 37 - Quiz App</a>
+      <a href="/lesson38">Lesson 38 - Password Generator</a>
+      <a href="/lesson39">Lesson 39 - Weather App</a>
+      <a href="/lesson40">Lesson 40 - JS Revision</a>
+      <a href="/lesson41">Lesson 41 - Full Website</a>
+      <a href="/lesson42">Lesson 42 - Portfolio</a>
+      <a href="/lesson43">Lesson 43 - Landing Page</a>
+      <a href="/lesson44">Lesson 44 - Navbar</a>
+      <a href="/lesson45">Lesson 45 - Final Project</a>
+      <a href="/lesson46">Lesson 46 - SEO</a>
+      <a href="/lesson47">Lesson 47 - Deploy</a>
+      <a href="/lesson48">Lesson 48 - Freelancing</a>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a>
+      <a href="/lesson50">Lesson 50 - Final Exam</a>
+    </div>
+    <p style="text-align:center;margin-top:15px">You are learning <a href="/lesson37">Quiz App - Lesson 37</a> | Previous: <a href="/lesson36">To-Do List - Lesson 36</a> | Next: <a href="/lesson38">Password Generator - Lesson 38</a> | <a href="/lesson50">Jump to Final Exam - Lesson 50</a></p>
+  </div>
+  <div class="footer-bottom">© 2026 LearnHTMLCSSJS.com - Free Course | <a href="/">Home</a> | <a href="/lesson37">Lesson 37</a> | <a href="/lesson50">Lesson 50</a> | Made for Beginners</div>
+</footer>
+
+<script>
+// ===== GUEST TEST HANDLER - Only inside <script> =====
+const IS_LOGGED_IN = <%= (typeof user !== 'undefined' && user) ? 'true' : 'false' %>;
+function saveTestResult(lessonName, score, testStatus, onSaved) {
+  if (!IS_LOGGED_IN) { if (onSaved) onSaved(null); return; }
+  fetch('/save-result', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ lesson: lessonName, score: score, status: testStatus }) })
+  .then(r => r.json())
+  .then(data => { if (onSaved) onSaved(data); })
+  .catch(() => { if (onSaved) onSaved(null); });
+}
+function showGuestSignupPopup(score) {
+  let wantSignup = confirm("🎉 You scored " + score + "/100!\n\nYour score is NOT saved because you are not logged in.\n\nClick OK to Signup FREE and Save Your Score in Dashboard & Ranking.\nClick Cancel to continue without saving.");
+  if (wantSignup) { window.location.href = "/signup"; }
+}
+// ===== GUEST HANDLER END =====
+let demoQs=[{q:"What does HTML stand for?",opts:["Hyper Text Markup Language","High Tech Modern Language","Home Tool Markup Language","Hyperlink Text Mode Language"],a:0},{q:"Which tag makes a heading?",opts:["<p>","<h1>","<div>","<span>"],a:1},{q:"Which CSS property changes text color?",opts:["background","color","font-size","margin"],a:1},{q:"What is 10 + 5 in JavaScript?",opts:["105","15","50","25"],a:1},{q:"Which method adds item at END of array?",opts:["pop()","shift()","push()","slice()"],a:2}];
+let demoCurrent=0;let demoScore=0;let demoTimerId=null;let demoTime=60;
+function startDemoQuiz(){demoCurrent=0;demoScore=0;demoTime=60;clearInterval(demoTimerId);document.getElementById('demoStart').style.display='none';document.getElementById('demoResult').style.display='none';document.getElementById('demoQuiz').style.display='block';document.getElementById('demoTimer').innerText=demoTime;showDemoQ();demoTimerId=setInterval(function(){demoTime--;document.getElementById('demoTimer').innerText=demoTime;if(demoTime<=0){clearInterval(demoTimerId);showDemoResult();}},1000);}
+function showDemoQ(){let q=demoQs[demoCurrent];document.getElementById('demoQCount').innerText="Question "+(demoCurrent+1)+" / "+demoQs.length;document.getElementById('demoProgress').style.width=Math.round(demoCurrent/demoQs.length*100)+"%";document.getElementById('demoQText').innerText=q.q;document.getElementById('demoFeedback').innerText="";document.getElementById('demoNextBtn').style.display='none';let html="";for(let i=0;i<q.opts.length;i++){html+='<button class="quiz-opt" onclick="demoCheck('+i+',this)">'+q.opts[i]+'</button>';}document.getElementById('demoOptions').innerHTML=html;}
+function demoCheck(sel,btn){let q=demoQs[demoCurrent];let btns=document.querySelectorAll('#demoOptions .quiz-opt');btns.forEach(b=>b.disabled=true);if(sel===q.a){demoScore++;btn.classList.add('correct');document.getElementById('demoFeedback').innerText="✅ Correct!";document.getElementById('demoFeedback').style.color="#16a34a";}else{btn.classList.add('wrong');btns[q.a].classList.add('correct');document.getElementById('demoFeedback').innerText="❌ Wrong! Correct is: "+q.opts[q.a];document.getElementById('demoFeedback').style.color="#dc2626";}document.getElementById('demoNextBtn').style.display='block';}
+function demoNext(){demoCurrent++;if(demoCurrent<demoQs.length){showDemoQ();}else{clearInterval(demoTimerId);showDemoResult();}}
+function showDemoResult(){document.getElementById('demoQuiz').style.display='none';document.getElementById('demoResult').style.display='block';document.getElementById('demoProgress').style.width="100%";let pct=Math.round(demoScore/demoQs.length*100);document.getElementById('demoResultText').innerText="Your Score: "+demoScore+" / "+demoQs.length+" ("+pct+"%)";document.getElementById('demoResultMsg').innerText=pct>=80?"🎉 Excellent! You passed!":pct>=60?"👍 Good! Try again for 80%+":"😔 Keep practicing! Read lessons again.";}
+let testRunning=false;let timerInterval=null;let timeLeft=180;
+function showLesson(){if(testRunning){alert("🔒 Test is running! Please submit the test first. All tabs are locked.");return;}document.getElementById('lessonContent').style.display='block';document.getElementById('testContent').style.display='none';document.getElementById('lessonTabBtn').classList.add('active');document.getElementById('lessonTabBtn').classList.remove('test-active');document.getElementById('testTabBtn').classList.remove('active');document.getElementById('testTabBtn').classList.remove('test-active');window.scrollTo({top:0,behavior:'smooth'});}
+function showTest(){document.getElementById('lessonContent').style.display='none';document.getElementById('testContent').style.display='block';document.getElementById('testTabBtn').classList.add('active');document.getElementById('testTabBtn').classList.add('test-active');document.getElementById('lessonTabBtn').classList.remove('active');window.scrollTo({top:0,behavior:'smooth'});}
+function lockTabs(){testRunning=true;document.getElementById('lessonTabBtn').classList.add('disabled');document.getElementById('lockMsg').style.display='block';document.getElementById('homeLink').classList.add('disabled');document.getElementById('playgroundLink').style.pointerEvents='none';document.getElementById('playgroundLink').style.opacity='0.5';document.getElementById('nextLessonLink').style.pointerEvents='none';document.getElementById('nextLessonLink').style.opacity='0.5';}
+function unlockTabs(){testRunning=false;clearInterval(timerInterval);document.getElementById('lessonTabBtn').classList.remove('disabled');document.getElementById('lockMsg').style.display='none';document.getElementById('homeLink').classList.remove('disabled');document.getElementById('playgroundLink').style.pointerEvents='auto';document.getElementById('playgroundLink').style.opacity='1';document.getElementById('nextLessonLink').style.pointerEvents='auto';document.getElementById('nextLessonLink').style.opacity='1';document.getElementById('timerBar').style.display='none';}
+function startTest(){document.getElementById('startScreen').style.display='none';document.getElementById('quizArea').style.display='block';document.getElementById('timerBar').style.display='block';document.getElementById('scoreBox').style.display='none';lockTabs();timeLeft=180;updateTimer();timerInterval=setInterval(function(){timeLeft--;updateTimer();if(timeLeft<=0){clearInterval(timerInterval);alert("⏰ Time Up! Your test is auto-submitted.");checkTest(true);}},1000);}
+function updateTimer(){let m=Math.floor(timeLeft/60);let s=timeLeft%60;document.getElementById('timerText').innerText=(m<10?"0"+m:m)+":"+(s<10?"0"+s:s);if(timeLeft<=30){document.getElementById('timerBar').classList.add('warning');}}
+function checkTest(isAuto){
+  let answers={q1:'a',q2:'a',q3:'a',q4:'a',q5:'a',q6:'a',q7:'a',q8:'a',q9:'a',q10:'a'};
+  let score=0;let attempted=0;
+  for(let q in answers){let selected=document.querySelector('input[name="'+q+'"]:checked');if(selected){attempted++;if(selected.value===answers[q])score+=10;}}
+  if(!isAuto && attempted<10){alert("Please answer all 10 questions! You have answered only "+attempted+" questions.");return;}
+  unlockTabs();
+  let testStatus=score>=80?'Pass':'Fail';
+  saveTestResult('Lesson 37 - Quiz App', score, testStatus, function(data){
+    if (!IS_LOGGED_IN && score >= 80) {
+      setTimeout(() => showGuestSignupPopup(score), 500);
+    }
+  });
+  let box=document.getElementById('scoreBox');let scoreText=document.getElementById('scoreText');let scoreMsg=document.getElementById('scoreMsg');let nextBtn=document.getElementById('nextBtn');box.style.display='block';scoreText.innerText="Your Score: "+score+" / 100";
+  if(score>=80){box.className='pass';scoreMsg.innerText="🎉 Congratulations! You PASSED. You have learned Lesson 37. Now all tabs are unlocked.";nextBtn.style.display='inline-block';}
+  else{box.className='fail';scoreMsg.innerText="😔 You FAILED. Passing marks are 80. All tabs are now unlocked. Read the lesson again and try again.";nextBtn.style.display='none';}
+  box.scrollIntoView({behavior:'smooth'});
+}
+function resetTest(){clearInterval(timerInterval);testRunning=false;document.getElementById('quizForm').reset();document.getElementById('scoreBox').style.display='none';document.getElementById('quizArea').style.display='none';document.getElementById('startScreen').style.display='block';document.getElementById('timerBar').style.display='none';unlockTabs();}
+</script>
+</body>
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ===== SEO START ===== -->
+<title>Div and Span in HTML - Lesson 8 | LearnHTMLCSSJS.com</title>
+<meta name="description" content="Learn Div and Span in HTML - Lesson 8. Learn div tag, span tag, block vs inline, class and id, div vs span with examples. Free HTML Course for Beginners.">
+<meta name="keywords" content="div tag, span tag, div vs span, block element, inline element, html div, html lesson 8, learn html">
+<meta name="author" content="LearnHTMLCSSJS.com">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://learnhtmlcssjs.com/lesson8">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Div and Span in HTML - Lesson 8">
+<meta property="og:description" content="Learn how to use div and span in HTML. Understand block vs inline, class and id with simple examples for beginners.">
+<meta property="og:url" content="https://learnhtmlcssjs.com/lesson8">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Course","name":"Learn HTML CSS JS - Free Course","description":"Learn HTML, CSS and JavaScript for beginners in simple English. 50 lessons from zero to web developer.","provider":{"@type":"Organization","name":"LearnHTMLCSSJS.com"}}
+</script>
+<!-- ===== SEO END ===== -->
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+  body{background:#f4f6f8;color:#222}
+  header{background:#0f172a;color:white;padding:20px;text-align:center;width:100%}
+  header a{color:#38bdf8;text-decoration:none;font-size:14px}
+  header a.disabled{color:#64748b;pointer-events:none}
+  .container{width:100%;max-width:100%;margin:0 auto;background:white;padding:30px 40px}
+  h1{font-size:28px;margin-bottom:10px;line-height:1.3}
+  h2{margin:20px 0 10px;color:#0f172a}
+  p{line-height:1.7;margin-bottom:12px}
+  .note{background:#eff6ff;border-left:5px solid #2563eb;padding:12px;border-radius:8px;margin:15px 0}
+  .code-box{background:#0f172a;color:#e2e8f0;padding:15px;border-radius:10px;overflow-x:auto;margin:10px 0}
+  .code-box code{font-family:monospace;font-size:15px;line-height:1.6}
+  .tag{color:#f472b6}.text{color:white}.attr{color:#facc15}.val{color:#86efac}
+  .btn{display:inline-block;background:#16a34a;color:white;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:bold;margin-top:10px;border:none;cursor:pointer;font-size:16px}
+  .btn-next{background:#2563eb}
+  .btn-prev{background:#64748b}
+  .nav{display:flex;justify-content:space-between;margin-top:25px}
+  .result{border:2px dashed #cbd5e1;padding:15px;border-radius:10px;margin-top:10px;background:#f8fafc}
+  .box{background:#e0f2fe;padding:10px;border-radius:8px;margin-top:10px;line-height:1.8}
+  .tabs{display:flex;gap:10px;margin-bottom:20px;position:sticky;top:0;background:white;padding:10px 0;z-index:10;border-bottom:2px solid #e2e8f0}
+  .tab-btn{flex:1;padding:14px;border:none;border-radius:10px;font-size:17px;font-weight:bold;cursor:pointer;background:#e2e8f0;color:#334155}
+  .tab-btn.active{background:#0f172a;color:white}
+  .tab-btn.test-active{background:#16a34a;color:white}
+  .tab-btn.disabled{opacity:0.5;pointer-events:none;cursor:not-allowed}
+  #lessonContent{display:block}
+  #testContent{display:none}
+  .test-box{border:2px solid #0f172a;border-radius:12px;padding:20px;background:#f8fafc}
+  .test-info{background:#fef3c7;padding:12px;border-radius:8px;margin-bottom:15px;line-height:1.7}
+  .question{background:white;padding:15px;border-radius:10px;margin-bottom:12px;border:1px solid #e2e8f0}
+  .question b{display:block;margin-bottom:8px}
+  .question label{display:block;padding:8px 10px;margin:4px 0;background:#f1f5f9;border-radius:7px;cursor:pointer}
+  .question label:hover{background:#e0f2fe}
+  .question input{margin-right:8px}
+  #scoreBox{display:none;padding:20px;border-radius:10px;text-align:center;margin-top:15px}
+  #scoreBox.pass{background:#dcfce7;border:2px solid #16a34a}
+  #scoreBox.fail{background:#fee2e2;border:2px solid #dc2626}
+  #scoreBox h3{font-size:26px;margin-bottom:5px}
+  #startScreen{text-align:center;padding:30px 10px}
+  #timerBar{display:none;position:sticky;top:60px;z-index:20;background:#dc2626;color:white;padding:12px 15px;border-radius:10px;font-weight:bold;font-size:18px;text-align:center;margin-bottom:15px}
+  #timerBar.warning{background:#ea580c}
+  #quizArea{display:none}
+  .lock-msg{background:#fee2e2;color:#991b1b;padding:10px;border-radius:8px;margin-bottom:12px;text-align:center;font-weight:bold;display:none}
+  table{width:100%;border-collapse:collapse;margin:10px 0;background:white}
+  th,td{border:1px solid #e2e8f0;padding:10px;text-align:left}
+  th{background:#0f172a;color:white}
+  .breadcrumb{font-size:13px;color:#94a3b8;margin-bottom:8px}
+  .breadcrumb a{color:#38bdf8;text-decoration:none}
+  .demo-div{background:#e0f2fe;border:2px solid #2563eb;padding:15px;border-radius:10px;margin:8px 0}
+  .demo-span{background:#fde68a;padding:2px 8px;border-radius:5px;font-weight:bold}
+  footer{background:#0f172a;color:#cbd5e1;padding:35px 30px}
+  footer h3{color:white;font-size:20px;margin-bottom:12px}
+  footer h4{color:white;font-size:16px;margin:20px 0 10px}
+  footer p{font-size:14px;line-height:1.7;color:#94a3b8}
+  footer a{color:#38bdf8;text-decoration:none;font-size:14px;line-height:2}
+  footer a:hover{color:white;text-decoration:underline}
+  .footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:25px;max-width:1100px;margin:0 auto}
+  .all-lessons{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:10px}
+  .all-lessons a{background:#1e293b;padding:8px 10px;border-radius:8px;text-align:center;display:block;color:#e2e8f0;font-weight:bold;line-height:1.4}
+  .all-lessons a:hover{background:#2563eb;color:white;text-decoration:none}
+  .all-lessons a.current{background:#16a34a;color:white}
+  .footer-bottom{text-align:center;border-top:1px solid #1e293b;margin-top:25px;padding-top:15px;font-size:13px;color:#64748b}
+  @media(max-width:700px){.footer-grid{grid-template-columns:1fr}.all-lessons{grid-template-columns:1fr 1fr}.container{padding:20px}}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="breadcrumb"><a href="/">Home</a> &gt; <a href="/lesson8">HTML Course</a> &gt; Lesson 8 - Div & Span</p>
+  <p><a id="homeLink" href="/">← Back to Home</a> | HTML Course - Lesson 8 / 50</p>
+  <h1>Lesson 8: Div & Span in HTML</h1>
+  <p>Learn How to Group Content with div, span, class and id | LearnHTMLCSSJS.com</p>
+</header>
+
+<div class="container">
+  <div class="tabs">
+    <button id="lessonTabBtn" class="tab-btn active" onclick="showLesson()">📖 Lesson</button>
+    <button id="testTabBtn" class="tab-btn" onclick="showTest()">📝 Test - 100 Marks</button>
+  </div>
+  <div id="lockMsg" class="lock-msg">🔒 Test is running! All tabs are locked until you submit the test or time ends.</div>
+
+  <div id="lessonContent">
+    <h2>1. What is a div in HTML?</h2>
+    <p><b>div</b> means <b>Division</b>. It is a box used to <b>group big content together</b>. For example - a full section, a header, a card, a footer.</p>
+    <p>Think like this: A website is made of many boxes. Every box is a <b>div</b>. Inside a div, you can put heading, paragraph, image, button, form — anything.</p>
+    <div class="note"><b>Example:</b> Header is one div. Main content is one div. Footer is one div. A product card is one div.</div>
+    <h2>2. Basic div Example</h2>
+    <div class="code-box"><code>
+<span class="tag">&lt;div&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;h2&gt;</span><span class="text">My Name is Ali</span><span class="tag">&lt;/h2&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;p&gt;</span><span class="text">I am learning HTML.</span><span class="tag">&lt;/p&gt;</span><br>
+<span class="tag">&lt;/div&gt;</span>
+    </code></div>
+    <div class="result"><b>Result:</b><div class="demo-div"><h3 style="margin:0 0 5px">My Name is Ali</h3><p style="margin:0">I am learning HTML.</p></div></div>
+    <div class="note"><b>Important:</b> div by itself has no design. It only groups content. Design is added later with CSS in Lesson 11.</div>
+    <h2>3. What is a span in HTML?</h2>
+    <p><b>span</b> is used to <b>style a small part of text</b> inside a line. For example - make one word red, bold, or different color.</p>
+    <div class="code-box"><code>
+<span class="tag">&lt;p&gt;</span><span class="text">My name is </span><span class="tag">&lt;span&gt;</span><span class="text">Ali</span><span class="tag">&lt;/span&gt;</span><span class="text"> and I love coding.</span><span class="tag">&lt;/p&gt;</span>
+    </code></div>
+    <div class="result"><b>Result:</b><p style="margin:0">My name is <span class="demo-span">Ali</span> and I love coding.</p></div>
+    <h2>4. div vs span - The Biggest Difference</h2>
+    <p>This is the most asked question in interviews. Learn this table by heart:</p>
+    <table>
+      <tr><th>div</th><th>span</th></tr>
+      <tr><td><b>Block Element</b> - Takes full width, starts on a new line</td><td><b>Inline Element</b> - Takes only as much width as needed, stays in same line</td></tr>
+      <tr><td>Used for <b>big sections</b> - header, card, footer</td><td>Used for <b>small text</b> - one word, one line part</td></tr>
+      <tr><td>Example: A full box</td><td>Example: One word in a paragraph</td></tr>
+    </table>
+    <div class="code-box"><code>
+<span class="comment" style="color:#94a3b8">&lt;!-- div = New Line --&gt;</span><br>
+<span class="tag">&lt;div&gt;</span><span class="text">Hello</span><span class="tag">&lt;/div&gt;</span><br>
+<span class="tag">&lt;div&gt;</span><span class="text">World</span><span class="tag">&lt;/div&gt;</span><br><br>
+<span class="comment" style="color:#94a3b8">&lt;!-- span = Same Line --&gt;</span><br>
+<span class="tag">&lt;p&gt;</span><span class="text">Hello </span><span class="tag">&lt;span&gt;</span><span class="text">World</span><span class="tag">&lt;/span&gt;</span><span class="tag">&lt;/p&gt;</span>
+    </code></div>
+    <div class="result"><b>Result:</b><div style="background:#e0f2fe;padding:8px;margin:4px 0;border-radius:6px">Hello</div><div style="background:#e0f2fe;padding:8px;margin:4px 0;border-radius:6px">World</div><p style="margin:8px 0 0">Hello <span class="demo-span">World</span> (span stays in same line)</p></div>
+    <h2>5. class and id - Name for div</h2>
+    <p>When you have many divs, you need to give them a name so CSS can find them. We use <b>class</b> and <b>id</b> for that.</p>
+    <table>
+      <tr><th>class</th><th>id</th></tr>
+      <tr><td>Can be used for <b>many</b> divs (same name)</td><td>Used for <b>only one</b> div (unique name)</td></tr>
+      <tr><td>Example: All product cards = class="card"</td><td>Example: Header = id="header"</td></tr>
+      <tr><td>In CSS: .card { }</td><td>In CSS: #header { }</td></tr>
+    </table>
+    <div class="code-box"><code>
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="val">"card"</span><span class="tag">&gt;</span><span class="text"> Product 1 </span><span class="tag">&lt;/div&gt;</span><br>
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="val">"card"</span><span class="tag">&gt;</span><span class="text"> Product 2 </span><span class="tag">&lt;/div&gt;</span><br>
+<span class="tag">&lt;div</span> <span class="attr">id</span>=<span class="val">"header"</span><span class="tag">&gt;</span><span class="text"> My Website Header </span><span class="tag">&lt;/div&gt;</span>
+    </code></div>
+    <div class="note"><b>Rule:</b> class = For many elements. id = For only one element. You will use class 90% of the time in real projects.</div>
+    <h2>6. Full Example - Website Structure with div</h2>
+    <p>Every website is made like this:</p>
+    <div class="code-box"><code>
+<span class="tag">&lt;div</span> <span class="attr">id</span>=<span class="val">"header"</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;h1&gt;</span><span class="text">My Website</span><span class="tag">&lt;/h1&gt;</span><br>
+<span class="tag">&lt;/div&gt;</span><br><br>
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="val">"main"</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;h2&gt;</span><span class="text">Welcome</span><span class="tag">&lt;/h2&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;p&gt;</span><span class="text">This is my first website.</span><span class="tag">&lt;/p&gt;</span><br>
+<span class="tag">&lt;/div&gt;</span><br><br>
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="val">"card"</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;h3&gt;</span><span class="text">Product 1</span><span class="tag">&lt;/h3&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;p&gt;</span><span class="text">Price: 1500</span><span class="tag">&lt;/p&gt;</span><br>
+<span class="tag">&lt;/div&gt;</span><br><br>
+<span class="tag">&lt;div</span> <span class="attr">id</span>=<span class="val">"footer"</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;p&gt;</span><span class="text">© 2026 My Website</span><span class="tag">&lt;/p&gt;</span><br>
+<span class="tag">&lt;/div&gt;</span>
+    </code></div>
+    <div class="result"><b>Result - Website Layout:</b><div style="background:#0f172a;color:white;padding:10px;border-radius:8px;text-align:center;margin-bottom:6px"><b>My Website</b></div><div style="background:#f8fafc;padding:10px;border-radius:8px;margin-bottom:6px"><b>Welcome</b><br>This is my first website.</div><div style="background:#e0f2fe;padding:10px;border-radius:8px;margin-bottom:6px"><b>Product 1</b><br>Price: 1500</div><div style="background:#e2e8f0;padding:10px;border-radius:8px;text-align:center">© 2026 My Website</div></div>
+    <h2>7. Homework - Practice for 2 Minutes</h2>
+    <p>Create a page with:</p>
+    <p>1. One <b>div id="header"</b> with your name<br>2. One <b>div class="card"</b> with your favourite food<br>3. One paragraph where one word is inside a <b>span</b></p>
+    <div class="box"><b>Remember:</b> div = Big box, Block, New Line | span = Small text, Inline, Same Line | class = For many, .card in CSS | id = For one, #header in CSS | div + class + id = Foundation of every website layout</div>
+    <p><b>Next Step:</b> After this lesson, go to <a href="/lesson9">Lesson 9 - Semantic HTML</a> to learn header, nav, main, section, footer.</p>
+    <a id="playgroundLink" class="btn" href="/playground">▶ Try it Yourself - Playground</a><br><br>
+    <button class="btn btn-next" onclick="showTest()">Go to Test → 📝</button>
+    <div class="nav">
+      <a class="btn btn-prev" href="/lesson7">← Lesson 7</a>
+      <a id="nextLessonLink" class="btn btn-next" href="/lesson9">Next Lesson 9 →</a>
+    </div>
+  </div>
+
+  <div id="testContent">
+    <div class="test-box">
+      <!-- ===== GUEST BANNER - HTML, NOT JS ===== -->
+      <% if (!user) { %>
+      <div id="guestBanner" style="background:linear-gradient(135deg,#0f172a,#2563eb);color:white;padding:16px;border-radius:12px;margin-bottom:14px;text-align:center">
+        <h3 style="margin:0;font-size:18px">👋 Hi Guest! Try This Test FREE</h3>
+        <p style="margin:6px 0 0;color:#e2e8f0;font-size:14px">You can give this test without login. But your score will <b style="color:#facc15">NOT be saved</b> in Dashboard / Ranking.</p>
+        <p style="margin:8px 0 0"><a href="/signup" style="display:inline-block;background:#facc15;color:#0f172a;padding:10px 22px;border-radius:8px;font-weight:bold;text-decoration:none;font-size:14px">✨ Signup Free to Save Score →</a> <a href="/login" style="color:white;font-weight:bold;font-size:14px">Login →</a></p>
+      </div>
+      <% } else { %>
+      <div style="background:#dcfce7;color:#166534;padding:12px;border-radius:10px;margin-bottom:14px;text-align:center;font-weight:bold;font-size:14px">✅ Logged in as <b><%= user.username %></b> - Your score will be saved in Dashboard & Ranking</div>
+      <% } %>
+      <!-- ===== GUEST BANNER END ===== -->
+      <h2>📝 Lesson 8 Test - Check Your Learning</h2>
+      <div class="test-info"><b>Total Questions:</b> 10 &nbsp; | &nbsp; <b>Total Marks:</b> 100 &nbsp; | &nbsp; <b>Passing Marks:</b> 80 (80%) &nbsp; | &nbsp; <b>Time:</b> 3 Minutes<br>Each correct answer = 10 Marks. Once you start, all tabs will be locked until you submit.</div>
+      <div id="startScreen">
+        <h2>Ready for the Test?</h2>
+        <p>Click Start Paper to begin. You will get <b>3 Minutes</b> for 10 questions.<br>During the test, you cannot open Lesson or any other page.</p>
+        <button class="btn" style="font-size:20px;padding:14px 30px" onclick="startTest()">▶ Start Paper</button>
+      </div>
+      <div id="timerBar">⏰ Time Left: <span id="timerText">03:00</span></div>
+      <div id="quizArea">
+        <form id="quizForm">
+          <div class="question"><b>Q1. What does div mean?</b><label><input type="radio" name="q1" value="a"> Division</label><label><input type="radio" name="q1" value="b"> Divide</label><label><input type="radio" name="q1" value="c"> Document</label><label><input type="radio" name="q1" value="d"> Design</label></div>
+          <div class="question"><b>Q2. div is which type of element?</b><label><input type="radio" name="q2" value="a"> Block Element</label><label><input type="radio" name="q2" value="b"> Inline Element</label><label><input type="radio" name="q2" value="c"> Both</label><label><input type="radio" name="q2" value="d"> None</label></div>
+          <div class="question"><b>Q3. span is which type of element?</b><label><input type="radio" name="q3" value="a"> Block Element</label><label><input type="radio" name="q3" value="b"> Inline Element</label><label><input type="radio" name="q3" value="c"> Both</label><label><input type="radio" name="q3" value="d"> None</label></div>
+          <div class="question"><b>Q4. div is used for?</b><label><input type="radio" name="q4" value="a"> Big sections - header, card, footer</label><label><input type="radio" name="q4" value="b"> One word in a line</label><label><input type="radio" name="q4" value="c"> Only images</label><label><input type="radio" name="q4" value="d"> Only links</label></div>
+          <div class="question"><b>Q5. span is used for?</b><label><input type="radio" name="q5" value="a"> Big sections</label><label><input type="radio" name="q5" value="b"> Small part of text - one word</label><label><input type="radio" name="q5" value="c"> Full page</label><label><input type="radio" name="q5" value="d"> Tables</label></div>
+          <div class="question"><b>Q6. class can be used for?</b><label><input type="radio" name="q6" value="a"> Many elements</label><label><input type="radio" name="q6" value="b"> Only one element</label><label><input type="radio" name="q6" value="c"> No element</label><label><input type="radio" name="q6" value="d"> Only body</label></div>
+          <div class="question"><b>Q7. id can be used for?</b><label><input type="radio" name="q7" value="a"> Many elements</label><label><input type="radio" name="q7" value="b"> Only one unique element</label><label><input type="radio" name="q7" value="c"> No element</label><label><input type="radio" name="q7" value="d"> Only head</label></div>
+          <div class="question"><b>Q8. In CSS, class is written as?</b><label><input type="radio" name="q8" value="a"> .card</label><label><input type="radio" name="q8" value="b"> #card</label><label><input type="radio" name="q8" value="c"> *card</label><label><input type="radio" name="q8" value="d"> @card</label></div>
+          <div class="question"><b>Q9. In CSS, id is written as?</b><label><input type="radio" name="q9" value="a"> .header</label><label><input type="radio" name="q9" value="b"> #header</label><label><input type="radio" name="q9" value="c"> *header</label><label><input type="radio" name="q9" value="d"> @header</label></div>
+          <div class="question"><b>Q10. Which is correct for 2 product cards?</b><label><input type="radio" name="q10" value="a"> class="card" for both</label><label><input type="radio" name="q10" value="b"> id="card" for both</label><label><input type="radio" name="q10" value="c"> No class, no id</label><label><input type="radio" name="q10" value="d"> Only span</label></div>
+          <button type="button" class="btn" onclick="checkTest(false)">Submit Test - Check Result</button>
+          <button type="button" class="btn btn-next" onclick="resetTest()">Try Again</button>
+        </form>
+      </div>
+      <div id="scoreBox">
+        <h3 id="scoreText"></h3>
+        <p id="scoreMsg"></p>
+        <a id="nextBtn" class="btn" href="/lesson9" style="display:none">🎉 You Passed! Go to Lesson 9 →</a>
+        <br><br>
+        <button class="btn btn-next" onclick="showLesson()">← Back to Lesson (Unlocked)</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h3>LearnHTMLCSSJS.com</h3>
+      <p>Free HTML CSS JS course in simple English. Learn from zero to web developer with 50 lessons, tests, playground and ranking.</p>
+      <h4>Quick Links</h4>
+      <a href="/">🏠 Home</a><br>
+      <a href="/dashboard">📊 Dashboard</a><br>
+      <a href="/ranking">🏆 Ranking</a><br>
+      <a href="/playground">▶ Playground - Try Code</a><br>
+      <a href="/lesson1">📖 Start Lesson 1 - What is HTML?</a>
+    </div>
+    <div>
+      <h3>Next Lessons - Continue Learning</h3>
+      <a href="/lesson9">Lesson 9 - Semantic HTML</a><br>
+      <a href="/lesson10">Lesson 10 - HTML Project</a>
+      <h4>CSS Course (11-20)</h4>
+      <a href="/lesson11">Lesson 11 - What is CSS?</a><br>
+      <a href="/lesson12">Lesson 12 - Colors & Background</a><br>
+      <a href="/lesson13">Lesson 13 - Text Styling</a><br>
+      <a href="/lesson14">Lesson 14 - Box Model</a><br>
+      <a href="/lesson15">Lesson 15 - Flexbox</a>
+    </div>
+    <div>
+      <h3>JavaScript Course (21-40)</h3>
+      <a href="/lesson21">Lesson 21 - What is JavaScript?</a><br>
+      <a href="/lesson22">Lesson 22 - Variables</a><br>
+      <a href="/lesson23">Lesson 23 - Data Types & Operators</a><br>
+      <a href="/lesson24">Lesson 24 - If-Else</a><br>
+      <a href="/lesson25">Lesson 25 - Loops</a><br>
+      <a href="/lesson26">Lesson 26 - Functions</a><br>
+      <a href="/lesson27">Lesson 27 - Arrays</a><br>
+      <a href="/lesson28">Lesson 28 - Objects</a><br>
+      <a href="/lesson29">Lesson 29 - String Methods</a><br>
+      <a href="/lesson30">Lesson 30 - DOM</a><br>
+      <h4>Projects & Career (41-50)</h4>
+      <a href="/lesson41">Lesson 41 - Full Website Project</a><br>
+      <a href="/lesson42">Lesson 42 - Portfolio Website</a><br>
+      <a href="/lesson43">Lesson 43 - Landing Page</a><br>
+      <a href="/lesson44">Lesson 44 - Navbar & Footer</a><br>
+      <a href="/lesson45">Lesson 45 - Final Project</a><br>
+      <a href="/lesson46">Lesson 46 - SEO Basics</a><br>
+      <a href="/lesson47">Lesson 47 - Deploy Free</a><br>
+      <a href="/lesson48">Lesson 48 - Freelancing Guide</a><br>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a><br>
+      <a href="/lesson50">Lesson 50 - Final Exam & Certificate</a>
+    </div>
+  </div>
+  <div style="max-width:1100px;margin:25px auto 0;border-top:1px solid #1e293b;padding-top:20px">
+    <h3 style="text-align:center">📚 All 50 Lessons - Complete HTML CSS JS Course</h3>
+    <div class="all-lessons">
+      <a href="/lesson1">Lesson 1 - What is HTML?</a>
+      <a href="/lesson2">Lesson 2 - Headings & Paragraphs</a>
+      <a href="/lesson3">Lesson 3 - Text Formatting</a>
+      <a href="/lesson4">Lesson 4 - Links & Images</a>
+      <a href="/lesson5">Lesson 5 - Lists</a>
+      <a href="/lesson6">Lesson 6 - Tables</a>
+      <a href="/lesson7">Lesson 7 - Forms</a>
+      <a href="/lesson8" class="current">Lesson 8 - Div & Span</a>
+      <a href="/lesson9">Lesson 9 - Semantic HTML</a>
+      <a href="/lesson10">Lesson 10 - HTML Project</a>
+      <a href="/lesson11">Lesson 11 - What is CSS?</a>
+      <a href="/lesson12">Lesson 12 - Colors</a>
+      <a href="/lesson13">Lesson 13 - Text Styling</a>
+      <a href="/lesson14">Lesson 14 - Box Model</a>
+      <a href="/lesson15">Lesson 15 - Flexbox</a>
+      <a href="/lesson16">Lesson 16 - Grid</a>
+      <a href="/lesson17">Lesson 17 - Responsive</a>
+      <a href="/lesson18">Lesson 18 - Buttons</a>
+      <a href="/lesson19">Lesson 19 - Forms Styling</a>
+      <a href="/lesson20">Lesson 20 - CSS Project</a>
+      <a href="/lesson21">Lesson 21 - What is JS?</a>
+      <a href="/lesson22">Lesson 22 - Variables</a>
+      <a href="/lesson23">Lesson 23 - Data Types</a>
+      <a href="/lesson24">Lesson 24 - If-Else</a>
+      <a href="/lesson25">Lesson 25 - Loops</a>
+      <a href="/lesson26">Lesson 26 - Functions</a>
+      <a href="/lesson27">Lesson 27 - Arrays</a>
+      <a href="/lesson28">Lesson 28 - Objects</a>
+      <a href="/lesson29">Lesson 29 - Strings</a>
+      <a href="/lesson30">Lesson 30 - DOM</a>
+      <a href="/lesson31">Lesson 31 - Events</a>
+      <a href="/lesson32">Lesson 32 - Form Validation</a>
+      <a href="/lesson33">Lesson 33 - LocalStorage</a>
+      <a href="/lesson34">Lesson 34 - Timers</a>
+      <a href="/lesson35">Lesson 35 - Calculator</a>
+      <a href="/lesson36">Lesson 36 - To-Do List</a>
+      <a href="/lesson37">Lesson 37 - Quiz App</a>
+      <a href="/lesson38">Lesson 38 - Password Generator</a>
+      <a href="/lesson39">Lesson 39 - Weather App</a>
+      <a href="/lesson40">Lesson 40 - JS Revision</a>
+      <a href="/lesson41">Lesson 41 - Full Website</a>
+      <a href="/lesson42">Lesson 42 - Portfolio</a>
+      <a href="/lesson43">Lesson 43 - Landing Page</a>
+      <a href="/lesson44">Lesson 44 - Navbar</a>
+      <a href="/lesson45">Lesson 45 - Final Project</a>
+      <a href="/lesson46">Lesson 46 - SEO</a>
+      <a href="/lesson47">Lesson 47 - Deploy</a>
+      <a href="/lesson48">Lesson 48 - Freelancing</a>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a>
+      <a href="/lesson50">Lesson 50 - Final Exam</a>
+    </div>
+    <p style="text-align:center;margin-top:15px">You are learning <a href="/lesson8">Div & Span - Lesson 8</a> | Previous: <a href="/lesson7">Forms - Lesson 7</a> | Next: <a href="/lesson9">Semantic HTML - Lesson 9</a> | <a href="/lesson50">Jump to Final Exam - Lesson 50</a></p>
+  </div>
+  <div class="footer-bottom">© 2026 LearnHTMLCSSJS.com - Free Course | <a href="/">Home</a> | <a href="/lesson8">Lesson 8</a> | <a href="/lesson50">Lesson 50</a> | Made for Beginners</div>
+</footer>
+
+<script>
+// ===== GUEST TEST HANDLER - Only inside <script> =====
+const IS_LOGGED_IN = <%= (typeof user !== 'undefined' && user) ? 'true' : 'false' %>;
+function saveTestResult(lessonName, score, testStatus, onSaved) {
+  if (!IS_LOGGED_IN) { if (onSaved) onSaved(null); return; }
+  fetch('/save-result', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ lesson: lessonName, score: score, status: testStatus }) })
+  .then(r => r.json())
+  .then(data => { if (onSaved) onSaved(data); })
+  .catch(() => { if (onSaved) onSaved(null); });
+}
+function showGuestSignupPopup(score) {
+  let wantSignup = confirm("🎉 You scored " + score + "/100!\n\nYour score is NOT saved because you are not logged in.\n\nClick OK to Signup FREE and Save Your Score in Dashboard & Ranking.\nClick Cancel to continue without saving.");
+  if (wantSignup) { window.location.href = "/signup"; }
+}
+// ===== GUEST HANDLER END =====
+let testRunning=false;let timerInterval=null;let timeLeft=180;
+function showLesson(){if(testRunning){alert("🔒 Test is running! Please submit the test first. All tabs are locked.");return;}document.getElementById('lessonContent').style.display='block';document.getElementById('testContent').style.display='none';document.getElementById('lessonTabBtn').classList.add('active');document.getElementById('lessonTabBtn').classList.remove('test-active');document.getElementById('testTabBtn').classList.remove('active');document.getElementById('testTabBtn').classList.remove('test-active');window.scrollTo({top:0,behavior:'smooth'});}
+function showTest(){document.getElementById('lessonContent').style.display='none';document.getElementById('testContent').style.display='block';document.getElementById('testTabBtn').classList.add('active');document.getElementById('testTabBtn').classList.add('test-active');document.getElementById('lessonTabBtn').classList.remove('active');window.scrollTo({top:0,behavior:'smooth'});}
+function lockTabs(){testRunning=true;document.getElementById('lessonTabBtn').classList.add('disabled');document.getElementById('lockMsg').style.display='block';document.getElementById('homeLink').classList.add('disabled');document.getElementById('playgroundLink').style.pointerEvents='none';document.getElementById('playgroundLink').style.opacity='0.5';document.getElementById('nextLessonLink').style.pointerEvents='none';document.getElementById('nextLessonLink').style.opacity='0.5';}
+function unlockTabs(){testRunning=false;clearInterval(timerInterval);document.getElementById('lessonTabBtn').classList.remove('disabled');document.getElementById('lockMsg').style.display='none';document.getElementById('homeLink').classList.remove('disabled');document.getElementById('playgroundLink').style.pointerEvents='auto';document.getElementById('playgroundLink').style.opacity='1';document.getElementById('nextLessonLink').style.pointerEvents='auto';document.getElementById('nextLessonLink').style.opacity='1';document.getElementById('timerBar').style.display='none';}
+function startTest(){document.getElementById('startScreen').style.display='none';document.getElementById('quizArea').style.display='block';document.getElementById('timerBar').style.display='block';document.getElementById('scoreBox').style.display='none';lockTabs();timeLeft=180;updateTimer();timerInterval=setInterval(function(){timeLeft--;updateTimer();if(timeLeft<=0){clearInterval(timerInterval);alert("⏰ Time Up! Your test is auto-submitted.");checkTest(true);}},1000);}
+function updateTimer(){let m=Math.floor(timeLeft/60);let s=timeLeft%60;document.getElementById('timerText').innerText=(m<10?"0"+m:m)+":"+(s<10?"0"+s:s);if(timeLeft<=30){document.getElementById('timerBar').classList.add('warning');}}
+function checkTest(isAuto){
+  let answers={q1:'a',q2:'a',q3:'b',q4:'a',q5:'b',q6:'a',q7:'b',q8:'a',q9:'b',q10:'a'};
+  let score=0;let attempted=0;
+  for(let q in answers){let selected=document.querySelector('input[name="'+q+'"]:checked');if(selected){attempted++;if(selected.value===answers[q])score+=10;}}
+  if(!isAuto && attempted<10){alert("Please answer all 10 questions! You have answered only "+attempted+" questions.");return;}
+  unlockTabs();
+  let testStatus=score>=80?'Pass':'Fail';
+  saveTestResult('Lesson 8 - Div & Span', score, testStatus, function(data){
+    if (!IS_LOGGED_IN && score >= 80) {
+      setTimeout(() => showGuestSignupPopup(score), 500);
+    }
+  });
+  let box=document.getElementById('scoreBox');let scoreText=document.getElementById('scoreText');let scoreMsg=document.getElementById('scoreMsg');let nextBtn=document.getElementById('nextBtn');box.style.display='block';scoreText.innerText="Your Score: "+score+" / 100";
+  if(score>=80){box.className='pass';scoreMsg.innerText="🎉 Congratulations! You PASSED. You have learned Lesson 8. Now all tabs are unlocked.";nextBtn.style.display='inline-block';}
+  else{box.className='fail';scoreMsg.innerText="😔 You FAILED. Passing marks are 80. All tabs are now unlocked. Read the lesson again and try again.";nextBtn.style.display='none';}
+  box.scrollIntoView({behavior:'smooth'});
+}
+function resetTest(){clearInterval(timerInterval);testRunning=false;document.getElementById('quizForm').reset();document.getElementById('scoreBox').style.display='none';document.getElementById('quizArea').style.display='none';document.getElementById('startScreen').style.display='block';document.getElementById('timerBar').style.display='none';unlockTabs();}
+</script>
+</body>
+</html>

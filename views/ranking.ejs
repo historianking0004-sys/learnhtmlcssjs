@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ranking - Leaderboard | Top Students | LearnHTMLCSSJS.com</title>
+<meta name="description" content="See the Leaderboard Ranking on LearnHTMLCSSJS.com. Check Overall Ranking and Lesson-wise Ranking for all 50 lessons. Compete with other students and become the Topper.">
+<meta name="keywords" content="ranking, leaderboard, top students, html css js ranking, learnhtmlcssjs ranking, student leaderboard">
+<meta name="author" content="LearnHTMLCSSJS.com">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://learnhtmlcssjs.com/ranking">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ranking - Leaderboard | LearnHTMLCSSJS.com">
+<meta property="og:description" content="See who is on top! Overall Ranking and Lesson-wise Ranking for all 50 lessons. Compete and become the Topper.">
+<meta property="og:url" content="https://learnhtmlcssjs.com/ranking">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Ranking - Leaderboard","description":"Overall and Lesson-wise Ranking for 50 lessons HTML CSS JS course.","provider":{"@type":"Organization","name":"LearnHTMLCSSJS.com"}}
+</script>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+  body{background:#f4f6f8;color:#222}
+  header{background:#0f172a;color:white;padding:20px;text-align:center;width:100%}
+  header a{color:#38bdf8;text-decoration:none;font-size:14px;margin:0 8px}
+  .breadcrumb{font-size:13px;color:#94a3b8;margin-bottom:8px}
+  .breadcrumb a{color:#38bdf8;text-decoration:none}
+  .container{width:100%;max-width:1100px;margin:0 auto;padding:25px 20px}
+  .tabs{display:flex;gap:10px;margin-bottom:20px}
+  .tab-btn{flex:1;padding:14px;border:none;border-radius:10px;font-size:17px;font-weight:bold;cursor:pointer;background:#e2e8f0;color:#334155}
+  .tab-btn.active{background:#0f172a;color:white}
+  .tab-btn.active-green{background:#16a34a;color:white}
+  #overallTab{display:block}
+  #lessonTab{display:none}
+  .top3{display:flex;gap:15px;margin-bottom:20px;flex-wrap:wrap}
+  .podium{flex:1;min-width:180px;background:white;padding:20px;border-radius:12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.05);position:relative}
+  .podium.gold{border:3px solid #facc15}
+  .podium.silver{border:3px solid #cbd5e1}
+  .podium.bronze{border:3px solid #f59e0b}
+  .podium .medal{font-size:40px}
+  .podium h3{margin:8px 0 4px;font-size:20px;text-transform:capitalize}
+  .podium p{color:#64748b;font-size:14px;line-height:1.6}
+  .podium .score{font-size:26px;font-weight:bold;color:#2563eb}
+  table{width:100%;background:white;border-collapse:collapse;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
+  th,td{padding:13px;text-align:left;border-bottom:1px solid #e2e8f0}
+  th{background:#0f172a;color:white}
+  tr.you{background:#dcfce7 !important;font-weight:bold}
+  .rank-badge{display:inline-block;width:32px;height:32px;line-height:32px;text-align:center;border-radius:50%;background:#e2e8f0;font-weight:bold}
+  .rank-1{background:#facc15}
+  .rank-2{background:#e2e8f0}
+  .rank-3{background:#f59e0b;color:white}
+  .badge{padding:5px 12px;border-radius:20px;font-size:13px;font-weight:bold;white-space:nowrap}
+  .badge-pass{background:#dcfce7;color:#166534}
+  .badge-fail{background:#fee2e2;color:#991b1b}
+  .badge-cert{background:linear-gradient(90deg,#f59e0b,#facc15);color:#0f172a;border:1px solid #f59e0b}
+  .badge-cert-small{background:#fef3c7;color:#92400e;border:1px solid #fde68a;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:bold;white-space:nowrap}
+  .filter-box{background:white;padding:18px;border-radius:12px;margin-bottom:18px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
+  .filter-box select{padding:12px;border:1px solid #cbd5e1;border-radius:8px;font-size:16px;flex:1;min-width:180px}
+  .btn{background:#2563eb;color:white;padding:12px 20px;border:none;border-radius:8px;font-weight:bold;cursor:pointer;font-size:16px;text-decoration:none;display:inline-block}
+  .btn-green{background:#16a34a}
+  .empty{text-align:center;padding:30px;background:white;border-radius:12px;color:#64748b}
+  .bar{height:10px;background:#e2e8f0;border-radius:20px;overflow:hidden;margin-top:6px}
+  .fill{height:100%;background:#16a34a}
+  .note{background:#eff6ff;border-left:5px solid #2563eb;padding:12px;border-radius:8px;margin-bottom:18px;line-height:1.7}
+  .cert-banner{background:linear-gradient(135deg,#0f172a,#2563eb);color:white;padding:18px;border-radius:12px;margin-bottom:18px;text-align:center}
+  .cert-banner p{color:#e2e8f0;font-size:14px}
+  footer{background:#0f172a;color:#cbd5e1;padding:35px 30px}
+  footer h3{color:white;font-size:20px;margin-bottom:12px}
+  footer h4{color:white;font-size:16px;margin:20px 0 10px}
+  footer p{font-size:14px;line-height:1.7;color:#94a3b8}
+  footer a{color:#38bdf8;text-decoration:none;font-size:14px;line-height:2}
+  footer a:hover{color:white;text-decoration:underline}
+  .footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:25px;max-width:1100px;margin:0 auto}
+  .all-lessons{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:10px}
+  .all-lessons a{background:#1e293b;padding:8px 10px;border-radius:8px;text-align:center;display:block;color:#e2e8f0;font-weight:bold;line-height:1.4}
+  .all-lessons a:hover{background:#2563eb;color:white;text-decoration:none}
+  .all-lessons a.current{background:#16a34a;color:white}
+  .footer-bottom{text-align:center;border-top:1px solid #1e293b;margin-top:25px;padding-top:15px;font-size:13px;color:#64748b}
+  @media(max-width:700px){.footer-grid{grid-template-columns:1fr}.all-lessons{grid-template-columns:1fr 1fr}.container{padding:20px 12px}.top3{flex-direction:column}table{font-size:13px}th,td{padding:10px 8px}}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="breadcrumb"><a href="/">Home</a> &gt; Ranking - Leaderboard</p>
+  <h1>🏆 Leaderboard - Ranking</h1>
+  <p>See who is on top! Compete with others and become the Topper.</p>
+  <p style="margin-top:10px">
+    <a href="/">🏠 Home</a> |
+    <% if(user){ %>
+      <a href="/dashboard">📊 My Dashboard</a> | <a href="/lesson1">📖 Lessons</a> | <a href="/playground">▶ Playground</a> | <a href="/logout">Logout</a>
+    <% } else { %>
+      <a href="/login">Login</a> | <a href="/signup">Signup</a>
+    <% } %>
+  </p>
+</header>
+
+<div class="container">
+
+  <div class="note"><b>How Ranking Works:</b> Pass a test (80+ marks) to earn points. Your <b>Total Score</b> = Sum of all your test scores. <b>Progress</b> = Lessons Passed / 50. The student with the highest Total Score is Rank 1. <b>🎓 Gold Badge = Certified Web Developer</b> - Passed Final Exam + Got Certificate.</div>
+
+  <% 
+    let certifiedCount = (typeof overall !== 'undefined') ? overall.filter(u => u.hasCertificate).length : 0;
+  %>
+  <% if (certifiedCount > 0) { %>
+    <div class="cert-banner">
+      <h3 style="margin-bottom:4px">🎓 <%= certifiedCount %> Certified Web Developers on LearnHTMLCSSJS.com!</h3>
+      <p>These students passed all 49 lessons + Final Exam and earned their certificate. Will you be next?</p>
+    </div>
+  <% } %>
+
+  <div class="tabs">
+    <button id="overallBtn" class="tab-btn active" onclick="showOverall()">🏆 Overall Ranking</button>
+    <button id="lessonBtn" class="tab-btn" onclick="showLesson()">📝 Lesson-wise Ranking</button>
+  </div>
+
+  <div id="overallTab">
+    <h2 style="margin-bottom:12px">🏆 Overall Ranking - All 50 Lessons</h2>
+
+    <% if(overall.length === 0){ %>
+      <div class="empty"><h3>No students yet.</h3><p>Be the first to complete a test and appear on the leaderboard!</p><br><a class="btn btn-green" href="/lesson1">Start Lesson 1 →</a></div>
+    <% } else { %>
+
+      <div class="top3">
+        <% if(overall[0]){ %>
+          <div class="podium gold">
+            <div class="medal">🥇</div>
+            <h3><%= overall[0].username %></h3>
+            <% if(overall[0].hasCertificate){ %><div><span class="badge badge-cert">🎓 Certified - <%= overall[0].certScore %>/100</span></div><% } %>
+            <div class="score" style="margin-top:6px"><%= overall[0].totalScore %> Points</div>
+            <p><%= overall[0].passed %> / 50 Lessons Passed<br>Avg: <%= overall[0].avg %>/100</p>
+          </div>
+        <% } %>
+        <% if(overall[1]){ %>
+          <div class="podium silver">
+            <div class="medal">🥈</div>
+            <h3><%= overall[1].username %></h3>
+            <% if(overall[1].hasCertificate){ %><div><span class="badge badge-cert">🎓 Certified - <%= overall[1].certScore %>/100</span></div><% } %>
+            <div class="score" style="margin-top:6px"><%= overall[1].totalScore %> Points</div>
+            <p><%= overall[1].passed %> / 50 Lessons Passed<br>Avg: <%= overall[1].avg %>/100</p>
+          </div>
+        <% } %>
+        <% if(overall[2]){ %>
+          <div class="podium bronze">
+            <div class="medal">🥉</div>
+            <h3><%= overall[2].username %></h3>
+            <% if(overall[2].hasCertificate){ %><div><span class="badge badge-cert">🎓 Certified - <%= overall[2].certScore %>/100</span></div><% } %>
+            <div class="score" style="margin-top:6px"><%= overall[2].totalScore %> Points</div>
+            <p><%= overall[2].passed %> / 50 Lessons Passed<br>Avg: <%= overall[2].avg %>/100</p>
+          </div>
+        <% } %>
+      </div>
+
+      <table>
+        <tr><th>Rank</th><th>Student</th><th>Lessons Passed</th><th>Tests Given</th><th>Total Score</th><th>Avg Score</th><th>Progress</th></tr>
+        <% overall.forEach((u, i) => { %>
+          <tr class="<%= user && u.username === user.username ? 'you' : '' %>">
+            <td><span class="rank-badge <%= i===0?'rank-1':i===1?'rank-2':i===2?'rank-3':'' %>"><%= i+1 %></span></td>
+            <td>
+              <%= u.username %>
+              <% if(user && u.username === user.username){ %> <span style="color:#16a34a">(You)</span> <% } %>
+              <% if(u.hasCertificate){ %><br><span class="badge-cert-small">🎓 Certified - <%= u.certScore %>/100</span><% } %>
+            </td>
+            <td><b><%= u.passed %> / 50</b></td>
+            <td><%= u.attempted %></td>
+            <td><b><%= u.totalScore %></b></td>
+            <td><%= u.avg %> / 100</td>
+            <td style="min-width:120px">
+              <%= u.progress %>%
+              <div class="bar"><div class="fill" style="width:<%= u.progress %>%"></div></div>
+            </td>
+          </tr>
+        <% }) %>
+      </table>
+    <% } %>
+  </div>
+
+  <div id="lessonTab">
+    <h2 style="margin-bottom:12px">📝 Lesson-wise Ranking - Topper of Each Lesson</h2>
+
+    <form class="filter-box" method="GET" action="/ranking">
+      <label><b>Select Lesson:</b></label>
+      <select name="lesson" onchange="this.form.submit()">
+        <option value="All" <%= selectedLesson==='All' ? 'selected' : '' %>>-- Select Lesson --</option>
+        <% lessons.forEach(l => { %>
+          <option value="<%= l %>" <%= selectedLesson===l ? 'selected' : '' %>><%= l %></option>
+        <% }) %>
+      </select>
+      <button type="submit" class="btn">Show Ranking</button>
+    </form>
+
+    <% if(selectedLesson === 'All'){ %>
+      <div class="empty">
+        <h3>👆 Select a Lesson above</h3>
+        <p>Example: Select <b>Lesson 1</b> to see who got the highest marks in Lesson 1.</p>
+      </div>
+    <% } else if(lessonWise.length === 0){ %>
+      <div class="empty">
+        <h3>No result for <%= selectedLesson %> yet</h3>
+        <p>Be the first to give this test!</p>
+        <br>
+        <% if(user){ %>
+          <a class="btn" href="/lesson1">Go to Lesson</a>
+        <% } else { %>
+          <a class="btn" href="/login">Login to Give Test</a>
+        <% } %>
+      </div>
+    <% } else { %>
+      <div class="top3">
+        <% if(lessonWise[0]){ %>
+          <div class="podium gold"><div class="medal">🥇</div><h3><%= lessonWise[0].username %></h3><% if(lessonWise[0].hasCertificate){ %><div><span class="badge badge-cert">🎓 Certified</span></div><% } %><div class="score" style="margin-top:6px"><%= lessonWise[0].score %> / 100</div><p><%= selectedLesson %> Topper</p></div>
+        <% } %>
+        <% if(lessonWise[1]){ %>
+          <div class="podium silver"><div class="medal">🥈</div><h3><%= lessonWise[1].username %></h3><% if(lessonWise[1].hasCertificate){ %><div><span class="badge badge-cert">🎓 Certified</span></div><% } %><div class="score" style="margin-top:6px"><%= lessonWise[1].score %> / 100</div><p><%= selectedLesson %></p></div>
+        <% } %>
+        <% if(lessonWise[2]){ %>
+          <div class="podium bronze"><div class="medal">🥉</div><h3><%= lessonWise[2].username %></h3><% if(lessonWise[2].hasCertificate){ %><div><span class="badge badge-cert">🎓 Certified</span></div><% } %><div class="score" style="margin-top:6px"><%= lessonWise[2].score %> / 100</div><p><%= selectedLesson %></p></div>
+        <% } %>
+      </div>
+
+      <table>
+        <tr><th>Rank</th><th>Student</th><th>Lesson</th><th>Score</th><th>Status</th><th>Date</th></tr>
+        <% lessonWise.forEach((u, i) => { %>
+          <tr class="<%= user && u.username === user.username ? 'you' : '' %>">
+            <td><span class="rank-badge <%= i===0?'rank-1':i===1?'rank-2':i===2?'rank-3':'' %>"><%= i+1 %></span></td>
+            <td><%= u.username %> <% if(user && u.username === user.username){ %> <span style="color:#16a34a">(You)</span> <% } %> <% if(u.hasCertificate){ %><br><span class="badge-cert-small">🎓 Certified</span><% } %></td>
+            <td><%= selectedLesson %></td>
+            <td><b><%= u.score %> / 100</b></td>
+            <td>
+              <% if(u.status === 'Pass'){ %><span class="badge badge-pass">✅ Pass</span><% } else { %><span class="badge badge-fail">❌ Fail</span><% } %>
+            </td>
+            <td><%= new Date(u.date).toLocaleDateString() %></td>
+          </tr>
+        <% }) %>
+      </table>
+    <% } %>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h3>LearnHTMLCSSJS.com</h3>
+      <p>Free HTML CSS JS course in simple English. Learn from zero to web developer with 50 lessons, tests, playground and ranking.</p>
+      <h4>Quick Links</h4>
+      <a href="/">🏠 Home</a><br>
+      <a href="/dashboard">📊 Dashboard</a><br>
+      <a href="/ranking">🏆 Ranking</a><br>
+      <a href="/playground">▶ Playground - Try Code</a><br>
+      <a href="/lesson1">📖 Start Lesson 1 - What is HTML?</a>
+    </div>
+    <div>
+      <h3>Top Lessons</h3>
+      <a href="/lesson1">Lesson 1 - What is HTML?</a><br>
+      <a href="/lesson11">Lesson 11 - What is CSS?</a><br>
+      <a href="/lesson15">Lesson 15 - Flexbox</a><br>
+      <a href="/lesson20">Lesson 20 - CSS Project</a><br>
+      <a href="/lesson21">Lesson 21 - What is JavaScript?</a>
+      <h4>CSS Course (11-20)</h4>
+      <a href="/lesson22">Lesson 22 - Variables</a><br>
+      <a href="/lesson23">Lesson 23 - Data Types &amp; Operators</a><br>
+      <a href="/lesson24">Lesson 24 - If-Else</a><br>
+      <a href="/lesson25">Lesson 25 - Loops</a>
+    </div>
+    <div>
+      <h3>JavaScript Course (21-40)</h3>
+      <a href="/lesson26">Lesson 26 - Functions</a><br>
+      <a href="/lesson27">Lesson 27 - Arrays</a><br>
+      <a href="/lesson28">Lesson 28 - Objects</a><br>
+      <a href="/lesson29">Lesson 29 - String Methods</a><br>
+      <a href="/lesson30">Lesson 30 - DOM</a><br>
+      <h4>Projects &amp; Career (41-50)</h4>
+      <a href="/lesson41">Lesson 41 - Full Website Project</a><br>
+      <a href="/lesson42">Lesson 42 - Portfolio Website</a><br>
+      <a href="/lesson43">Lesson 43 - Landing Page</a><br>
+      <a href="/lesson44">Lesson 44 - Navbar &amp; Footer</a><br>
+      <a href="/lesson45">Lesson 45 - Final Project</a><br>
+      <a href="/lesson46">Lesson 46 - SEO Basics</a><br>
+      <a href="/lesson47">Lesson 47 - Deploy Free</a><br>
+      <a href="/lesson48">Lesson 48 - Freelancing Guide</a><br>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a><br>
+      <a href="/lesson50">Lesson 50 - Final Exam &amp; Certificate</a>
+    </div>
+  </div>
+  <div style="max-width:1100px;margin:25px auto 0;border-top:1px solid #1e293b;padding-top:20px">
+    <h3 style="text-align:center">📚 All 50 Lessons - Complete HTML CSS JS Course</h3>
+    <div class="all-lessons">
+      <a href="/lesson1">Lesson 1 - What is HTML?</a>
+      <a href="/lesson2">Lesson 2 - Headings &amp; Paragraphs</a>
+      <a href="/lesson3">Lesson 3 - Text Formatting</a>
+      <a href="/lesson4">Lesson 4 - Links &amp; Images</a>
+      <a href="/lesson5">Lesson 5 - Lists</a>
+      <a href="/lesson6">Lesson 6 - Tables</a>
+      <a href="/lesson7">Lesson 7 - Forms</a>
+      <a href="/lesson8">Lesson 8 - Div &amp; Span</a>
+      <a href="/lesson9">Lesson 9 - Semantic HTML</a>
+      <a href="/lesson10">Lesson 10 - HTML Project</a>
+      <a href="/lesson11">Lesson 11 - What is CSS?</a>
+      <a href="/lesson12">Lesson 12 - Colors</a>
+      <a href="/lesson13">Lesson 13 - Text Styling</a>
+      <a href="/lesson14">Lesson 14 - Box Model</a>
+      <a href="/lesson15">Lesson 15 - Flexbox</a>
+      <a href="/lesson16">Lesson 16 - Grid</a>
+      <a href="/lesson17">Lesson 17 - Responsive</a>
+      <a href="/lesson18">Lesson 18 - Buttons</a>
+      <a href="/lesson19">Lesson 19 - Forms Styling</a>
+      <a href="/lesson20">Lesson 20 - CSS Project</a>
+      <a href="/lesson21">Lesson 21 - What is JS?</a>
+      <a href="/lesson22">Lesson 22 - Variables</a>
+      <a href="/lesson23">Lesson 23 - Data Types</a>
+      <a href="/lesson24">Lesson 24 - If-Else</a>
+      <a href="/lesson25">Lesson 25 - Loops</a>
+      <a href="/lesson26">Lesson 26 - Functions</a>
+      <a href="/lesson27">Lesson 27 - Arrays</a>
+      <a href="/lesson28">Lesson 28 - Objects</a>
+      <a href="/lesson29">Lesson 29 - Strings</a>
+      <a href="/lesson30">Lesson 30 - DOM</a>
+      <a href="/lesson31">Lesson 31 - Events</a>
+      <a href="/lesson32">Lesson 32 - Form Validation</a>
+      <a href="/lesson33">Lesson 33 - LocalStorage</a>
+      <a href="/lesson34">Lesson 34 - Timers</a>
+      <a href="/lesson35">Lesson 35 - Calculator</a>
+      <a href="/lesson36">Lesson 36 - To-Do List</a>
+      <a href="/lesson37">Lesson 37 - Quiz App</a>
+      <a href="/lesson38">Lesson 38 - Password Generator</a>
+      <a href="/lesson39">Lesson 39 - Weather App</a>
+      <a href="/lesson40">Lesson 40 - JS Revision</a>
+      <a href="/lesson41">Lesson 41 - Full Website</a>
+      <a href="/lesson42">Lesson 42 - Portfolio</a>
+      <a href="/lesson43">Lesson 43 - Landing Page</a>
+      <a href="/lesson44">Lesson 44 - Navbar</a>
+      <a href="/lesson45">Lesson 45 - Final Project</a>
+      <a href="/lesson46">Lesson 46 - SEO</a>
+      <a href="/lesson47">Lesson 47 - Deploy</a>
+      <a href="/lesson48">Lesson 48 - Freelancing</a>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a>
+      <a href="/lesson50">Lesson 50 - Final Exam</a>
+    </div>
+    <p style="text-align:center;margin-top:15px">You are on <a href="/ranking">Ranking - Leaderboard</a> | <a href="/lesson1">Start Lesson 1</a> | <a href="/lesson50">Jump to Final Exam - Lesson 50</a></p>
+  </div>
+  <div class="footer-bottom">© 2026 LearnHTMLCSSJS.com - Free Course | <a href="/">Home</a> | <a href="/ranking">Ranking</a> | <a href="/lesson50">Lesson 50</a> | Made for Beginners</div>
+</footer>
+
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('lesson') && urlParams.get('lesson') !== 'All') {
+    showLesson();
+  }
+  function showOverall(){
+    document.getElementById('overallTab').style.display = 'block';
+    document.getElementById('lessonTab').style.display = 'none';
+    document.getElementById('overallBtn').classList.add('active');
+    document.getElementById('overallBtn').classList.remove('active-green');
+    document.getElementById('lessonBtn').classList.remove('active');
+    document.getElementById('lessonBtn').classList.remove('active-green');
+  }
+  function showLesson(){
+    document.getElementById('overallTab').style.display = 'none';
+    document.getElementById('lessonTab').style.display = 'block';
+    document.getElementById('lessonBtn').classList.add('active');
+    document.getElementById('lessonBtn').classList.add('active-green');
+    document.getElementById('overallBtn').classList.remove('active');
+  }
+</script>
+
+</body>
+</html>

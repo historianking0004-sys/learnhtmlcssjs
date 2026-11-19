@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ===== SEO START ===== -->
+<title>Full Website Project - HTML CSS JS Combined - Lesson 41 | LearnHTMLCSSJS.com</title>
+<meta name="description" content="Learn Full Website Project - Lesson 41. Combine HTML CSS JS. Plan, structure, header, hero, services, about, contact, footer, dark mode, mobile menu, form. Live full website demo. Free Course for Beginners.">
+<meta name="keywords" content="full website project html css js, build complete website, portfolio website project, lesson 41, learn web development project">
+<meta name="author" content="LearnHTMLCSSJS.com">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://learnhtmlcssjs.com/lesson41">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Full Website Project - HTML CSS JS Combined - Lesson 41">
+<meta property="og:description" content="Learn Full Website - Combine everything. Header, hero, services, contact, dark mode with live demo.">
+<meta property="og:url" content="https://learnhtmlcssjs.com/lesson41">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Course","name":"Learn HTML CSS JS - Free Course","description":"Learn HTML, CSS and JavaScript for beginners in simple English. 50 lessons from zero to web developer.","provider":{"@type":"Organization","name":"LearnHTMLCSSJS.com"}}
+</script>
+<!-- ===== SEO END ===== -->
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+  body{background:#f4f6f8;color:#222}
+  header{background:#0f172a;color:white;padding:20px;text-align:center;width:100%}
+  header a{color:#38bdf8;text-decoration:none;font-size:14px}
+  header a.disabled{color:#64748b;pointer-events:none}
+  .container{width:100%;max-width:100%;margin:0 auto;background:white;padding:30px 40px}
+  h1{font-size:28px;margin-bottom:10px;line-height:1.3}
+  h2{margin:20px 0 10px;color:#0f172a}
+  p{line-height:1.7;margin-bottom:12px}
+  .note{background:#eff6ff;border-left:5px solid #2563eb;padding:12px;border-radius:8px;margin:15px 0}
+  .code-box{background:#0f172a;color:#e2e8f0;padding:15px;border-radius:10px;overflow-x:auto;margin:10px 0}
+  .code-box code{font-family:monospace;font-size:15px;line-height:1.6}
+  .tag{color:#f472b6}.text{color:white}.attr{color:#facc15}.val{color:#86efac}
+  .btn{display:inline-block;background:#16a34a;color:white;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:bold;margin-top:10px;border:none;cursor:pointer;font-size:16px}
+  .btn-next{background:#2563eb}
+  .btn-prev{background:#64748b}
+  .btn-js{background:#f59e0b;color:white}
+  .nav{display:flex;justify-content:space-between;margin-top:25px}
+  .result{border:2px dashed #cbd5e1;padding:15px;border-radius:10px;margin-top:10px;background:#f8fafc}
+  .box{background:#e0f2fe;padding:10px;border-radius:8px;margin-top:10px;line-height:1.8}
+  .tabs{display:flex;gap:10px;margin-bottom:20px;position:sticky;top:0;background:white;padding:10px 0;z-index:10;border-bottom:2px solid #e2e8f0}
+  .tab-btn{flex:1;padding:14px;border:none;border-radius:10px;font-size:17px;font-weight:bold;cursor:pointer;background:#e2e8f0;color:#334155}
+  .tab-btn.active{background:#0f172a;color:white}
+  .tab-btn.test-active{background:#16a34a;color:white}
+  .tab-btn.disabled{opacity:0.5;pointer-events:none;cursor:not-allowed}
+  #lessonContent{display:block}
+  #testContent{display:none}
+  .test-box{border:2px solid #0f172a;border-radius:12px;padding:20px;background:#f8fafc}
+  .test-info{background:#fef3c7;padding:12px;border-radius:8px;margin-bottom:15px;line-height:1.7}
+  .question{background:white;padding:15px;border-radius:10px;margin-bottom:12px;border:1px solid #e2e8f0}
+  .question b{display:block;margin-bottom:8px}
+  .question label{display:block;padding:8px 10px;margin:4px 0;background:#f1f5f9;border-radius:7px;cursor:pointer}
+  .question label:hover{background:#e0f2fe}
+  .question input{margin-right:8px}
+  #scoreBox{display:none;padding:20px;border-radius:10px;text-align:center;margin-top:15px}
+  #scoreBox.pass{background:#dcfce7;border:2px solid #16a34a}
+  #scoreBox.fail{background:#fee2e2;border:2px solid #dc2626}
+  #scoreBox h3{font-size:26px;margin-bottom:5px}
+  #startScreen{text-align:center;padding:30px 10px}
+  #timerBar{display:none;position:sticky;top:60px;z-index:20;background:#dc2626;color:white;padding:12px 15px;border-radius:10px;font-weight:bold;font-size:18px;text-align:center;margin-bottom:15px}
+  #timerBar.warning{background:#ea580c}
+  #quizArea{display:none}
+  .lock-msg{background:#fee2e2;color:#991b1b;padding:10px;border-radius:8px;margin-bottom:12px;text-align:center;font-weight:bold;display:none}
+  table{width:100%;border-collapse:collapse;margin:10px 0;background:white}
+  th,td{border:1px solid #e2e8f0;padding:10px;text-align:left}
+  th{background:#0f172a;color:white}
+  .breadcrumb{font-size:13px;color:#94a3b8;margin-bottom:8px}
+  .breadcrumb a{color:#38bdf8;text-decoration:none}
+  .demo-card{background:white;border:1px solid #e2e8f0;border-radius:12px;padding:20px;text-align:center;margin-top:12px}
+  .demo-input{width:100%;padding:12px;border:2px solid #e2e8f0;border-radius:8px;font-size:15px;outline:none;margin:6px 0}
+  .demo-input:focus{border-color:#2563eb;box-shadow:0 0 0 3px #dbeafe}
+  .mini-site{border:2px solid #0f172a;border-radius:14px;overflow:hidden;text-align:left;background:white}
+  .mini-nav{background:#0f172a;color:white;padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
+  .mini-nav a{color:white;text-decoration:none;font-size:13px;margin-left:10px}
+  .mini-hero{background:linear-gradient(135deg,#2563eb,#0ea5e9);color:white;padding:28px 18px;text-align:center}
+  .mini-hero h3{font-size:26px;margin:0 0 8px}
+  .mini-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:16px}
+  .mini-card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:14px;text-align:center}
+  .mini-footer{background:#0f172a;color:#cbd5e1;text-align:center;padding:12px;font-size:13px}
+  .checklist{text-align:left;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:14px;margin:10px 0;line-height:2}
+  footer{background:#0f172a;color:#cbd5e1;padding:35px 30px}
+  footer h3{color:white;font-size:20px;margin-bottom:12px}
+  footer h4{color:white;font-size:16px;margin:20px 0 10px}
+  footer p{font-size:14px;line-height:1.7;color:#94a3b8}
+  footer a{color:#38bdf8;text-decoration:none;font-size:14px;line-height:2}
+  footer a:hover{color:white;text-decoration:underline}
+  .footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:25px;max-width:1100px;margin:0 auto}
+  .all-lessons{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:10px}
+  .all-lessons a{background:#1e293b;padding:8px 10px;border-radius:8px;text-align:center;display:block;color:#e2e8f0;font-weight:bold;line-height:1.4}
+  .all-lessons a:hover{background:#2563eb;color:white;text-decoration:none}
+  .all-lessons a.current{background:#16a34a;color:white}
+  .footer-bottom{text-align:center;border-top:1px solid #1e293b;margin-top:25px;padding-top:15px;font-size:13px;color:#64748b}
+  @media(max-width:700px){.footer-grid{grid-template-columns:1fr}.all-lessons{grid-template-columns:1fr 1fr}.container{padding:20px}.mini-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="breadcrumb"><a href="/">Home</a> &gt; <a href="/lesson41">Projects & Career</a> &gt; Lesson 41 - Full Website Project</p>
+  <p><a id="homeLink" href="/">← Back to Home</a> | Projects & Career - Lesson 41 / 50</p>
+  <h1>Lesson 41: Full Website Project - Combine Everything</h1>
+  <p>HTML + CSS + JS = One Complete Website | LearnHTMLCSSJS.com</p>
+</header>
+
+<div class="container">
+  <div class="tabs">
+    <button id="lessonTabBtn" class="tab-btn active" onclick="showLesson()">📖 Lesson</button>
+    <button id="testTabBtn" class="tab-btn" onclick="showTest()">📝 Test - 100 Marks</button>
+  </div>
+  <div id="lockMsg" class="lock-msg">🔒 Test is running! All tabs are locked until you submit the test or time ends.</div>
+
+  <div id="lessonContent">
+    <h2>1. From Lessons to Real Website</h2>
+    <p>Until now you learned pieces - HTML for structure, CSS for design, JS for logic. Today we <b>combine all three</b> into one complete website - Just like a real client website. This is what companies and freelancing clients pay for.</p>
+    <p>Every professional website has the same 7 sections: <b>1. Navbar 2. Hero 3. Services / Features 4. About 5. Testimonials 6. Contact Form 7. Footer</b>. Learn this pattern once, and you can build any website - Shop, School, Restaurant, Portfolio, Business.</p>
+    <div class="note"><b>Golden Rule:</b> Plan on paper first, then code. 10 minutes of planning saves 2 hours of fixing. Draw boxes - Header box, Hero box, Services box, Footer box. Then code box by box.</div>
+    <h2>2. LIVE DEMO - Mini Full Website Inside This Lesson</h2>
+    <p>This is a complete mini website - Navbar, Hero, Services, Contact, Footer - All in one page. Try the buttons:</p>
+    <div class="demo-card">
+      <div class="mini-site" id="miniSite">
+        <div class="mini-nav"><b>🌟 Ali Web Studio</b><span><a href="#" onclick="miniAlert('Home')">Home</a><a href="#" onclick="miniAlert('Services')">Services</a><a href="#" onclick="miniAlert('Contact')">Contact</a><button style="background:#16a34a;color:white;border:none;padding:6px 10px;border-radius:6px;cursor:pointer;margin-left:8px" onclick="toggleMiniTheme()">🌙 Theme</button></span></div>
+        <div class="mini-hero"><h3>We Build Websites That Sell 🚀</h3><p style="margin:0 0 12px">Fast, Beautiful, Mobile-Friendly Websites for Your Business</p><button style="background:white;color:#2563eb;border:none;padding:10px 18px;border-radius:8px;font-weight:bold;cursor:pointer" onclick="miniAlert('Get a Quote')">Get a Free Quote →</button><button style="background:transparent;color:white;border:2px solid white;padding:8px 16px;border-radius:8px;font-weight:bold;cursor:pointer;margin-left:6px" onclick="miniAlert('Our Work')">View Our Work</button></div>
+        <div class="mini-grid"><div class="mini-card">🌐<br><b>Business Website</b><br><span style="font-size:13px;color:#64748b">Complete website in 3 days</span><br><b style="color:#16a34a">Rs. 15,000</b></div><div class="mini-card">🛒<br><b>Online Shop</b><br><span style="font-size:13px;color:#64748b">Shop with cart + WhatsApp order</span><br><b style="color:#16a34a">Rs. 30,000</b></div><div class="mini-card">💼<br><b>Portfolio</b><br><span style="font-size:13px;color:#64748b">Show your work, get clients</span><br><b style="color:#16a34a">Rs. 8,000</b></div></div>
+        <div style="padding:0 16px 16px"><h3 style="margin:0 0 8px;text-align:center">📩 Contact Us</h3><input class="demo-input" id="miniName" placeholder="Your Name"><input class="demo-input" id="miniMsg" placeholder="Your Message - e.g. I need a shop website"><button class="btn" style="width:100%" onclick="miniSubmit()">Send Message ✅</button><p id="miniResult" style="text-align:center;color:#16a34a;font-weight:bold;margin-top:8px"></p></div>
+        <div class="mini-footer">© 2026 Ali Web Studio | Made with HTML CSS JS ❤️</div>
+      </div>
+    </div>
+    <h2>3. Website Structure - The Skeleton</h2>
+    <div class="code-box"><code>
+<span class="tag">&lt;!DOCTYPE html&gt;</span><br>
+<span class="tag">&lt;html&gt;</span><br>
+<span class="tag">&lt;head&gt;</span> <span class="comment" style="color:#94a3b8">&lt;!-- Title, SEO, CSS link --&gt;</span> <span class="tag">&lt;/head&gt;</span><br>
+<span class="tag">&lt;body&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;header&gt;</span> <span class="comment" style="color:#94a3b8">&lt;!-- Navbar - Logo + Links --&gt;</span> <span class="tag">&lt;/header&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;section</span> <span class="attr">id</span>=<span class="val">"hero"</span><span class="tag">&gt;</span> <span class="comment" style="color:#94a3b8">&lt;!-- Big heading + Button --&gt;</span> <span class="tag">&lt;/section&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;section</span> <span class="attr">id</span>=<span class="val">"services"</span><span class="tag">&gt;</span> <span class="comment" style="color:#94a3b8">&lt;!-- 3 Cards - What you offer --&gt;</span> <span class="tag">&lt;/section&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;section</span> <span class="attr">id</span>=<span class="val">"about"</span><span class="tag">&gt;</span> <span class="comment" style="color:#94a3b8">&lt;!-- Who are you --&gt;</span> <span class="tag">&lt;/section&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;section</span> <span class="attr">id</span>=<span class="val">"testimonials"</span><span class="tag">&gt;</span> <span class="comment" style="color:#94a3b8">&lt;!-- Happy clients --&gt;</span> <span class="tag">&lt;/section&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;section</span> <span class="attr">id</span>=<span class="val">"contact"</span><span class="tag">&gt;</span> <span class="comment" style="color:#94a3b8">&lt;!-- Form - Name, Message --&gt;</span> <span class="tag">&lt;/section&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;footer&gt;</span> <span class="comment" style="color:#94a3b8">&lt;!-- Links + Copyright --&gt;</span> <span class="tag">&lt;/footer&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;script&gt;</span> <span class="comment" style="color:#94a3b8">&lt;!-- JS - Menu, Form, Theme --&gt;</span> <span class="tag">&lt;/script&gt;</span><br>
+<span class="tag">&lt;/body&gt;</span> <span class="tag">&lt;/html&gt;</span>
+    </code></div>
+    <h2>4. 3 JS Features Every Website Needs</h2>
+    <table>
+      <tr><th>Feature</th><th>Code Idea</th><th>Why?</th></tr>
+      <tr><td>Mobile Menu</td><td>Button toggles menu - classList.toggle("show")</td><td>On mobile, links hide, hamburger shows</td></tr>
+      <tr><td>Dark Mode</td><td>Button toggles body class + save in LocalStorage</td><td>Users love it, looks professional</td></tr>
+      <tr><td>Contact Form Check</td><td>If name === "" or message === "" show error, else show success</td><td>Stops empty messages, like Lesson 32</td></tr>
+      <tr><td>Smooth Scroll</td><td>CSS: html { scroll-behavior: smooth; }</td><td>Clicking menu link scrolls nicely, not jump</td></tr>
+      <tr><td>Back to Top</td><td>Button + window.scrollTo({top: 0, behavior: "smooth"})</td><td>Long page, easy to go up</td></tr>
+    </table>
+    <div class="code-box"><code>
+<span class="comment" style="color:#94a3b8">// Dark Mode - Save in LocalStorage, remember next time</span><br>
+<span class="text">function toggleTheme() {</span><br>
+&nbsp;&nbsp;<span class="text">document.body.classList.toggle("dark");</span><br>
+&nbsp;&nbsp;<span class="text">let isDark = document.body.classList.contains("dark");</span><br>
+&nbsp;&nbsp;<span class="text">localStorage.setItem("theme", isDark ? "dark" : "light");</span><br>
+<span class="text">}</span><br>
+<span class="comment" style="color:#94a3b8">// On page load - Read saved theme</span><br>
+<span class="text">if (localStorage.getItem("theme") === "dark") {</span><br>
+&nbsp;&nbsp;<span class="text">document.body.classList.add("dark");</span><br>
+<span class="text">}</span><br><br>
+<span class="comment" style="color:#94a3b8">// Mobile Menu</span><br>
+<span class="text">function toggleMenu() {</span><br>
+&nbsp;&nbsp;<span class="text">document.getElementById("navLinks").classList.toggle("show");</span><br>
+<span class="text">}</span>
+    </code></div>
+    <h2>5. Complete Example - Full Website Starter Template</h2>
+    <div class="code-box"><code>
+<span class="tag">&lt;!DOCTYPE html&gt;</span><br>
+<span class="tag">&lt;html&gt;</span><br>
+<span class="tag">&lt;head&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;title&gt;</span><span class="text">Ali Web Studio - Websites That Sell</span><span class="tag">&lt;/title&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;style&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">* { margin: 0; font-family: Arial; box-sizing: border-box; }</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">header { background: #0f172a; color: white; padding: 15px 30px; display: flex; justify-content: space-between; }</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">.hero { background: linear-gradient(135deg, #2563eb, #0ea5e9); color: white; padding: 60px 20px; text-align: center; }</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">.services { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; padding: 30px; }</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">.card { background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 12px; text-align: center; }</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">@media (max-width: 700px) { .services { grid-template-columns: 1fr; } }</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;/style&gt;</span><br>
+<span class="tag">&lt;/head&gt;</span><br>
+<span class="tag">&lt;body&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;header&gt;</span><span class="tag">&lt;b&gt;</span><span class="text">Ali Web Studio</span><span class="tag">&lt;/b&gt;</span><span class="tag">&lt;nav&gt;</span><span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"#services"</span><span class="tag">&gt;</span><span class="text">Services</span><span class="tag">&lt;/a&gt;</span> <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"#contact"</span><span class="tag">&gt;</span><span class="text">Contact</span><span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/nav&gt;</span><span class="tag">&lt;/header&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;section</span> <span class="attr">class</span>=<span class="val">"hero"</span><span class="tag">&gt;</span><span class="tag">&lt;h1&gt;</span><span class="text">We Build Websites That Sell</span><span class="tag">&lt;/h1&gt;</span><span class="tag">&lt;p&gt;</span><span class="text">Fast, Beautiful, Mobile-Friendly</span><span class="tag">&lt;/p&gt;</span><span class="tag">&lt;button</span> <span class="attr">onclick</span>=<span class="val">"alert('Thanks! We will contact you.')"</span><span class="tag">&gt;</span><span class="text">Get a Quote</span><span class="tag">&lt;/button&gt;</span><span class="tag">&lt;/section&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;section</span> <span class="attr">class</span>=<span class="val">"services"</span> <span class="attr">id</span>=<span class="val">"services"</span><span class="tag">&gt;</span><span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="val">"card"</span><span class="tag">&gt;</span><span class="text">🌐 Business Website</span><span class="tag">&lt;/div&gt;</span><span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="val">"card"</span><span class="tag">&gt;</span><span class="text">🛒 Online Shop</span><span class="tag">&lt;/div&gt;</span><span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="val">"card"</span><span class="tag">&gt;</span><span class="text">💼 Portfolio</span><span class="tag">&lt;/div&gt;</span><span class="tag">&lt;/section&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;footer</span> <span class="attr">style</span>=<span class="val">"background:#0f172a;color:white;text-align:center;padding:15px"</span><span class="tag">&gt;</span><span class="text">© 2026 Ali Web Studio</span><span class="tag">&lt;/footer&gt;</span><br>
+<span class="tag">&lt;/body&gt;</span> <span class="tag">&lt;/html&gt;</span>
+    </code></div>
+    <h2>6. Before Launch - Checklist ✅</h2>
+    <div class="checklist">
+      <label><input type="checkbox"> Title is clear - Not "Untitled Document"</label><br>
+      <label><input type="checkbox"> Works on mobile - Test at 360px width, no horizontal scroll</label><br>
+      <label><input type="checkbox"> All images have alt text</label><br>
+      <label><input type="checkbox"> All links work - No broken # links</label><br>
+      <label><input type="checkbox"> Form shows error for empty, success for correct</label><br>
+      <label><input type="checkbox"> No spelling mistakes - Read once slowly</label><br>
+      <label><input type="checkbox"> Footer has copyright + contact</label>
+    </div>
+    <h2>7. Homework - Build Your Own Full Website</h2>
+    <p>In Playground, build one complete website - Choose one:</p>
+    <p>1. <b>Restaurant Website</b> - Navbar, Hero with food image, Menu cards (Biryani, Karahi, Pizza with prices), About, Contact form<br>2. <b>School Website</b> - Hero, Courses, Teachers, Admission form<br>3. <b>Shop Website</b> - Products grid, Add to cart button, Cart count in navbar</p>
+    <p>Must have: 7 sections, Mobile responsive, Dark mode, Working contact form validation, Footer with all links.</p>
+    <div class="box"><b>Remember:</b> Every website = Navbar + Hero + Services + About + Testimonials + Contact + Footer | Plan on paper first | HTML = Structure | CSS = Design | JS = Logic (Menu, Theme, Form) | Responsive = Grid 3 to 1 on mobile | Save theme in LocalStorage | Validate form before submit | Checklist before launch</div>
+    <p><b>Next Step:</b> <a href="/lesson42">Lesson 42 - Portfolio Website</a> - Build YOUR portfolio. Show your projects, get clients and jobs.</p>
+    <a id="playgroundLink" class="btn" href="/playground">▶ Try it Yourself - Playground</a><br><br>
+    <button class="btn btn-next" onclick="showTest()">Go to Test → 📝</button>
+    <div class="nav">
+      <a class="btn btn-prev" href="/lesson40">← Lesson 40</a>
+      <a id="nextLessonLink" class="btn btn-next" href="/lesson42">Next Lesson 42 →</a>
+    </div>
+  </div>
+
+  <div id="testContent">
+    <div class="test-box">
+      <!-- ===== GUEST BANNER - HTML, NOT JS ===== -->
+      <% if (!user) { %>
+      <div id="guestBanner" style="background:linear-gradient(135deg,#0f172a,#2563eb);color:white;padding:16px;border-radius:12px;margin-bottom:14px;text-align:center">
+        <h3 style="margin:0;font-size:18px">👋 Hi Guest! Try This Test FREE</h3>
+        <p style="margin:6px 0 0;color:#e2e8f0;font-size:14px">You can give this test without login. But your score will <b style="color:#facc15">NOT be saved</b> in Dashboard / Ranking.</p>
+        <p style="margin:8px 0 0"><a href="/signup" style="display:inline-block;background:#facc15;color:#0f172a;padding:10px 22px;border-radius:8px;font-weight:bold;text-decoration:none;font-size:14px">✨ Signup Free to Save Score →</a> <a href="/login" style="color:white;font-weight:bold;font-size:14px">Login →</a></p>
+      </div>
+      <% } else { %>
+      <div style="background:#dcfce7;color:#166534;padding:12px;border-radius:10px;margin-bottom:14px;text-align:center;font-weight:bold;font-size:14px">✅ Logged in as <b><%= user.username %></b> - Your score will be saved in Dashboard & Ranking</div>
+      <% } %>
+      <!-- ===== GUEST BANNER END ===== -->
+      <h2>📝 Lesson 41 Test - Check Your Learning</h2>
+      <div class="test-info"><b>Total Questions:</b> 10 &nbsp; | &nbsp; <b>Total Marks:</b> 100 &nbsp; | &nbsp; <b>Passing Marks:</b> 80 (80%) &nbsp; | &nbsp; <b>Time:</b> 3 Minutes<br>Each correct answer = 10 Marks. Once you start, all tabs will be locked until you submit.</div>
+      <div id="startScreen">
+        <h2>Ready for the Test?</h2>
+        <p>Click Start Paper to begin. You will get <b>3 Minutes</b> for 10 questions.<br>During the test, you cannot open Lesson or any other page.</p>
+        <button class="btn" style="font-size:20px;padding:14px 30px" onclick="startTest()">▶ Start Paper</button>
+      </div>
+      <div id="timerBar">⏰ Time Left: <span id="timerText">03:00</span></div>
+      <div id="quizArea">
+        <form id="quizForm">
+          <div class="question"><b>Q1. What are the 7 sections of every professional website?</b><label><input type="radio" name="q1" value="a"> Navbar, Hero, Services, About, Testimonials, Contact, Footer</label><label><input type="radio" name="q1" value="b"> Only Header and Footer</label><label><input type="radio" name="q1" value="c"> Only Hero and Contact</label><label><input type="radio" name="q1" value="d"> Only Services</label></div>
+          <div class="question"><b>Q2. What is Hero section?</b><label><input type="radio" name="q2" value="a"> Big heading + Button at top - First thing user sees</label><label><input type="radio" name="q2" value="b"> Footer</label><label><input type="radio" name="q2" value="c"> Contact form</label><label><input type="radio" name="q2" value="d"> Copyright text</label></div>
+          <div class="question"><b>Q3. What should you do before coding a website?</b><label><input type="radio" name="q3" value="a"> Plan on paper - Draw boxes for each section</label><label><input type="radio" name="q3" value="b"> Start coding at once</label><label><input type="radio" name="q3" value="c"> Copy random code</label><label><input type="radio" name="q3" value="d"> Skip planning</label></div>
+          <div class="question"><b>Q4. How to make dark mode remember?</b><label><input type="radio" name="q4" value="a"> Save theme in LocalStorage, read on page load</label><label><input type="radio" name="q4" value="b"> Only change color, no save</label><label><input type="radio" name="q4" value="c"> Use alert</label><label><input type="radio" name="q4" value="d"> Use console.log</label></div>
+          <div class="question"><b>Q5. How to toggle a class in JS?</b><label><input type="radio" name="q5" value="a"> element.classList.toggle("show")</label><label><input type="radio" name="q5" value="b"> element.class = "show"</label><label><input type="radio" name="q5" value="c"> element.toggle("show")</label><label><input type="radio" name="q5" value="d"> element.add("show")</label></div>
+          <div class="question"><b>Q6. How to make smooth scroll when clicking menu link?</b><label><input type="radio" name="q6" value="a"> CSS: html { scroll-behavior: smooth; }</label><label><input type="radio" name="q6" value="b"> JS: alert()</label><label><input type="radio" name="q6" value="c"> HTML: &lt;marquee&gt;</label><label><input type="radio" name="q6" value="d"> CSS: scroll: fast;</label></div>
+          <div class="question"><b>Q7. What does HTML do in a website?</b><label><input type="radio" name="q7" value="a"> Structure - Headings, sections, buttons</label><label><input type="radio" name="q7" value="b"> Design - Colors</label><label><input type="radio" name="q7" value="c"> Logic - Clicks</label><label><input type="radio" name="q7" value="d"> Nothing</label></div>
+          <div class="question"><b>Q8. What does CSS do?</b><label><input type="radio" name="q8" value="a"> Design - Colors, layout, spacing</label><label><input type="radio" name="q8" value="b"> Structure</label><label><input type="radio" name="q8" value="c"> Logic</label><label><input type="radio" name="q8" value="d"> Database</label></div>
+          <div class="question"><b>Q9. What does JS do?</b><label><input type="radio" name="q9" value="a"> Logic - Menu, theme, form check, clicks</label><label><input type="radio" name="q9" value="b"> Structure</label><label><input type="radio" name="q9" value="c"> Design only</label><label><input type="radio" name="q9" value="d"> Nothing</label></div>
+          <div class="question"><b>Q10. What to check before launch?</b><label><input type="radio" name="q10" value="a"> Mobile test, links work, form validation, no spelling mistakes</label><label><input type="radio" name="q10" value="b"> Only color</label><label><input type="radio" name="q10" value="c"> Only title</label><label><input type="radio" name="q10" value="d"> Nothing - Launch at once</label></div>
+          <button type="button" class="btn" onclick="checkTest(false)">Submit Test - Check Result</button>
+          <button type="button" class="btn btn-next" onclick="resetTest()">Try Again</button>
+        </form>
+      </div>
+      <div id="scoreBox">
+        <h3 id="scoreText"></h3>
+        <p id="scoreMsg"></p>
+        <a id="nextBtn" class="btn" href="/lesson42" style="display:none">🎉 You Passed! Go to Lesson 42 →</a>
+        <br><br>
+        <button class="btn btn-next" onclick="showLesson()">← Back to Lesson (Unlocked)</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h3>LearnHTMLCSSJS.com</h3>
+      <p>Free HTML CSS JS course in simple English. Learn from zero to web developer with 50 lessons, tests, playground and ranking.</p>
+      <h4>Quick Links</h4>
+      <a href="/">🏠 Home</a><br>
+      <a href="/dashboard">📊 Dashboard</a><br>
+      <a href="/ranking">🏆 Ranking</a><br>
+      <a href="/playground">▶ Playground - Try Code</a><br>
+      <a href="/lesson1">📖 Start Lesson 1 - What is HTML?</a>
+    </div>
+    <div>
+      <h3>Next Lessons - Continue Learning</h3>
+      <a href="/lesson42">Lesson 42 - Portfolio Website</a><br>
+      <a href="/lesson43">Lesson 43 - Landing Page</a><br>
+      <a href="/lesson44">Lesson 44 - Navbar & Footer</a><br>
+      <a href="/lesson45">Lesson 45 - Final Project</a><br>
+      <a href="/lesson46">Lesson 46 - SEO Basics</a>
+      <h4>Projects & Career (41-50)</h4>
+      <a href="/lesson47">Lesson 47 - Deploy Free</a>
+    </div>
+    <div>
+      <h3>Projects & Career (41-50)</h3>
+      <a href="/lesson48">Lesson 48 - Freelancing Guide</a><br>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a><br>
+      <a href="/lesson50">Lesson 50 - Final Exam & Certificate</a><br>
+      <h4>JavaScript Course (21-40)</h4>
+      <a href="/lesson40">Lesson 40 - JS Revision</a><br>
+      <a href="/lesson41">Lesson 41 - Full Website</a>
+    </div>
+  </div>
+  <div style="max-width:1100px;margin:25px auto 0;border-top:1px solid #1e293b;padding-top:20px">
+    <h3 style="text-align:center">📚 All 50 Lessons - Complete HTML CSS JS Course</h3>
+    <div class="all-lessons">
+      <a href="/lesson1">Lesson 1 - What is HTML?</a>
+      <a href="/lesson2">Lesson 2 - Headings & Paragraphs</a>
+      <a href="/lesson3">Lesson 3 - Text Formatting</a>
+      <a href="/lesson4">Lesson 4 - Links & Images</a>
+      <a href="/lesson5">Lesson 5 - Lists</a>
+      <a href="/lesson6">Lesson 6 - Tables</a>
+      <a href="/lesson7">Lesson 7 - Forms</a>
+      <a href="/lesson8">Lesson 8 - Div & Span</a>
+      <a href="/lesson9">Lesson 9 - Semantic HTML</a>
+      <a href="/lesson10">Lesson 10 - HTML Project</a>
+      <a href="/lesson11">Lesson 11 - What is CSS?</a>
+      <a href="/lesson12">Lesson 12 - Colors</a>
+      <a href="/lesson13">Lesson 13 - Text Styling</a>
+      <a href="/lesson14">Lesson 14 - Box Model</a>
+      <a href="/lesson15">Lesson 15 - Flexbox</a>
+      <a href="/lesson16">Lesson 16 - Grid</a>
+      <a href="/lesson17">Lesson 17 - Responsive</a>
+      <a href="/lesson18">Lesson 18 - Buttons</a>
+      <a href="/lesson19">Lesson 19 - Forms Styling</a>
+      <a href="/lesson20">Lesson 20 - CSS Project</a>
+      <a href="/lesson21">Lesson 21 - What is JS?</a>
+      <a href="/lesson22">Lesson 22 - Variables</a>
+      <a href="/lesson23">Lesson 23 - Data Types</a>
+      <a href="/lesson24">Lesson 24 - If-Else</a>
+      <a href="/lesson25">Lesson 25 - Loops</a>
+      <a href="/lesson26">Lesson 26 - Functions</a>
+      <a href="/lesson27">Lesson 27 - Arrays</a>
+      <a href="/lesson28">Lesson 28 - Objects</a>
+      <a href="/lesson29">Lesson 29 - Strings</a>
+      <a href="/lesson30">Lesson 30 - DOM</a>
+      <a href="/lesson31">Lesson 31 - Events</a>
+      <a href="/lesson32">Lesson 32 - Form Validation</a>
+      <a href="/lesson33">Lesson 33 - LocalStorage</a>
+      <a href="/lesson34">Lesson 34 - Timers</a>
+      <a href="/lesson35">Lesson 35 - Calculator</a>
+      <a href="/lesson36">Lesson 36 - To-Do List</a>
+      <a href="/lesson37">Lesson 37 - Quiz App</a>
+      <a href="/lesson38">Lesson 38 - Password Generator</a>
+      <a href="/lesson39">Lesson 39 - Weather App</a>
+      <a href="/lesson40">Lesson 40 - JS Revision</a>
+      <a href="/lesson41" class="current">Lesson 41 - Full Website</a>
+      <a href="/lesson42">Lesson 42 - Portfolio</a>
+      <a href="/lesson43">Lesson 43 - Landing Page</a>
+      <a href="/lesson44">Lesson 44 - Navbar</a>
+      <a href="/lesson45">Lesson 45 - Final Project</a>
+      <a href="/lesson46">Lesson 46 - SEO</a>
+      <a href="/lesson47">Lesson 47 - Deploy</a>
+      <a href="/lesson48">Lesson 48 - Freelancing</a>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a>
+      <a href="/lesson50">Lesson 50 - Final Exam</a>
+    </div>
+    <p style="text-align:center;margin-top:15px">You are learning <a href="/lesson41">Full Website Project - Lesson 41</a> | Previous: <a href="/lesson40">JS Revision - Lesson 40</a> | Next: <a href="/lesson42">Portfolio Website - Lesson 42</a> | <a href="/lesson50">Jump to Final Exam - Lesson 50</a></p>
+  </div>
+  <div class="footer-bottom">© 2026 LearnHTMLCSSJS.com - Free Course | <a href="/">Home</a> | <a href="/lesson41">Lesson 41</a> | <a href="/lesson50">Lesson 50</a> | Made for Beginners</div>
+</footer>
+
+<script>
+// ===== GUEST TEST HANDLER - Only inside <script> =====
+const IS_LOGGED_IN = <%= (typeof user !== 'undefined' && user) ? 'true' : 'false' %>;
+function saveTestResult(lessonName, score, testStatus, onSaved) {
+  if (!IS_LOGGED_IN) { if (onSaved) onSaved(null); return; }
+  fetch('/save-result', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ lesson: lessonName, score: score, status: testStatus }) })
+  .then(r => r.json())
+  .then(data => { if (onSaved) onSaved(data); })
+  .catch(() => { if (onSaved) onSaved(null); });
+}
+function showGuestSignupPopup(score) {
+  let wantSignup = confirm("🎉 You scored " + score + "/100!\n\nYour score is NOT saved because you are not logged in.\n\nClick OK to Signup FREE and Save Your Score in Dashboard & Ranking.\nClick Cancel to continue without saving.");
+  if (wantSignup) { window.location.href = "/signup"; }
+}
+// ===== GUEST HANDLER END =====
+let miniDark=false;
+function miniAlert(section){alert("You clicked: "+section+" - In your own website, this will scroll to that section.");}
+function toggleMiniTheme(){miniDark=!miniDark;let s=document.getElementById('miniSite');if(miniDark){s.style.filter="invert(1) hue-rotate(180deg)";}else{s.style.filter="none";}}
+function miniSubmit(){let n=document.getElementById('miniName').value.trim();let m=document.getElementById('miniMsg').value.trim();if(n===""||m===""){document.getElementById('miniResult').innerText="❌ Please fill Name and Message!";document.getElementById('miniResult').style.color="#dc2626";return;}document.getElementById('miniResult').innerText="✅ Thanks, "+n+"! Your message is received. We will contact you soon.";document.getElementById('miniResult').style.color="#16a34a";document.getElementById('miniName').value="";document.getElementById('miniMsg').value="";}
+let testRunning=false;let timerInterval=null;let timeLeft=180;
+function showLesson(){if(testRunning){alert("🔒 Test is running! Please submit the test first. All tabs are locked.");return;}document.getElementById('lessonContent').style.display='block';document.getElementById('testContent').style.display='none';document.getElementById('lessonTabBtn').classList.add('active');document.getElementById('lessonTabBtn').classList.remove('test-active');document.getElementById('testTabBtn').classList.remove('active');document.getElementById('testTabBtn').classList.remove('test-active');window.scrollTo({top:0,behavior:'smooth'});}
+function showTest(){document.getElementById('lessonContent').style.display='none';document.getElementById('testContent').style.display='block';document.getElementById('testTabBtn').classList.add('active');document.getElementById('testTabBtn').classList.add('test-active');document.getElementById('lessonTabBtn').classList.remove('active');window.scrollTo({top:0,behavior:'smooth'});}
+function lockTabs(){testRunning=true;document.getElementById('lessonTabBtn').classList.add('disabled');document.getElementById('lockMsg').style.display='block';document.getElementById('homeLink').classList.add('disabled');document.getElementById('playgroundLink').style.pointerEvents='none';document.getElementById('playgroundLink').style.opacity='0.5';document.getElementById('nextLessonLink').style.pointerEvents='none';document.getElementById('nextLessonLink').style.opacity='0.5';}
+function unlockTabs(){testRunning=false;clearInterval(timerInterval);document.getElementById('lessonTabBtn').classList.remove('disabled');document.getElementById('lockMsg').style.display='none';document.getElementById('homeLink').classList.remove('disabled');document.getElementById('playgroundLink').style.pointerEvents='auto';document.getElementById('playgroundLink').style.opacity='1';document.getElementById('nextLessonLink').style.pointerEvents='auto';document.getElementById('nextLessonLink').style.opacity='1';document.getElementById('timerBar').style.display='none';}
+function startTest(){document.getElementById('startScreen').style.display='none';document.getElementById('quizArea').style.display='block';document.getElementById('timerBar').style.display='block';document.getElementById('scoreBox').style.display='none';lockTabs();timeLeft=180;updateTimer();timerInterval=setInterval(function(){timeLeft--;updateTimer();if(timeLeft<=0){clearInterval(timerInterval);alert("⏰ Time Up! Your test is auto-submitted.");checkTest(true);}},1000);}
+function updateTimer(){let m=Math.floor(timeLeft/60);let s=timeLeft%60;document.getElementById('timerText').innerText=(m<10?"0"+m:m)+":"+(s<10?"0"+s:s);if(timeLeft<=30){document.getElementById('timerBar').classList.add('warning');}}
+function checkTest(isAuto){
+  let answers={q1:'a',q2:'a',q3:'a',q4:'a',q5:'a',q6:'a',q7:'a',q8:'a',q9:'a',q10:'a'};
+  let score=0;let attempted=0;
+  for(let q in answers){let selected=document.querySelector('input[name="'+q+'"]:checked');if(selected){attempted++;if(selected.value===answers[q])score+=10;}}
+  if(!isAuto && attempted<10){alert("Please answer all 10 questions! You have answered only "+attempted+" questions.");return;}
+  unlockTabs();
+  let testStatus=score>=80?'Pass':'Fail';
+  saveTestResult('Lesson 41 - Full Website Project', score, testStatus, function(data){
+    if (!IS_LOGGED_IN && score >= 80) {
+      setTimeout(() => showGuestSignupPopup(score), 500);
+    }
+  });
+  let box=document.getElementById('scoreBox');let scoreText=document.getElementById('scoreText');let scoreMsg=document.getElementById('scoreMsg');let nextBtn=document.getElementById('nextBtn');box.style.display='block';scoreText.innerText="Your Score: "+score+" / 100";
+  if(score>=80){box.className='pass';scoreMsg.innerText="🎉 Congratulations! You PASSED. You have learned Lesson 41. Now all tabs are unlocked.";nextBtn.style.display='inline-block';}
+  else{box.className='fail';scoreMsg.innerText="😔 You FAILED. Passing marks are 80. All tabs are now unlocked. Read the lesson again and try again.";nextBtn.style.display='none';}
+  box.scrollIntoView({behavior:'smooth'});
+}
+function resetTest(){clearInterval(timerInterval);testRunning=false;document.getElementById('quizForm').reset();document.getElementById('scoreBox').style.display='none';document.getElementById('quizArea').style.display='none';document.getElementById('startScreen').style.display='block';document.getElementById('timerBar').style.display='none';unlockTabs();}
+</script>
+</body>
+</html>

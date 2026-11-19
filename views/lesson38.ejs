@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ===== SEO START ===== -->
+<title>Build Password Generator in JavaScript - Lesson 38 | LearnHTMLCSSJS.com</title>
+<meta name="description" content="Learn to Build Password Generator in JavaScript - Lesson 38. Math.random, charAt, length slider, checkboxes, copy to clipboard, strength meter. Live working password generator demo. Free Course for Beginners.">
+<meta name="keywords" content="javascript password generator, Math.random password, copy clipboard, strength meter, lesson 38, learn javascript project">
+<meta name="author" content="LearnHTMLCSSJS.com">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://learnhtmlcssjs.com/lesson38">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Build Password Generator in JavaScript - Lesson 38">
+<meta property="og:description" content="Learn Password Generator - Build a tool that creates strong random passwords. Live demo.">
+<meta property="og:url" content="https://learnhtmlcssjs.com/lesson38">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Course","name":"Learn HTML CSS JS - Free Course","description":"Learn HTML, CSS and JavaScript for beginners in simple English. 50 lessons from zero to web developer.","provider":{"@type":"Organization","name":"LearnHTMLCSSJS.com"}}
+</script>
+<!-- ===== SEO END ===== -->
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+  body{background:#f4f6f8;color:#222}
+  header{background:#0f172a;color:white;padding:20px;text-align:center;width:100%}
+  header a{color:#38bdf8;text-decoration:none;font-size:14px}
+  header a.disabled{color:#64748b;pointer-events:none}
+  .container{width:100%;max-width:100%;margin:0 auto;background:white;padding:30px 40px}
+  h1{font-size:28px;margin-bottom:10px;line-height:1.3}
+  h2{margin:20px 0 10px;color:#0f172a}
+  p{line-height:1.7;margin-bottom:12px}
+  .note{background:#eff6ff;border-left:5px solid #2563eb;padding:12px;border-radius:8px;margin:15px 0}
+  .code-box{background:#0f172a;color:#e2e8f0;padding:15px;border-radius:10px;overflow-x:auto;margin:10px 0}
+  .code-box code{font-family:monospace;font-size:15px;line-height:1.6}
+  .tag{color:#f472b6}.text{color:white}.attr{color:#facc15}.val{color:#86efac}
+  .btn{display:inline-block;background:#16a34a;color:white;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:bold;margin-top:10px;border:none;cursor:pointer;font-size:16px}
+  .btn-next{background:#2563eb}
+  .btn-prev{background:#64748b}
+  .btn-js{background:#f59e0b;color:white}
+  .nav{display:flex;justify-content:space-between;margin-top:25px}
+  .result{border:2px dashed #cbd5e1;padding:15px;border-radius:10px;margin-top:10px;background:#f8fafc}
+  .box{background:#e0f2fe;padding:10px;border-radius:8px;margin-top:10px;line-height:1.8}
+  .tabs{display:flex;gap:10px;margin-bottom:20px;position:sticky;top:0;background:white;padding:10px 0;z-index:10;border-bottom:2px solid #e2e8f0}
+  .tab-btn{flex:1;padding:14px;border:none;border-radius:10px;font-size:17px;font-weight:bold;cursor:pointer;background:#e2e8f0;color:#334155}
+  .tab-btn.active{background:#0f172a;color:white}
+  .tab-btn.test-active{background:#16a34a;color:white}
+  .tab-btn.disabled{opacity:0.5;pointer-events:none;cursor:not-allowed}
+  #lessonContent{display:block}
+  #testContent{display:none}
+  .test-box{border:2px solid #0f172a;border-radius:12px;padding:20px;background:#f8fafc}
+  .test-info{background:#fef3c7;padding:12px;border-radius:8px;margin-bottom:15px;line-height:1.7}
+  .question{background:white;padding:15px;border-radius:10px;margin-bottom:12px;border:1px solid #e2e8f0}
+  .question b{display:block;margin-bottom:8px}
+  .question label{display:block;padding:8px 10px;margin:4px 0;background:#f1f5f9;border-radius:7px;cursor:pointer}
+  .question label:hover{background:#e0f2fe}
+  .question input{margin-right:8px}
+  #scoreBox{display:none;padding:20px;border-radius:10px;text-align:center;margin-top:15px}
+  #scoreBox.pass{background:#dcfce7;border:2px solid #16a34a}
+  #scoreBox.fail{background:#fee2e2;border:2px solid #dc2626}
+  #scoreBox h3{font-size:26px;margin-bottom:5px}
+  #startScreen{text-align:center;padding:30px 10px}
+  #timerBar{display:none;position:sticky;top:60px;z-index:20;background:#dc2626;color:white;padding:12px 15px;border-radius:10px;font-weight:bold;font-size:18px;text-align:center;margin-bottom:15px}
+  #timerBar.warning{background:#ea580c}
+  #quizArea{display:none}
+  .lock-msg{background:#fee2e2;color:#991b1b;padding:10px;border-radius:8px;margin-bottom:12px;text-align:center;font-weight:bold;display:none}
+  table{width:100%;border-collapse:collapse;margin:10px 0;background:white}
+  th,td{border:1px solid #e2e8f0;padding:10px;text-align:left}
+  th{background:#0f172a;color:white}
+  .breadcrumb{font-size:13px;color:#94a3b8;margin-bottom:8px}
+  .breadcrumb a{color:#38bdf8;text-decoration:none}
+  .demo-card{background:white;border:1px solid #e2e8f0;border-radius:12px;padding:20px;text-align:center;margin-top:12px}
+  .demo-input{width:100%;padding:12px;border:2px solid #e2e8f0;border-radius:8px;font-size:15px;outline:none;margin:6px 0}
+  .demo-input:focus{border-color:#2563eb;box-shadow:0 0 0 3px #dbeafe}
+  .pass-wrap{max-width:520px;margin:0 auto;background:#0f172a;border-radius:16px;padding:20px;text-align:left;color:white}
+  .pass-output{display:flex;gap:8px;margin-bottom:12px}
+  .pass-output input{flex:1;padding:13px;border:none;border-radius:10px;font-size:18px;font-family:monospace;font-weight:bold;outline:none}
+  .pass-output button{background:#16a34a;color:white;border:none;padding:12px 16px;border-radius:10px;font-weight:bold;cursor:pointer}
+  .strength{height:10px;background:#334155;border-radius:10px;overflow:hidden;margin:8px 0}
+  .strength-bar{height:100%;width:0%;transition:width .3s;background:#dc2626}
+  .pass-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #1e293b;color:#e2e8f0}
+  .pass-row input{accent-color:#16a34a;width:20px;height:20px}
+  .pass-row input[type=range]{width:180px;accent-color:#16a34a}
+  footer{background:#0f172a;color:#cbd5e1;padding:35px 30px}
+  footer h3{color:white;font-size:20px;margin-bottom:12px}
+  footer h4{color:white;font-size:16px;margin:20px 0 10px}
+  footer p{font-size:14px;line-height:1.7;color:#94a3b8}
+  footer a{color:#38bdf8;text-decoration:none;font-size:14px;line-height:2}
+  footer a:hover{color:white;text-decoration:underline}
+  .footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:25px;max-width:1100px;margin:0 auto}
+  .all-lessons{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:10px}
+  .all-lessons a{background:#1e293b;padding:8px 10px;border-radius:8px;text-align:center;display:block;color:#e2e8f0;font-weight:bold;line-height:1.4}
+  .all-lessons a:hover{background:#2563eb;color:white;text-decoration:none}
+  .all-lessons a.current{background:#16a34a;color:white}
+  .footer-bottom{text-align:center;border-top:1px solid #1e293b;margin-top:25px;padding-top:15px;font-size:13px;color:#64748b}
+  @media(max-width:700px){.footer-grid{grid-template-columns:1fr}.all-lessons{grid-template-columns:1fr 1fr}.container{padding:20px}}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="breadcrumb"><a href="/">Home</a> &gt; <a href="/lesson38">JavaScript Course</a> &gt; Lesson 38 - Password Generator</p>
+  <p><a id="homeLink" href="/">← Back to Home</a> | JavaScript Course - Lesson 38 / 50</p>
+  <h1>Lesson 38: Password Generator - Strong Random Passwords</h1>
+  <p>Math.random, Length, Copy Button, Strength Meter | LearnHTMLCSSJS.com</p>
+</header>
+
+<div class="container">
+  <div class="tabs">
+    <button id="lessonTabBtn" class="tab-btn active" onclick="showLesson()">📖 Lesson</button>
+    <button id="testTabBtn" class="tab-btn" onclick="showTest()">📝 Test - 100 Marks</button>
+  </div>
+  <div id="lockMsg" class="lock-msg">🔒 Test is running! All tabs are locked until you submit the test or time ends.</div>
+
+  <div id="lessonContent">
+    <h2>1. What Will We Build?</h2>
+    <p>Today we build a <b>Password Generator</b> - A tool that creates strong random passwords. You choose length, tick what to include - Capital letters, Small letters, Numbers, Symbols - Click Generate, and get a new password every time. Plus a Copy button and a Strength Meter.</p>
+    <p>This project uses: <b>Math.random()</b> for randomness, <b>Math.floor()</b> for whole numbers, <b>String charAt()</b> to pick a character, <b>Loop</b> to build password, <b>Checkbox</b> for options, <b>Clipboard</b> for copy.</p>
+    <div class="note"><b>How It Works - 3 Steps:</b> 1. Build one big string of allowed characters - e.g. "ABC...abc...123...!@#". 2. Loop length times - Each time pick one random character from that string. 3. Join them - That is your password.</div>
+    <h2>2. LIVE DEMO - Try Your Password Generator</h2>
+    <p>Change length, tick options, generate, copy:</p>
+    <div class="demo-card">
+      <div class="pass-wrap">
+        <h3 style="text-align:center;margin:0 0 12px">🔐 Password Generator</h3>
+        <div class="pass-output">
+          <input id="passOut" type="text" value="Click Generate" readonly>
+          <button onclick="copyPass()">📋 Copy</button>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:13px;color:#cbd5e1"><span>Strength: <b id="strengthText">-</b></span><span id="copyMsg"></span></div>
+        <div class="strength"><div class="strength-bar" id="strengthBar"></div></div>
+        <div class="pass-row"><span>Password Length</span><span><input type="range" id="passLength" min="4" max="30" value="12" oninput="updateLengthLabel()"> <b id="lengthLabel">12</b></span></div>
+        <div class="pass-row"><span>Include Capital Letters (A-Z)</span><input type="checkbox" id="optUpper" checked></div>
+        <div class="pass-row"><span>Include Small Letters (a-z)</span><input type="checkbox" id="optLower" checked></div>
+        <div class="pass-row"><span>Include Numbers (0-9)</span><input type="checkbox" id="optNumbers" checked></div>
+        <div class="pass-row"><span>Include Symbols (!@#$%)</span><input type="checkbox" id="optSymbols" checked></div>
+        <button class="btn btn-js" style="width:100%;font-size:18px" onclick="generatePass()">Generate Password 🔄</button>
+      </div>
+    </div>
+    <h2>3. Step 1 - Math.random() - The Magic</h2>
+    <div class="code-box"><code>
+<span class="text">console.log(Math.random()); // Any random decimal 0 to 0.999... e.g. 0.7342</span><br>
+<span class="text">console.log(Math.random() * 10); // 0 to 9.999...</span><br>
+<span class="text">console.log(Math.floor(Math.random() * 10)); // 0 to 9 - Whole number</span><br><br>
+<span class="comment" style="color:#94a3b8">// Formula - Random index for any string</span><br>
+<span class="text">let chars = "ABCDEF"; // Length 6, indexes 0 to 5</span><br>
+<span class="text">let randomIndex = Math.floor(Math.random() * chars.length); // 0 to 5</span><br>
+<span class="text">console.log(chars[randomIndex]); // Random letter - e.g. "C"</span><br>
+<span class="text">console.log(chars.charAt(randomIndex)); // Same - charAt() also works</span>
+    </code></div>
+    <div class="note"><b>Memory Trick:</b> <code>Math.floor(Math.random() * length)</code> = Random whole number from 0 to length-1. You will use this formula in every random project - Dice, Quotes, Passwords, Colors.</div>
+    <h2>4. Step 2 - Build Character Pool From Checkboxes</h2>
+    <div class="code-box"><code>
+<span class="text">let pool = "";</span><br>
+<span class="text">if (document.getElementById("upper").checked) { pool += "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; }</span><br>
+<span class="text">if (document.getElementById("lower").checked) { pool += "abcdefghijklmnopqrstuvwxyz"; }</span><br>
+<span class="text">if (document.getElementById("numbers").checked) { pool += "0123456789"; }</span><br>
+<span class="text">if (document.getElementById("symbols").checked) { pool += "!@#$%^&*()_+-=[]{}"; }</span><br><br>
+<span class="text">if (pool === "") { alert("Please tick at least one option!"); return; }</span>
+    </code></div>
+    <h2>5. Step 3 - Loop + Pick Random Characters</h2>
+    <div class="code-box"><code>
+<span class="text">function generatePassword() {</span><br>
+&nbsp;&nbsp;<span class="text">let length = 12; // From slider</span><br>
+&nbsp;&nbsp;<span class="text">let pool = "ABC...abc...123...!@#"; // From Step 2</span><br>
+&nbsp;&nbsp;<span class="text">let password = ""; // Start empty</span><br><br>
+&nbsp;&nbsp;<span class="text">for (let i = 0; i < length; i++) {</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">let randomIndex = Math.floor(Math.random() * pool.length);</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">password += pool.charAt(randomIndex); // Add one random char</span><br>
+&nbsp;&nbsp;<span class="text">}</span><br><br>
+&nbsp;&nbsp;<span class="text">document.getElementById("output").value = password;</span><br>
+&nbsp;&nbsp;<span class="text">console.log(password); // e.g. "aK9!xQ2#mZ8p"</span><br>
+<span class="text">}</span>
+    </code></div>
+    <h2>6. Copy Button - navigator.clipboard</h2>
+    <div class="code-box"><code>
+<span class="text">function copyPassword() {</span><br>
+&nbsp;&nbsp;<span class="text">let pass = document.getElementById("output").value;</span><br>
+&nbsp;&nbsp;<span class="text">navigator.clipboard.writeText(pass); // Copy to clipboard</span><br>
+&nbsp;&nbsp;<span class="text">alert("Copied: " + pass);</span><br>
+<span class="text">}</span>
+    </code></div>
+    <p><b>Old Way:</b> <code>input.select(); document.execCommand("copy");</code> - Still works, but new way <code>navigator.clipboard.writeText()</code> is cleaner.</p>
+    <h2>7. Strength Meter - Simple Logic</h2>
+    <div class="code-box"><code>
+<span class="text">function checkStrength(password) {</span><br>
+&nbsp;&nbsp;<span class="text">let score = 0;</span><br>
+&nbsp;&nbsp;<span class="text">if (password.length >= 8) score++;</span><br>
+&nbsp;&nbsp;<span class="text">if (password.length >= 12) score++;</span><br>
+&nbsp;&nbsp;<span class="text">if (/[A-Z]/.test(password)) score++; // Has capital?</span><br>
+&nbsp;&nbsp;<span class="text">if (/[0-9]/.test(password)) score++; // Has number?</span><br>
+&nbsp;&nbsp;<span class="text">if (/[^A-Za-z0-9]/.test(password)) score++; // Has symbol?</span><br><br>
+&nbsp;&nbsp;<span class="text">if (score <= 2) return "Weak 🔴";</span><br>
+&nbsp;&nbsp;<span class="text">if (score <= 3) return "Medium 🟡";</span><br>
+&nbsp;&nbsp;<span class="text">return "Strong 🟢";</span><br>
+<span class="text">}</span>
+    </code></div>
+    <h2>8. Complete Example - Mini Generator</h2>
+    <div class="code-box"><code>
+<span class="tag">&lt;!DOCTYPE html&gt;</span><br>
+<span class="tag">&lt;html&gt;</span><br>
+<span class="tag">&lt;body&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;input</span> <span class="attr">id</span>=<span class="val">"out"</span> <span class="attr">readonly</span><span class="tag">&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;button</span> <span class="attr">onclick</span>=<span class="val">"generate()"</span><span class="tag">&gt;</span><span class="text">Generate</span><span class="tag">&lt;/button&gt;</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;script&gt;</span><br>
+&nbsp;&nbsp;<span class="text">function generate() {</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%";</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">let password = "";</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">for (let i = 0; i < 12; i++) {</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">password += chars.charAt(Math.floor(Math.random() * chars.length));</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">}</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text">document.getElementById("out").value = password;</span><br>
+&nbsp;&nbsp;<span class="text">}</span><br>
+&nbsp;&nbsp;<span class="tag">&lt;/script&gt;</span><br>
+<span class="tag">&lt;/body&gt;</span> <span class="tag">&lt;/html&gt;</span>
+    </code></div>
+    <h2>9. Homework - Make It Better</h2>
+    <p>In Playground, add these:</p>
+    <p>1. Full Generator like demo - Length slider, 4 checkboxes, Copy button, Strength meter<br>2. History - Save last 5 generated passwords in a list below, click to copy again<br>3. Dice Roller - Use same Math.random formula - Button shows random dice 1 to 6 with emoji 🎲</p>
+    <div class="box"><b>Remember:</b> Math.random() = 0 to 0.999 random decimal | Math.floor(Math.random() * length) = Random index 0 to length-1 | pool = All allowed chars joined from checkboxes | Loop length times, pick random char, += to password | charAt(index) = Character at position | navigator.clipboard.writeText(text) = Copy | Strength = Length + Types - More types = Stronger</div>
+    <p><b>Next Step:</b> <a href="/lesson39">Lesson 39 - Weather App</a> - Learn API and fetch(). Show real weather of any city.</p>
+    <a id="playgroundLink" class="btn" href="/playground">▶ Try it Yourself - Playground</a><br><br>
+    <button class="btn btn-next" onclick="showTest()">Go to Test → 📝</button>
+    <div class="nav">
+      <a class="btn btn-prev" href="/lesson37">← Lesson 37</a>
+      <a id="nextLessonLink" class="btn btn-next" href="/lesson39">Next Lesson 39 →</a>
+    </div>
+  </div>
+
+  <div id="testContent">
+    <div class="test-box">
+      <!-- ===== GUEST BANNER - HTML, NOT JS ===== -->
+      <% if (!user) { %>
+      <div id="guestBanner" style="background:linear-gradient(135deg,#0f172a,#2563eb);color:white;padding:16px;border-radius:12px;margin-bottom:14px;text-align:center">
+        <h3 style="margin:0;font-size:18px">👋 Hi Guest! Try This Test FREE</h3>
+        <p style="margin:6px 0 0;color:#e2e8f0;font-size:14px">You can give this test without login. But your score will <b style="color:#facc15">NOT be saved</b> in Dashboard / Ranking.</p>
+        <p style="margin:8px 0 0"><a href="/signup" style="display:inline-block;background:#facc15;color:#0f172a;padding:10px 22px;border-radius:8px;font-weight:bold;text-decoration:none;font-size:14px">✨ Signup Free to Save Score →</a> <a href="/login" style="color:white;font-weight:bold;font-size:14px">Login →</a></p>
+      </div>
+      <% } else { %>
+      <div style="background:#dcfce7;color:#166534;padding:12px;border-radius:10px;margin-bottom:14px;text-align:center;font-weight:bold;font-size:14px">✅ Logged in as <b><%= user.username %></b> - Your score will be saved in Dashboard & Ranking</div>
+      <% } %>
+      <!-- ===== GUEST BANNER END ===== -->
+      <h2>📝 Lesson 38 Test - Check Your Learning</h2>
+      <div class="test-info"><b>Total Questions:</b> 10 &nbsp; | &nbsp; <b>Total Marks:</b> 100 &nbsp; | &nbsp; <b>Passing Marks:</b> 80 (80%) &nbsp; | &nbsp; <b>Time:</b> 3 Minutes<br>Each correct answer = 10 Marks. Once you start, all tabs will be locked until you submit.</div>
+      <div id="startScreen">
+        <h2>Ready for the Test?</h2>
+        <p>Click Start Paper to begin. You will get <b>3 Minutes</b> for 10 questions.<br>During the test, you cannot open Lesson or any other page.</p>
+        <button class="btn" style="font-size:20px;padding:14px 30px" onclick="startTest()">▶ Start Paper</button>
+      </div>
+      <div id="timerBar">⏰ Time Left: <span id="timerText">03:00</span></div>
+      <div id="quizArea">
+        <form id="quizForm">
+          <div class="question"><b>Q1. What does Math.random() return?</b><label><input type="radio" name="q1" value="a"> Random decimal 0 to 0.999...</label><label><input type="radio" name="q1" value="b"> Random whole number 1 to 100</label><label><input type="radio" name="q1" value="c"> Always 0</label><label><input type="radio" name="q1" value="d"> Always 1</label></div>
+          <div class="question"><b>Q2. Formula for random index 0 to length-1?</b><label><input type="radio" name="q2" value="a"> Math.floor(Math.random() * length)</label><label><input type="radio" name="q2" value="b"> Math.random() * length</label><label><input type="radio" name="q2" value="c"> Math.ceil(Math.random())</label><label><input type="radio" name="q2" value="d"> Math.round(length)</label></div>
+          <div class="question"><b>Q3. What does Math.floor(4.9) return?</b><label><input type="radio" name="q3" value="a"> 4</label><label><input type="radio" name="q3" value="b"> 5</label><label><input type="radio" name="q3" value="c"> 4.9</label><label><input type="radio" name="q3" value="d"> 0</label></div>
+          <div class="question"><b>Q4. What does "ABC".charAt(1) return?</b><label><input type="radio" name="q4" value="a"> "B"</label><label><input type="radio" name="q4" value="b"> "A"</label><label><input type="radio" name="q4" value="c"> "C"</label><label><input type="radio" name="q4" value="d"> Error</label></div>
+          <div class="question"><b>Q5. How to build a 12-length password?</b><label><input type="radio" name="q5" value="a"> Loop 12 times, each time add one random char from pool</label><label><input type="radio" name="q5" value="b"> Pick one char only</label><label><input type="radio" name="q5" value="c"> Copy pool directly</label><label><input type="radio" name="q5" value="d"> Use Math.random() once</label></div>
+          <div class="question"><b>Q6. How to copy text to clipboard?</b><label><input type="radio" name="q6" value="a"> navigator.clipboard.writeText(text)</label><label><input type="radio" name="q6" value="b"> document.copy(text)</label><label><input type="radio" name="q6" value="c"> clipboard.copy(text)</label><label><input type="radio" name="q6" value="d"> window.copy(text)</label></div>
+          <div class="question"><b>Q7. If no checkbox is ticked, what to do?</b><label><input type="radio" name="q7" value="a"> Show alert - Please tick at least one option</label><label><input type="radio" name="q7" value="b"> Generate empty password</label><label><input type="radio" name="q7" value="c"> Crash page</label><label><input type="radio" name="q7" value="d"> Generate "Error"</label></div>
+          <div class="question"><b>Q8. What makes a password strong?</b><label><input type="radio" name="q8" value="a"> Long length + Mix of capital, small, numbers, symbols</label><label><input type="radio" name="q8" value="b"> Only small letters</label><label><input type="radio" name="q8" value="c"> Short length</label><label><input type="radio" name="q8" value="d"> Only numbers</label></div>
+          <div class="question"><b>Q9. What is pool in password generator?</b><label><input type="radio" name="q9" value="a"> One big string of all allowed characters</label><label><input type="radio" name="q9" value="b"> Final password</label><label><input type="radio" name="q9" value="c"> Length number</label><label><input type="radio" name="q9" value="d"> Copy button</label></div>
+          <div class="question"><b>Q10. For a dice 1 to 6, what formula?</b><label><input type="radio" name="q10" value="a"> Math.floor(Math.random() * 6) + 1</label><label><input type="radio" name="q10" value="b"> Math.random() * 6</label><label><input type="radio" name="q10" value="c"> Math.floor(Math.random() * 6)</label><label><input type="radio" name="q10" value="d"> Math.random() + 1</label></div>
+          <button type="button" class="btn" onclick="checkTest(false)">Submit Test - Check Result</button>
+          <button type="button" class="btn btn-next" onclick="resetTest()">Try Again</button>
+        </form>
+      </div>
+      <div id="scoreBox">
+        <h3 id="scoreText"></h3>
+        <p id="scoreMsg"></p>
+        <a id="nextBtn" class="btn" href="/lesson39" style="display:none">🎉 You Passed! Go to Lesson 39 →</a>
+        <br><br>
+        <button class="btn btn-next" onclick="showLesson()">← Back to Lesson (Unlocked)</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h3>LearnHTMLCSSJS.com</h3>
+      <p>Free HTML CSS JS course in simple English. Learn from zero to web developer with 50 lessons, tests, playground and ranking.</p>
+      <h4>Quick Links</h4>
+      <a href="/">🏠 Home</a><br>
+      <a href="/dashboard">📊 Dashboard</a><br>
+      <a href="/ranking">🏆 Ranking</a><br>
+      <a href="/playground">▶ Playground - Try Code</a><br>
+      <a href="/lesson1">📖 Start Lesson 1 - What is HTML?</a>
+    </div>
+    <div>
+      <h3>Next Lessons - Continue Learning</h3>
+      <a href="/lesson39">Lesson 39 - Weather App</a><br>
+      <a href="/lesson40">Lesson 40 - JS Revision</a><br>
+      <a href="/lesson41">Lesson 41 - Full Website Project</a><br>
+      <a href="/lesson42">Lesson 42 - Portfolio Website</a><br>
+      <a href="/lesson43">Lesson 43 - Landing Page</a>
+      <h4>JavaScript Course (21-40)</h4>
+      <a href="/lesson44">Lesson 44 - Navbar & Footer</a>
+    </div>
+    <div>
+      <h3>JavaScript Course (21-40)</h3>
+      <a href="/lesson40">Lesson 40 - JS Revision</a><br>
+      <h4>Projects & Career (41-50)</h4>
+      <a href="/lesson41">Lesson 41 - Full Website Project</a><br>
+      <a href="/lesson42">Lesson 42 - Portfolio Website</a><br>
+      <a href="/lesson43">Lesson 43 - Landing Page</a><br>
+      <a href="/lesson44">Lesson 44 - Navbar & Footer</a><br>
+      <a href="/lesson45">Lesson 45 - Final Project</a><br>
+      <a href="/lesson46">Lesson 46 - SEO Basics</a><br>
+      <a href="/lesson47">Lesson 47 - Deploy Free</a><br>
+      <a href="/lesson48">Lesson 48 - Freelancing Guide</a><br>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a><br>
+      <a href="/lesson50">Lesson 50 - Final Exam & Certificate</a>
+    </div>
+  </div>
+  <div style="max-width:1100px;margin:25px auto 0;border-top:1px solid #1e293b;padding-top:20px">
+    <h3 style="text-align:center">📚 All 50 Lessons - Complete HTML CSS JS Course</h3>
+    <div class="all-lessons">
+      <a href="/lesson1">Lesson 1 - What is HTML?</a>
+      <a href="/lesson2">Lesson 2 - Headings & Paragraphs</a>
+      <a href="/lesson3">Lesson 3 - Text Formatting</a>
+      <a href="/lesson4">Lesson 4 - Links & Images</a>
+      <a href="/lesson5">Lesson 5 - Lists</a>
+      <a href="/lesson6">Lesson 6 - Tables</a>
+      <a href="/lesson7">Lesson 7 - Forms</a>
+      <a href="/lesson8">Lesson 8 - Div & Span</a>
+      <a href="/lesson9">Lesson 9 - Semantic HTML</a>
+      <a href="/lesson10">Lesson 10 - HTML Project</a>
+      <a href="/lesson11">Lesson 11 - What is CSS?</a>
+      <a href="/lesson12">Lesson 12 - Colors</a>
+      <a href="/lesson13">Lesson 13 - Text Styling</a>
+      <a href="/lesson14">Lesson 14 - Box Model</a>
+      <a href="/lesson15">Lesson 15 - Flexbox</a>
+      <a href="/lesson16">Lesson 16 - Grid</a>
+      <a href="/lesson17">Lesson 17 - Responsive</a>
+      <a href="/lesson18">Lesson 18 - Buttons</a>
+      <a href="/lesson19">Lesson 19 - Forms Styling</a>
+      <a href="/lesson20">Lesson 20 - CSS Project</a>
+      <a href="/lesson21">Lesson 21 - What is JS?</a>
+      <a href="/lesson22">Lesson 22 - Variables</a>
+      <a href="/lesson23">Lesson 23 - Data Types</a>
+      <a href="/lesson24">Lesson 24 - If-Else</a>
+      <a href="/lesson25">Lesson 25 - Loops</a>
+      <a href="/lesson26">Lesson 26 - Functions</a>
+      <a href="/lesson27">Lesson 27 - Arrays</a>
+      <a href="/lesson28">Lesson 28 - Objects</a>
+      <a href="/lesson29">Lesson 29 - Strings</a>
+      <a href="/lesson30">Lesson 30 - DOM</a>
+      <a href="/lesson31">Lesson 31 - Events</a>
+      <a href="/lesson32">Lesson 32 - Form Validation</a>
+      <a href="/lesson33">Lesson 33 - LocalStorage</a>
+      <a href="/lesson34">Lesson 34 - Timers</a>
+      <a href="/lesson35">Lesson 35 - Calculator</a>
+      <a href="/lesson36">Lesson 36 - To-Do List</a>
+      <a href="/lesson37">Lesson 37 - Quiz App</a>
+      <a href="/lesson38" class="current">Lesson 38 - Password Generator</a>
+      <a href="/lesson39">Lesson 39 - Weather App</a>
+      <a href="/lesson40">Lesson 40 - JS Revision</a>
+      <a href="/lesson41">Lesson 41 - Full Website</a>
+      <a href="/lesson42">Lesson 42 - Portfolio</a>
+      <a href="/lesson43">Lesson 43 - Landing Page</a>
+      <a href="/lesson44">Lesson 44 - Navbar</a>
+      <a href="/lesson45">Lesson 45 - Final Project</a>
+      <a href="/lesson46">Lesson 46 - SEO</a>
+      <a href="/lesson47">Lesson 47 - Deploy</a>
+      <a href="/lesson48">Lesson 48 - Freelancing</a>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a>
+      <a href="/lesson50">Lesson 50 - Final Exam</a>
+    </div>
+    <p style="text-align:center;margin-top:15px">You are learning <a href="/lesson38">Password Generator - Lesson 38</a> | Previous: <a href="/lesson37">Quiz App - Lesson 37</a> | Next: <a href="/lesson39">Weather App - Lesson 39</a> | <a href="/lesson50">Jump to Final Exam - Lesson 50</a></p>
+  </div>
+  <div class="footer-bottom">© 2026 LearnHTMLCSSJS.com - Free Course | <a href="/">Home</a> | <a href="/lesson38">Lesson 38</a> | <a href="/lesson50">Lesson 50</a> | Made for Beginners</div>
+</footer>
+
+<script>
+// ===== GUEST TEST HANDLER - Only inside <script> =====
+const IS_LOGGED_IN = <%= (typeof user !== 'undefined' && user) ? 'true' : 'false' %>;
+function saveTestResult(lessonName, score, testStatus, onSaved) {
+  if (!IS_LOGGED_IN) { if (onSaved) onSaved(null); return; }
+  fetch('/save-result', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ lesson: lessonName, score: score, status: testStatus }) })
+  .then(r => r.json())
+  .then(data => { if (onSaved) onSaved(data); })
+  .catch(() => { if (onSaved) onSaved(null); });
+}
+function showGuestSignupPopup(score) {
+  let wantSignup = confirm("🎉 You scored " + score + "/100!\n\nYour score is NOT saved because you are not logged in.\n\nClick OK to Signup FREE and Save Your Score in Dashboard & Ranking.\nClick Cancel to continue without saving.");
+  if (wantSignup) { window.location.href = "/signup"; }
+}
+// ===== GUEST HANDLER END =====
+function updateLengthLabel(){document.getElementById('lengthLabel').innerText=document.getElementById('passLength').value;}
+function updateStrength(pass){let score=0;if(pass.length>=8)score++;if(pass.length>=12)score++;if(pass.length>=16)score++;if(/[A-Z]/.test(pass))score++;if(/[a-z]/.test(pass))score++;if(/[0-9]/.test(pass))score++;if(/[^A-Za-z0-9]/.test(pass))score++;let bar=document.getElementById('strengthBar');let txt=document.getElementById('strengthText');let pct=Math.min(100,Math.round(score/7*100));bar.style.width=pct+"%";if(pct<35){bar.style.background="#dc2626";txt.innerText="Weak 🔴";txt.style.color="#fca5a5";}else if(pct<70){bar.style.background="#f59e0b";txt.innerText="Medium 🟡";txt.style.color="#fcd34d";}else{bar.style.background="#16a34a";txt.innerText="Strong 🟢";txt.style.color="#86efac";}}
+function generatePass(){let len=parseInt(document.getElementById('passLength').value);let pool="";if(document.getElementById('optUpper').checked)pool+="ABCDEFGHIJKLMNOPQRSTUVWXYZ";if(document.getElementById('optLower').checked)pool+="abcdefghijklmnopqrstuvwxyz";if(document.getElementById('optNumbers').checked)pool+="0123456789";if(document.getElementById('optSymbols').checked)pool+="!@#$%^&*()_+-=[]{}";if(pool===""){alert("Please tick at least one option!");return;}let pass="";for(let i=0;i<len;i++){pass+=pool.charAt(Math.floor(Math.random()*pool.length));}document.getElementById('passOut').value=pass;document.getElementById('copyMsg').innerText="";updateStrength(pass);}
+function copyPass(){let v=document.getElementById('passOut').value;if(!v||v==="Click Generate"){alert("Generate a password first!");return;}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(v).then(function(){document.getElementById('copyMsg').innerText="✅ Copied!";});}else{let el=document.getElementById('passOut');el.select();document.execCommand("copy");document.getElementById('copyMsg').innerText="✅ Copied!";}}
+generatePass();
+let testRunning=false;let timerInterval=null;let timeLeft=180;
+function showLesson(){if(testRunning){alert("🔒 Test is running! Please submit the test first. All tabs are locked.");return;}document.getElementById('lessonContent').style.display='block';document.getElementById('testContent').style.display='none';document.getElementById('lessonTabBtn').classList.add('active');document.getElementById('lessonTabBtn').classList.remove('test-active');document.getElementById('testTabBtn').classList.remove('active');document.getElementById('testTabBtn').classList.remove('test-active');window.scrollTo({top:0,behavior:'smooth'});}
+function showTest(){document.getElementById('lessonContent').style.display='none';document.getElementById('testContent').style.display='block';document.getElementById('testTabBtn').classList.add('active');document.getElementById('testTabBtn').classList.add('test-active');document.getElementById('lessonTabBtn').classList.remove('active');window.scrollTo({top:0,behavior:'smooth'});}
+function lockTabs(){testRunning=true;document.getElementById('lessonTabBtn').classList.add('disabled');document.getElementById('lockMsg').style.display='block';document.getElementById('homeLink').classList.add('disabled');document.getElementById('playgroundLink').style.pointerEvents='none';document.getElementById('playgroundLink').style.opacity='0.5';document.getElementById('nextLessonLink').style.pointerEvents='none';document.getElementById('nextLessonLink').style.opacity='0.5';}
+function unlockTabs(){testRunning=false;clearInterval(timerInterval);document.getElementById('lessonTabBtn').classList.remove('disabled');document.getElementById('lockMsg').style.display='none';document.getElementById('homeLink').classList.remove('disabled');document.getElementById('playgroundLink').style.pointerEvents='auto';document.getElementById('playgroundLink').style.opacity='1';document.getElementById('nextLessonLink').style.pointerEvents='auto';document.getElementById('nextLessonLink').style.opacity='1';document.getElementById('timerBar').style.display='none';}
+function startTest(){document.getElementById('startScreen').style.display='none';document.getElementById('quizArea').style.display='block';document.getElementById('timerBar').style.display='block';document.getElementById('scoreBox').style.display='none';lockTabs();timeLeft=180;updateTimer();timerInterval=setInterval(function(){timeLeft--;updateTimer();if(timeLeft<=0){clearInterval(timerInterval);alert("⏰ Time Up! Your test is auto-submitted.");checkTest(true);}},1000);}
+function updateTimer(){let m=Math.floor(timeLeft/60);let s=timeLeft%60;document.getElementById('timerText').innerText=(m<10?"0"+m:m)+":"+(s<10?"0"+s:s);if(timeLeft<=30){document.getElementById('timerBar').classList.add('warning');}}
+function checkTest(isAuto){
+  let answers={q1:'a',q2:'a',q3:'a',q4:'a',q5:'a',q6:'a',q7:'a',q8:'a',q9:'a',q10:'a'};
+  let score=0;let attempted=0;
+  for(let q in answers){let selected=document.querySelector('input[name="'+q+'"]:checked');if(selected){attempted++;if(selected.value===answers[q])score+=10;}}
+  if(!isAuto && attempted<10){alert("Please answer all 10 questions! You have answered only "+attempted+" questions.");return;}
+  unlockTabs();
+  let testStatus=score>=80?'Pass':'Fail';
+  saveTestResult('Lesson 38 - Password Generator', score, testStatus, function(data){
+    if (!IS_LOGGED_IN && score >= 80) {
+      setTimeout(() => showGuestSignupPopup(score), 500);
+    }
+  });
+  let box=document.getElementById('scoreBox');let scoreText=document.getElementById('scoreText');let scoreMsg=document.getElementById('scoreMsg');let nextBtn=document.getElementById('nextBtn');box.style.display='block';scoreText.innerText="Your Score: "+score+" / 100";
+  if(score>=80){box.className='pass';scoreMsg.innerText="🎉 Congratulations! You PASSED. You have learned Lesson 38. Now all tabs are unlocked.";nextBtn.style.display='inline-block';}
+  else{box.className='fail';scoreMsg.innerText="😔 You FAILED. Passing marks are 80. All tabs are now unlocked. Read the lesson again and try again.";nextBtn.style.display='none';}
+  box.scrollIntoView({behavior:'smooth'});
+}
+function resetTest(){clearInterval(timerInterval);testRunning=false;document.getElementById('quizForm').reset();document.getElementById('scoreBox').style.display='none';document.getElementById('quizArea').style.display='none';document.getElementById('startScreen').style.display='block';document.getElementById('timerBar').style.display='none';unlockTabs();}
+</script>
+</body>
+</html>

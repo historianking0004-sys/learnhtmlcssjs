@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ===== SEO START ===== -->
+<title>JavaScript Revision - Full Cheat Sheet Lessons 21-39 - Lesson 40 | LearnHTMLCSSJS.com</title>
+<meta name="description" content="Learn JavaScript Revision - Lesson 40. Full cheat sheet of Lessons 21-39. Variables, data types, if-else, loops, functions, arrays, objects, strings, DOM, events, validation, LocalStorage, timers, fetch. Practice quiz and 5 mini projects. Free Course for Beginners.">
+<meta name="keywords" content="javascript revision cheat sheet, javascript full revision, js interview questions, lesson 40, learn javascript revision">
+<meta name="author" content="LearnHTMLCSSJS.com">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://learnhtmlcssjs.com/lesson40">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript Revision - Full Cheat Sheet Lessons 21-39 - Lesson 40">
+<meta property="og:description" content="Learn JS Revision - Full cheat sheet, all topics in one page, practice quiz.">
+<meta property="og:url" content="https://learnhtmlcssjs.com/lesson40">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Course","name":"Learn HTML CSS JS - Free Course","description":"Learn HTML, CSS and JavaScript for beginners in simple English. 50 lessons from zero to web developer.","provider":{"@type":"Organization","name":"LearnHTMLCSSJS.com"}}
+</script>
+<!-- ===== SEO END ===== -->
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+  body{background:#f4f6f8;color:#222}
+  header{background:#0f172a;color:white;padding:20px;text-align:center;width:100%}
+  header a{color:#38bdf8;text-decoration:none;font-size:14px}
+  header a.disabled{color:#64748b;pointer-events:none}
+  .container{width:100%;max-width:100%;margin:0 auto;background:white;padding:30px 40px}
+  h1{font-size:28px;margin-bottom:10px;line-height:1.3}
+  h2{margin:20px 0 10px;color:#0f172a}
+  p{line-height:1.7;margin-bottom:12px}
+  .note{background:#eff6ff;border-left:5px solid #2563eb;padding:12px;border-radius:8px;margin:15px 0}
+  .code-box{background:#0f172a;color:#e2e8f0;padding:15px;border-radius:10px;overflow-x:auto;margin:10px 0}
+  .code-box code{font-family:monospace;font-size:15px;line-height:1.6}
+  .tag{color:#f472b6}.text{color:white}.attr{color:#facc15}.val{color:#86efac}
+  .btn{display:inline-block;background:#16a34a;color:white;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:bold;margin-top:10px;border:none;cursor:pointer;font-size:16px}
+  .btn-next{background:#2563eb}
+  .btn-prev{background:#64748b}
+  .btn-js{background:#f59e0b;color:white}
+  .nav{display:flex;justify-content:space-between;margin-top:25px}
+  .result{border:2px dashed #cbd5e1;padding:15px;border-radius:10px;margin-top:10px;background:#f8fafc}
+  .box{background:#e0f2fe;padding:10px;border-radius:8px;margin-top:10px;line-height:1.8}
+  .tabs{display:flex;gap:10px;margin-bottom:20px;position:sticky;top:0;background:white;padding:10px 0;z-index:10;border-bottom:2px solid #e2e8f0}
+  .tab-btn{flex:1;padding:14px;border:none;border-radius:10px;font-size:17px;font-weight:bold;cursor:pointer;background:#e2e8f0;color:#334155}
+  .tab-btn.active{background:#0f172a;color:white}
+  .tab-btn.test-active{background:#16a34a;color:white}
+  .tab-btn.disabled{opacity:0.5;pointer-events:none;cursor:not-allowed}
+  #lessonContent{display:block}
+  #testContent{display:none}
+  .test-box{border:2px solid #0f172a;border-radius:12px;padding:20px;background:#f8fafc}
+  .test-info{background:#fef3c7;padding:12px;border-radius:8px;margin-bottom:15px;line-height:1.7}
+  .question{background:white;padding:15px;border-radius:10px;margin-bottom:12px;border:1px solid #e2e8f0}
+  .question b{display:block;margin-bottom:8px}
+  .question label{display:block;padding:8px 10px;margin:4px 0;background:#f1f5f9;border-radius:7px;cursor:pointer}
+  .question label:hover{background:#e0f2fe}
+  .question input{margin-right:8px}
+  #scoreBox{display:none;padding:20px;border-radius:10px;text-align:center;margin-top:15px}
+  #scoreBox.pass{background:#dcfce7;border:2px solid #16a34a}
+  #scoreBox.fail{background:#fee2e2;border:2px solid #dc2626}
+  #scoreBox h3{font-size:26px;margin-bottom:5px}
+  #startScreen{text-align:center;padding:30px 10px}
+  #timerBar{display:none;position:sticky;top:60px;z-index:20;background:#dc2626;color:white;padding:12px 15px;border-radius:10px;font-weight:bold;font-size:18px;text-align:center;margin-bottom:15px}
+  #timerBar.warning{background:#ea580c}
+  #quizArea{display:none}
+  .lock-msg{background:#fee2e2;color:#991b1b;padding:10px;border-radius:8px;margin-bottom:12px;text-align:center;font-weight:bold;display:none}
+  table{width:100%;border-collapse:collapse;margin:10px 0;background:white}
+  th,td{border:1px solid #e2e8f0;padding:10px;text-align:left}
+  th{background:#0f172a;color:white}
+  .breadcrumb{font-size:13px;color:#94a3b8;margin-bottom:8px}
+  .breadcrumb a{color:#38bdf8;text-decoration:none}
+  .demo-card{background:white;border:1px solid #e2e8f0;border-radius:12px;padding:20px;text-align:center;margin-top:12px}
+  .demo-input{width:100%;padding:12px;border:2px solid #e2e8f0;border-radius:8px;font-size:15px;outline:none;margin:6px 0}
+  .demo-input:focus{border-color:#2563eb;box-shadow:0 0 0 3px #dbeafe}
+  .cheat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+  .cheat-card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:14px}
+  .cheat-card h3{margin:0 0 8px;font-size:16px;color:#0f172a}
+  .cheat-card code{font-size:13px;line-height:1.7}
+  .flash-card{background:#0f172a;color:white;border-radius:14px;padding:20px;text-align:center;margin-top:12px}
+  .flash-q{font-size:20px;font-weight:bold;margin:10px 0;min-height:56px}
+  .flash-a{font-size:16px;color:#86efac;min-height:28px}
+  footer{background:#0f172a;color:#cbd5e1;padding:35px 30px}
+  footer h3{color:white;font-size:20px;margin-bottom:12px}
+  footer h4{color:white;font-size:16px;margin:20px 0 10px}
+  footer p{font-size:14px;line-height:1.7;color:#94a3b8}
+  footer a{color:#38bdf8;text-decoration:none;font-size:14px;line-height:2}
+  footer a:hover{color:white;text-decoration:underline}
+  .footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:25px;max-width:1100px;margin:0 auto}
+  .all-lessons{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:10px}
+  .all-lessons a{background:#1e293b;padding:8px 10px;border-radius:8px;text-align:center;display:block;color:#e2e8f0;font-weight:bold;line-height:1.4}
+  .all-lessons a:hover{background:#2563eb;color:white;text-decoration:none}
+  .all-lessons a.current{background:#16a34a;color:white}
+  .footer-bottom{text-align:center;border-top:1px solid #1e293b;margin-top:25px;padding-top:15px;font-size:13px;color:#64748b}
+  @media(max-width:700px){.footer-grid{grid-template-columns:1fr}.all-lessons{grid-template-columns:1fr 1fr}.container{padding:20px}.cheat-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="breadcrumb"><a href="/">Home</a> &gt; <a href="/lesson40">JavaScript Course</a> &gt; Lesson 40 - JS Revision</p>
+  <p><a id="homeLink" href="/">← Back to Home</a> | JavaScript Course - Lesson 40 / 50</p>
+  <h1>Lesson 40: JavaScript Revision - Full Cheat Sheet</h1>
+  <p>Lessons 21-39 in One Page - You Are Now a JS Developer | LearnHTMLCSSJS.com</p>
+</header>
+
+<div class="container">
+  <div class="tabs">
+    <button id="lessonTabBtn" class="tab-btn active" onclick="showLesson()">📖 Lesson</button>
+    <button id="testTabBtn" class="tab-btn" onclick="showTest()">📝 Test - 100 Marks</button>
+  </div>
+  <div id="lockMsg" class="lock-msg">🔒 Test is running! All tabs are locked until you submit the test or time ends.</div>
+
+  <div id="lessonContent">
+    <h2>1. You Finished JavaScript - What You Can Build Now</h2>
+    <p>Congratulations! You finished <b>Lessons 21 to 39 - Full JavaScript Course</b>. You can now build: Calculator, To-Do List, Quiz App, Password Generator, Weather App, Notes App, Clock, Stopwatch, Countdown, Form Validation, Theme Saver.</p>
+    <p>Today we revise everything in one page. Read this cheat sheet, try the flashcards, do the 5 challenges. If you can do all 5, you are ready for Projects (Lessons 41-50).</p>
+    <div class="note"><b>How to Use This Page:</b> 1. Read each cheat card - 30 seconds each. 2. Play flashcards - Cover answer, guess, then reveal. 3. Do 5 challenges in Playground - Without looking. 4. Give Test - Must pass 80%+ to go to Lesson 41.</div>
+    <h2>2. LIVE DEMO - Flashcards - Test Yourself</h2>
+    <p>Click Show Answer, then Next Card. Be honest - Did you know it?</p>
+    <div class="demo-card">
+      <div class="flash-card">
+        <p style="color:#94a3b8;font-size:13px;margin:0">FLASHCARD <span id="flashCount">1 / 10</span> - <span id="flashScore">Known: 0 | Unknown: 0</span></p>
+        <div class="flash-q" id="flashQ">What is the difference between let, const and var?</div>
+        <div class="flash-a" id="flashA">Click Show Answer 👇</div>
+        <button class="btn btn-js" onclick="showFlashAnswer()">Show Answer 👀</button>
+        <button class="btn" onclick="flashKnown()">I Knew It ✅</button>
+        <button class="btn" style="background:#dc2626" onclick="flashUnknown()">I Did Not Know ❌</button>
+        <button class="btn btn-next" onclick="nextFlash()">Next Card →</button>
+      </div>
+    </div>
+    <h2>3. Full Cheat Sheet - All JavaScript in One Place</h2>
+    <div class="cheat-grid">
+      <div class="cheat-card"><h3>📦 Variables - Lesson 22</h3><code>let name = "Ali"; // Can change<br>const age = 20; // Cannot change<br>var old = "Do not use";</code></div>
+      <div class="cheat-card"><h3>🔤 Data Types - Lesson 23</h3><code>"Ali" // String<br>20 // Number<br>true // Boolean<br>[1,2] // Array<br>{name:"Ali"} // Object<br>null, undefined</code></div>
+      <div class="cheat-card"><h3>🔀 If-Else - Lesson 24</h3><code>if (age &gt;= 18) {<br>&nbsp;&nbsp;"Adult";<br>} else if (age &gt;= 13) {<br>&nbsp;&nbsp;"Teen";<br>} else { "Child"; }</code></div>
+      <div class="cheat-card"><h3>🔁 Loops - Lesson 25</h3><code>for (let i=0; i&lt;5; i++) {<br>&nbsp;&nbsp;console.log(i);<br>}<br>// 0,1,2,3,4</code></div>
+      <div class="cheat-card"><h3>⚙️ Functions - Lesson 26</h3><code>function add(a, b) {<br>&nbsp;&nbsp;return a + b;<br>}<br>add(5, 3); // 8</code></div>
+      <div class="cheat-card"><h3>📋 Arrays - Lesson 27</h3><code>let f = ["A","B"];<br>f.push("C"); // Add end<br>f.pop(); // Remove end<br>f.splice(1,1); // Remove at index<br>f.length // Count</code></div>
+      <div class="cheat-card"><h3>🧱 Objects - Lesson 28</h3><code>let user = {<br>&nbsp;&nbsp;name: "Ali", age: 20<br>};<br>user.name // "Ali"<br>user.city = "Lahore";</code></div>
+      <div class="cheat-card"><h3>✂️ Strings - Lesson 29</h3><code>"Ali".length // 3<br>"Ali".toUpperCase() // "ALI"<br>" Ali ".trim() // "Ali"<br>"Ali".includes("li") // true</code></div>
+      <div class="cheat-card"><h3>🎯 DOM - Lesson 30</h3><code>document.getElementById("id")<br>.innerText = "New";<br>.innerHTML = "&lt;b&gt;Bold&lt;/b&gt;";<br>.style.color = "red";<br>.value // Input value</code></div>
+      <div class="cheat-card"><h3>🖱️ Events - Lesson 31</h3><code>onclick="myFunc()"<br>oninput, onsubmit<br>addEventListener("click", fn)<br>event.key // Which key?</code></div>
+      <div class="cheat-card"><h3>✅ Validation - Lesson 32</h3><code>value.trim() === "" // Empty?<br>email.includes("@")<br>pass.length &lt; 6 // Too short?<br>return false // Stop submit</code></div>
+      <div class="cheat-card"><h3>💾 LocalStorage - Lesson 33</h3><code>setItem("k","v") // Save<br>getItem("k") // Read, null if none<br>removeItem("k") // Delete one<br>clear() // Delete all<br>JSON.stringify / parse</code></div>
+      <div class="cheat-card"><h3>⏰ Timers - Lesson 34</h3><code>setTimeout(fn, 3000) // Once<br>clearTimeout(id)<br>setInterval(fn, 1000) // Repeat<br>clearInterval(id)</code></div>
+      <div class="cheat-card"><h3>🧮 Calculator - Lesson 35</h3><code>eval("5+3") // 8<br>try { ... } catch(e) { "Error" }<br>slice(0,-1) // Backspace<br>Grid 1fr x 4</code></div>
+      <div class="cheat-card"><h3>✅ To-Do - Lesson 36</h3><code>todos = [{text, done}]<br>push() // Add<br>todos[i].done = !done<br>splice(i,1) // Delete<br>showTasks() after change</code></div>
+      <div class="cheat-card"><h3>🧠 Quiz - Lesson 37</h3><code>questions = [{q, options, answer}]<br>current, score<br>selected === answer<br>current++ / showResult()</code></div>
+      <div class="cheat-card"><h3>🔐 Password - Lesson 38</h3><code>Math.random() // 0-0.999<br>Math.floor(Math.random()*len)<br>pool.charAt(index)<br>clipboard.writeText()</code></div>
+      <div class="cheat-card"><h3>🌤️ API / Fetch - Lesson 39</h3><code>async function get() {<br>&nbsp;&nbsp;let r = await fetch(url);<br>&nbsp;&nbsp;let data = await r.json();<br>&nbsp;&nbsp;data.main.temp<br>}</code></div>
+    </div>
+    <h2>4. 5 Most Confusing Pairs - Do Not Mix Them</h2>
+    <table>
+      <tr><th>Pair</th><th>First One</th><th>Second One</th></tr>
+      <tr><td>== vs ===</td><td>== checks value only - 5 == "5" is true</td><td>=== checks value + type - 5 === "5" is false - Always use ===</td></tr>
+      <tr><td>= vs == vs ===</td><td>= is assign - let x = 5</td><td>== / === is compare - Is x equal to 5?</td></tr>
+      <tr><td>innerText vs innerHTML</td><td>innerText = Plain text only</td><td>innerHTML = Text + HTML tags - Can add &lt;b&gt;, &lt;div&gt;</td></tr>
+      <tr><td>setTimeout vs setInterval</td><td>setTimeout = Once after delay</td><td>setInterval = Again and again</td></tr>
+      <tr><td>LocalStorage vs API</td><td>LocalStorage = In browser, no internet</td><td>API = On server, needs internet, live data</td></tr>
+    </table>
+    <h2>5. Complete Example - All Concepts in One Mini App</h2>
+    <div class="code-box"><code>
+<span class="comment" style="color:#94a3b8">// Counter App - Variables, DOM, Events, Functions, If-Else, LocalStorage, Timers</span><br>
+<span class="text">let count = Number(localStorage.getItem("count")) || 0; // Variables + LocalStorage</span><br>
+<span class="text">document.getElementById("num").innerText = count; // DOM</span><br><br>
+<span class="text">function add() { // Function + Event</span><br>
+&nbsp;&nbsp;<span class="text">count++; // Operator</span><br>
+&nbsp;&nbsp;<span class="text">if (count === 10) { alert("You reached 10!"); } // If-Else</span><br>
+&nbsp;&nbsp;<span class="text">document.getElementById("num").innerText = count; // DOM Update</span><br>
+&nbsp;&nbsp;<span class="text">localStorage.setItem("count", count); // Save</span><br>
+<span class="text">}</span><br><br>
+<span class="comment" style="color:#94a3b8">// Auto +1 every 5 seconds - Timer</span><br>
+<span class="text">setInterval(add, 5000);</span>
+    </code></div>
+    <h2>6. 5 Challenges - Do Without Looking</h2>
+    <p>In Playground, build these in 30 minutes. If you can do all 5, you are ready:</p>
+    <p>1. <b>Even / Odd Checker</b> - Input number, button says Even or Odd - Uses if-else + %<br>2. <b>Multiplication Table</b> - Input number, show table 1 to 10 - Uses for loop<br>3. <b>Name List</b> - Input + Add button, names show in list, delete button for each - Uses array + push + splice<br>4. <b>Age Calculator</b> - Input birth year, show age - Uses new Date().getFullYear()<br>5. <b>Random Quote</b> - Button shows random quote from array - Uses Math.random + Math.floor</p>
+    <div class="box"><b>Remember:</b> JavaScript = Variables + Logic + DOM | Variables hold data | If-Else makes decisions | Loops repeat | Functions reuse code | Arrays hold list | Objects hold details | DOM changes page | Events respond to user | LocalStorage saves | Timers delay/repeat | API gets live data | Project = Data First, then showTasks(), then save, then events</div>
+    <p><b>Next Step:</b> <a href="/lesson41">Lesson 41 - Full Website Project</a> - Combine HTML + CSS + JS. Build a complete website from zero. Projects phase starts!</p>
+    <a id="playgroundLink" class="btn" href="/playground">▶ Try it Yourself - Playground</a><br><br>
+    <button class="btn btn-next" onclick="showTest()">Go to Test → 📝</button>
+    <div class="nav">
+      <a class="btn btn-prev" href="/lesson39">← Lesson 39</a>
+      <a id="nextLessonLink" class="btn btn-next" href="/lesson41">Next Lesson 41 →</a>
+    </div>
+  </div>
+
+  <div id="testContent">
+    <div class="test-box">
+      <!-- ===== GUEST BANNER - HTML, NOT JS ===== -->
+      <% if (!user) { %>
+      <div id="guestBanner" style="background:linear-gradient(135deg,#0f172a,#2563eb);color:white;padding:16px;border-radius:12px;margin-bottom:14px;text-align:center">
+        <h3 style="margin:0;font-size:18px">👋 Hi Guest! Try This Test FREE</h3>
+        <p style="margin:6px 0 0;color:#e2e8f0;font-size:14px">You can give this test without login. But your score will <b style="color:#facc15">NOT be saved</b> in Dashboard / Ranking.</p>
+        <p style="margin:8px 0 0"><a href="/signup" style="display:inline-block;background:#facc15;color:#0f172a;padding:10px 22px;border-radius:8px;font-weight:bold;text-decoration:none;font-size:14px">✨ Signup Free to Save Score →</a> <a href="/login" style="color:white;font-weight:bold;font-size:14px">Login →</a></p>
+      </div>
+      <% } else { %>
+      <div style="background:#dcfce7;color:#166534;padding:12px;border-radius:10px;margin-bottom:14px;text-align:center;font-weight:bold;font-size:14px">✅ Logged in as <b><%= user.username %></b> - Your score will be saved in Dashboard & Ranking</div>
+      <% } %>
+      <!-- ===== GUEST BANNER END ===== -->
+      <h2>📝 Lesson 40 Test - Full JS Revision Test</h2>
+      <div class="test-info"><b>Total Questions:</b> 10 &nbsp; | &nbsp; <b>Total Marks:</b> 100 &nbsp; | &nbsp; <b>Passing Marks:</b> 80 (80%) &nbsp; | &nbsp; <b>Time:</b> 3 Minutes<br>Each correct answer = 10 Marks. Once you start, all tabs will be locked until you submit.</div>
+      <div id="startScreen">
+        <h2>Ready for the Test?</h2>
+        <p>Click Start Paper to begin. You will get <b>3 Minutes</b> for 10 questions.<br>During the test, you cannot open Lesson or any other page.</p>
+        <button class="btn" style="font-size:20px;padding:14px 30px" onclick="startTest()">▶ Start Paper</button>
+      </div>
+      <div id="timerBar">⏰ Time Left: <span id="timerText">03:00</span></div>
+      <div id="quizArea">
+        <form id="quizForm">
+          <div class="question"><b>Q1. What is the difference between == and ===?</b><label><input type="radio" name="q1" value="a"> === checks value + type, == checks value only</label><label><input type="radio" name="q1" value="b"> Both are same</label><label><input type="radio" name="q1" value="c"> == is assign</label><label><input type="radio" name="q1" value="d"> === is assign</label></div>
+          <div class="question"><b>Q2. Which one adds item at END of array?</b><label><input type="radio" name="q2" value="a"> push()</label><label><input type="radio" name="q2" value="b"> pop()</label><label><input type="radio" name="q2" value="c"> shift()</label><label><input type="radio" name="q2" value="d"> splice()</label></div>
+          <div class="question"><b>Q3. How to get element by ID and change text?</b><label><input type="radio" name="q3" value="a"> document.getElementById("id").innerText = "New";</label><label><input type="radio" name="q3" value="b"> document.getId("id").text = "New";</label><label><input type="radio" name="q3" value="c"> getElement("id").innerText = "New";</label><label><input type="radio" name="q3" value="d"> document.id.innerText = "New";</label></div>
+          <div class="question"><b>Q4. Which loop runs a fixed number of times?</b><label><input type="radio" name="q4" value="a"> for (let i=0; i&lt;5; i++)</label><label><input type="radio" name="q4" value="b"> if loop</label><label><input type="radio" name="q4" value="c"> function loop</label><label><input type="radio" name="q4" value="d"> return loop</label></div>
+          <div class="question"><b>Q5. How to save object in LocalStorage?</b><label><input type="radio" name="q5" value="a"> localStorage.setItem("user", JSON.stringify(user))</label><label><input type="radio" name="q5" value="b"> localStorage.setItem("user", user)</label><label><input type="radio" name="q5" value="c"> localStorage.save(user)</label><label><input type="radio" name="q5" value="d"> localStorage.set(user)</label></div>
+          <div class="question"><b>Q6. Which timer runs again and again?</b><label><input type="radio" name="q6" value="a"> setInterval()</label><label><input type="radio" name="q6" value="b"> setTimeout()</label><label><input type="radio" name="q6" value="c"> clearTimeout()</label><label><input type="radio" name="q6" value="d"> setTimer()</label></div>
+          <div class="question"><b>Q7. What does Math.floor(Math.random() * 10) give?</b><label><input type="radio" name="q7" value="a"> Random whole number 0 to 9</label><label><input type="radio" name="q7" value="b"> Random decimal 0 to 10</label><label><input type="radio" name="q7" value="c"> Always 10</label><label><input type="radio" name="q7" value="d"> Always 0</label></div>
+          <div class="question"><b>Q8. How to get data from API?</b><label><input type="radio" name="q8" value="a"> let r = await fetch(url); let data = await r.json();</label><label><input type="radio" name="q8" value="b"> let data = fetch(url);</label><label><input type="radio" name="q8" value="c"> let data = get(url);</label><label><input type="radio" name="q8" value="d"> let data = localStorage.get(url);</label></div>
+          <div class="question"><b>Q9. What is the correct project pattern?</b><label><input type="radio" name="q9" value="a"> Data First - Change data - Call show function - Save - Events update data</label><label><input type="radio" name="q9" value="b"> HTML only, no data</label><label><input type="radio" name="q9" value="c"> Save first, no show</label><label><input type="radio" name="q9" value="d"> Events only, no data</label></div>
+          <div class="question"><b>Q10. Which one is correct for form validation empty check?</b><label><input type="radio" name="q10" value="a"> value.trim() === ""</label><label><input type="radio" name="q10" value="b"> value === 0</label><label><input type="radio" name="q10" value="c"> value.length === 100</label><label><input type="radio" name="q10" value="d"> value === null only</label></div>
+          <button type="button" class="btn" onclick="checkTest(false)">Submit Test - Check Result</button>
+          <button type="button" class="btn btn-next" onclick="resetTest()">Try Again</button>
+        </form>
+      </div>
+      <div id="scoreBox">
+        <h3 id="scoreText"></h3>
+        <p id="scoreMsg"></p>
+        <a id="nextBtn" class="btn" href="/lesson41" style="display:none">🎉 You Passed! Go to Lesson 41 →</a>
+        <br><br>
+        <button class="btn btn-next" onclick="showLesson()">← Back to Lesson (Unlocked)</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h3>LearnHTMLCSSJS.com</h3>
+      <p>Free HTML CSS JS course in simple English. Learn from zero to web developer with 50 lessons, tests, playground and ranking.</p>
+      <h4>Quick Links</h4>
+      <a href="/">🏠 Home</a><br>
+      <a href="/dashboard">📊 Dashboard</a><br>
+      <a href="/ranking">🏆 Ranking</a><br>
+      <a href="/playground">▶ Playground - Try Code</a><br>
+      <a href="/lesson1">📖 Start Lesson 1 - What is HTML?</a>
+    </div>
+    <div>
+      <h3>Next Lessons - Continue Learning</h3>
+      <a href="/lesson41">Lesson 41 - Full Website Project</a><br>
+      <a href="/lesson42">Lesson 42 - Portfolio Website</a><br>
+      <a href="/lesson43">Lesson 43 - Landing Page</a><br>
+      <a href="/lesson44">Lesson 44 - Navbar & Footer</a><br>
+      <a href="/lesson45">Lesson 45 - Final Project</a>
+      <h4>Projects & Career (41-50)</h4>
+      <a href="/lesson46">Lesson 46 - SEO Basics</a>
+    </div>
+    <div>
+      <h3>Projects & Career (41-50)</h3>
+      <a href="/lesson47">Lesson 47 - Deploy Free</a><br>
+      <a href="/lesson48">Lesson 48 - Freelancing Guide</a><br>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a><br>
+      <a href="/lesson50">Lesson 50 - Final Exam & Certificate</a><br>
+      <h4>JavaScript Course (21-40)</h4>
+      <a href="/lesson39">Lesson 39 - Weather App</a><br>
+      <a href="/lesson40">Lesson 40 - JS Revision</a>
+    </div>
+  </div>
+  <div style="max-width:1100px;margin:25px auto 0;border-top:1px solid #1e293b;padding-top:20px">
+    <h3 style="text-align:center">📚 All 50 Lessons - Complete HTML CSS JS Course</h3>
+    <div class="all-lessons">
+      <a href="/lesson1">Lesson 1 - What is HTML?</a>
+      <a href="/lesson2">Lesson 2 - Headings & Paragraphs</a>
+      <a href="/lesson3">Lesson 3 - Text Formatting</a>
+      <a href="/lesson4">Lesson 4 - Links & Images</a>
+      <a href="/lesson5">Lesson 5 - Lists</a>
+      <a href="/lesson6">Lesson 6 - Tables</a>
+      <a href="/lesson7">Lesson 7 - Forms</a>
+      <a href="/lesson8">Lesson 8 - Div & Span</a>
+      <a href="/lesson9">Lesson 9 - Semantic HTML</a>
+      <a href="/lesson10">Lesson 10 - HTML Project</a>
+      <a href="/lesson11">Lesson 11 - What is CSS?</a>
+      <a href="/lesson12">Lesson 12 - Colors</a>
+      <a href="/lesson13">Lesson 13 - Text Styling</a>
+      <a href="/lesson14">Lesson 14 - Box Model</a>
+      <a href="/lesson15">Lesson 15 - Flexbox</a>
+      <a href="/lesson16">Lesson 16 - Grid</a>
+      <a href="/lesson17">Lesson 17 - Responsive</a>
+      <a href="/lesson18">Lesson 18 - Buttons</a>
+      <a href="/lesson19">Lesson 19 - Forms Styling</a>
+      <a href="/lesson20">Lesson 20 - CSS Project</a>
+      <a href="/lesson21">Lesson 21 - What is JS?</a>
+      <a href="/lesson22">Lesson 22 - Variables</a>
+      <a href="/lesson23">Lesson 23 - Data Types</a>
+      <a href="/lesson24">Lesson 24 - If-Else</a>
+      <a href="/lesson25">Lesson 25 - Loops</a>
+      <a href="/lesson26">Lesson 26 - Functions</a>
+      <a href="/lesson27">Lesson 27 - Arrays</a>
+      <a href="/lesson28">Lesson 28 - Objects</a>
+      <a href="/lesson29">Lesson 29 - Strings</a>
+      <a href="/lesson30">Lesson 30 - DOM</a>
+      <a href="/lesson31">Lesson 31 - Events</a>
+      <a href="/lesson32">Lesson 32 - Form Validation</a>
+      <a href="/lesson33">Lesson 33 - LocalStorage</a>
+      <a href="/lesson34">Lesson 34 - Timers</a>
+      <a href="/lesson35">Lesson 35 - Calculator</a>
+      <a href="/lesson36">Lesson 36 - To-Do List</a>
+      <a href="/lesson37">Lesson 37 - Quiz App</a>
+      <a href="/lesson38">Lesson 38 - Password Generator</a>
+      <a href="/lesson39">Lesson 39 - Weather App</a>
+      <a href="/lesson40" class="current">Lesson 40 - JS Revision</a>
+      <a href="/lesson41">Lesson 41 - Full Website</a>
+      <a href="/lesson42">Lesson 42 - Portfolio</a>
+      <a href="/lesson43">Lesson 43 - Landing Page</a>
+      <a href="/lesson44">Lesson 44 - Navbar</a>
+      <a href="/lesson45">Lesson 45 - Final Project</a>
+      <a href="/lesson46">Lesson 46 - SEO</a>
+      <a href="/lesson47">Lesson 47 - Deploy</a>
+      <a href="/lesson48">Lesson 48 - Freelancing</a>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a>
+      <a href="/lesson50">Lesson 50 - Final Exam</a>
+    </div>
+    <p style="text-align:center;margin-top:15px">You are learning <a href="/lesson40">JS Revision - Lesson 40</a> | Previous: <a href="/lesson39">Weather App - Lesson 39</a> | Next: <a href="/lesson41">Full Website Project - Lesson 41</a> | <a href="/lesson50">Jump to Final Exam - Lesson 50</a></p>
+  </div>
+  <div class="footer-bottom">© 2026 LearnHTMLCSSJS.com - Free Course | <a href="/">Home</a> | <a href="/lesson40">Lesson 40</a> | <a href="/lesson50">Lesson 50</a> | Made for Beginners</div>
+</footer>
+
+<script>
+// ===== GUEST TEST HANDLER - Only inside <script> =====
+const IS_LOGGED_IN = <%= (typeof user !== 'undefined' && user) ? 'true' : 'false' %>;
+function saveTestResult(lessonName, score, testStatus, onSaved) {
+  if (!IS_LOGGED_IN) { if (onSaved) onSaved(null); return; }
+  fetch('/save-result', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ lesson: lessonName, score: score, status: testStatus }) })
+  .then(r => r.json())
+  .then(data => { if (onSaved) onSaved(data); })
+  .catch(() => { if (onSaved) onSaved(null); });
+}
+function showGuestSignupPopup(score) {
+  let wantSignup = confirm("🎉 You scored " + score + "/100!\n\nYour score is NOT saved because you are not logged in.\n\nClick OK to Signup FREE and Save Your Score in Dashboard & Ranking.\nClick Cancel to continue without saving.");
+  if (wantSignup) { window.location.href = "/signup"; }
+}
+// ===== GUEST HANDLER END =====
+let flashcards=[
+{q:"What is the difference between let, const and var?",a:"let = Can change. const = Cannot change. var = Old, do not use. Always use let / const."},
+{q:"What does === check?",a:"Value + Type. 5 === '5' is FALSE. 5 == '5' is TRUE. Always use ===."},
+{q:"How to add item to END of array?",a:"push(). Example: fruits.push('Mango'). pop() removes from end."},
+{q:"How to save object in LocalStorage?",a:"JSON.stringify on save, JSON.parse on read. LocalStorage only saves strings."},
+{q:"setTimeout vs setInterval?",a:"setTimeout = Run ONCE after delay. setInterval = Run AGAIN and AGAIN. Stop with clearTimeout / clearInterval."},
+{q:"How to get data from API?",a:"async function + await fetch(url) + await response.json(). await only inside async."},
+{q:"innerText vs innerHTML?",a:"innerText = Plain text only. innerHTML = Text + HTML tags, can add <b>, <div>."},
+{q:"How to check if form input is empty?",a:"value.trim() === ''. trim() removes spaces, so '   ' counts as empty."},
+{q:"Formula for random number 0 to 9?",a:"Math.floor(Math.random() * 10). Math.random() = 0-0.999, floor makes it whole."},
+{q:"What is the project pattern?",a:"Data First. Change data. Call show function. Save to LocalStorage. Events update data."}
+];
+let flashIdx=0;let flashKnown=0;let flashUnknown=0;let flashRevealed=false;
+function renderFlash(){document.getElementById('flashCount').innerText=(flashIdx+1)+" / "+flashcards.length;document.getElementById('flashScore').innerText="Known: "+flashKnown+" | Unknown: "+flashUnknown;document.getElementById('flashQ').innerText=flashcards[flashIdx].q;document.getElementById('flashA').innerText="Click Show Answer 👇";flashRevealed=false;}
+function showFlashAnswer(){document.getElementById('flashA').innerText=flashcards[flashIdx].a;flashRevealed=true;}
+function flashKnown(){if(!flashRevealed){alert("First click Show Answer!");return;}flashKnown++;nextFlash();}
+function flashUnknown(){if(!flashRevealed){alert("First click Show Answer!");return;}flashUnknown++;nextFlash();}
+function nextFlash(){flashIdx=(flashIdx+1)%flashcards.length;renderFlash();if(flashIdx===0 && (flashKnown+flashUnknown)>0){document.getElementById('flashA').innerText="Round done! Known: "+flashKnown+" | Unknown: "+flashUnknown+" - Play again to revise unknown ones.";}}
+renderFlash();
+let testRunning=false;let timerInterval=null;let timeLeft=180;
+function showLesson(){if(testRunning){alert("🔒 Test is running! Please submit the test first. All tabs are locked.");return;}document.getElementById('lessonContent').style.display='block';document.getElementById('testContent').style.display='none';document.getElementById('lessonTabBtn').classList.add('active');document.getElementById('lessonTabBtn').classList.remove('test-active');document.getElementById('testTabBtn').classList.remove('active');document.getElementById('testTabBtn').classList.remove('test-active');window.scrollTo({top:0,behavior:'smooth'});}
+function showTest(){document.getElementById('lessonContent').style.display='none';document.getElementById('testContent').style.display='block';document.getElementById('testTabBtn').classList.add('active');document.getElementById('testTabBtn').classList.add('test-active');document.getElementById('lessonTabBtn').classList.remove('active');window.scrollTo({top:0,behavior:'smooth'});}
+function lockTabs(){testRunning=true;document.getElementById('lessonTabBtn').classList.add('disabled');document.getElementById('lockMsg').style.display='block';document.getElementById('homeLink').classList.add('disabled');document.getElementById('playgroundLink').style.pointerEvents='none';document.getElementById('playgroundLink').style.opacity='0.5';document.getElementById('nextLessonLink').style.pointerEvents='none';document.getElementById('nextLessonLink').style.opacity='0.5';}
+function unlockTabs(){testRunning=false;clearInterval(timerInterval);document.getElementById('lessonTabBtn').classList.remove('disabled');document.getElementById('lockMsg').style.display='none';document.getElementById('homeLink').classList.remove('disabled');document.getElementById('playgroundLink').style.pointerEvents='auto';document.getElementById('playgroundLink').style.opacity='1';document.getElementById('nextLessonLink').style.pointerEvents='auto';document.getElementById('nextLessonLink').style.opacity='1';document.getElementById('timerBar').style.display='none';}
+function startTest(){document.getElementById('startScreen').style.display='none';document.getElementById('quizArea').style.display='block';document.getElementById('timerBar').style.display='block';document.getElementById('scoreBox').style.display='none';lockTabs();timeLeft=180;updateTimer();timerInterval=setInterval(function(){timeLeft--;updateTimer();if(timeLeft<=0){clearInterval(timerInterval);alert("⏰ Time Up! Your test is auto-submitted.");checkTest(true);}},1000);}
+function updateTimer(){let m=Math.floor(timeLeft/60);let s=timeLeft%60;document.getElementById('timerText').innerText=(m<10?"0"+m:m)+":"+(s<10?"0"+s:s);if(timeLeft<=30){document.getElementById('timerBar').classList.add('warning');}}
+function checkTest(isAuto){
+  let answers={q1:'a',q2:'a',q3:'a',q4:'a',q5:'a',q6:'a',q7:'a',q8:'a',q9:'a',q10:'a'};
+  let score=0;let attempted=0;
+  for(let q in answers){let selected=document.querySelector('input[name="'+q+'"]:checked');if(selected){attempted++;if(selected.value===answers[q])score+=10;}}
+  if(!isAuto && attempted<10){alert("Please answer all 10 questions! You have answered only "+attempted+" questions.");return;}
+  unlockTabs();
+  let testStatus=score>=80?'Pass':'Fail';
+  saveTestResult('Lesson 40 - JS Revision', score, testStatus, function(data){
+    if (!IS_LOGGED_IN && score >= 80) {
+      setTimeout(() => showGuestSignupPopup(score), 500);
+    }
+  });
+  let box=document.getElementById('scoreBox');let scoreText=document.getElementById('scoreText');let scoreMsg=document.getElementById('scoreMsg');let nextBtn=document.getElementById('nextBtn');box.style.display='block';scoreText.innerText="Your Score: "+score+" / 100";
+  if(score>=80){box.className='pass';scoreMsg.innerText="🎉 Congratulations! You PASSED. JavaScript Complete! Now Projects Phase Starts - Lesson 41. All tabs are unlocked.";nextBtn.style.display='inline-block';}
+  else{box.className='fail';scoreMsg.innerText="😔 You FAILED. Passing marks are 80. All tabs are now unlocked. Read cheat sheet again and try again.";nextBtn.style.display='none';}
+  box.scrollIntoView({behavior:'smooth'});
+}
+function resetTest(){clearInterval(timerInterval);testRunning=false;document.getElementById('quizForm').reset();document.getElementById('scoreBox').style.display='none';document.getElementById('quizArea').style.display='none';document.getElementById('startScreen').style.display='block';document.getElementById('timerBar').style.display='none';unlockTabs();}
+</script>
+</body>
+</html>

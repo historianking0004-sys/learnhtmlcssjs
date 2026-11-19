@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Private pages - Google ko mat dikhao
+Disallow: /dashboard
+Disallow: /logout
+Disallow: /login
+Disallow: /signup
+Disallow: /save-result
+Disallow: /api/
+Disallow: /*?*
+
+# Allow important bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Sitemap - Google yahan se saare pages dhoondhega
+Sitemap: https://learnhtmlcssjs.com/sitemap.xml

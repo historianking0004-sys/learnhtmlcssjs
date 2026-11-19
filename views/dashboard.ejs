@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard - Learning Progress | LearnHTMLCSSJS.com</title>
+    <meta name="description" content="Track your learning progress on LearnHTMLCSSJS.com. See lessons passed, total score, test results and course progress for all 50 lessons.">
+    <meta name="keywords" content="dashboard, learning progress, my results, html css js dashboard, student dashboard">
+    <meta name="author" content="LearnHTMLCSSJS.com">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://learnhtmlcssjs.com/dashboard">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="My Dashboard - LearnHTMLCSSJS.com">
+    <meta property="og:description" content="Track your progress, test results and course completion for all 50 lessons.">
+    <meta property="og:url" content="https://learnhtmlcssjs.com/dashboard">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif }
+        body { background: #f4f6f8; color: #222 }
+        header { background: #0f172a; color: white; padding: 20px; text-align: center; width: 100% }
+        header a { color: #38bdf8; text-decoration: none; font-size: 14px; margin: 0 8px }
+        .breadcrumb { font-size: 13px; color: #94a3b8; margin-bottom: 8px }
+        .breadcrumb a { color: #38bdf8; text-decoration: none }
+        .container { width: 100%; max-width: 1100px; margin: 0 auto; padding: 25px 20px }
+        .welcome { background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) }
+        .welcome h2 { margin-bottom: 6px }
+        .welcome p { color: #64748b; line-height: 1.7 }
+        .stats { display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 20px }
+        .card { flex: 1; min-width: 180px; background: white; padding: 20px; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) }
+        .card h3 { font-size: 32px; color: #2563eb }
+        .card.pass h3 { color: #16a34a }
+        .card p { color: #64748b; margin-top: 5px }
+        .progress-box { background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) }
+        .bar { height: 22px; background: #e2e8f0; border-radius: 20px; overflow: hidden; margin-top: 10px }
+        .fill { height: 100%; background: linear-gradient(90deg, #16a34a, #22c55e); color: white; text-align: right; padding-right: 10px; font-size: 13px; line-height: 22px; font-weight: bold }
+        .fill.gold { background: linear-gradient(90deg, #f59e0b, #facc15); color: #0f172a }
+        /* Certificate Tracker */
+        .cert-box { border-radius: 14px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,.05) }
+        .cert-locked { background: #fef3c7; border: 2px solid #f59e0b }
+        .cert-unlocked { background: #dcfce7; border: 2px solid #16a34a }
+        .cert-done { background: linear-gradient(135deg,#0f172a,#2563eb); color: white; border: none }
+        .cert-done p { color: #e2e8f0 }
+        .cert-box h3 { margin-bottom: 6px }
+        .cert-box p { line-height: 1.7; font-size: 14.5px }
+        .remaining-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px }
+        .remaining-pills a { background: white; border: 1px solid #f59e0b; color: #92400e; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; text-decoration: none }
+        .remaining-pills a:hover { background: #f59e0b; color: white }
+        table { width: 100%; background: white; border-collapse: collapse; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) }
+        th, td { padding: 13px; text-align: left; border-bottom: 1px solid #e2e8f0 }
+        th { background: #0f172a; color: white }
+        .badge { padding: 5px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; white-space: nowrap }
+        .badge-pass { background: #dcfce7; color: #166534 }
+        .badge-fail { background: #fee2e2; color: #991b1b }
+        .btn { display: inline-block; background: #2563eb; color: white; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-top: 15px }
+        .btn-green { background: #16a34a }
+        .btn-gold { background: #f59e0b; color: #0f172a }
+        .btn-outline { background: white; color: #2563eb; border: 2px solid #2563eb }
+        .btn-locked { background: #dc2626; cursor: not-allowed }
+        .empty { text-align: center; padding: 30px; color: #64748b; background: white; border-radius: 12px }
+        .empty h3 { color: #0f172a; margin-bottom: 6px }
+        .next-box { background: #eff6ff; border-left: 5px solid #2563eb; padding: 15px; border-radius: 8px; margin-bottom: 20px; line-height: 1.7 }
+        footer { background: #0f172a; color: #cbd5e1; padding: 35px 30px }
+        footer h3 { color: white; font-size: 20px; margin-bottom: 12px }
+        footer h4 { color: white; font-size: 16px; margin: 20px 0 10px }
+        footer p { font-size: 14px; line-height: 1.7; color: #94a3b8 }
+        footer a { color: #38bdf8; text-decoration: none; font-size: 14px; line-height: 2 }
+        footer a:hover { color: white; text-decoration: underline }
+        .footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 25px; max-width: 1100px; margin: 0 auto }
+        .all-lessons { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-top: 10px }
+        .all-lessons a { background: #1e293b; padding: 8px 10px; border-radius: 8px; text-align: center; display: block; color: #e2e8f0; font-weight: bold; line-height: 1.4 }
+        .all-lessons a:hover { background: #2563eb; color: white; text-decoration: none }
+        .footer-bottom { text-align: center; border-top: 1px solid #1e293b; margin-top: 25px; padding-top: 15px; font-size: 13px; color: #64748b }
+        @media(max-width:700px) { .stats { flex-direction: column } .footer-grid { grid-template-columns: 1fr } .all-lessons { grid-template-columns: 1fr 1fr } .container { padding: 20px 12px } table { font-size: 13px } th, td { padding: 10px 8px } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <p class="breadcrumb"><a href="/">Home</a> &gt; My Dashboard</p>
+        <h1>Welcome <%= user.username %> 👋</h1>
+        <p>Your Email: <%= user.email %></p>
+        <p style="margin-top:10px">
+            <a href="/">🏠 Home</a> | <a href="/lesson1">📖 Lessons</a> | <a href="/ranking">🏆 Ranking</a> | <a href="/playground">▶ Playground</a> | <a href="/logout">Logout</a>
+        </p>
+    </header>
+
+    <div class="container">
+        <div class="welcome">
+            <h2>Your Learning Progress</h2>
+            <p>Keep going! Complete all <b>50 lessons</b> to become a Web Developer. Pass each test with <b>80+ marks</b> to unlock your progress.</p>
+        </div>
+
+        <div class="stats">
+            <div class="card">
+                <h3><%= progress %>%</h3>
+                <p>Overall Progress</p>
+            </div>
+            <div class="card pass">
+                <h3><%= passed %> / <%= totalLessons %></h3>
+                <p>Lessons Passed</p>
+            </div>
+            <div class="card">
+                <h3><%= user.results.length %></h3>
+                <p>Total Tests Given</p>
+            </div>
+            <div class="card">
+                <h3><%= user.results.length ? Math.round(user.results.reduce((s,r)=>s+(r.score||0),0) / user.results.length) : 0 %> / 100</h3>
+                <p>Average Score</p>
+            </div>
+        </div>
+
+        <!-- ===== CERTIFICATE TRACKER - NEW ===== -->
+        <% if (typeof hasCertificate !== 'undefined' && hasCertificate) { %>
+            <div class="cert-box cert-done">
+                <h3>🎓 Certificate Earned - Congratulations!</h3>
+                <p>You passed the Final Exam with <b><%= finalExam.score %> / 100</b>. You are now a Certified Web Developer!</p>
+                <p>Your certificate is ready in Lesson 50. Print it or save as PDF.</p>
+                <a class="btn btn-gold" href="/lesson50">🎓 View My Certificate →</a>
+                <a class="btn btn-outline" href="/ranking" style="margin-left:8px">🏆 View Ranking</a>
+            </div>
+        <% } else if (typeof canTakeExam !== 'undefined' && canTakeExam) { %>
+            <div class="cert-box cert-unlocked">
+                <h3>✅ Certificate Unlocked - Ready for Final Exam!</h3>
+                <p>You passed <b>49 / 49 lessons</b> with 80%+. Great work!</p>
+                <p>Now take the Final Exam in Lesson 50. Pass with 80% to get your certificate.</p>
+                <a class="btn btn-green" href="/lesson50">📝 Go to Final Exam - Lesson 50 →</a>
+            </div>
+        <% } else { %>
+            <div class="cert-box cert-locked">
+                <h3>🔒 Certificate Locked - <%= typeof passed49 !== 'undefined' ? passed49 : 0 %> / 49 Lessons Passed</h3>
+                <p>To unlock your certificate, you must pass <b>all 49 lessons (Lesson 1 to 49) with 80% or more.</b></p>
+                <p><b><%= typeof failedLessons !== 'undefined' ? failedLessons.length : 0 %> lessons remaining</b> for certificate. Complete them to unlock Final Exam.</p>
+                <div class="bar"><div class="fill gold" style="width:<%= typeof certProgress !== 'undefined' ? certProgress : 0 %>%"><%= typeof certProgress !== 'undefined' ? certProgress : 0 %>% to Certificate</div></div>
+                <% if (typeof failedLessons !== 'undefined' && failedLessons.length > 0) { %>
+                    <p style="margin-top:12px"><b>Remaining Lessons:</b> Click any lesson to complete it:</p>
+                    <div class="remaining-pills">
+                        <% failedLessons.slice(0, 15).forEach(function(n){ %>
+                            <a href="/lesson<%= n %>">Lesson <%= n %> →</a>
+                        <% }) %>
+                        <% if (failedLessons.length > 15) { %>
+                            <span style="font-size:13px;color:#92400e;font-weight:bold;padding:6px">+ <%= failedLessons.length - 15 %> more...</span>
+                        <% } %>
+                    </div>
+                <% } %>
+                <a class="btn" href="/lesson<%= (typeof failedLessons !== 'undefined' && failedLessons.length > 0) ? failedLessons[0] : 1 %>">Continue Learning - Lesson <%= (typeof failedLessons !== 'undefined' && failedLessons.length > 0) ? failedLessons[0] : 1 %> →</a>
+            </div>
+        <% } %>
+        <!-- ===== CERTIFICATE TRACKER END ===== -->
+
+        <div class="next-box">
+            <% if(passed >= totalLessons){ %>
+                <b>🎉 Congratulations! You have completed all 50 lessons.</b><br>
+                You are now ready for the Final Exam. Go to <a href="/lesson50" style="color:#2563eb;font-weight:bold">Lesson 50 - Final Exam &amp; Certificate →</a>
+            <% } else { %>
+                <b>👉 Next Lesson: Lesson <%= (typeof failedLessons !== 'undefined' && failedLessons.length > 0) ? failedLessons[0] : (passed + 1) %></b><br>
+                You have passed <b><%= passed %> / <%= totalLessons %></b> lessons. Continue from Lesson <%= (typeof failedLessons !== 'undefined' && failedLessons.length > 0) ? failedLessons[0] : (passed + 1) %>.
+            <% } %>
+        </div>
+
+        <div class="progress-box">
+            <b>Course Progress: <%= passed %> / <%= totalLessons %> Lessons Completed</b>
+            <div class="bar">
+                <div class="fill" style="width:<%= progress %>%"><%= progress %>%</div>
+            </div>
+            <p style="margin-top:10px;color:#64748b;font-size:14px"><%= totalLessons - passed %> lessons remaining to complete the course.</p>
+            <a class="btn btn-green" href="/ranking">🏆 View Ranking</a>
+            <a class="btn btn-outline" href="/playground" style="margin-left:8px">▶ Open Playground</a>
+        </div>
+
+        <h2 style="margin-bottom:12px">📝 My Test Results</h2>
+
+        <% if(user.results.length===0){ %>
+            <div class="empty">
+                <h3>No Test Given Yet</h3>
+                <p>Go to Lesson 1 and give your first test!</p>
+                <a class="btn btn-green" href="/lesson1">Start Lesson 1 →</a>
+            </div>
+        <% } else { %>
+            <table>
+                <tr>
+                    <th>Lesson</th>
+                    <th>Score</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+                <% user.results.forEach(function(r){ %>
+                    <tr>
+                        <td><b><%= r.lesson %></b></td>
+                        <td><b><%= r.score %> / 100</b></td>
+                        <td>
+                            <% if(r.status==='Pass' ){ %>
+                                <span class="badge badge-pass">✅ Pass</span>
+                            <% } else { %>
+                                <span class="badge badge-fail">❌ Fail</span>
+                            <% } %>
+                        </td>
+                        <td><%= r.date ? new Date(r.date).toLocaleDateString() : '-' %></td>
+                        <td><a href="/lesson<%= r.lesson.split(' ')[1] %>" style="color:#2563eb;font-weight:bold">Retake →</a></td>
+                    </tr>
+                <% }) %>
+            </table>
+        <% } %>
+
+        <% if(typeof canTakeExam !== 'undefined' && canTakeExam){ %>
+            <a class="btn btn-green" href="/lesson50">Go to Final Exam - Lesson 50 →</a>
+        <% } else if(typeof failedLessons !== 'undefined' && failedLessons.length > 0){ %>
+            <a class="btn" href="/lesson<%= failedLessons[0] %>">Continue Learning - Lesson <%= failedLessons[0] %> →</a>
+        <% } else { %>
+            <a class="btn" href="/lesson<%= passed + 1 %>">Continue Learning - Lesson <%= passed + 1 %> →</a>
+        <% } %>
+    </div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h3>LearnHTMLCSSJS.com</h3>
+      <p>Free HTML CSS JS course in simple English. Learn from zero to web developer with 50 lessons, tests, playground and ranking.</p>
+      <h4>Quick Links</h4>
+      <a href="/">🏠 Home</a><br>
+      <a href="/dashboard">📊 Dashboard</a><br>
+      <a href="/ranking">🏆 Ranking</a><br>
+      <a href="/playground">▶ Playground - Try Code</a><br>
+      <a href="/lesson1">📖 Start Lesson 1 - What is HTML?</a>
+    </div>
+    <div>
+      <h3>Continue Learning</h3>
+      <% if(typeof failedLessons !== 'undefined' && failedLessons.length > 0){ %><a href="/lesson<%= failedLessons[0] %>">Lesson <%= failedLessons[0] %> - Continue Here →</a><br><% } %>
+      <a href="/lesson21">Lesson 21 - What is JavaScript?</a><br>
+      <a href="/lesson22">Lesson 22 - Variables</a><br>
+      <a href="/lesson23">Lesson 23 - Data Types &amp; Operators</a><br>
+      <a href="/lesson24">Lesson 24 - If-Else</a><br>
+      <a href="/lesson25">Lesson 25 - Loops</a>
+      <h4>CSS Course (11-20)</h4>
+      <a href="/lesson26">Lesson 26 - Functions</a><br>
+      <a href="/lesson27">Lesson 27 - Arrays</a><br>
+      <a href="/lesson28">Lesson 28 - Objects</a><br>
+      <a href="/lesson29">Lesson 29 - String Methods</a><br>
+      <a href="/lesson30">Lesson 30 - DOM</a>
+    </div>
+    <div>
+      <h3>JavaScript Course (21-40)</h3>
+      <a href="/lesson31">Lesson 31 - Events</a><br>
+      <a href="/lesson32">Lesson 32 - Form Validation</a><br>
+      <a href="/lesson33">Lesson 33 - LocalStorage</a><br>
+      <a href="/lesson34">Lesson 34 - Timers</a><br>
+      <a href="/lesson35">Lesson 35 - Calculator</a><br>
+      <h4>Projects &amp; Career (41-50)</h4>
+      <a href="/lesson41">Lesson 41 - Full Website Project</a><br>
+      <a href="/lesson42">Lesson 42 - Portfolio Website</a><br>
+      <a href="/lesson43">Lesson 43 - Landing Page</a><br>
+      <a href="/lesson44">Lesson 44 - Navbar &amp; Footer</a><br>
+      <a href="/lesson45">Lesson 45 - Final Project</a><br>
+      <a href="/lesson46">Lesson 46 - SEO Basics</a><br>
+      <a href="/lesson47">Lesson 47 - Deploy Free</a><br>
+      <a href="/lesson48">Lesson 48 - Freelancing Guide</a><br>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a><br>
+      <a href="/lesson50">Lesson 50 - Final Exam &amp; Certificate</a>
+    </div>
+  </div>
+  <div style="max-width:1100px;margin:25px auto 0;border-top:1px solid #1e293b;padding-top:20px">
+    <h3 style="text-align:center">📚 All 50 Lessons - Complete HTML CSS JS Course</h3>
+    <div class="all-lessons">
+      <a href="/lesson1">Lesson 1 - What is HTML?</a>
+      <a href="/lesson2">Lesson 2 - Headings &amp; Paragraphs</a>
+      <a href="/lesson3">Lesson 3 - Text Formatting</a>
+      <a href="/lesson4">Lesson 4 - Links &amp; Images</a>
+      <a href="/lesson5">Lesson 5 - Lists</a>
+      <a href="/lesson6">Lesson 6 - Tables</a>
+      <a href="/lesson7">Lesson 7 - Forms</a>
+      <a href="/lesson8">Lesson 8 - Div &amp; Span</a>
+      <a href="/lesson9">Lesson 9 - Semantic HTML</a>
+      <a href="/lesson10">Lesson 10 - HTML Project</a>
+      <a href="/lesson11">Lesson 11 - What is CSS?</a>
+      <a href="/lesson12">Lesson 12 - Colors</a>
+      <a href="/lesson13">Lesson 13 - Text Styling</a>
+      <a href="/lesson14">Lesson 14 - Box Model</a>
+      <a href="/lesson15">Lesson 15 - Flexbox</a>
+      <a href="/lesson16">Lesson 16 - Grid</a>
+      <a href="/lesson17">Lesson 17 - Responsive</a>
+      <a href="/lesson18">Lesson 18 - Buttons</a>
+      <a href="/lesson19">Lesson 19 - Forms Styling</a>
+      <a href="/lesson20">Lesson 20 - CSS Project</a>
+      <a href="/lesson21">Lesson 21 - What is JS?</a>
+      <a href="/lesson22">Lesson 22 - Variables</a>
+      <a href="/lesson23">Lesson 23 - Data Types</a>
+      <a href="/lesson24">Lesson 24 - If-Else</a>
+      <a href="/lesson25">Lesson 25 - Loops</a>
+      <a href="/lesson26">Lesson 26 - Functions</a>
+      <a href="/lesson27">Lesson 27 - Arrays</a>
+      <a href="/lesson28">Lesson 28 - Objects</a>
+      <a href="/lesson29">Lesson 29 - Strings</a>
+      <a href="/lesson30">Lesson 30 - DOM</a>
+      <a href="/lesson31">Lesson 31 - Events</a>
+      <a href="/lesson32">Lesson 32 - Form Validation</a>
+      <a href="/lesson33">Lesson 33 - LocalStorage</a>
+      <a href="/lesson34">Lesson 34 - Timers</a>
+      <a href="/lesson35">Lesson 35 - Calculator</a>
+      <a href="/lesson36">Lesson 36 - To-Do List</a>
+      <a href="/lesson37">Lesson 37 - Quiz App</a>
+      <a href="/lesson38">Lesson 38 - Password Generator</a>
+      <a href="/lesson39">Lesson 39 - Weather App</a>
+      <a href="/lesson40">Lesson 40 - JS Revision</a>
+      <a href="/lesson41">Lesson 41 - Full Website</a>
+      <a href="/lesson42">Lesson 42 - Portfolio</a>
+      <a href="/lesson43">Lesson 43 - Landing Page</a>
+      <a href="/lesson44">Lesson 44 - Navbar</a>
+      <a href="/lesson45">Lesson 45 - Final Project</a>
+      <a href="/lesson46">Lesson 46 - SEO</a>
+      <a href="/lesson47">Lesson 47 - Deploy</a>
+      <a href="/lesson48">Lesson 48 - Freelancing</a>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a>
+      <a href="/lesson50">Lesson 50 - Final Exam</a>
+    </div>
+    <p style="text-align:center;margin-top:15px">You are on <a href="/dashboard">My Dashboard</a> | <a href="/ranking">View Ranking</a> | <a href="/lesson50">Jump to Final Exam - Lesson 50</a></p>
+  </div>
+  <div class="footer-bottom">© 2026 LearnHTMLCSSJS.com - Free Course | <a href="/">Home</a> | <a href="/dashboard">Dashboard</a> | <a href="/lesson50">Lesson 50</a> | Made for Beginners</div>
+</footer>
+
+</body>
+</html>

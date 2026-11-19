@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Final Exam & Certificate - Become a Web Developer - Lesson 50 | LearnHTMLCSSJS.com</title>
+<meta name="description" content="Final Exam & Certificate - Lesson 50. 20 questions final exam. Pass with 80%, get your Web Developer certificate. Download certificate, share on LinkedIn. Free Course for Beginners.">
+<meta name="keywords" content="web developer certificate, final exam html css js, learnhtmlcssjs certificate, lesson 50, final exam">
+<meta name="author" content="LearnHTMLCSSJS.com">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://learnhtmlcssjs.com/lesson50">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Final Exam & Certificate - Become a Web Developer - Lesson 50">
+<meta property="og:description" content="Final Exam - Pass with 80%, get your Web Developer certificate.">
+<meta property="og:url" content="https://learnhtmlcssjs.com/lesson50">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Course","name":"Learn HTML CSS JS - Free Course","description":"Learn HTML, CSS and JavaScript for beginners in simple English. 50 lessons from zero to web developer.","provider":{"@type":"Organization","name":"LearnHTMLCSSJS.com"}}
+</script>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+  body{background:#f4f6f8;color:#222}
+  header{background:#0f172a;color:white;padding:20px;text-align:center;width:100%}
+  header a{color:#38bdf8;text-decoration:none;font-size:14px}
+  header a.disabled{color:#64748b;pointer-events:none}
+  .container{width:100%;max-width:100%;margin:0 auto;background:white;padding:30px 40px}
+  h1{font-size:28px;margin-bottom:10px;line-height:1.3}
+  h2{margin:20px 0 10px;color:#0f172a}
+  p{line-height:1.7;margin-bottom:12px}
+  .note{background:#eff6ff;border-left:5px solid #2563eb;padding:12px;border-radius:8px;margin:15px 0}
+  .btn{display:inline-block;background:#16a34a;color:white;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:bold;margin-top:10px;border:none;cursor:pointer;font-size:16px}
+  .btn-next{background:#2563eb}
+  .btn-prev{background:#64748b}
+  .btn-locked{background:#dc2626!important;cursor:not-allowed}
+  .nav{display:flex;justify-content:space-between;margin-top:25px;flex-wrap:wrap;gap:10px}
+  .box{background:#e0f2fe;padding:10px;border-radius:8px;margin-top:10px;line-height:1.8}
+  .tabs{display:flex;gap:10px;margin-bottom:20px;position:sticky;top:0;background:white;padding:10px 0;z-index:10;border-bottom:2px solid #e2e8f0}
+  .tab-btn{flex:1;padding:14px;border:none;border-radius:10px;font-size:17px;font-weight:bold;cursor:pointer;background:#e2e8f0;color:#334155}
+  .tab-btn.active{background:#0f172a;color:white}
+  .tab-btn.test-active{background:#16a34a;color:white}
+  .tab-btn.disabled{opacity:0.6;pointer-events:none;cursor:not-allowed}
+  #lessonContent{display:block}
+  #testContent{display:none}
+  .test-box{border:2px solid #0f172a;border-radius:12px;padding:20px;background:#f8fafc}
+  .test-info{background:#fef3c7;padding:12px;border-radius:8px;margin-bottom:15px;line-height:1.7}
+  .question{background:white;padding:15px;border-radius:10px;margin-bottom:12px;border:1px solid #e2e8f0}
+  .question b{display:block;margin-bottom:8px}
+  .question label{display:block;padding:8px 10px;margin:4px 0;background:#f1f5f9;border-radius:7px;cursor:pointer}
+  .question label:hover{background:#e0f2fe}
+  .question input{margin-right:8px}
+  #scoreBox{display:none;padding:20px;border-radius:10px;text-align:center;margin-top:15px}
+  #scoreBox.pass{background:#dcfce7;border:2px solid #16a34a}
+  #scoreBox.fail{background:#fee2e2;border:2px solid #dc2626}
+  #scoreBox h3{font-size:26px;margin-bottom:5px}
+  #startScreen{text-align:center;padding:30px 10px}
+  #timerBar{display:none;position:sticky;top:60px;z-index:20;background:#dc2626;color:white;padding:12px 15px;border-radius:10px;font-weight:bold;font-size:18px;text-align:center;margin-bottom:15px}
+  #timerBar.warning{background:#ea580c}
+  #quizArea{display:none}
+  .lock-msg{background:#fee2e2;color:#991b1b;padding:10px;border-radius:8px;margin-bottom:12px;text-align:center;font-weight:bold;display:none}
+  .locked-box{background:#fee2e2;border:2px solid #dc2626;border-radius:14px;padding:24px;text-align:center;margin:16px 0}
+  .locked-box h2{color:#991b1b}
+  .locked-box p{color:#7f1d1d}
+  .locked-box .btn{margin:6px}
+  table{width:100%;border-collapse:collapse;margin:10px 0;background:white}
+  th,td{border:1px solid #e2e8f0;padding:10px;text-align:left}
+  th{background:#0f172a;color:white}
+  .breadcrumb{font-size:13px;color:#94a3b8;margin-bottom:8px}
+  .breadcrumb a{color:#38bdf8;text-decoration:none}
+  .demo-card{background:white;border:1px solid #e2e8f0;border-radius:12px;padding:20px;text-align:center;margin-top:12px}
+  .demo-input{width:100%;padding:12px;border:2px solid #e2e8f0;border-radius:8px;font-size:15px;outline:none;margin:6px 0}
+  .demo-input:focus{border-color:#2563eb;box-shadow:0 0 0 3px #dbeafe}
+  .cert{border:6px double #f59e0b;border-radius:16px;padding:28px 20px;text-align:center;background:linear-gradient(180deg,#fffbeb,#ffffff);max-width:620px;margin:16px auto}
+  .cert h2{font-size:28px;margin:6px 0;color:#0f172a}
+  .cert-name{font-size:32px;font-weight:bold;color:#2563eb;border-bottom:2px solid #e2e8f0;display:inline-block;padding:0 20px 6px;margin:10px 0}
+  .cert-badge{font-size:48px}
+  .verify-line{font-size:12px;color:#64748b;margin-top:10px}
+  .verify-line a{color:#2563eb;font-weight:bold}
+  .journey{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin:12px 0}
+  .journey div{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:12px;text-align:center;font-size:13px}
+  .journey b{display:block;font-size:20px}
+  footer{background:#0f172a;color:#cbd5e1;padding:35px 30px}
+  footer h3{color:white;font-size:20px;margin-bottom:12px}
+  footer h4{color:white;font-size:16px;margin:20px 0 10px}
+  footer p{font-size:14px;line-height:1.7;color:#94a3b8}
+  footer a{color:#38bdf8;text-decoration:none;font-size:14px;line-height:2}
+  footer a:hover{color:white;text-decoration:underline}
+  .footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:25px;max-width:1100px;margin:0 auto}
+  .all-lessons{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:10px}
+  .all-lessons a{background:#1e293b;padding:8px 10px;border-radius:8px;text-align:center;display:block;color:#e2e8f0;font-weight:bold;line-height:1.4}
+  .all-lessons a:hover{background:#2563eb;color:white;text-decoration:none}
+  .all-lessons a.current{background:#16a34a;color:white}
+  .footer-bottom{text-align:center;border-top:1px solid #1e293b;margin-top:25px;padding-top:15px;font-size:13px;color:#64748b}
+  @media(max-width:700px){.footer-grid{grid-template-columns:1fr}.all-lessons{grid-template-columns:1fr 1fr}.container{padding:20px}.journey{grid-template-columns:1fr 1fr}}
+  @media print{header,.tabs,#testContent,.nav,footer,.no-print{display:none !important}.container{padding:0}.cert{border:6px double #f59e0b;max-width:100%}}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="breadcrumb"><a href="/">Home</a> &gt; <a href="/lesson50">Projects &amp; Career</a> &gt; Lesson 50 - Final Exam &amp; Certificate</p>
+  <p><a id="homeLink" href="/">← Back to Home</a> | Projects &amp; Career - Lesson 50 / 50 - FINAL</p>
+  <h1>Lesson 50: Final Exam &amp; Certificate - You Did It! 🎓</h1>
+  <p>Pass With 80% - Get Your Web Developer Certificate | LearnHTMLCSSJS.com</p>
+  <% if (!user) { %>
+    <p style="background:#2563eb;display:inline-block;padding:8px 16px;border-radius:20px;margin-top:10px;font-weight:bold">👋 Guest - Login to take Final Exam & Get Certificate</p>
+  <% } else if (typeof canTakeExam !== 'undefined' && !canTakeExam) { %>
+    <p style="background:#dc2626;display:inline-block;padding:8px 16px;border-radius:20px;margin-top:10px;font-weight:bold">🔒 Exam Locked - <%= passedCount %> / 49 Lessons Passed</p>
+  <% } else if (typeof canTakeExam !== 'undefined' && canTakeExam) { %>
+    <p style="background:#16a34a;display:inline-block;padding:8px 16px;border-radius:20px;margin-top:10px;font-weight:bold">✅ Exam Unlocked - You Passed All 49 Lessons!</p>
+  <% } %>
+  <% if (typeof existingCertificate !== 'undefined' && existingCertificate) { %>
+    <p style="background:#f59e0b;color:#0f172a;display:inline-block;padding:8px 16px;border-radius:20px;margin-top:10px;font-weight:bold">🎓 You Already Have a Certificate! ID: <%= existingCertificate.certificateId %> | Score: <%= existingCertificate.score %>/100</p>
+  <% } %>
+</header>
+
+<div class="container">
+  <div class="tabs">
+    <button id="lessonTabBtn" class="tab-btn active" onclick="showLesson()">📖 Lesson</button>
+    <% if (typeof canTakeExam !== 'undefined' && canTakeExam) { %>
+      <button id="testTabBtn" class="tab-btn" onclick="showTest()">📝 Final Exam - 100 Marks</button>
+    <% } else { %>
+      <button class="tab-btn disabled" title="Complete Lesson 1-49 with 80%+ first">🔒 Final Exam - LOCKED (<%= typeof passedCount !== 'undefined' ? passedCount : 0 %>/49)</button>
+    <% } %>
+  </div>
+  <div id="lockMsg" class="lock-msg">🔒 Exam is running! All tabs are locked until you submit the exam or time ends.</div>
+
+  <div id="lessonContent">
+    <h2>1. Your Journey - From Zero to Web Developer</h2>
+    <p>Look how far you have come. 50 lessons ago, you did not know what HTML was. Today you can build a complete website, with cart, filter, WhatsApp order, and deploy it LIVE.</p>
+    <div class="journey"><div><b>1-10</b>HTML<br>Structure</div><div><b>11-20</b>CSS<br>Design</div><div><b>21-40</b>JavaScript<br>Logic</div><div><b>41-50</b>Projects &amp; Career<br>Money &amp; Job</div></div>
+    <table>
+      <tr><th>What You Can Do Now</th><th>Proof</th></tr>
+      <tr><td>Build any website from scratch</td><td>Lesson 41 + 45 - Full Website + Final Project</td></tr>
+      <tr><td>Build shop with cart + WhatsApp order</td><td>Lesson 45 - Fresh Mart Shop</td></tr>
+      <tr><td>Build portfolio + landing page</td><td>Lesson 42 + 43</td></tr>
+      <tr><td>Deploy website LIVE for free</td><td>Lesson 47 - Netlify</td></tr>
+      <tr><td>Rank website on Google</td><td>Lesson 46 - SEO</td></tr>
+      <tr><td>Get clients + earn money</td><td>Lesson 48 - Freelancing</td></tr>
+      <tr><td>Pass interviews + get a job</td><td>Lesson 49 - Interview Qs</td></tr>
+    </table>
+    <div class="note"><b>Certificate is NOT the goal. Skill is the goal.</b> Certificate opens the door. Your projects get you the job. Show your portfolio + certificate together - That is unbeatable.</div>
+
+    <h2>2. Your Certificate - Preview</h2>
+    <% if (typeof canTakeExam !== 'undefined' && !canTakeExam) { %>
+      <div class="locked-box">
+        <h2>🔒 Certificate Locked</h2>
+        <% if (!user) { %>
+          <p>You are browsing as a <b>Guest</b>.</p>
+          <p>To get your certificate, please <b>Signup Free</b>, then pass <b>all 49 lessons (Lesson 1 to 49) with 80% or more</b>, then come back here.</p>
+          <a href="/signup" class="btn" style="background:#16a34a">✨ Signup Free & Start Lesson 1 →</a>
+          <a href="/login" class="btn btn-next">Login →</a>
+        <% } else { %>
+          <p>You have passed <b><%= passedCount %> / 49</b> lessons.</p>
+          <p>To unlock your certificate, you must pass <b>all 49 lessons (Lesson 1 to 49) with 80% or more.</b></p>
+          <% if (typeof failedLessons !== 'undefined' && failedLessons.length > 0) { %>
+            <p>Remaining Lessons: <b><%= failedLessons.join(', ') %></b></p>
+          <% } %>
+          <p>Complete the remaining lessons first, then come back here.</p>
+          <a href="/dashboard" class="btn" style="background:#dc2626">📊 Check My Dashboard →</a>
+          <a href="/lesson<%= (typeof failedLessons !== 'undefined' && failedLessons.length > 0) ? failedLessons[0] : 1 %>" class="btn btn-next">Continue Learning →</a>
+        <% } %>
+      </div>
+    <% } else { %>
+      <p>Pass the Final Exam below with 80% or more, enter your name, and your certificate will be generated here. You can print it or save as PDF:</p>
+      <div class="demo-card">
+        <div class="cert" id="certPreview">
+          <div class="cert-badge">🎓</div>
+          <p style="letter-spacing:3px;color:#92400e;font-weight:bold;margin:0">LEARNHTMLCSSJS.COM</p>
+          <h2>Certificate of Completion</h2>
+          <p style="margin:0;color:#64748b">This certificate is proudly presented to</p>
+          <div class="cert-name" id="certName"><%= (typeof user !== 'undefined' && user) ? user.username : 'Your Name Here' %></div>
+          <p style="margin:0">For successfully completing the <b>Complete HTML, CSS &amp; JavaScript Course</b><br>50 Lessons - From Zero to Web Developer</p>
+          <p style="margin:10px 0 0"><b>Final Exam Score: <span id="certScore"><%= (typeof existingCertificate !== 'undefined' && existingCertificate) ? existingCertificate.score + ' / 100' : '___ / 100' %></span></b> &nbsp; | &nbsp; Grade: <b id="certGrade"><%= (typeof existingCertificate !== 'undefined' && existingCertificate) ? (existingCertificate.score >= 95 ? 'A+ - Outstanding!' : existingCertificate.score >= 90 ? 'A - Excellent!' : existingCertificate.score >= 85 ? 'B+ - Very Good!' : 'B - Good!') : '___' %></b></p>
+          <p style="font-size:13px;color:#64748b;margin:8px 0 0">Skills: HTML • CSS • JavaScript • Portfolio • Landing Page • SEO • Deploy • Freelancing</p>
+          <div style="display:flex;justify-content:space-between;margin-top:16px;font-size:13px;color:#475569;flex-wrap:wrap;gap:6px"><span>Date: <b id="certDate"><%= (typeof existingCertificate !== 'undefined' && existingCertificate && existingCertificate.date) ? new Date(existingCertificate.date).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}) : '___' %></b></span><span>Certificate ID: <b id="certId"><%= (typeof existingCertificate !== 'undefined' && existingCertificate) ? existingCertificate.certificateId : 'LHCSJS-____' %></b></span><span>LearnHTMLCSSJS.com ✓</span></div>
+          <p class="verify-line" id="verifyLine" style="<%= (typeof existingCertificate !== 'undefined' && existingCertificate) ? '' : 'display:none' %>">Verify this certificate at: <a id="verifyLink" href="/verify/<%= (typeof existingCertificate !== 'undefined' && existingCertificate) ? existingCertificate.certificateId : '' %>" target="_blank">learnhtmlcssjs.com/verify/<span id="verifyIdText"><%= (typeof existingCertificate !== 'undefined' && existingCertificate) ? existingCertificate.certificateId : '' %></span></a></p>
+        </div>
+        <div class="no-print" style="max-width:520px;margin:0 auto">
+          <label style="font-size:13px;font-weight:bold">Enter Your Full Name for Certificate (As you want it printed)</label>
+          <input class="demo-input" id="studentName" placeholder="e.g. Muhammad Ali Ahmed" value="<%= (typeof user !== 'undefined' && user) ? user.username : '' %>" oninput="updateCertName()">
+          <button class="btn" onclick="updateCertName()">Update Name on Certificate ✏️</button>
+          <button class="btn btn-next" onclick="window.print()">🖨️ Print / Save as PDF</button>
+          <p style="font-size:13px;color:#64748b">Tip: After passing exam, your score will auto-fill here. Then Print → Save as PDF.</p>
+          <% if (typeof existingCertificate !== 'undefined' && existingCertificate) { %>
+            <p style="font-size:13px"><a href="/verify/<%= existingCertificate.certificateId %>" target="_blank" style="color:#2563eb;font-weight:bold">🔍 Verify My Certificate →</a></p>
+          <% } %>
+        </div>
+      </div>
+    <% } %>
+
+    <h2>3. Exam Rules - Read Before Starting</h2>
+    <p>1. <b>Total Questions:</b> 20 - From all 50 lessons - HTML, CSS, JS, Projects, Career<br>2. <b>Total Marks:</b> 100 - Each question = 5 Marks<br>3. <b>Passing Marks:</b> 80 (80%) - You need 16 correct out of 20<br>4. <b>Time:</b> 10 Minutes - Auto-submit when time ends<br>5. <b>Attempts:</b> Unlimited - If you fail, read lessons again and try again<br>6. <b>Certificate:</b> After passing, enter your name above, your score fills automatically, then Print / Save as PDF</p>
+
+    <h2>4. What to Do AFTER Certificate - Your Next 30 Days</h2>
+    <p><b>Week 1:</b> Deploy portfolio + Final Project. Add links to WhatsApp bio, Facebook bio, LinkedIn.<br><b>Week 2:</b> Visit 10 local shops. Show portfolio. Get first client - Even for Rs. 5,000.<br><b>Week 3:</b> Apply to 20 jobs - Rozee.pk, LinkedIn, Indeed - Junior Frontend / Web Developer. Post your certificate on LinkedIn.<br><b>Week 4:</b> Learn NEXT skill - React.js OR WordPress - One of them doubles your income. React = Jobs in companies. WordPress = Fast client websites.</p>
+    <div class="box"><b>Remember:</b> You are NOT finished. You are STARTING. Certificate = Door opens. Projects = You walk through. Keep building, keep learning, keep sharing. One year from today, you will not believe how far you have come.</div>
+    <p><b>Final Step:</b> Go to Final Exam below. Pass it. Get your certificate. Then go get your first client.</p>
+    <% if (typeof canTakeExam !== 'undefined' && canTakeExam) { %>
+      <button class="btn btn-next" onclick="showTest()">Go to Final Exam → 📝</button>
+    <% } else if (!user) { %>
+      <a href="/signup" class="btn" style="background:#16a34a">✨ Signup Free to Unlock Final Exam →</a>
+    <% } else { %>
+      <button class="btn btn-locked" onclick="alert('Locked! Complete Lesson 1-49 with 80%+ first. You have passed <%= typeof passedCount !== 'undefined' ? passedCount : 0 %>/49.')">🔒 Final Exam Locked - <%= typeof passedCount !== 'undefined' ? passedCount : 0 %>/49 Passed</button>
+    <% } %>
+    <div class="nav">
+      <a class="btn btn-prev" href="/lesson49">← Lesson 49</a>
+      <a class="btn btn-next" href="/">🏠 Back to Home</a>
+    </div>
+  </div>
+
+  <div id="testContent">
+    <% if (typeof canTakeExam !== 'undefined' && canTakeExam) { %>
+    <div class="test-box">
+      <div style="background:#dcfce7;color:#166534;padding:12px;border-radius:10px;margin-bottom:14px;text-align:center;font-weight:bold;font-size:14px">✅ Logged in as <b><%= user.username %></b> - Your score will be saved & Certificate will be generated</div>
+      <h2>📝 Final Exam - Lesson 50 - Become a Web Developer</h2>
+      <div class="test-info"><b>Total Questions:</b> 20 &nbsp; | &nbsp; <b>Total Marks:</b> 100 &nbsp; | &nbsp; <b>Passing Marks:</b> 80 (80%) &nbsp; | &nbsp; <b>Time:</b> 10 Minutes<br>Each correct answer = 5 Marks. You need 16 correct to pass and get certificate. Once you start, all tabs will be locked until you submit.</div>
+      <div id="startScreen">
+        <h2>Ready for Final Exam? 🎓</h2>
+        <p>You have completed 50 lessons. This is your final test.<br>Click Start Exam to begin. You will get <b>10 Minutes</b> for 20 questions.<br>Pass with 80% and get your certificate!</p>
+        <button class="btn" style="font-size:20px;padding:14px 30px" onclick="startTest()">▶ Start Final Exam</button>
+      </div>
+      <div id="timerBar">⏰ Time Left: <span id="timerText">10:00</span></div>
+      <div id="quizArea">
+        <form id="quizForm">
+          <div class="question"><b>Q1. What does HTML do?</b><label><input type="radio" name="q1" value="a"> Structure of website - Headings, paragraphs, links, images</label><label><input type="radio" name="q1" value="b"> Design / colors</label><label><input type="radio" name="q1" value="c"> Logic / interaction</label><label><input type="radio" name="q1" value="d"> Database</label></div>
+          <div class="question"><b>Q2. What does CSS do?</b><label><input type="radio" name="q2" value="a"> Design - Colors, layout, fonts, spacing</label><label><input type="radio" name="q2" value="b"> Structure</label><label><input type="radio" name="q2" value="c"> Logic</label><label><input type="radio" name="q2" value="d"> Server</label></div>
+          <div class="question"><b>Q3. What does JavaScript do?</b><label><input type="radio" name="q3" value="a"> Logic + Interaction - Clicks, cart, filter, validation</label><label><input type="radio" name="q3" value="b"> Structure only</label><label><input type="radio" name="q3" value="c"> Colors only</label><label><input type="radio" name="q3" value="d"> Nothing</label></div>
+          <div class="question"><b>Q4. How many H1 per page for SEO?</b><label><input type="radio" name="q4" value="a"> One H1 only</label><label><input type="radio" name="q4" value="b"> 5 H1s</label><label><input type="radio" name="q4" value="c"> 0 H1s</label><label><input type="radio" name="q4" value="d"> 10 H1s</label></div>
+          <div class="question"><b>Q5. Box Model?</b><label><input type="radio" name="q5" value="a"> Content + Padding + Border + Margin</label><label><input type="radio" name="q5" value="b"> Only content</label><label><input type="radio" name="q5" value="c"> Only margin</label><label><input type="radio" name="q5" value="d"> Only padding</label></div>
+          <div class="question"><b>Q6. Flexbox vs Grid?</b><label><input type="radio" name="q6" value="a"> Flexbox = 1D, Grid = 2D</label><label><input type="radio" name="q6" value="b"> Both same</label><label><input type="radio" name="q6" value="c"> Flexbox = 2D, Grid = 1D</label><label><input type="radio" name="q6" value="d"> No difference</label></div>
+          <div class="question"><b>Q7. How to make website responsive?</b><label><input type="radio" name="q7" value="a"> @media (max-width: 700px) - Change layout on small screens</label><label><input type="radio" name="q7" value="b"> Fixed width 2000px</label><label><input type="radio" name="q7" value="c"> No CSS</label><label><input type="radio" name="q7" value="d"> Only desktop</label></div>
+          <div class="question"><b>Q8. let vs const?</b><label><input type="radio" name="q8" value="a"> let = Can change, const = Cannot change</label><label><input type="radio" name="q8" value="b"> Both same</label><label><input type="radio" name="q8" value="c"> let = Cannot change</label><label><input type="radio" name="q8" value="d"> const = Can change</label></div>
+          <div class="question"><b>Q9. == vs === ?</b><label><input type="radio" name="q9" value="a"> == value only, === value + type - Always use ===</label><label><input type="radio" name="q9" value="b"> Both same</label><label><input type="radio" name="q9" value="c"> == is better</label><label><input type="radio" name="q9" value="d"> No difference</label></div>
+          <div class="question"><b>Q10. How to get element by id in JS?</b><label><input type="radio" name="q10" value="a"> document.getElementById("myId")</label><label><input type="radio" name="q10" value="b"> document.getId()</label><label><input type="radio" name="q10" value="c"> getElement("myId")</label><label><input type="radio" name="q10" value="d"> document.id("myId")</label></div>
+          <div class="question"><b>Q11. What is localStorage?</b><label><input type="radio" name="q11" value="a"> Browser storage - Saves data after refresh, 5MB</label><label><input type="radio" name="q11" value="b"> Deletes on refresh</label><label><input type="radio" name="q11" value="c"> Server storage</label><label><input type="radio" name="q11" value="d"> Only 1 second</label></div>
+          <div class="question"><b>Q12. What is a Portfolio?</b><label><input type="radio" name="q12" value="a"> Online shop window - Shows best work to get clients/jobs</label><label><input type="radio" name="q12" value="b"> Paper CV only</label><label><input type="radio" name="q12" value="c"> Social post</label><label><input type="radio" name="q12" value="d"> Certificate only</label></div>
+          <div class="question"><b>Q13. What is a Landing Page?</b><label><input type="radio" name="q13" value="a"> One page, one goal, one button - Buy / Sign Up / Order</label><label><input type="radio" name="q13" value="b"> Many pages, many goals</label><label><input type="radio" name="q13" value="c"> Only footer</label><label><input type="radio" name="q13" value="d"> Only contact</label></div>
+          <div class="question"><b>Q14. How to make sticky navbar?</b><label><input type="radio" name="q14" value="a"> position: sticky; top: 0; z-index: 100;</label><label><input type="radio" name="q14" value="b"> position: static;</label><label><input type="radio" name="q14" value="c"> position: relative;</label><label><input type="radio" name="q14" value="d"> display: none;</label></div>
+          <div class="question"><b>Q15. What is SEO?</b><label><input type="radio" name="q15" value="a"> Make Google show YOUR website first</label><label><input type="radio" name="q15" value="b"> Make website colorful</label><label><input type="radio" name="q15" value="c"> Make website slow</label><label><input type="radio" name="q15" value="d"> Make website with no content</label></div>
+          <div class="question"><b>Q16. What must main file be named to deploy?</b><label><input type="radio" name="q16" value="a"> index.html</label><label><input type="radio" name="q16" value="b"> mywebsite.html</label><label><input type="radio" name="q16" value="c"> home.html</label><label><input type="radio" name="q16" value="d"> main.html</label></div>
+          <div class="question"><b>Q17. Freelancing payment rule?</b><label><input type="radio" name="q17" value="a"> 50% advance BEFORE starting, 50% after delivery</label><label><input type="radio" name="q17" value="b"> 100% after delivery</label><label><input type="radio" name="q17" value="c"> Work free</label><label><input type="radio" name="q17" value="d"> No payment</label></div>
+          <div class="question"><b>Q18. How to reverse string "Ali" in JS?</b><label><input type="radio" name="q18" value="a"> "Ali".split("").reverse().join("") = "ilA"</label><label><input type="radio" name="q18" value="b"> "Ali".reverse()</label><label><input type="radio" name="q18" value="c"> reverse("Ali")</label><label><input type="radio" name="q18" value="d"> "Ali".split()</label></div>
+          <div class="question"><b>Q19. How to add item to cart array?</b><label><input type="radio" name="q19" value="a"> cart.push(product)</label><label><input type="radio" name="q19" value="b"> cart.add(product)</label><label><input type="radio" name="q19" value="c"> cart.put(product)</label><label><input type="radio" name="q19" value="d"> cart += product</label></div>
+          <div class="question"><b>Q20. Best title length for SEO?</b><label><input type="radio" name="q20" value="a"> 50-60 characters, keyword first</label><label><input type="radio" name="q20" value="b"> 5 characters</label><label><input type="radio" name="q20" value="c"> 200 characters</label><label><input type="radio" name="q20" value="d"> No title</label></div>
+          <button type="button" class="btn" onclick="checkTest(false)">Submit Final Exam - Get Certificate</button>
+          <button type="button" class="btn btn-next" onclick="resetTest()">Try Again</button>
+        </form>
+      </div>
+      <div id="scoreBox">
+        <h3 id="scoreText"></h3>
+        <p id="scoreMsg"></p>
+        <div id="certSuccess" style="display:none">
+          <p style="font-size:18px">🎓 <b>Your Certificate is Ready!</b> Your Certificate ID is <b id="newCertIdText"></b>. Enter your name in Lesson tab, then Print / Save as PDF.</p>
+          <button class="btn" onclick="showLesson();document.getElementById('certPreview').scrollIntoView({behavior:'smooth'})">View My Certificate 🎓</button>
+          <button class="btn btn-next" onclick="window.print()">🖨️ Print / Save Certificate</button>
+          <a id="newVerifyLink" href="#" target="_blank" class="btn" style="background:#f59e0b;color:#0f172a">🔍 Verify Certificate →</a>
+        </div>
+        <br><br>
+        <button class="btn btn-next" onclick="showLesson()">← Back to Lesson (Unlocked)</button>
+      </div>
+    </div>
+    <% } else { %>
+      <div class="test-box" style="text-align:center">
+        <h2>🔒 Final Exam Locked!</h2>
+        <% if (!user) { %>
+          <p>Final Exam is only for students who have <b>logged in</b> and passed <b>Lesson 1 to 49 with 80% or more.</b></p>
+          <p>Please login or signup free to start your journey.</p>
+          <a href="/signup" class="btn" style="background:#16a34a">✨ Signup Free →</a>
+          <a href="/login" class="btn btn-next">Login →</a>
+          <a href="/lesson1" class="btn">Start Lesson 1 →</a>
+        <% } else { %>
+          <p>Final Exam is only for students who have passed <b>Lesson 1 to 49 with 80% or more.</b></p>
+          <p>Your Progress: <b><%= typeof passedCount !== 'undefined' ? passedCount : 0 %> / 49 Passed</b></p>
+          <% if (typeof failedLessons !== 'undefined' && failedLessons.length > 0) { %>
+            <p>Remaining Lessons: <b><%= failedLessons.join(', ') %></b></p>
+          <% } %>
+          <a href="/dashboard" class="btn btn-next">Check Dashboard →</a>
+          <a href="/lesson<%= (typeof failedLessons !== 'undefined' && failedLessons.length > 0) ? failedLessons[0] : 1 %>" class="btn">Continue Learning →</a>
+        <% } %>
+      </div>
+    <% } %>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h3>LearnHTMLCSSJS.com</h3>
+      <p>Free HTML CSS JS course in simple English. Learn from zero to web developer with 50 lessons, tests, playground and ranking.</p>
+      <h4>Quick Links</h4>
+      <a href="/">🏠 Home</a><br>
+      <a href="/dashboard">📊 Dashboard</a><br>
+      <a href="/ranking">🏆 Ranking</a><br>
+      <a href="/playground">▶ Playground - Try Code</a><br>
+      <a href="/lesson1">📖 Start Lesson 1 - What is HTML?</a><br>
+      <a href="/verify">🔍 Verify Certificate</a>
+    </div>
+    <div>
+      <h3>🎓 You Did It!</h3>
+      <p>You completed all 50 lessons. You are now a Web Developer. Go build, go earn, go shine.</p>
+      <h4>Start Again / Revise</h4>
+      <a href="/lesson1">Lesson 1 - What is HTML?</a><br>
+      <a href="/lesson21">Lesson 21 - What is JS?</a><br>
+      <a href="/lesson41">Lesson 41 - Full Website</a>
+    </div>
+    <div>
+      <h3>Projects &amp; Career (41-50)</h3>
+      <a href="/lesson45">Lesson 45 - Final Project</a><br>
+      <a href="/lesson48">Lesson 48 - Freelancing</a><br>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a><br>
+      <a href="/lesson50">Lesson 50 - Final Exam &amp; Certificate</a><br>
+      <a href="/verify">🔍 Verify Certificate</a>
+    </div>
+  </div>
+  <div style="max-width:1100px;margin:25px auto 0;border-top:1px solid #1e293b;padding-top:20px">
+    <h3 style="text-align:center">📚 All 50 Lessons - Complete HTML CSS JS Course</h3>
+    <div class="all-lessons">
+      <a href="/lesson1">Lesson 1 - What is HTML?</a>
+      <a href="/lesson2">Lesson 2 - Headings &amp; Paragraphs</a>
+      <a href="/lesson3">Lesson 3 - Text Formatting</a>
+      <a href="/lesson4">Lesson 4 - Links &amp; Images</a>
+      <a href="/lesson5">Lesson 5 - Lists</a>
+      <a href="/lesson6">Lesson 6 - Tables</a>
+      <a href="/lesson7">Lesson 7 - Forms</a>
+      <a href="/lesson8">Lesson 8 - Div &amp; Span</a>
+      <a href="/lesson9">Lesson 9 - Semantic HTML</a>
+      <a href="/lesson10">Lesson 10 - HTML Project</a>
+      <a href="/lesson11">Lesson 11 - What is CSS?</a>
+      <a href="/lesson12">Lesson 12 - Colors</a>
+      <a href="/lesson13">Lesson 13 - Text Styling</a>
+      <a href="/lesson14">Lesson 14 - Box Model</a>
+      <a href="/lesson15">Lesson 15 - Flexbox</a>
+      <a href="/lesson16">Lesson 16 - Grid</a>
+      <a href="/lesson17">Lesson 17 - Responsive</a>
+      <a href="/lesson18">Lesson 18 - Buttons</a>
+      <a href="/lesson19">Lesson 19 - Forms Styling</a>
+      <a href="/lesson20">Lesson 20 - CSS Project</a>
+      <a href="/lesson21">Lesson 21 - What is JS?</a>
+      <a href="/lesson22">Lesson 22 - Variables</a>
+      <a href="/lesson23">Lesson 23 - Data Types</a>
+      <a href="/lesson24">Lesson 24 - If-Else</a>
+      <a href="/lesson25">Lesson 25 - Loops</a>
+      <a href="/lesson26">Lesson 26 - Functions</a>
+      <a href="/lesson27">Lesson 27 - Arrays</a>
+      <a href="/lesson28">Lesson 28 - Objects</a>
+      <a href="/lesson29">Lesson 29 - Strings</a>
+      <a href="/lesson30">Lesson 30 - DOM</a>
+      <a href="/lesson31">Lesson 31 - Events</a>
+      <a href="/lesson32">Lesson 32 - Form Validation</a>
+      <a href="/lesson33">Lesson 33 - LocalStorage</a>
+      <a href="/lesson34">Lesson 34 - Timers</a>
+      <a href="/lesson35">Lesson 35 - Calculator</a>
+      <a href="/lesson36">Lesson 36 - To-Do List</a>
+      <a href="/lesson37">Lesson 37 - Quiz App</a>
+      <a href="/lesson38">Lesson 38 - Password Generator</a>
+      <a href="/lesson39">Lesson 39 - Weather App</a>
+      <a href="/lesson40">Lesson 40 - JS Revision</a>
+      <a href="/lesson41">Lesson 41 - Full Website</a>
+      <a href="/lesson42">Lesson 42 - Portfolio</a>
+      <a href="/lesson43">Lesson 43 - Landing Page</a>
+      <a href="/lesson44">Lesson 44 - Navbar</a>
+      <a href="/lesson45">Lesson 45 - Final Project</a>
+      <a href="/lesson46">Lesson 46 - SEO</a>
+      <a href="/lesson47">Lesson 47 - Deploy</a>
+      <a href="/lesson48">Lesson 48 - Freelancing</a>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a>
+      <a href="/lesson50" class="current">Lesson 50 - Final Exam</a>
+    </div>
+    <p style="text-align:center;margin-top:15px">You completed <a href="/lesson50">Final Exam &amp; Certificate - Lesson 50</a> | Start again: <a href="/lesson1">Lesson 1 - What is HTML?</a> | Previous: <a href="/lesson49">Interview Questions - Lesson 49</a> | <a href="/">Back to Home</a> | <a href="/verify">Verify Certificate</a></p>
+  </div>
+  <div class="footer-bottom">© 2026 LearnHTMLCSSJS.com - Free Course | <a href="/">Home</a> | <a href="/lesson50">Lesson 50</a> | <a href="/verify">Verify Certificate</a> | Made for Beginners - You Did It! 🎓</div>
+</footer>
+
+<script>
+// ===== GUEST TEST HANDLER - For Lesson 50, Guest cannot take exam =====
+const IS_LOGGED_IN = <%= (typeof user !== 'undefined' && user) ? 'true' : 'false' %>;
+function saveTestResult(lessonName, score, testStatus, onSaved) {
+  if (!IS_LOGGED_IN) { if (onSaved) onSaved(null); return; }
+  fetch('/save-result', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ lesson: lessonName, score: score, status: testStatus }) })
+  .then(r => r.json())
+  .then(data => { if (onSaved) onSaved(data); })
+  .catch(() => { if (onSaved) onSaved(null); });
+}
+// ===== GUEST HANDLER END =====
+const CAN_TAKE_EXAM = <%= (typeof canTakeExam !== 'undefined' && canTakeExam) ? 'true' : 'false' %>;
+function updateCertName(){let n=document.getElementById('studentName'); if(!n) return; let v=n.value.trim(); if(v){document.getElementById('certName').innerText=v;}}
+let testRunning=false;let timerInterval=null;let timeLeft=600;
+function showLesson(){if(testRunning){alert("🔒 Exam is running! Please submit the exam first. All tabs are locked.");return;}document.getElementById('lessonContent').style.display='block';document.getElementById('testContent').style.display='none';document.getElementById('lessonTabBtn').classList.add('active');document.getElementById('lessonTabBtn').classList.remove('test-active');let tb=document.getElementById('testTabBtn'); if(tb){tb.classList.remove('active');tb.classList.remove('test-active');} window.scrollTo({top:0,behavior:'smooth'});}
+function showTest(){
+  if(!CAN_TAKE_EXAM){
+    if(!IS_LOGGED_IN){alert("🔒 Please Login First to take Final Exam.");window.location.href="/login";return;}
+    alert("🔒 Final Exam is locked! Complete Lesson 1-49 with 80%+ first.");return;
+  }
+  document.getElementById('lessonContent').style.display='none';document.getElementById('testContent').style.display='block';let tb=document.getElementById('testTabBtn'); if(tb){tb.classList.add('active');tb.classList.add('test-active');} document.getElementById('lessonTabBtn').classList.remove('active');window.scrollTo({top:0,behavior:'smooth'});}
+function lockTabs(){testRunning=true;document.getElementById('lessonTabBtn').classList.add('disabled');document.getElementById('lockMsg').style.display='block';let h=document.getElementById('homeLink'); if(h) h.classList.add('disabled');}
+function unlockTabs(){testRunning=false;clearInterval(timerInterval);document.getElementById('lessonTabBtn').classList.remove('disabled');document.getElementById('lockMsg').style.display='none';let h=document.getElementById('homeLink'); if(h) h.classList.remove('disabled');let t=document.getElementById('timerBar'); if(t) t.style.display='none';}
+function startTest(){if(!CAN_TAKE_EXAM){alert("🔒 Final Exam is locked!");return;} document.getElementById('startScreen').style.display='none';document.getElementById('quizArea').style.display='block';document.getElementById('timerBar').style.display='block';document.getElementById('scoreBox').style.display='none';lockTabs();timeLeft=600;updateTimer();timerInterval=setInterval(function(){timeLeft--;updateTimer();if(timeLeft<=0){clearInterval(timerInterval);alert("⏰ Time Up! Your exam is auto-submitted.");checkTest(true);}},1000);}
+function updateTimer(){let m=Math.floor(timeLeft/60);let s=timeLeft%60;let el=document.getElementById('timerText'); if(el) el.innerText=(m<10?"0"+m:m)+":"+(s<10?"0"+s:s);if(timeLeft<=60){let tb=document.getElementById('timerBar'); if(tb) tb.classList.add('warning');}}
+function checkTest(isAuto){
+  if(!CAN_TAKE_EXAM){
+    if(!IS_LOGGED_IN){alert("🔒 Please Login First to take Final Exam.");window.location.href="/login";return;}
+    alert("🔒 You cannot take Final Exam. Complete Lesson 1-49 with 80%+ first.");return;
+  }
+  let answers={q1:'a',q2:'a',q3:'a',q4:'a',q5:'a',q6:'a',q7:'a',q8:'a',q9:'a',q10:'a',q11:'a',q12:'a',q13:'a',q14:'a',q15:'a',q16:'a',q17:'a',q18:'a',q19:'a',q20:'a'};
+  let score=0;let attempted=0;
+  for(let q in answers){let selected=document.querySelector('input[name="'+q+'"]:checked');if(selected){attempted++;if(selected.value===answers[q])score+=5;}}
+  if(!isAuto && attempted<20){alert("Please answer all 20 questions! You have answered only "+attempted+" questions.");return;}
+  unlockTabs();
+  let testStatus=score>=80?'Pass':'Fail';
+  saveTestResult('Lesson 50 - Final Exam', score, testStatus, function(data){
+    if (data && data.certificateId) {
+      let cid = data.certificateId;
+      let certIdEl=document.getElementById('certId'); if(certIdEl) certIdEl.innerText=cid;
+      let verifyLine=document.getElementById('verifyLine'); if(verifyLine) verifyLine.style.display='block';
+      let verifyLink=document.getElementById('verifyLink'); if(verifyLink) verifyLink.href='/verify/'+cid;
+      let verifyIdText=document.getElementById('verifyIdText'); if(verifyIdText) verifyIdText.innerText=cid;
+      let newCert=document.getElementById('newCertIdText'); if(newCert) newCert.innerText=cid;
+      let newVerify=document.getElementById('newVerifyLink'); if(newVerify) newVerify.href='/verify/'+cid;
+    }
+    showResult(score,testStatus);
+  });
+}
+function showResult(score,testStatus){
+  let box=document.getElementById('scoreBox');let scoreText=document.getElementById('scoreText');let scoreMsg=document.getElementById('scoreMsg');let certSuccess=document.getElementById('certSuccess');
+  if(!box) return;
+  box.style.display='block';scoreText.innerText="Your Final Score: "+score+" / 100";
+  if(score>=80){
+    box.className='pass';
+    let grade=score>=95?"A+ - Outstanding!":score>=90?"A - Excellent!":score>=85?"B+ - Very Good!":"B - Good!";
+    scoreMsg.innerText="🎉 CONGRATULATIONS! You PASSED Final Exam! You are now a Certified Web Developer!";
+    let cs=document.getElementById('certScore'); if(cs) cs.innerText=score+" / 100";
+    let cg=document.getElementById('certGrade'); if(cg) cg.innerText=grade;
+    let today=new Date();let cd=document.getElementById('certDate'); if(cd) cd.innerText=today.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+    if(certSuccess) certSuccess.style.display='block';
+  }else{
+    box.className='fail';
+    scoreMsg.innerText="😔 You FAILED. Passing marks are 80. You got "+score+". Do not give up! Read lessons again and try again. You are close!";
+    if(certSuccess) certSuccess.style.display='none';
+  }
+  box.scrollIntoView({behavior:'smooth'});
+}
+function resetTest(){clearInterval(timerInterval);testRunning=false;let f=document.getElementById('quizForm'); if(f) f.reset();let sb=document.getElementById('scoreBox'); if(sb) sb.style.display='none';let qa=document.getElementById('quizArea'); if(qa) qa.style.display='none';let ss=document.getElementById('startScreen'); if(ss) ss.style.display='block';let tb=document.getElementById('timerBar'); if(tb) tb.style.display='none';unlockTabs();}
+</script>
+</body>
+</html>

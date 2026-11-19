@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn HTML CSS JS - Free Web Development Course | 50 Lessons | LearnHTMLCSSJS.com</title>
+    <meta name="description" content="Learn HTML, CSS & JavaScript free in simple English. 50 lessons, 50 tests, 10+ projects, certificate & freelancing guide. Best free web development course for beginners.">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo"><div class="earth"></div></div>
+       <h1 style="text-align:center; font-size:clamp(32px, 7vw, 60px); line-height:1.1; font-weight:900; margin:20px 0 5px;">
+  <span style="color:#e34c26;">LearnHTML</span><span style="color:#264de4;">CSS</span><span style="color:#f0db4f; background:#323330; padding:0 8px; border-radius:8px;">JS</span><span style="color:#64748b; font-size:0.5em;">.com</span>
+</h1>
+<p style="text-align:center; font-size:18px; color:#475569; margin:0;">
+  Learn HTML, CSS & JavaScript - Free Web Development Course for Beginners
+</p>
+        <div class="registration-box">
+            <button onclick="window.location.href='/login'" class="reg-btn">Login</button>
+            <button onclick="window.location.href='/signup'" class="reg-btn">Signup </button>
+            <button onclick="window.location.href='/logout'" class="reg-btn">Logout</button>
+        </div>
+        <nav class="main-navbar">
+            <button class="nav-btn" onclick="window.location.href='/about'">About</button>
+            <button class="nav-btn" onclick="window.location.href='/contact'">Contact Us</button>
+           <button class="nav-btn" onclick="window.location.href='/privacy-policy'">Privacy Policy</button>
+            <button class="nav-btn" onclick="window.location.href='/terms'">Terms and conditions</button>
+        </nav>
+    </header>
+     <main>
+        <div style="text-align: center;">
+           <h2 class="inline" >Welcome  <%= user ? user.username : "Guest" %></h2>
+ <% if (user) { %>
+     <h2 class="inline" style="text-align: center;">Jump to</h2>
+    <h2  class="inline"><a class="inline my-dashboard" style="text-align: center;" href="/dashboard">Your Dashboard</a></h2>
+<% } %>
+</div>
+        <div class="about"></div>
+        <div class="">
+            <section class="dashboard-container">
+                <div class="tab tab1">
+                    <a href="#" class="tab1-content code" data-para="a">HTML</a>
+                    <a href="#" class="tab1-content code" data-para="b">CSS</a>
+                    <a href="#" class="tab1-content code" data-para="c">JS</a>
+                    <a href="#" class="tab1-content code" data-para="d">Career</a>
+                    <a href="/ranking" class="ranking code" >🏆 Ranking</a>
+                </div>
+               <style>
+  #tab2{font-family:Arial,sans-serif;color:#1e293b;line-height:1.75;max-width:1100px;margin:0 auto;padding:10px}
+  #tab2 h2{font-size:clamp(22px,4vw,34px);line-height:1.3;color:#0f172a;text-align:center;margin:10px 0 16px}
+  #tab2 h2 span{background:linear-gradient(90deg,#2563eb,#16a34a);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  #tab2 .hero-sub{text-align:center;font-size:clamp(15px,2.5vw,18px);color:#475569;max-width:850px;margin:0 auto 22px}
+  #tab2 .hero-sub b{color:#0f172a}
+  #tab2 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0 24px}
+  #tab2 .stat{background:#0f172a;color:white;padding:16px 10px;border-radius:14px;text-align:center}
+  #tab2 .stat b{display:block;font-size:24px;color:#facc15;line-height:1.1}
+  #tab2 .stat span{font-size:13px;color:#cbd5e1}
+  #tab2 .card{background:white;border:1px solid #e2e8f0;border-radius:16px;padding:22px;margin-bottom:16px;box-shadow:0 4px 18px rgba(0,0,0,0.04)}
+  #tab2 .card h3{font-size:clamp(18px,3vw,22px);color:#0f172a;margin:0 0 10px;display:flex;align-items:center;gap:10px}
+  #tab2 .card h3 .icon{width:38px;height:38px;flex-shrink:0;display:flex;align-items:center;justify-content:center;border-radius:10px;font-size:20px}
+  #tab2 .card p{font-size:15.5px;color:#475569;margin:0}
+  #tab2 .card p b{color:#0f172a}
+  #tab2 .c-blue{border-top:4px solid #2563eb}
+  #tab2 .c-green{border-top:4px solid #16a34a}
+  #tab2 .c-orange{border-top:4px solid #f97316}
+  #tab2 .c-purple{border-top:4px solid #7c3aed}
+  #tab2 .c-pink{border-top:4px solid #ec4899}
+  #tab2 .c-teal{border-top:4px solid #06b6d4}
+  #tab2 .pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  #tab2 .pill{background:#eff6ff;color:#1d4ed8;padding:7px 12px;border-radius:20px;font-size:13px;font-weight:bold;border:1px solid #dbeafe}
+  #tab2 .pill:nth-child(2n){background:#f0fdf4;color:#15803d;border-color:#dcfce7}
+  #tab2 .pill:nth-child(3n){background:#fff7ed;color:#c2410c;border-color:#ffedd5}
+  #tab2 .reasons{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px}
+  #tab2 .reason{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:14px;font-size:14.5px}
+  #tab2 .reason b{color:#0f172a;display:block;margin-bottom:4px}
+  #tab2 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px}
+  #tab2 .step{background:#0f172a;color:white;border-radius:14px;padding:16px;text-align:center;position:relative}
+  #tab2 .step span{background:#16a34a;color:white;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;font-weight:bold}
+  #tab2 .step b{display:block;font-size:15px}
+  #tab2 .step small{color:#cbd5e1;font-size:13px;line-height:1.5;display:block;margin-top:4px}
+  #tab2 .faq{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+  #tab2 .faq-item{background:#f8fafc;border-radius:10px;padding:12px 14px;font-size:14.5px}
+  #tab2 .faq-item b{color:#0f172a}
+  #tab2 .cta{background:linear-gradient(135deg,#0f172a,#2563eb,#16a34a);color:white;border-radius:16px;padding:26px 20px;text-align:center;margin-top:6px}
+  #tab2 .cta h3{color:white!important;justify-content:center;font-size:clamp(20px,3.5vw,26px)}
+  #tab2 .cta p{color:#e2e8f0!important;text-align:center}
+  #tab2 .cta-btn{display:inline-block;margin-top:14px;background:#facc15;color:#0f172a;padding:13px 28px;border-radius:10px;font-weight:bold;font-size:16px;text-decoration:none}
+  #tab2 .cta-btn:hover{background:white}
+  #tab2 a{color:#2563eb}
+  @media(max-width:700px){#tab2{padding:6px}#tab2 .stats{grid-template-columns:repeat(2,1fr)}#tab2 .card{padding:16px}#tab2 .reasons{grid-template-columns:1fr}#tab2 .steps{grid-template-columns:1fr 1fr}#tab2 .faq{grid-template-columns:1fr}#tab2 .card h3{flex-direction:row;align-items:flex-start}}
+  @media(max-width:380px){#tab2 .stats{grid-template-columns:1fr 1fr;gap:8px}#tab2 .steps{grid-template-columns:1fr}#tab2 .cta-btn{width:100%;padding:13px 10px}}
+</style>
+
+<div class="tab tab2" id="tab2">
+  <h2>Learn HTML, CSS & <span>JavaScript Free</span> - Best Web Development Course for Beginners</h2>
+  <p class="hero-sub">Welcome to <b>LearnHTMLCSSJS.com</b> - the best free website to learn HTML, CSS and JavaScript in simple English. Become a web developer, build your own website, start freelancing and earn money online.</p>
+
+  <div class="stats">
+    <div class="stat"><b>50</b><span>Lessons</span></div>
+    <div class="stat"><b>50</b><span>Tests • 100 Marks</span></div>
+    <div class="stat"><b>100%</b><span>Free Forever</span></div>
+    <div class="stat"><b>10+</b><span>Real Projects</span></div>
+  </div>
+
+  <div class="card c-blue">
+    <h3><span class="icon" style="background:#dbeafe">🌐</span> What is LearnHTMLCSSJS.com?</h3>
+    <p>LearnHTMLCSSJS.com is a free online learning platform where you can learn <b>HTML, CSS and JavaScript from zero to web developer.</b> We teach in simple English, not difficult technical English. Every lesson is short, clear and full of examples. Every lesson has a 10-question test. You must score <b>80 marks to pass</b> and unlock the next lesson. After you complete all 50 lessons, you will be able to build your own portfolio website, landing page, business website and even start freelancing on Fiverr and Upwork.</p>
+  </div>
+
+  <div class="card c-orange">
+    <h3><span class="icon" style="background:#ffedd5">🧱</span> What is HTML? - The Structure of a Website</h3>
+    <p><b>HTML stands for HyperText Markup Language.</b> It is the foundation of every website. Without HTML, there is no website. HTML is used to create the structure - headings, paragraphs, images, links, lists, tables, forms, buttons, div, span and semantic tags. When you see a heading on Google, it is made with the &lt;h1&gt; tag. When you see a button, it is made with the &lt;button&gt; tag.</p>
+    <div class="pills"><span class="pill">Lesson 1 - What is HTML?</span><span class="pill">Lesson 2 - Headings & Paragraphs</span><span class="pill">Lesson 3 - Text Formatting</span><span class="pill">Lesson 4 - Links & Images</span><span class="pill">Lesson 5 - Lists</span><span class="pill">Lesson 6 - Tables</span><span class="pill">Lesson 7 - Forms</span><span class="pill">Lesson 8 - Div & Span</span><span class="pill">Lesson 9 - Semantic HTML</span><span class="pill">Lesson 10 - HTML Project</span></div>
+  </div>
+
+  <div class="card c-green">
+    <h3><span class="icon" style="background:#dcfce7">🎨</span> What is CSS? - The Design of a Website</h3>
+    <p><b>CSS stands for Cascading Style Sheets.</b> CSS is used to design a website. Colors, fonts, spacing, borders, layout, flexbox, grid, animations and responsive design - everything is done with CSS. Without CSS, a website looks plain and boring. With CSS, the same website looks modern, beautiful and professional.</p>
+    <div class="pills"><span class="pill">Lesson 11 - What is CSS?</span><span class="pill">Lesson 12 - Colors & Background</span><span class="pill">Lesson 13 - Text Styling</span><span class="pill">Lesson 14 - Box Model</span><span class="pill">Lesson 15 - Flexbox</span><span class="pill">Lesson 16 - Grid</span><span class="pill">Lesson 17 - Responsive</span><span class="pill">Lesson 18 - Buttons</span><span class="pill">Lesson 19 - Forms Styling</span><span class="pill">Lesson 20 - CSS Project</span></div>
+  </div>
+
+  <div class="card c-purple">
+    <h3><span class="icon" style="background:#ede9fe">🧠</span> What is JavaScript? - The Brain of a Website</h3>
+    <p><b>JavaScript is a programming language.</b> It makes a website interactive and smart. When you click a button and something happens, that is JavaScript. When a timer runs, a form shows an error, a menu opens and closes, or a quiz shows your score - all of that is JavaScript. In this course you will learn JavaScript from zero in <b>20 full lessons (Lesson 21 to 40)</b> - Variables, Functions, DOM, Events, Projects and more.</p>
+    <div class="pills"><span class="pill">Lesson 21 - What is JavaScript?</span><span class="pill">Lesson 22 - Variables</span><span class="pill">Lesson 23 - Data Types & Operators</span><span class="pill">Lesson 24 - If-Else</span><span class="pill">Lesson 25 - Loops</span><span class="pill">Lesson 26 - Functions</span><span class="pill">Lesson 27 - Arrays</span><span class="pill">Lesson 28 - Objects</span><span class="pill">Lesson 29 - String Methods</span><span class="pill">Lesson 30 - DOM</span><span class="pill">Lesson 31 - Events</span><span class="pill">Lesson 32 - Form Validation</span><span class="pill">Lesson 33 - LocalStorage</span><span class="pill">Lesson 34 - Timers</span><span class="pill">Lesson 35 - Calculator Project</span><span class="pill">Lesson 36 - To-Do List</span><span class="pill">Lesson 37 - Quiz App</span><span class="pill">Lesson 38 - Password Generator</span><span class="pill">Lesson 39 - Fetch API + Weather App</span><span class="pill">Lesson 40 - JS Revision</span></div>
+  </div>
+
+  <div class="card" style="border-top:4px solid #0f172a">
+    <h3><span class="icon" style="background:#e0e7ff">🚀</span> Projects & Career - Lesson 41 to 50</h3>
+    <p>After JavaScript, you will build <b>real projects</b>, learn <b>SEO, deployment, freelancing and interview questions</b> and get your certificate. This is the part where you start earning.</p>
+    <div class="pills"><span class="pill">Lesson 41 - Full Website Project</span><span class="pill">Lesson 42 - Portfolio Website</span><span class="pill">Lesson 43 - Landing Page</span><span class="pill">Lesson 44 - Navbar & Footer</span><span class="pill">Lesson 45 - Final Project</span><span class="pill">Lesson 46 - SEO Basics</span><span class="pill">Lesson 47 - Deploy Free</span><span class="pill">Lesson 48 - Freelancing Guide</span><span class="pill">Lesson 49 - Interview Qs</span><span class="pill">Lesson 50 - Final Exam + Certificate</span></div>
+  </div>
+
+  <div class="card c-pink">
+    <h3><span class="icon" style="background:#fce7f3">⭐</span> Why Learn From LearnHTMLCSSJS.com? 7 Reasons</h3>
+    <div class="reasons">
+      <div class="reason"><b>1. 100% Free Forever</b>All 50 lessons, tests, playground, dashboard and ranking are free. No card needed.</div>
+      <div class="reason"><b>2. Simple English</b>Even a 12-year-old student can understand every lesson.</div>
+      <div class="reason"><b>3. Learn by Doing</b>Every lesson has live examples and a playground to try code yourself.</div>
+      <div class="reason"><b>4. Test System</b>10-question test of 100 marks. Score 80 to pass. This makes you really learn.</div>
+      <div class="reason"><b>5. Dashboard</b>Your progress, scores and total marks are saved in your dashboard.</div>
+      <div class="reason"><b>6. Ranking</b>Compete with other students and see your name on top of ranking page.</div>
+      <div class="reason"><b>7. Certificate</b>After passing Lesson 50 Final Exam, you get a certificate for CV & freelancing.</div>
+      <div class="reason"><b>📱 Mobile Friendly</b>Learn on mobile, tablet or laptop. No laptop or installation needed.</div>
+    </div>
+  </div>
+
+  <div class="card c-teal">
+    <h3><span class="icon" style="background:#cffafe">👥</span> Who Is This Course For?</h3>
+    <p>This course is for students of <b>Class 6 to University</b> who want to learn coding from zero. It is for beginners who have never written a single line of code. It is for job seekers, shop owners, business owners, housewives, teachers and anyone who wants to learn a new skill and earn money online. <b>If you can use a mobile phone, you can learn HTML, CSS and JavaScript.</b></p>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon" style="background:#dbeafe">🚀</span> How Does This Course Work? - 4 Simple Steps</h3>
+    <div class="steps">
+      <div class="step"><span>1</span><b>Signup Free</b><small>Create a free account in 30 seconds to save progress.</small></div>
+      <div class="step"><span>2</span><b>Learn Lesson</b><small>Read lesson in simple English with examples.</small></div>
+      <div class="step"><span>3</span><b>Give Test</b><small>10-question test in 3 minutes. Score 80+ to pass.</small></div>
+      <div class="step"><span>4</span><b>Get Certificate</b><small>Pass Lesson 50 and get your certificate.</small></div>
+    </div>
+    <p style="margin-top:12px;text-align:center">If you do <b>1 lesson per day</b>, you will finish in <b>50 days</b>. If you do 2 per day, you will finish in <b>25 days</b>.</p>
+  </div>
+
+  <div class="card c-green">
+    <h3><span class="icon" style="background:#dcfce7">💻</span> What Will You Be Able To Build After This Course?</h3>
+    <p>After completing all 50 lessons, you will be able to build a <b>personal portfolio website, business website, landing page, blog, navbar and footer, contact form, responsive website</b> for mobile and laptop, and a complete final project. You will understand <b>SEO basics, how to deploy a website free, how to get freelancing clients,</b> and how to answer interview questions. Many students start earning from freelancing after Lesson 48.</p>
+  </div>
+  <!-- ===== CERTIFIED STUDENTS - NEW ===== -->
+<style>
+  .cert-home{background:linear-gradient(135deg,#0f172a,#1e3a8a);border-radius:16px;padding:26px 20px;margin-bottom:16px;color:white;text-align:center}
+  .cert-home h3{color:white!important;font-size:clamp(20px,3.5vw,26px);margin:0 0 8px;justify-content:center}
+  .cert-home p{color:#e2e8f0!important;font-size:15px;margin:0 auto;max-width:700px}
+  .cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px;text-align:left}
+  .cert-card{background:white;border-radius:12px;padding:16px;color:#0f172a;position:relative}
+  .cert-card .cert-top{display:flex;justify-content:space-between;align-items:center}
+  .cert-card .avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#f59e0b,#facc15);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:#0f172a;text-transform:uppercase}
+  .cert-card h4{margin:10px 0 2px;font-size:17px;text-transform:capitalize;color:#0f172a}
+  .cert-card .score{font-size:14px;color:#166534;font-weight:bold}
+  .cert-card .meta{font-size:12.5px;color:#64748b;margin-top:4px}
+  .cert-badge-gold{display:inline-block;background:linear-gradient(90deg,#f59e0b,#facc15);color:#0f172a;font-size:11px;font-weight:900;padding:4px 10px;border-radius:20px}
+  .cert-empty{background:rgba(255,255,255,.08);border:1px dashed rgba(255,255,255,.3);border-radius:12px;padding:20px;margin-top:18px}
+  .cert-empty p{color:#e2e8f0!important}
+  .cert-cta{display:inline-block;margin-top:16px;background:#facc15;color:#0f172a;padding:12px 26px;border-radius:10px;font-weight:bold;font-size:15px;text-decoration:none}
+  .cert-cta:hover{background:white}
+  @media(max-width:700px){.cert-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:450px){.cert-grid{grid-template-columns:1fr}}
+</style>
+
+<div class="cert-home">
+  <h3>🎓 Our Certified Web Developers</h3>
+  <p>These students completed all 50 lessons, passed the Final Exam with 80%+ and earned their certificate. You can be next!</p>
+
+  <% if (typeof certifiedStudents !== 'undefined' && certifiedStudents.length > 0) { %>
+    <div class="cert-grid">
+      <% certifiedStudents.forEach(function(s, i){ %>
+        <div class="cert-card">
+          <div class="cert-top">
+            <div class="avatar"><%= s.username.charAt(0) %></div>
+            <span class="cert-badge-gold">🎓 CERTIFIED</span>
+          </div>
+          <h4><%= s.username %> <%= i === 0 ? '🥇' : '' %></h4>
+          <div class="score">Final Exam: <%= s.certScore %> / 100 ✅</div>
+          <div class="meta"><%= s.passed %> / 50 Lessons Passed • Total: <%= s.totalScore %> Points</div>
+        </div>
+      <% }) %>
+    </div>
+    <p style="margin-top:14px;font-size:13px">Join <%= typeof certifiedCount !== 'undefined' ? certifiedCount : certifiedStudents.length %>+ certified developers. <a href="/ranking" style="color:#facc15;font-weight:bold">See Full Leaderboard →</a></p>
+  <% } else { %>
+    <div class="cert-empty">
+      <p style="font-size:22px">🎓</p>
+      <p><b>Be the First Certified Developer!</b><br>No one has earned the certificate yet. Complete all 50 lessons, pass the Final Exam and your name will appear here.</p>
+    </div>
+  <% } %>
+
+  <a class="cert-cta" href="/lesson1">Start Your Journey - Lesson 1 →</a>
+  <p style="font-size:12.5px;margin-top:10px;color:#cbd5e1!important">50 Lessons • 50 Tests • Certificate • 100% Free</p>
+</div>
+<!-- ===== CERTIFIED STUDENTS END ===== -->
+  <div class="card">
+    <h3><span class="icon" style="background:#fef3c7">❓</span> Frequently Asked Questions - FAQ</h3>
+    <div class="faq">
+      <div class="faq-item"><b>Is this course really free?</b><br>Yes, all lessons, tests and playground are 100% free forever.</div>
+      <div class="faq-item"><b>Do I need any experience?</b><br>No, Lesson 1 starts from zero.</div>
+      <div class="faq-item"><b>How long will it take?</b><br>50 days if you do 1 lesson per day.</div>
+      <div class="faq-item"><b>Will I get a certificate?</b><br>Yes, after passing Lesson 50 Final Exam.</div>
+      <div class="faq-item"><b>Can I learn on mobile?</b><br>Yes, this website is 100% mobile responsive.</div>
+      <div class="faq-item"><b>Is this good for freelancing?</b><br>Yes, after Lesson 48, you can start earning.</div>
+    </div>
+  </div>
+
+  <div class="cta">
+    <h3>Start Learning Today - Your Future Starts Here 🚀</h3>
+    <p>Thousands of students are already learning on LearnHTMLCSSJS.com. Do not wait. Your first website is just 50 lessons away.</p>
+    <a class="cta-btn" href="/lesson1">Start Lesson 1 - What is HTML? →</a>
+    <p style="font-size:13px;margin-top:10px">Learn HTML • Learn CSS • Learn JavaScript - All Free at <b style="color:white">LearnHTMLCSSJS.com</b></p>
+  </div>
+</div>
+
+             <style>
+  #tab3{font-family:Arial,sans-serif;max-width:1100px;margin:0 auto;padding:10px;color:#1e293b;line-height:1.7}
+  #tab3 h2{font-size:clamp(20px,4vw,26px);text-align:center;color:#0f172a;margin:5px 0 6px;line-height:1.3}
+  #tab3 h2 span{background:linear-gradient(90deg,#2563eb,#16a34a);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  #tab3 .sub{text-align:center;color:#64748b;font-size:14px;margin:0 0 14px}
+  #tab3 .perf{background:white;border:1px solid #e2e8f0;border-radius:16px;padding:20px;box-shadow:0 4px 16px rgba(0,0,0,.04)}
+  #tab3 .perf-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+  #tab3 .perf-top h3{margin:0;font-size:18px;color:#0f172a}
+  #tab3 .perf-top p{margin:3px 0 0;color:#64748b;font-size:13.5px}
+  #tab3 .big-pct{font-size:32px;font-weight:900;color:#16a34a;line-height:1;text-align:right}
+  #tab3 .big-pct small{display:block;font-size:11px;color:#94a3b8;font-weight:normal}
+  #tab3 .bar{height:18px;background:#e2e8f0;border-radius:20px;overflow:hidden;margin:14px 0 6px}
+  #tab3 .bar-fill{height:100%;width:0%;background:linear-gradient(90deg,#2563eb,#16a34a);border-radius:20px;transition:width 1s ease;text-align:right;color:white;font-size:11px;font-weight:bold;line-height:18px;padding-right:8px}
+  #tab3 .bar-info{display:flex;justify-content:space-between;font-size:12.5px;color:#64748b}
+  #tab3 .mini-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+  #tab3 .mini{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:12px;text-align:center}
+  #tab3 .mini b{display:block;font-size:19px;color:#0f172a}
+  #tab3 .mini span{font-size:12px;color:#64748b}
+  #tab3 .dash-btn{display:block;text-align:center;background:#0f172a;color:white;padding:14px;border-radius:12px;text-decoration:none;font-weight:bold;font-size:16px;margin-top:4px}
+  #tab3 .dash-btn:hover{background:#2563eb}
+  #tab3 .dash-btn small{display:block;font-weight:normal;font-size:12.5px;color:#cbd5e1;margin-top:2px}
+  #tab3 .links{text-align:center;margin-top:12px;font-size:13.5px}
+  #tab3 .links a{color:#2563eb;font-weight:bold;text-decoration:none;margin:0 6px}
+  #tab3 .guest-box{background:linear-gradient(135deg,#0f172a,#2563eb);color:white;border-radius:16px;padding:20px;text-align:center}
+  #tab3 .guest-box h3{color:white;margin:0}
+  #tab3 .guest-box p{color:#e2e8f0;margin:6px 0 0;font-size:14px}
+  #tab3 .guest-box a{display:inline-block;margin-top:12px;background:#facc15;color:#0f172a;padding:11px 22px;border-radius:10px;text-decoration:none;font-weight:bold}
+  @media(max-width:600px){#tab3 .mini-stats{grid-template-columns:repeat(3,1fr);gap:6px}#tab3 .mini{padding:10px 4px}#tab3 .mini b{font-size:16px}#tab3 .perf{padding:16px}}
+</style>
+
+<div class="tab tab3" id="tab3">
+  <h2>Your Overall Performance - <span>At a Glance</span></h2>
+  <p class="sub">Simple progress bar. Full details in your Dashboard.</p>
+  <% if (user) { %>
+    <% 
+      let completed = typeof completedLessons !== 'undefined' ? completedLessons : 0;
+      let total = 50;
+      let pct = Math.round((completed / total) * 100);
+      let totalScore = typeof userTotalScore !== 'undefined' ? userTotalScore : 0;
+      let avg = typeof avgScore !== 'undefined' ? avgScore : 0;
+      let next = completed + 1; if(next > 50) next = 50;
+    %>
+    <div class="perf">
+      <div class="perf-top">
+        <div><h3>👋 Hi <%= user.username %>!</h3><p>You completed <b style="color:#0f172a"><%= completed %> / 50 Lessons</b> • Next: Lesson <%= next %></p></div>
+        <div class="big-pct"><%= pct %>%<small>Complete</small></div>
+      </div>
+      <div class="bar"><div class="bar-fill" id="overallBar" style="width:<%= pct %>%"><%= pct > 10 ? pct + '%' : '' %></div></div>
+      <div class="bar-info"><span>Start</span><span><%= pct %>% Done</span><span>Certificate 🎓</span></div>
+      <div class="mini-stats">
+        <div class="mini"><b><%= completed %> / 50</b><span>Lessons Done</span></div>
+        <div class="mini"><b><%= totalScore %></b><span>Total Marks</span></div>
+        <div class="mini"><b><%= avg %>%</b><span>Average Score</span></div>
+      </div>
+      <a class="dash-btn" href="/dashboard">📊 See Full Progress in Dashboard →<small>All test scores, lesson-wise details, ranking & certificate</small></a>
+      <div class="links"><a href="/lesson<%= next %>">Continue Lesson <%= next %> →</a> | <a href="/ranking">🏆 Ranking</a> | <a href="/playground">▶ Playground</a></div>
+    </div>
+  <% } else { %>
+    <div class="guest-box">
+      <h3>👋 Hi Guest - Track Your Progress</h3>
+      <p>Create free account to save progress & see your performance bar here.</p>
+      <a href="/signup">✨ Create Free Account</a>
+      <p style="font-size:12.5px;margin-top:10px">Already have account? <a href="/login" style="color:white;font-weight:bold">Login →</a></p>
+    </div>
+    <div class="perf" style="margin-top:12px;opacity:.9">
+      <div class="perf-top"><div><h3>Your Overall Performance</h3><p>Login to see your real progress.</p></div><div class="big-pct">0%<small>Complete</small></div></div>
+      <div class="bar"><div class="bar-fill" style="width:0%"></div></div>
+      <div class="bar-info"><span>Start</span><span>0% Done</span><span>Certificate 🎓</span></div>
+      <a class="dash-btn" href="/lesson1">▶ Start Lesson 1 - Free<small>No account needed to start learning</small></a>
+    </div>
+  <% } %>
+</div>
+<script>
+  window.addEventListener('load', function(){
+    var b = document.getElementById('overallBar');
+    if(b){ var w = b.style.width; b.style.width='0%'; setTimeout(()=>{ b.style.width=w; },200); }
+  });
+</script>
+        </div>
+    </main>
+<footer style="font-family:Arial,sans-serif;background:#0f172a;color:#cbd5e1;margin-top:20px">
+  <style>
+    .footer-wrap{max-width:1100px;margin:0 auto;padding:28px 16px 12px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:20px}
+    .footer-wrap h3{color:#fff;font-size:16px;margin:0 0 12px}
+    .footer-wrap h4{color:#fff;font-size:15px;margin:0 0 12px}
+    .footer-wrap p{font-size:13.5px;line-height:1.7;margin:0 0 10px;color:#94a3b8}
+    .footer-wrap a{display:block;color:#cbd5e1;text-decoration:none;font-size:13.5px;line-height:2}
+    .footer-wrap a:hover{color:#facc15}
+    .footer-logo{font-size:22px;font-weight:900;line-height:1.1;margin-bottom:8px}
+    .footer-logo a{display:inline;text-decoration:none}
+    .footer-social a{display:inline-block;margin-right:8px;background:#1e293b;color:#fff;padding:7px 12px;border-radius:8px;font-size:13px;line-height:1.4}
+    .footer-social a:hover{background:#2563eb;color:#fff}
+    .footer-bottom{border-top:1px solid #1e293b;max-width:1100px;margin:0 auto;padding:14px 16px;text-align:center;font-size:12.5px;color:#94a3b8;line-height:1.7}
+    .footer-bottom a{color:#e2e8f0;display:inline;text-decoration:none;font-weight:bold}
+    .footer-bottom a:hover{color:#facc15}
+    .footer-cta{background:#facc15;color:#0f172a!important;display:inline-block!important;padding:10px 18px;border-radius:10px;font-weight:bold!important;margin-top:10px;line-height:1.4!important}
+    .footer-stats{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+    .footer-stats span{background:#1e293b;color:#fff;font-size:12px;padding:5px 10px;border-radius:20px;font-weight:bold}
+    .footer-stats span b{color:#facc15}
+    @media(max-width:750px){.footer-wrap{grid-template-columns:1fr 1fr}}
+    @media(max-width:450px){.footer-wrap{grid-template-columns:1fr}}
+  </style>
+  <div class="footer-wrap">
+    <div>
+      <div class="footer-logo"><a href="/"><span style="color:#e34c26">LearnHTML</span><span style="color:#264de4">CSS</span><span style="color:#f0db4f;background:#323330;padding:0 6px;border-radius:6px">JS</span><span style="color:#94a3b8;font-size:.55em">.com</span></a></div>
+      <p>Learn HTML, CSS & JavaScript free in simple English. 50 lessons, 50 tests, 10+ projects, certificate & freelancing guide. Best free web development course for beginners in Pakistan, India & worldwide.</p>
+      <div class="footer-stats"><span><b>50</b> Lessons</span><span><b>50</b> Tests</span><span><b>100%</b> Free</span><span><b>10+</b> Projects</span></div>
+      <a href="/lesson1" class="footer-cta">▶ Start Lesson 1 - Free</a>
+      <div class="footer-social" style="margin-top:14px"><a href="https://youtube.com" target="_blank">▶ YouTube</a><a href="https://facebook.com" target="_blank">f Facebook</a><a href="https://instagram.com" target="_blank">📸 Instagram</a></div>
+    </div>
+    <div>
+      <h4>Quick Links</h4><a href="/">🏠 Home</a><a href="/about">ℹ️ About Us</a><a href="/contact">📩 Contact Us</a><a href="/faq">❓ FAQ</a><a href="/dashboard">📊 My Dashboard</a><a href="/ranking">🏆 Ranking</a><a href="/playground">▶ Code Playground</a><a href="/login">🔑 Login</a><a href="/signup">✨ Signup Free</a>
+      <h4 style="margin-top:14px">Legal & Help</h4><a href="/privacy-policy">🔒 Privacy Policy</a><a href="/terms">📜 Terms & Conditions</a><a href="/contact">📧 contact@learnhtmlcssjs.com</a>
+    </div>
+    <div>
+      <h4>Learn HTML (1-10)</h4><a href="/lesson1">Lesson 1 - What is HTML?</a><a href="/lesson2">Lesson 2 - Headings & Paragraphs</a><a href="/lesson3">Lesson 3 - Text Formatting</a><a href="/lesson4">Lesson 4 - Links & Images</a><a href="/lesson5">Lesson 5 - Lists</a><a href="/lesson6">Lesson 6 - Tables</a><a href="/lesson7">Lesson 7 - Forms</a><a href="/lesson8">Lesson 8 - Div & Span</a><a href="/lesson9">Lesson 9 - Semantic HTML</a><a href="/lesson10">Lesson 10 - HTML Project</a>
+      <h4 style="margin-top:14px">Learn CSS (11-20)</h4><a href="/lesson11">Lesson 11 - What is CSS?</a><a href="/lesson12">Lesson 12 - Colors & Background</a><a href="/lesson13">Lesson 13 - Text Styling</a><a href="/lesson14">Lesson 14 - Box Model</a><a href="/lesson15">Lesson 15 - Flexbox</a><a href="/lesson16">Lesson 16 - Grid</a><a href="/lesson17">Lesson 17 - Responsive Design</a><a href="/lesson18">Lesson 18 - Buttons</a><a href="/lesson19">Lesson 19 - Forms Styling</a><a href="/lesson20">Lesson 20 - CSS Project</a>
+    </div>
+    <div>
+      <h4>Learn JavaScript (21-40)</h4><a href="/lesson21">Lesson 21 - What is JavaScript?</a><a href="/lesson22">Lesson 22 - Variables</a><a href="/lesson23">Lesson 23 - Data Types & Operators</a><a href="/lesson24">Lesson 24 - If-Else Conditions</a><a href="/lesson25">Lesson 25 - Loops</a><a href="/lesson26">Lesson 26 - Functions</a><a href="/lesson27">Lesson 27 - Arrays</a><a href="/lesson28">Lesson 28 - Objects</a><a href="/lesson29">Lesson 29 - String Methods</a><a href="/lesson30">Lesson 30 - DOM</a><a href="/lesson31">Lesson 31 - Events</a><a href="/lesson32">Lesson 32 - Form Validation</a><a href="/lesson33">Lesson 33 - LocalStorage</a><a href="/lesson34">Lesson 34 - Timers</a><a href="/lesson35">Lesson 35 - Calculator Project</a><a href="/lesson36">Lesson 36 - To-Do List Project</a><a href="/lesson37">Lesson 37 - Quiz App Project</a><a href="/lesson38">Lesson 38 - Password Generator</a><a href="/lesson39">Lesson 39 - Fetch API + Weather App</a><a href="/lesson40">Lesson 40 - JS Revision</a>
+      <h4 style="margin-top:14px">Projects & Career (41-50)</h4><a href="/lesson41">Lesson 41 - Full Website Project</a><a href="/lesson42">Lesson 42 - Portfolio Website</a><a href="/lesson43">Lesson 43 - Landing Page</a><a href="/lesson44">Lesson 44 - Navbar & Footer</a><a href="/lesson45">Lesson 45 - Final Project</a><a href="/lesson46">Lesson 46 - SEO Basics</a><a href="/lesson47">Lesson 47 - Deploy Website Free</a><a href="/lesson48">Lesson 48 - Freelancing Guide</a><a href="/lesson49">Lesson 49 - Interview Questions</a><a href="/lesson50">Lesson 50 - Final Exam + Certificate</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 <a href="/">LearnHTMLCSSJS.com</a> - All Rights Reserved.<br><a href="/">Learn HTML Free</a> | <a href="/lesson11">Learn CSS Free</a> | <a href="/lesson21">Learn JavaScript Free</a> | <a href="/lesson41">Projects</a> | <a href="/about">About</a> | <a href="/contact">Contact</a> | <a href="/privacy-policy">Privacy Policy</a> | <a href="/terms">Terms</a> | <a href="/faq">FAQ</a><br>Made with ❤️ in Punjab, Pakistan - For Students Worldwide</div>
+</footer>
+<script src="/javascripts/script.js"></script>
+</body>
+</html>

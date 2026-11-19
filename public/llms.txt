@@ -1,0 +1,124 @@
+# LearnHTMLCSSJS.com
+
+> Learn HTML, CSS & JavaScript free in simple English. 50 lessons, 50 tests, 10+ projects, certificate & freelancing guide. Best free web development course for beginners in Pakistan, India & worldwide. 100% free forever, mobile-friendly, no installation needed.
+
+## Website
+- Homepage: https://learnhtmlcssjs.com/
+- About Us: https://learnhtmlcssjs.com/about
+- Contact Us: https://learnhtmlcssjs.com/contact
+- FAQ: https://learnhtmlcssjs.com/faq
+- Privacy Policy: https://learnhtmlcssjs.com/privacy-policy
+- Terms & Conditions: https://learnhtmlcssjs.com/terms
+- Playground - Try Code Live: https://learnhtmlcssjs.com/playground
+- Ranking - Top Students: https://learnhtmlcssjs.com/ranking
+- Dashboard - My Progress: https://learnhtmlcssjs.com/dashboard
+- Login: https://learnhtmlcssjs.com/login
+- Signup Free: https://learnhtmlcssjs.com/signup
+
+## How The Course Works
+- Signup free in 30 seconds to save progress.
+- Read 1 lesson in simple English with live examples.
+- Try code in Playground.
+- Give 10-question test in 3 minutes. 100 marks. Score 80+ to pass and unlock next lesson.
+- Lesson 50 is Final Exam - 20 questions in 10 minutes. Pass with 80% and get Certificate.
+- 1 lesson per day = Finish in 50 days. 2 lessons per day = Finish in 25 days.
+- All lessons work on mobile, tablet and laptop. No laptop or installation needed.
+
+## Course Structure - 50 Lessons
+
+### Part 1 - HTML (Lesson 1-10) - Structure of Website
+- Lesson 1 - What is HTML?: https://learnhtmlcssjs.com/lesson1
+- Lesson 2 - Headings & Paragraphs: https://learnhtmlcssjs.com/lesson2
+- Lesson 3 - Text Formatting: https://learnhtmlcssjs.com/lesson3
+- Lesson 4 - Links & Images: https://learnhtmlcssjs.com/lesson4
+- Lesson 5 - Lists: https://learnhtmlcssjs.com/lesson5
+- Lesson 6 - Tables: https://learnhtmlcssjs.com/lesson6
+- Lesson 7 - Forms: https://learnhtmlcssjs.com/lesson7
+- Lesson 8 - Div & Span: https://learnhtmlcssjs.com/lesson8
+- Lesson 9 - Semantic HTML: https://learnhtmlcssjs.com/lesson9
+- Lesson 10 - HTML Project: https://learnhtmlcssjs.com/lesson10
+
+### Part 2 - CSS (Lesson 11-20) - Design of Website
+- Lesson 11 - What is CSS?: https://learnhtmlcssjs.com/lesson11
+- Lesson 12 - Colors & Background: https://learnhtmlcssjs.com/lesson12
+- Lesson 13 - Text Styling: https://learnhtmlcssjs.com/lesson13
+- Lesson 14 - Box Model - Margin, Padding, Border: https://learnhtmlcssjs.com/lesson14
+- Lesson 15 - Flexbox: https://learnhtmlcssjs.com/lesson15
+- Lesson 16 - Grid: https://learnhtmlcssjs.com/lesson16
+- Lesson 17 - Responsive Design: https://learnhtmlcssjs.com/lesson17
+- Lesson 18 - Buttons: https://learnhtmlcssjs.com/lesson18
+- Lesson 19 - Forms Styling: https://learnhtmlcssjs.com/lesson19
+- Lesson 20 - CSS Project: https://learnhtmlcssjs.com/lesson20
+
+### Part 3 - JavaScript (Lesson 21-40) - Brain of Website
+- Lesson 21 - What is JavaScript?: https://learnhtmlcssjs.com/lesson21
+- Lesson 22 - Variables: https://learnhtmlcssjs.com/lesson22
+- Lesson 23 - Data Types & Operators: https://learnhtmlcssjs.com/lesson23
+- Lesson 24 - If-Else Conditions: https://learnhtmlcssjs.com/lesson24
+- Lesson 25 - Loops: https://learnhtmlcssjs.com/lesson25
+- Lesson 26 - Functions: https://learnhtmlcssjs.com/lesson26
+- Lesson 27 - Arrays: https://learnhtmlcssjs.com/lesson27
+- Lesson 28 - Objects: https://learnhtmlcssjs.com/lesson28
+- Lesson 29 - String Methods: https://learnhtmlcssjs.com/lesson29
+- Lesson 30 - DOM: https://learnhtmlcssjs.com/lesson30
+- Lesson 31 - Events: https://learnhtmlcssjs.com/lesson31
+- Lesson 32 - Form Validation: https://learnhtmlcssjs.com/lesson32
+- Lesson 33 - LocalStorage: https://learnhtmlcssjs.com/lesson33
+- Lesson 34 - Timers - setTimeout, setInterval: https://learnhtmlcssjs.com/lesson34
+- Lesson 35 - Calculator Project: https://learnhtmlcssjs.com/lesson35
+- Lesson 36 - To-Do List Project: https://learnhtmlcssjs.com/lesson36
+- Lesson 37 - Quiz App Project: https://learnhtmlcssjs.com/lesson37
+- Lesson 38 - Password Generator: https://learnhtmlcssjs.com/lesson38
+- Lesson 39 - Fetch API + Weather App: https://learnhtmlcssjs.com/lesson39
+- Lesson 40 - JS Revision: https://learnhtmlcssjs.com/lesson40
+
+### Part 4 - Projects (Lesson 41-45) - Real Websites
+- Lesson 41 - Full Website Project: https://learnhtmlcssjs.com/lesson41
+- Lesson 42 - Portfolio Website: https://learnhtmlcssjs.com/lesson42
+- Lesson 43 - Landing Page: https://learnhtmlcssjs.com/lesson43
+- Lesson 44 - Navbar & Footer: https://learnhtmlcssjs.com/lesson44
+- Lesson 45 - Final Project - Shop with Cart + WhatsApp Order: https://learnhtmlcssjs.com/lesson45
+
+### Part 5 - Career (Lesson 46-50) - Job & Earning
+- Lesson 46 - SEO Basics: https://learnhtmlcssjs.com/lesson46
+- Lesson 47 - Deploy Website Free - Netlify, Vercel, GitHub Pages: https://learnhtmlcssjs.com/lesson47
+- Lesson 48 - Freelancing Guide - Fiverr, Upwork, Clients, Pricing: https://learnhtmlcssjs.com/lesson48
+- Lesson 49 - Interview Questions & Answers: https://learnhtmlcssjs.com/lesson49
+- Lesson 50 - Final Exam + Certificate: https://learnhtmlcssjs.com/lesson50
+
+## Key Topics Covered
+- HTML: h1-h6, p, a href, img src alt, ul ol li, table, form, input, button, div, span, header nav main section footer
+- CSS: colors, background, text styling, box model, margin padding border, flexbox, grid, responsive design, media queries, buttons, forms styling
+- JavaScript: let const var, data types, if-else, loops for while, functions, arrays push filter map, objects, strings split reverse join, DOM getElementById innerText innerHTML, events onclick, form validation, localStorage setItem getItem, timers setTimeout setInterval, fetch API
+- Projects: Calculator, To-Do List, Quiz App, Password Generator, Weather App, Portfolio, Landing Page, Full Website, Shop with Cart
+- Career: SEO - Title Tag Meta Description Headings Alt Text, Deploy - index.html Netlify Drop, Freelancing - 50% advance pricing proposal, Interview - == vs === Flexbox vs Grid Box Model
+
+## Who Is This For?
+- Students Class 6 to University who want to learn coding from zero.
+- Beginners who never wrote a single line of code.
+- Job seekers who want Junior Frontend Developer job - Salary Rs. 30,000 to Rs. 100,000.
+- Shop owners who want their own business website without paying developer Rs. 50,000.
+- Freelancers who want to earn on Fiverr, Upwork and local clients - Rs. 10,000 to Rs. 100,000 per website.
+- Anyone in Pakistan, India, Bangladesh, USA, UK, UAE, Saudi Arabia who can use a mobile phone.
+
+## Why Learn Here?
+- 100% Free Forever - All 50 lessons, 50 tests, playground, dashboard, ranking free. No card needed.
+- Simple English - Even a 12-year-old student can understand.
+- Learn by Doing - Live examples + playground to try code.
+- Test System - 10 questions, 100 marks, 80 to pass. Makes you really learn.
+- Dashboard - Progress, scores, total marks saved.
+- Ranking - Compete with other students.
+- Certificate - After Lesson 50 Final Exam, for CV & Fiverr / Upwork.
+- Mobile Friendly - Learn on mobile, tablet or laptop.
+
+## Pricing - Freelancing Guide From Lesson 48
+- Beginner Landing Page: Rs. 5,000 - 8,000
+- Beginner Business Website (5 Pages): Rs. 10,000 - 15,000
+- Beginner Online Shop with Cart: Rs. 15,000 - 20,000
+- Payment Rule: 50% advance BEFORE starting, 50% after delivery. Never work free.
+
+## Contact
+- Email: contact@learnhtmlcssjs.com
+- Website: https://learnhtmlcssjs.com
+- Location: Punjab, Pakistan
+- Sitemap: https://learnhtmlcssjs.com/sitemap.xml

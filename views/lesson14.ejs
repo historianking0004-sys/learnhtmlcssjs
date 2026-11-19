@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ===== SEO START ===== -->
+<title>Box Model in CSS - Lesson 14 | LearnHTMLCSSJS.com</title>
+<meta name="description" content="Learn Box Model in CSS - Lesson 14. Learn content, padding, border, margin, border-radius, box-sizing, width, height with examples. Free CSS Course for Beginners.">
+<meta name="keywords" content="css box model, padding, margin, border, border-radius, box-sizing, css lesson 14, learn css">
+<meta name="author" content="LearnHTMLCSSJS.com">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://learnhtmlcssjs.com/lesson14">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Box Model in CSS - Lesson 14">
+<meta property="og:description" content="Learn Box Model in CSS with content, padding, border, margin, border-radius and box-sizing. Simple examples for beginners.">
+<meta property="og:url" content="https://learnhtmlcssjs.com/lesson14">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Course","name":"Learn HTML CSS JS - Free Course","description":"Learn HTML, CSS and JavaScript for beginners in simple English. 50 lessons from zero to web developer.","provider":{"@type":"Organization","name":"LearnHTMLCSSJS.com"}}
+</script>
+<!-- ===== SEO END ===== -->
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+  body{background:#f4f6f8;color:#222}
+  header{background:#0f172a;color:white;padding:20px;text-align:center;width:100%}
+  header a{color:#38bdf8;text-decoration:none;font-size:14px}
+  header a.disabled{color:#64748b;pointer-events:none}
+  .container{width:100%;max-width:100%;margin:0 auto;background:white;padding:30px 40px}
+  h1{font-size:28px;margin-bottom:10px;line-height:1.3}
+  h2{margin:20px 0 10px;color:#0f172a}
+  p{line-height:1.7;margin-bottom:12px}
+  .note{background:#eff6ff;border-left:5px solid #2563eb;padding:12px;border-radius:8px;margin:15px 0}
+  .code-box{background:#0f172a;color:#e2e8f0;padding:15px;border-radius:10px;overflow-x:auto;margin:10px 0}
+  .code-box code{font-family:monospace;font-size:15px;line-height:1.6}
+  .tag{color:#f472b6}.text{color:white}.attr{color:#facc15}.val{color:#86efac}
+  .btn{display:inline-block;background:#16a34a;color:white;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:bold;margin-top:10px;border:none;cursor:pointer;font-size:16px}
+  .btn-next{background:#2563eb}
+  .btn-prev{background:#64748b}
+  .nav{display:flex;justify-content:space-between;margin-top:25px}
+  .result{border:2px dashed #cbd5e1;padding:15px;border-radius:10px;margin-top:10px;background:#f8fafc}
+  .box{background:#e0f2fe;padding:10px;border-radius:8px;margin-top:10px;line-height:1.8}
+  .tabs{display:flex;gap:10px;margin-bottom:20px;position:sticky;top:0;background:white;padding:10px 0;z-index:10;border-bottom:2px solid #e2e8f0}
+  .tab-btn{flex:1;padding:14px;border:none;border-radius:10px;font-size:17px;font-weight:bold;cursor:pointer;background:#e2e8f0;color:#334155}
+  .tab-btn.active{background:#0f172a;color:white}
+  .tab-btn.test-active{background:#16a34a;color:white}
+  .tab-btn.disabled{opacity:0.5;pointer-events:none;cursor:not-allowed}
+  #lessonContent{display:block}
+  #testContent{display:none}
+  .test-box{border:2px solid #0f172a;border-radius:12px;padding:20px;background:#f8fafc}
+  .test-info{background:#fef3c7;padding:12px;border-radius:8px;margin-bottom:15px;line-height:1.7}
+  .question{background:white;padding:15px;border-radius:10px;margin-bottom:12px;border:1px solid #e2e8f0}
+  .question b{display:block;margin-bottom:8px}
+  .question label{display:block;padding:8px 10px;margin:4px 0;background:#f1f5f9;border-radius:7px;cursor:pointer}
+  .question label:hover{background:#e0f2fe}
+  .question input{margin-right:8px}
+  #scoreBox{display:none;padding:20px;border-radius:10px;text-align:center;margin-top:15px}
+  #scoreBox.pass{background:#dcfce7;border:2px solid #16a34a}
+  #scoreBox.fail{background:#fee2e2;border:2px solid #dc2626}
+  #scoreBox h3{font-size:26px;margin-bottom:5px}
+  #startScreen{text-align:center;padding:30px 10px}
+  #timerBar{display:none;position:sticky;top:60px;z-index:20;background:#dc2626;color:white;padding:12px 15px;border-radius:10px;font-weight:bold;font-size:18px;text-align:center;margin-bottom:15px}
+  #timerBar.warning{background:#ea580c}
+  #quizArea{display:none}
+  .lock-msg{background:#fee2e2;color:#991b1b;padding:10px;border-radius:8px;margin-bottom:12px;text-align:center;font-weight:bold;display:none}
+  table{width:100%;border-collapse:collapse;margin:10px 0;background:white}
+  th,td{border:1px solid #e2e8f0;padding:10px;text-align:left}
+  th{background:#0f172a;color:white}
+  .breadcrumb{font-size:13px;color:#94a3b8;margin-bottom:8px}
+  .breadcrumb a{color:#38bdf8;text-decoration:none}
+  .visual-margin{background:#fde68a;padding:20px;border-radius:10px;text-align:center}
+  .visual-border{background:#2563eb;padding:5px;border-radius:8px}
+  .visual-padding{background:#e0f2fe;padding:25px;border-radius:6px}
+  .visual-content{background:white;padding:15px;border-radius:4px;font-weight:bold}
+  footer{background:#0f172a;color:#cbd5e1;padding:35px 30px}
+  footer h3{color:white;font-size:20px;margin-bottom:12px}
+  footer h4{color:white;font-size:16px;margin:20px 0 10px}
+  footer p{font-size:14px;line-height:1.7;color:#94a3b8}
+  footer a{color:#38bdf8;text-decoration:none;font-size:14px;line-height:2}
+  footer a:hover{color:white;text-decoration:underline}
+  .footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:25px;max-width:1100px;margin:0 auto}
+  .all-lessons{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:10px}
+  .all-lessons a{background:#1e293b;padding:8px 10px;border-radius:8px;text-align:center;display:block;color:#e2e8f0;font-weight:bold;line-height:1.4}
+  .all-lessons a:hover{background:#2563eb;color:white;text-decoration:none}
+  .all-lessons a.current{background:#16a34a;color:white}
+  .footer-bottom{text-align:center;border-top:1px solid #1e293b;margin-top:25px;padding-top:15px;font-size:13px;color:#64748b}
+  @media(max-width:700px){.footer-grid{grid-template-columns:1fr}.all-lessons{grid-template-columns:1fr 1fr}.container{padding:20px}}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="breadcrumb"><a href="/">Home</a> &gt; <a href="/lesson14">CSS Course</a> &gt; Lesson 14 - Box Model</p>
+  <p><a id="homeLink" href="/">← Back to Home</a> | CSS Course - Lesson 14 / 50</p>
+  <h1>Lesson 14: Box Model in CSS</h1>
+  <p>Learn Content, Padding, Border, Margin, Border Radius & Box-Sizing | LearnHTMLCSSJS.com</p>
+</header>
+
+<div class="container">
+  <div class="tabs">
+    <button id="lessonTabBtn" class="tab-btn active" onclick="showLesson()">📖 Lesson</button>
+    <button id="testTabBtn" class="tab-btn" onclick="showTest()">📝 Test - 100 Marks</button>
+  </div>
+  <div id="lockMsg" class="lock-msg">🔒 Test is running! All tabs are locked until you submit the test or time ends.</div>
+
+  <div id="lessonContent">
+    <h2>1. What is Box Model?</h2>
+    <p>In CSS, <b>every element is a box</b>. Every div, heading, paragraph, button - all are boxes.</p>
+    <p>Every box has 4 layers from inside to outside:</p>
+    <p><b>Content → Padding → Border → Margin</b></p>
+    <div class="note"><b>Think like this:</b> Content = Your body. Padding = Your clothes. Border = The wall of your room. Margin = Distance between your house and neighbour's house.</div>
+    <h2>2. Visual Diagram - Learn This Picture</h2>
+    <div class="result"><b>Box Model Visual:</b><br><br><div class="visual-margin"><b>MARGIN - Outside Space (Yellow)</b><div class="visual-border" style="margin-top:10px"><b style="color:white">BORDER - Line (Blue)</b><div class="visual-padding" style="margin-top:8px"><b>PADDING - Inside Space (Light Blue)</b><div class="visual-content" style="margin-top:8px">CONTENT - Text / Image (White)</div></div></div></div></div>
+    <table>
+      <tr><th>Layer</th><th>Meaning</th><th>Example</th></tr>
+      <tr><td><b>Content</b></td><td>Actual text / image inside</td><td>Hello World</td></tr>
+      <tr><td><b>Padding</b></td><td>Space INSIDE the box, between content and border</td><td>padding: 20px;</td></tr>
+      <tr><td><b>Border</b></td><td>Line around the box</td><td>border: 2px solid blue;</td></tr>
+      <tr><td><b>Margin</b></td><td>Space OUTSIDE the box, between 2 boxes</td><td>margin: 20px;</td></tr>
+    </table>
+    <h2>3. Padding - Space INSIDE</h2>
+    <p>Padding creates space <b>inside</b> the box. It makes the box bigger and text does not touch the border.</p>
+    <div class="code-box"><code>
+<span class="tag">.card</span> <span class="text">{</span><br>
+&nbsp;&nbsp;<span class="attr">padding</span><span class="text">:</span> <span class="val">20px</span><span class="text">;</span> <span class="comment" style="color:#94a3b8">/* All 4 sides 20px */</span><br>
+&nbsp;&nbsp;<span class="attr">padding</span><span class="text">:</span> <span class="val">10px 30px</span><span class="text">;</span> <span class="comment" style="color:#94a3b8">/* Top-Bottom 10px, Left-Right 30px */</span><br>
+&nbsp;&nbsp;<span class="attr">padding-top</span><span class="text">:</span> <span class="val">20px</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">padding-bottom</span><span class="text">:</span> <span class="val">10px</span><span class="text">;</span><br>
+<span class="text">}</span>
+    </code></div>
+    <div class="result"><b>Result:</b><div style="background:#e0f2fe;border:2px solid #2563eb;padding:5px;border-radius:8px;margin:6px 0">Padding 5px - Text touches border</div><div style="background:#e0f2fe;border:2px solid #2563eb;padding:25px;border-radius:8px;margin:6px 0">Padding 25px - Nice space inside, looks professional</div></div>
+    <h2>4. Margin - Space OUTSIDE</h2>
+    <p>Margin creates space <b>outside</b> the box. It pushes 2 boxes away from each other.</p>
+    <div class="code-box"><code>
+<span class="tag">.card</span> <span class="text">{</span><br>
+&nbsp;&nbsp;<span class="attr">margin</span><span class="text">:</span> <span class="val">20px</span><span class="text">;</span> <span class="comment" style="color:#94a3b8">/* All 4 sides */</span><br>
+&nbsp;&nbsp;<span class="attr">margin-top</span><span class="text">:</span> <span class="val">30px</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">margin</span><span class="text">:</span> <span class="val">0 auto</span><span class="text">;</span> <span class="comment" style="color:#94a3b8">/* Center the box - Very Important! */</span><br>
+<span class="text">}</span>
+    </code></div>
+    <div class="result"><b>Result:</b><div style="background:#2563eb;color:white;padding:12px;border-radius:8px;text-align:center">Box 1 - No Margin</div><div style="background:#16a34a;color:white;padding:12px;border-radius:8px;text-align:center">Box 2 - No Margin (Stuck to Box 1)</div><br><div style="background:#2563eb;color:white;padding:12px;border-radius:8px;text-align:center">Box 1 - With Margin</div><div style="background:#16a34a;color:white;padding:12px;border-radius:8px;text-align:center;margin-top:20px">Box 2 - margin-top: 20px (Nice gap)</div></div>
+    <div class="note"><b>Center Trick:</b> To center any box, use <b>margin: 0 auto;</b> + <b>width: 80%;</b> or <b>max-width: 800px;</b>. You will use this in every project.</div>
+    <h2>5. Padding vs Margin - Easy Trick</h2>
+    <table>
+      <tr><th>Padding</th><th>Margin</th></tr>
+      <tr><td>Space <b>INSIDE</b> the box</td><td>Space <b>OUTSIDE</b> the box</td></tr>
+      <tr><td>Background color shows in padding</td><td>Background color does NOT show in margin</td></tr>
+      <tr><td>Text moves away from border</td><td>Box moves away from other box</td></tr>
+      <tr><td>Example: padding: 20px;</td><td>Example: margin: 20px;</td></tr>
+    </table>
+    <div class="note"><b>Trick to Remember:</b> <b>P</b>adding = <b>P</b>ush Inside. <b>M</b>argin = <b>M</b>ove Outside.</div>
+    <h2>6. Border & Border-Radius</h2>
+    <p><b>Border</b> = Line around the box. <b>Border-radius</b> = Makes corners round.</p>
+    <div class="code-box"><code>
+<span class="tag">.card</span> <span class="text">{</span><br>
+&nbsp;&nbsp;<span class="attr">border</span><span class="text">:</span> <span class="val">2px solid #2563eb</span><span class="text">;</span> <span class="comment" style="color:#94a3b8">/* width + style + color */</span><br>
+&nbsp;&nbsp;<span class="attr">border-radius</span><span class="text">:</span> <span class="val">12px</span><span class="text">;</span> <span class="comment" style="color:#94a3b8">/* Round corners */</span><br>
+&nbsp;&nbsp;<span class="attr">border-radius</span><span class="text">:</span> <span class="val">50%</span><span class="text">;</span> <span class="comment" style="color:#94a3b8">/* Makes a Circle */</span><br>
+<span class="text">}</span>
+    </code></div>
+    <div class="result"><b>Result:</b><div style="display:flex;gap:12px;flex-wrap:wrap"><div style="background:white;border:2px solid #2563eb;padding:15px;border-radius:0;text-align:center;flex:1;min-width:100px">Radius 0<br>Sharp Corners</div><div style="background:white;border:2px solid #2563eb;padding:15px;border-radius:12px;text-align:center;flex:1;min-width:100px">Radius 12px<br>Round Corners</div><div style="background:#2563eb;color:white;padding:15px;border-radius:50%;text-align:center;flex:1;min-width:100px;width:100px;height:100px;display:flex;align-items:center;justify-content:center">Radius 50%<br>Circle</div></div><p style="margin:12px 0 0"><b>Border Styles:</b> solid (full line) | dashed ( - - - ) | dotted ( . . . ) | none (no border)</p><div style="border:2px solid #2563eb;padding:8px;border-radius:6px;margin:6px 0;text-align:center">Solid Border</div><div style="border:2px dashed #dc2626;padding:8px;border-radius:6px;margin:6px 0;text-align:center">Dashed Border</div><div style="border:2px dotted #16a34a;padding:8px;border-radius:6px;margin:6px 0;text-align:center">Dotted Border</div></div>
+    <h2>7. Width, Height & box-sizing</h2>
+    <p><b>width</b> = How wide the box is. <b>height</b> = How tall the box is.<br><b>box-sizing: border-box;</b> = Padding and border are included inside width. Always use this - it makes your life easy.</p>
+    <div class="code-box"><code>
+<span class="comment" style="color:#94a3b8">/* Always put this at top of every CSS file */</span><br>
+<span class="tag">*</span> <span class="text">{</span> <span class="attr">box-sizing</span><span class="text">:</span> <span class="val">border-box</span><span class="text">;</span> <span class="text">}</span><br><br>
+<span class="tag">.card</span> <span class="text">{</span><br>
+&nbsp;&nbsp;<span class="attr">width</span><span class="text">:</span> <span class="val">300px</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">height</span><span class="text">:</span> <span class="val">200px</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">max-width</span><span class="text">:</span> <span class="val">800px</span><span class="text">;</span> <span class="comment" style="color:#94a3b8">/* Never bigger than 800px */</span><br>
+<span class="text">}</span>
+    </code></div>
+    <h2>8. Full Example - Perfect Card</h2>
+    <div class="code-box"><code>
+<span class="tag">.card</span> <span class="text">{</span><br>
+&nbsp;&nbsp;<span class="attr">width</span><span class="text">:</span> <span class="val">300px</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">background-color</span><span class="text">:</span> <span class="val">white</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">padding</span><span class="text">:</span> <span class="val">20px</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">border</span><span class="text">:</span> <span class="val">1px solid #e2e8f0</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">border-radius</span><span class="text">:</span> <span class="val">12px</span><span class="text">;</span><br>
+&nbsp;&nbsp;<span class="attr">margin</span><span class="text">:</span> <span class="val">20px auto</span><span class="text">;</span> <span class="comment" style="color:#94a3b8">/* Centered */</span><br>
+<span class="text">}</span>
+    </code></div>
+    <div class="result"><b>Result - Perfect Card:</b><div style="width:300px;max-width:100%;background:white;border:1px solid #e2e8f0;border-radius:12px;padding:20px;margin:15px auto;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,0.08)"><h3 style="margin:0">Ali Khan</h3><p style="color:#64748b;margin:8px 0">Web Developer</p><button class="btn">Contact Me</button></div></div>
+    <h2>9. Homework - Practice for 2 Minutes</h2>
+    <p>In Playground, make this:</p>
+    <p>1. One <b>div class="card"</b> - width 300px, padding 20px, border 2px solid blue, border-radius 12px, margin 20px auto<br>2. Inside it - one <b>h3</b> + one <b>p</b> + one <b>button</b></p>
+    <div class="box"><b>Remember:</b> Box Model = Content → Padding → Border → Margin | Padding = Inside Space | Margin = Outside Space | Border = Line | Border-radius = Round Corners | box-sizing: border-box; = Always use | margin: 0 auto; = Center Box</div>
+    <p><b>Next Step:</b> After this lesson, go to <a href="/lesson15">Lesson 15 - Flexbox</a> to learn how to put many boxes side by side.</p>
+    <a id="playgroundLink" class="btn" href="/playground">▶ Try it Yourself - Playground</a><br><br>
+    <button class="btn btn-next" onclick="showTest()">Go to Test → 📝</button>
+    <div class="nav">
+      <a class="btn btn-prev" href="/lesson13">← Lesson 13</a>
+      <a id="nextLessonLink" class="btn btn-next" href="/lesson15">Next Lesson 15 →</a>
+    </div>
+  </div>
+
+  <div id="testContent">
+    <div class="test-box">
+      <!-- ===== GUEST BANNER - HTML, NOT JS ===== -->
+      <% if (!user) { %>
+      <div id="guestBanner" style="background:linear-gradient(135deg,#0f172a,#2563eb);color:white;padding:16px;border-radius:12px;margin-bottom:14px;text-align:center">
+        <h3 style="margin:0;font-size:18px">👋 Hi Guest! Try This Test FREE</h3>
+        <p style="margin:6px 0 0;color:#e2e8f0;font-size:14px">You can give this test without login. But your score will <b style="color:#facc15">NOT be saved</b> in Dashboard / Ranking.</p>
+        <p style="margin:8px 0 0"><a href="/signup" style="display:inline-block;background:#facc15;color:#0f172a;padding:10px 22px;border-radius:8px;font-weight:bold;text-decoration:none;font-size:14px">✨ Signup Free to Save Score →</a> <a href="/login" style="color:white;font-weight:bold;font-size:14px">Login →</a></p>
+      </div>
+      <% } else { %>
+      <div style="background:#dcfce7;color:#166534;padding:12px;border-radius:10px;margin-bottom:14px;text-align:center;font-weight:bold;font-size:14px">✅ Logged in as <b><%= user.username %></b> - Your score will be saved in Dashboard & Ranking</div>
+      <% } %>
+      <!-- ===== GUEST BANNER END ===== -->
+      <h2>📝 Lesson 14 Test - Check Your Learning</h2>
+      <div class="test-info"><b>Total Questions:</b> 10 &nbsp; | &nbsp; <b>Total Marks:</b> 100 &nbsp; | &nbsp; <b>Passing Marks:</b> 80 (80%) &nbsp; | &nbsp; <b>Time:</b> 3 Minutes<br>Each correct answer = 10 Marks. Once you start, all tabs will be locked until you submit.</div>
+      <div id="startScreen">
+        <h2>Ready for the Test?</h2>
+        <p>Click Start Paper to begin. You will get <b>3 Minutes</b> for 10 questions.<br>During the test, you cannot open Lesson or any other page.</p>
+        <button class="btn" style="font-size:20px;padding:14px 30px" onclick="startTest()">▶ Start Paper</button>
+      </div>
+      <div id="timerBar">⏰ Time Left: <span id="timerText">03:00</span></div>
+      <div id="quizArea">
+        <form id="quizForm">
+          <div class="question"><b>Q1. What is the correct order of Box Model from inside to outside?</b><label><input type="radio" name="q1" value="a"> Content → Padding → Border → Margin</label><label><input type="radio" name="q1" value="b"> Margin → Border → Padding → Content</label><label><input type="radio" name="q1" value="c"> Content → Margin → Border → Padding</label><label><input type="radio" name="q1" value="d"> Padding → Content → Margin → Border</label></div>
+          <div class="question"><b>Q2. Padding is space?</b><label><input type="radio" name="q2" value="a"> INSIDE the box</label><label><input type="radio" name="q2" value="b"> OUTSIDE the box</label><label><input type="radio" name="q2" value="c"> Between 2 pages</label><label><input type="radio" name="q2" value="d"> Nowhere</label></div>
+          <div class="question"><b>Q3. Margin is space?</b><label><input type="radio" name="q3" value="a"> INSIDE the box</label><label><input type="radio" name="q3" value="b"> OUTSIDE the box</label><label><input type="radio" name="q3" value="c"> Inside text</label><label><input type="radio" name="q3" value="d"> Nowhere</label></div>
+          <div class="question"><b>Q4. How to center a box?</b><label><input type="radio" name="q4" value="a"> margin: 0 auto;</label><label><input type="radio" name="q4" value="b"> padding: 0 auto;</label><label><input type="radio" name="q4" value="c"> border: 0 auto;</label><label><input type="radio" name="q4" value="d"> text-align: 0 auto;</label></div>
+          <div class="question"><b>Q5. Which property makes corners round?</b><label><input type="radio" name="q5" value="a"> border-radius</label><label><input type="radio" name="q5" value="b"> border-round</label><label><input type="radio" name="q5" value="c"> corner-radius</label><label><input type="radio" name="q5" value="d"> round-border</label></div>
+          <div class="question"><b>Q6. Which value makes a perfect Circle?</b><label><input type="radio" name="q6" value="a"> border-radius: 50%;</label><label><input type="radio" name="q6" value="b"> border-radius: 10px;</label><label><input type="radio" name="q6" value="c"> border-radius: 0;</label><label><input type="radio" name="q6" value="d"> border-radius: 100px;</label></div>
+          <div class="question"><b>Q7. What is correct Border syntax?</b><label><input type="radio" name="q7" value="a"> border: 2px solid blue;</label><label><input type="radio" name="q7" value="b"> border: blue solid 2px;</label><label><input type="radio" name="q7" value="c"> border: solid 2px;</label><label><input type="radio" name="q7" value="d"> border: 2px blue;</label></div>
+          <div class="question"><b>Q8. What does padding: 10px 30px; mean?</b><label><input type="radio" name="q8" value="a"> Top-Bottom 10px, Left-Right 30px</label><label><input type="radio" name="q8" value="b"> All sides 10px</label><label><input type="radio" name="q8" value="c"> Top 10px only</label><label><input type="radio" name="q8" value="d"> Left 10px only</label></div>
+          <div class="question"><b>Q9. Which should you always put at top of CSS?</b><label><input type="radio" name="q9" value="a"> * { box-sizing: border-box; }</label><label><input type="radio" name="q9" value="b"> * { margin: 0; }</label><label><input type="radio" name="q9" value="c"> body { color: red; }</label><label><input type="radio" name="q9" value="d"> Nothing</label></div>
+          <div class="question"><b>Q10. Background color shows in which one?</b><label><input type="radio" name="q10" value="a"> Padding - Yes, Margin - No</label><label><input type="radio" name="q10" value="b"> Margin - Yes, Padding - No</label><label><input type="radio" name="q10" value="c"> Both - No</label><label><input type="radio" name="q10" value="d"> Both - Yes</label></div>
+          <button type="button" class="btn" onclick="checkTest(false)">Submit Test - Check Result</button>
+          <button type="button" class="btn btn-next" onclick="resetTest()">Try Again</button>
+        </form>
+      </div>
+      <div id="scoreBox">
+        <h3 id="scoreText"></h3>
+        <p id="scoreMsg"></p>
+        <a id="nextBtn" class="btn" href="/lesson15" style="display:none">🎉 You Passed! Go to Lesson 15 →</a>
+        <br><br>
+        <button class="btn btn-next" onclick="showLesson()">← Back to Lesson (Unlocked)</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h3>LearnHTMLCSSJS.com</h3>
+      <p>Free HTML CSS JS course in simple English. Learn from zero to web developer with 50 lessons, tests, playground and ranking.</p>
+      <h4>Quick Links</h4>
+      <a href="/">🏠 Home</a><br>
+      <a href="/dashboard">📊 Dashboard</a><br>
+      <a href="/ranking">🏆 Ranking</a><br>
+      <a href="/playground">▶ Playground - Try Code</a><br>
+      <a href="/lesson1">📖 Start Lesson 1 - What is HTML?</a>
+    </div>
+    <div>
+      <h3>Next Lessons - Continue Learning</h3>
+      <a href="/lesson15">Lesson 15 - Flexbox</a>
+      <h4>CSS Course (11-20)</h4>
+      <a href="/lesson16">Lesson 16 - Grid Layout</a><br>
+      <a href="/lesson17">Lesson 17 - Responsive Design</a><br>
+      <a href="/lesson18">Lesson 18 - Buttons & Links Styling</a><br>
+      <a href="/lesson19">Lesson 19 - Forms Styling</a><br>
+      <a href="/lesson20">Lesson 20 - CSS Project</a>
+    </div>
+    <div>
+      <h3>JavaScript Course (21-40)</h3>
+      <a href="/lesson21">Lesson 21 - What is JavaScript?</a><br>
+      <a href="/lesson22">Lesson 22 - Variables</a><br>
+      <a href="/lesson23">Lesson 23 - Data Types & Operators</a><br>
+      <a href="/lesson24">Lesson 24 - If-Else</a><br>
+      <a href="/lesson25">Lesson 25 - Loops</a><br>
+      <a href="/lesson26">Lesson 26 - Functions</a><br>
+      <a href="/lesson27">Lesson 27 - Arrays</a><br>
+      <a href="/lesson28">Lesson 28 - Objects</a><br>
+      <a href="/lesson29">Lesson 29 - String Methods</a><br>
+      <a href="/lesson30">Lesson 30 - DOM</a><br>
+      <h4>Projects & Career (41-50)</h4>
+      <a href="/lesson41">Lesson 41 - Full Website Project</a><br>
+      <a href="/lesson42">Lesson 42 - Portfolio Website</a><br>
+      <a href="/lesson43">Lesson 43 - Landing Page</a><br>
+      <a href="/lesson44">Lesson 44 - Navbar & Footer</a><br>
+      <a href="/lesson45">Lesson 45 - Final Project</a><br>
+      <a href="/lesson46">Lesson 46 - SEO Basics</a><br>
+      <a href="/lesson47">Lesson 47 - Deploy Free</a><br>
+      <a href="/lesson48">Lesson 48 - Freelancing Guide</a><br>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a><br>
+      <a href="/lesson50">Lesson 50 - Final Exam & Certificate</a>
+    </div>
+  </div>
+  <div style="max-width:1100px;margin:25px auto 0;border-top:1px solid #1e293b;padding-top:20px">
+    <h3 style="text-align:center">📚 All 50 Lessons - Complete HTML CSS JS Course</h3>
+    <div class="all-lessons">
+      <a href="/lesson1">Lesson 1 - What is HTML?</a>
+      <a href="/lesson2">Lesson 2 - Headings & Paragraphs</a>
+      <a href="/lesson3">Lesson 3 - Text Formatting</a>
+      <a href="/lesson4">Lesson 4 - Links & Images</a>
+      <a href="/lesson5">Lesson 5 - Lists</a>
+      <a href="/lesson6">Lesson 6 - Tables</a>
+      <a href="/lesson7">Lesson 7 - Forms</a>
+      <a href="/lesson8">Lesson 8 - Div & Span</a>
+      <a href="/lesson9">Lesson 9 - Semantic HTML</a>
+      <a href="/lesson10">Lesson 10 - HTML Project</a>
+      <a href="/lesson11">Lesson 11 - What is CSS?</a>
+      <a href="/lesson12">Lesson 12 - Colors</a>
+      <a href="/lesson13">Lesson 13 - Text Styling</a>
+      <a href="/lesson14" class="current">Lesson 14 - Box Model</a>
+      <a href="/lesson15">Lesson 15 - Flexbox</a>
+      <a href="/lesson16">Lesson 16 - Grid</a>
+      <a href="/lesson17">Lesson 17 - Responsive</a>
+      <a href="/lesson18">Lesson 18 - Buttons</a>
+      <a href="/lesson19">Lesson 19 - Forms Styling</a>
+      <a href="/lesson20">Lesson 20 - CSS Project</a>
+      <a href="/lesson21">Lesson 21 - What is JS?</a>
+      <a href="/lesson22">Lesson 22 - Variables</a>
+      <a href="/lesson23">Lesson 23 - Data Types</a>
+      <a href="/lesson24">Lesson 24 - If-Else</a>
+      <a href="/lesson25">Lesson 25 - Loops</a>
+      <a href="/lesson26">Lesson 26 - Functions</a>
+      <a href="/lesson27">Lesson 27 - Arrays</a>
+      <a href="/lesson28">Lesson 28 - Objects</a>
+      <a href="/lesson29">Lesson 29 - Strings</a>
+      <a href="/lesson30">Lesson 30 - DOM</a>
+      <a href="/lesson31">Lesson 31 - Events</a>
+      <a href="/lesson32">Lesson 32 - Form Validation</a>
+      <a href="/lesson33">Lesson 33 - LocalStorage</a>
+      <a href="/lesson34">Lesson 34 - Timers</a>
+      <a href="/lesson35">Lesson 35 - Calculator</a>
+      <a href="/lesson36">Lesson 36 - To-Do List</a>
+      <a href="/lesson37">Lesson 37 - Quiz App</a>
+      <a href="/lesson38">Lesson 38 - Password Generator</a>
+      <a href="/lesson39">Lesson 39 - Weather App</a>
+      <a href="/lesson40">Lesson 40 - JS Revision</a>
+      <a href="/lesson41">Lesson 41 - Full Website</a>
+      <a href="/lesson42">Lesson 42 - Portfolio</a>
+      <a href="/lesson43">Lesson 43 - Landing Page</a>
+      <a href="/lesson44">Lesson 44 - Navbar</a>
+      <a href="/lesson45">Lesson 45 - Final Project</a>
+      <a href="/lesson46">Lesson 46 - SEO</a>
+      <a href="/lesson47">Lesson 47 - Deploy</a>
+      <a href="/lesson48">Lesson 48 - Freelancing</a>
+      <a href="/lesson49">Lesson 49 - Interview Qs</a>
+      <a href="/lesson50">Lesson 50 - Final Exam</a>
+    </div>
+    <p style="text-align:center;margin-top:15px">You are learning <a href="/lesson14">Box Model - Lesson 14</a> | Previous: <a href="/lesson13">Text Styling - Lesson 13</a> | Next: <a href="/lesson15">Flexbox - Lesson 15</a> | <a href="/lesson50">Jump to Final Exam - Lesson 50</a></p>
+  </div>
+  <div class="footer-bottom">© 2026 LearnHTMLCSSJS.com - Free Course | <a href="/">Home</a> | <a href="/lesson14">Lesson 14</a> | <a href="/lesson50">Lesson 50</a> | Made for Beginners</div>
+</footer>
+
+<script>
+// ===== GUEST TEST HANDLER - Only inside <script> =====
+const IS_LOGGED_IN = <%= (typeof user !== 'undefined' && user) ? 'true' : 'false' %>;
+function saveTestResult(lessonName, score, testStatus, onSaved) {
+  if (!IS_LOGGED_IN) { if (onSaved) onSaved(null); return; }
+  fetch('/save-result', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ lesson: lessonName, score: score, status: testStatus }) })
+  .then(r => r.json())
+  .then(data => { if (onSaved) onSaved(data); })
+  .catch(() => { if (onSaved) onSaved(null); });
+}
+function showGuestSignupPopup(score) {
+  let wantSignup = confirm("🎉 You scored " + score + "/100!\n\nYour score is NOT saved because you are not logged in.\n\nClick OK to Signup FREE and Save Your Score in Dashboard & Ranking.\nClick Cancel to continue without saving.");
+  if (wantSignup) { window.location.href = "/signup"; }
+}
+// ===== GUEST HANDLER END =====
+let testRunning=false;let timerInterval=null;let timeLeft=180;
+function showLesson(){if(testRunning){alert("🔒 Test is running! Please submit the test first. All tabs are locked.");return;}document.getElementById('lessonContent').style.display='block';document.getElementById('testContent').style.display='none';document.getElementById('lessonTabBtn').classList.add('active');document.getElementById('lessonTabBtn').classList.remove('test-active');document.getElementById('testTabBtn').classList.remove('active');document.getElementById('testTabBtn').classList.remove('test-active');window.scrollTo({top:0,behavior:'smooth'});}
+function showTest(){document.getElementById('lessonContent').style.display='none';document.getElementById('testContent').style.display='block';document.getElementById('testTabBtn').classList.add('active');document.getElementById('testTabBtn').classList.add('test-active');document.getElementById('lessonTabBtn').classList.remove('active');window.scrollTo({top:0,behavior:'smooth'});}
+function lockTabs(){testRunning=true;document.getElementById('lessonTabBtn').classList.add('disabled');document.getElementById('lockMsg').style.display='block';document.getElementById('homeLink').classList.add('disabled');document.getElementById('playgroundLink').style.pointerEvents='none';document.getElementById('playgroundLink').style.opacity='0.5';document.getElementById('nextLessonLink').style.pointerEvents='none';document.getElementById('nextLessonLink').style.opacity='0.5';}
+function unlockTabs(){testRunning=false;clearInterval(timerInterval);document.getElementById('lessonTabBtn').classList.remove('disabled');document.getElementById('lockMsg').style.display='none';document.getElementById('homeLink').classList.remove('disabled');document.getElementById('playgroundLink').style.pointerEvents='auto';document.getElementById('playgroundLink').style.opacity='1';document.getElementById('nextLessonLink').style.pointerEvents='auto';document.getElementById('nextLessonLink').style.opacity='1';document.getElementById('timerBar').style.display='none';}
+function startTest(){document.getElementById('startScreen').style.display='none';document.getElementById('quizArea').style.display='block';document.getElementById('timerBar').style.display='block';document.getElementById('scoreBox').style.display='none';lockTabs();timeLeft=180;updateTimer();timerInterval=setInterval(function(){timeLeft--;updateTimer();if(timeLeft<=0){clearInterval(timerInterval);alert("⏰ Time Up! Your test is auto-submitted.");checkTest(true);}},1000);}
+function updateTimer(){let m=Math.floor(timeLeft/60);let s=timeLeft%60;document.getElementById('timerText').innerText=(m<10?"0"+m:m)+":"+(s<10?"0"+s:s);if(timeLeft<=30){document.getElementById('timerBar').classList.add('warning');}}
+function checkTest(isAuto){
+  let answers={q1:'a',q2:'a',q3:'b',q4:'a',q5:'a',q6:'a',q7:'a',q8:'a',q9:'a',q10:'a'};
+  let score=0;let attempted=0;
+  for(let q in answers){let selected=document.querySelector('input[name="'+q+'"]:checked');if(selected){attempted++;if(selected.value===answers[q])score+=10;}}
+  if(!isAuto && attempted<10){alert("Please answer all 10 questions! You have answered only "+attempted+" questions.");return;}
+  unlockTabs();
+  let testStatus=score>=80?'Pass':'Fail';
+  saveTestResult('Lesson 14 - Box Model', score, testStatus, function(data){
+    if (!IS_LOGGED_IN && score >= 80) {
+      setTimeout(() => showGuestSignupPopup(score), 500);
+    }
+  });
+  let box=document.getElementById('scoreBox');let scoreText=document.getElementById('scoreText');let scoreMsg=document.getElementById('scoreMsg');let nextBtn=document.getElementById('nextBtn');box.style.display='block';scoreText.innerText="Your Score: "+score+" / 100";
+  if(score>=80){box.className='pass';scoreMsg.innerText="🎉 Congratulations! You PASSED. You have learned Lesson 14. Now all tabs are unlocked.";nextBtn.style.display='inline-block';}
+  else{box.className='fail';scoreMsg.innerText="😔 You FAILED. Passing marks are 80. All tabs are now unlocked. Read the lesson again and try again.";nextBtn.style.display='none';}
+  box.scrollIntoView({behavior:'smooth'});
+}
+function resetTest(){clearInterval(timerInterval);testRunning=false;document.getElementById('quizForm').reset();document.getElementById('scoreBox').style.display='none';document.getElementById('quizArea').style.display='none';document.getElementById('startScreen').style.display='block';document.getElementById('timerBar').style.display='none';unlockTabs();}
+</script>
+</body>
+</html>
