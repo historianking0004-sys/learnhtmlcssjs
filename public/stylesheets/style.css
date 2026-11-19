@@ -264,7 +264,8 @@ body{
 
 }
 .code{
-    background: #03df54;
+   background: #0f172a;
+   color: white;
     text-align: center;
     font-weight: bold;
     font-style: italic;
