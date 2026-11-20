@@ -34,7 +34,6 @@ body{
 }
 .main-navbar{
     margin-top: 0;
-    text-decoration: none;
     display: flex;
     justify-content: space-between;
     border-radius: 20px;
@@ -99,6 +98,7 @@ body{
     background: transparent;
     color: white;
     border: none;
+    text-decoration: none;
 }
 
 /* ===== SIMPLE GREEN SMOKE - LEFT TO RIGHT ===== */
@@ -152,6 +152,7 @@ body{
   border: none;
   font-size: 25px;
   font-weight: bold;
+  text-decoration: none;
   
 }
 .reg-btn:hover{
