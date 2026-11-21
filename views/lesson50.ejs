@@ -87,7 +87,27 @@
   .all-lessons{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:10px}
   .all-lessons a{background:#1e293b;padding:8px 10px;border-radius:8px;text-align:center;display:block;color:#e2e8f0;font-weight:bold;line-height:1.4}
   .all-lessons a:hover{background:#2563eb;color:white;text-decoration:none}
-  .all-lessons a.current{background:#16a34a;color:white}
+ 
+ /* ===== TEST RESULT COLORS ===== */
+.question label.correct-answer{
+  background:#dcfce7 !important;
+  border:2px solid #16a34a !important;
+  color:#166534;
+  font-weight:bold;
+}
+.question label.wrong-answer{
+  background:#fee2e2 !important;
+  border:2px solid #dc2626 !important;
+  color:#991b1b;
+}
+.question label.correct-answer::after{
+  content:"  ✓ Correct";
+  color:#16a34a;
+}
+.question label.wrong-answer::after{
+  content:"  ✗ Your Answer - Wrong";
+  color:#dc2626;
+} .all-lessons a.current{background:#16a34a;color:white}
   .footer-bottom{text-align:center;border-top:1px solid #1e293b;margin-top:25px;padding-top:15px;font-size:13px;color:#64748b}
   @media(max-width:700px){.footer-grid{grid-template-columns:1fr}.all-lessons{grid-template-columns:1fr 1fr}.container{padding:20px}.journey{grid-template-columns:1fr 1fr}}
   @media print{header,.tabs,#testContent,.nav,footer,.no-print{display:none !important}.container{padding:0}.cert{border:6px double #f59e0b;max-width:100%}}
@@ -419,21 +439,44 @@ function checkTest(isAuto){
     showResult(score,testStatus);
   });
 }
+window.finalAnswers = answers;
+showResult(score, testStatus);
 function showResult(score,testStatus){
+  // 1. Show Green = Correct, Red = Your Wrong Answer (if answers are available)
+  // This works if your checkTest() saved answers in window.finalAnswers
+  // Example in checkTest: window.finalAnswers = answers;
+  if(window.finalAnswers){
+    let answers = window.finalAnswers;
+    document.querySelectorAll('.question label').forEach(function(l){
+      l.classList.remove('correct-answer','wrong-answer');
+    });
+    for(let q in answers){
+      let selected = document.querySelector('input[name="'+q+'"]:checked');
+      let correctValue = answers[q];
+      let correctInput = document.querySelector('input[name="'+q+'"][value="'+correctValue+'"]');
+      if(correctInput){
+        correctInput.parentElement.classList.add('correct-answer');
+      }
+      if(selected && selected.value !== correctValue){
+        selected.parentElement.classList.add('wrong-answer');
+      }
+    }
+  }
+
   let box=document.getElementById('scoreBox');let scoreText=document.getElementById('scoreText');let scoreMsg=document.getElementById('scoreMsg');let certSuccess=document.getElementById('certSuccess');
   if(!box) return;
   box.style.display='block';scoreText.innerText="Your Final Score: "+score+" / 100";
   if(score>=80){
     box.className='pass';
     let grade=score>=95?"A+ - Outstanding!":score>=90?"A - Excellent!":score>=85?"B+ - Very Good!":"B - Good!";
-    scoreMsg.innerText="🎉 CONGRATULATIONS! You PASSED Final Exam! You are now a Certified Web Developer!";
+    scoreMsg.innerText="🎉 CONGRATULATIONS! You PASSED Final Exam! You are now a Certified Web Developer! Scroll up - Green = Correct, Red = Your Wrong Answer.";
     let cs=document.getElementById('certScore'); if(cs) cs.innerText=score+" / 100";
     let cg=document.getElementById('certGrade'); if(cg) cg.innerText=grade;
     let today=new Date();let cd=document.getElementById('certDate'); if(cd) cd.innerText=today.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
     if(certSuccess) certSuccess.style.display='block';
   }else{
     box.className='fail';
-    scoreMsg.innerText="😔 You FAILED. Passing marks are 80. You got "+score+". Do not give up! Read lessons again and try again. You are close!";
+    scoreMsg.innerText="😔 You FAILED. Passing marks are 80. You got "+score+". Scroll up - Green answers are correct, Red answers were your wrong answers. Do not give up! Read lessons again and try again. You are close!";
     if(certSuccess) certSuccess.style.display='none';
   }
   box.scrollIntoView({behavior:'smooth'});

@@ -80,6 +80,26 @@
   .all-lessons a.current{background:#16a34a;color:white}
   .footer-bottom{text-align:center;border-top:1px solid #1e293b;margin-top:25px;padding-top:15px;font-size:13px;color:#64748b}
   @media(max-width:700px){.footer-grid{grid-template-columns:1fr}.all-lessons{grid-template-columns:1fr 1fr}}
+/* ===== TEST RESULT COLORS ===== */
+.question label.correct-answer{
+  background:#dcfce7 !important;
+  border:2px solid #16a34a !important;
+  color:#166534;
+  font-weight:bold;
+}
+.question label.wrong-answer{
+  background:#fee2e2 !important;
+  border:2px solid #dc2626 !important;
+  color:#991b1b;
+}
+.question label.correct-answer::after{
+  content:"  ✓ Correct";
+  color:#16a34a;
+}
+.question label.wrong-answer::after{
+  content:"  ✗ Your Answer - Wrong";
+  color:#dc2626;
+}
 </style>
 </head>
 <body>
@@ -392,11 +412,42 @@ function updateTimer(){
 function checkTest(isAuto){
   let answers = {q1:'b', q2:'b', q3:'a', q4:'b', q5:'b', q6:'b', q7:'b', q8:'b', q9:'b', q10:'b'};
   let score = 0; let attempted = 0;
+
+  // 1. Remove old colors if student tries again
+  document.querySelectorAll('.question label').forEach(function(l){
+    l.classList.remove('correct-answer','wrong-answer');
+  });
+
   for(let q in answers){
     let selected = document.querySelector('input[name="'+q+'"]:checked');
-    if(selected){ attempted++; if(selected.value === answers[q]) score += 10; }
+    let correctValue = answers[q];
+
+    // Find correct label and mark it green ALWAYS
+    let correctInput = document.querySelector('input[name="'+q+'"][value="'+correctValue+'"]');
+    if(correctInput){
+      correctInput.parentElement.classList.add('correct-answer');
+    }
+
+    if(selected){
+      attempted++;
+      if(selected.value === answers[q]){
+        score += 10;
+      } else {
+        // If wrong, mark student's answer red
+        selected.parentElement.classList.add('wrong-answer');
+      }
+    }
   }
-  if(!isAuto && attempted < 10){ alert("Please answer all 10 questions! You have answered only " + attempted + " questions."); return; }
+
+  if(!isAuto && attempted < 10){
+    alert("Please answer all 10 questions! You have answered only " + attempted + " questions.");
+    // If not all answered, remove colors again
+    document.querySelectorAll('.question label').forEach(function(l){
+      l.classList.remove('correct-answer','wrong-answer');
+    });
+    return;
+  }
+
   unlockTabs();
   let testStatus = score >= 80 ? 'Pass' : 'Fail';
   saveTestResult('Lesson 3 - Text Formatting', score, testStatus, function(data){
@@ -404,6 +455,7 @@ function checkTest(isAuto){
       setTimeout(() => showGuestSignupPopup(score), 500);
     }
   });
+
   let box = document.getElementById('scoreBox');
   let scoreText = document.getElementById('scoreText');
   let scoreMsg = document.getElementById('scoreMsg');
@@ -412,11 +464,11 @@ function checkTest(isAuto){
   scoreText.innerText = "Your Score: " + score + " / 100";
   if(score >= 80){
     box.className = 'pass';
-    scoreMsg.innerText = "🎉 Congratulations! You PASSED. You have learned Lesson 3. Now all tabs are unlocked.";
+    scoreMsg.innerText = "🎉 Congratulations! You PASSED. Scroll up to see Green = Correct, Red = Your Wrong Answer.";
     nextBtn.style.display = 'inline-block';
   } else {
     box.className = 'fail';
-    scoreMsg.innerText = "😔 You FAILED. Passing marks are 80. All tabs are now unlocked. Read the lesson again and try again.";
+    scoreMsg.innerText = "😔 You FAILED. Passing marks are 80. Scroll up - Green answers are correct, Red answers were your wrong answers. Read again and try again.";
     nextBtn.style.display = 'none';
   }
   box.scrollIntoView({behavior:'smooth'});
